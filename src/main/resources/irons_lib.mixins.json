@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "package": "io.redspace.ironslib.internal.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "CommonLivingEntityMixin",
+    "ItemMixin",
+    "PlayerAccessor",
+    "SoulFireBlockMixin",
+    "SoulFireEntityMixin"
+  ],
+  "client": [
+    "ClientArmorStandMixin",
+    "ClientLivingEntityMixin",
+    "ClientPlayerMixin",
+    "EntityRenderDispatcherMixin",
+    "GuiGraphicsMixin",
+    "HumanoidArmorLayerMixin",
+    "HumanoidModelMixin",
+    "ItemInHandLayerMixin",
+    "ItemInHandRendererMixin",
+    "LocalPlayerMixin",
+    "PlayerRendererMixin",
+    "ScreenEffectRendererMixin",
+    "SoulFireEntityRenderDispatcherMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
