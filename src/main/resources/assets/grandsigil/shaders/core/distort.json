@@ -1,0 +1,27 @@
+{
+    "blend": {
+        "func": "add",
+        "srcrgb": "one",
+        "dstrgb": "zero"
+    },
+    "vertex": "grandsigil:distort",
+    "fragment": "grandsigil:distort",
+    "attributes": [ "Position", "UV0" ],
+    "samplers": [
+        { "name": "Sampler0" }
+    ],
+    "uniforms": [
+        { "name": "ModelViewMat", "type": "matrix4x4", "count": 16,
+          "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ProjMat", "type": "matrix4x4", "count": 16,
+          "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "Centre", "type": "float", "count": 2, "values": [ 0.5, 0.5 ] },
+        { "name": "Strength", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Wobble", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Clock", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Ratio", "type": "float", "count": 1, "values": [ 1.0 ] },
+        { "name": "Drain", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Spill", "type": "float", "count": 3, "values": [ 1.0, 0.93, 0.74 ] },
+        { "name": "Blood", "type": "float", "count": 1, "values": [ 0.0 ] }
+    ]
+}
