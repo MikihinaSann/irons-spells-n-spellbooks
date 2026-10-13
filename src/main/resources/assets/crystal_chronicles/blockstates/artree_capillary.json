@@ -1,0 +1,76 @@
+{
+  "multipart": [
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "crystal_chronicles:block/artree_capillary_side" }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_side",
+        "uvlock": true,
+        "y": 90
+      }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_side",
+        "uvlock": true,
+        "y": 180
+      }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_side",
+        "uvlock": true,
+        "y": 270
+      }
+    },
+    {
+      "when": { "up": "true", "down": "false" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_side",
+        "uvlock": true,
+        "x": 270
+      }
+    },
+    {
+      "when": { "up": "false", "down": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_side",
+        "uvlock": true,
+        "x": 90
+      }
+    },
+    {
+      "when": { "up": "true", "down": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_post",
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "up": "false", "down": "false" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_noside",
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "up": "true", "down": "false" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_noside",
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "up": "false", "down": "true" },
+      "apply": {
+        "model": "crystal_chronicles:block/artree_capillary_noside",
+        "uvlock": true
+      }
+    }
+  ]
+}

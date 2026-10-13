@@ -1,0 +1,49 @@
+package net.veroxuniverse.crystal_chronicles.block;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.veroxuniverse.crystal_chronicles.registry.CCBlocks;
+
+public class FleshBlock extends Block {
+   public static final BooleanProperty HAS_SKIN_ABOVE = BooleanProperty.create("has_skin_above");
+
+   public FleshBlock(Properties properties) {
+      super(properties);
+      this.registerDefaultState(this.stateDefinition.any().setValue(HAS_SKIN_ABOVE, Boolean.valueOf(false)));
+   }
+
+   @Override
+   public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+      super.onPlace(state, level, pos, oldState, isMoving);
+      if (!level.isClientSide) {
+         this.updateSkinState(level, pos, state);
+      }
+   }
+
+   @Override
+   public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+      super.neighborChanged(state, level, pos, block, fromPos, isMoving);
+      if (!level.isClientSide()) {
+         if (fromPos.equals(pos.above())) {
+            this.updateSkinState(level, pos, state);
+         }
+      }
+   }
+
+   private void updateSkinState(Level level, BlockPos pos, BlockState state) {
+      boolean shouldHaveSkin = level.getBlockState(pos.above()).is((Block)CCBlocks.SKIN_LAYER.get());
+      if (state.getValue(HAS_SKIN_ABOVE) != shouldHaveSkin) {
+         level.setBlock(pos, state.setValue(HAS_SKIN_ABOVE, Boolean.valueOf(shouldHaveSkin)), 2);
+      }
+   }
+
+   @Override
+   protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
+      builder.add(HAS_SKIN_ABOVE);
+   }
+}

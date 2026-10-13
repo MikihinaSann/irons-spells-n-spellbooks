@@ -1,0 +1,32 @@
+{
+  "feature": "crystal_chronicles:holy/marble_pillars",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 1
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "allowed_search_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      },
+      "direction_of_search": "down",
+      "max_steps": 12,
+      "target_condition": {
+        "type": "minecraft:solid"
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "matching_blocks",
+        "blocks": "minecraft:air",
+        "offset": [0,5,0]
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
