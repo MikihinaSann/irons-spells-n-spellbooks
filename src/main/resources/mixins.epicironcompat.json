@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_21",
+  "package": "com.yukami.efiscompat.mixin",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "MixinRenderItemBase",
+    "MixinFirstPersonRenderer",
+    "MixinPlayerAnimatorCompat",
+    "MixinIronAnimationHelper",
+    "MixinChargeSpellLayerVanilla",
+    "MixinHotbarChangeInventory"
+  ],
+  "mixins": [
+    "MixinCancelAnimation",
+    "MixinComboBasicAttack",
+    "MixinDodge",
+    "MixinGuard",
+    "MixinOnSpellFinish",
+    "MixinSkillExecution",
+    "MixinAnimationRegistration"
+  ],
+  "plugin": "com.yukami.efiscompat.mixin.EfisCompatMixinPlugin"
+}
