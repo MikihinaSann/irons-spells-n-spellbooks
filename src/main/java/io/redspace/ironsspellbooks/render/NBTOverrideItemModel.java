@@ -35,7 +35,6 @@ public abstract class NBTOverrideItemModel implements BakedModel {
                 return null;
             }
 
-            @Override
             public @Nullable UnbakedModel getTopLevelModel(ModelResourceLocation location) {
                 return null;
             }
@@ -44,15 +43,16 @@ public abstract class NBTOverrideItemModel implements BakedModel {
                 return null;
             }
 
-            @Override
             public @Nullable BakedModel bakeUncached(UnbakedModel model, ModelState state, Function<Material, TextureAtlasSprite> sprites) {
                 return null;
             }
 
+            @Override
             public UnbakedModel getModel(ResourceLocation resourceLocation) {
                 return null;
             }
 
+            @Override
             public @Nullable BakedModel bake(ResourceLocation resourceLocation, ModelState modelState) {
                 return null;
             }
@@ -63,7 +63,7 @@ public abstract class NBTOverrideItemModel implements BakedModel {
                 if (override.isPresent()) {
                     var manager = Minecraft.getInstance().getModelManager();
                     //var missing = manager.getModel(ModelBakery.MISSING_MODEL_LOCATION);
-                    var model = manager.getModel(ModelResourceLocation.standalone(override.get()));
+                    var model = manager.getModel(new ModelResourceLocation(override.get(), "fabric_resource"));
                     return /*model == missing ? original : */model;
                 }
 

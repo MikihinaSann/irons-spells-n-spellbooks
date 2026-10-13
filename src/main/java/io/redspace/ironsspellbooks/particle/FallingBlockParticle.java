@@ -66,7 +66,7 @@ public class FallingBlockParticle extends TextureSheetParticle {
                             level, model, particle.state, blockpos,
                             poseStack, buf.getBuffer(renderType), false,
                             RandomSource.create(), particle.state.getSeed(particle.originalPos),
-                            OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
+                            OverlayTexture.NO_OVERLAY);
                 }
                 poseStack.popPose();
 

@@ -69,7 +69,6 @@ public class EnergizedCoreItem extends Item {
     private void doLightningBolt(Level level, Vec3 pos) {
         LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(level);
         lightningBolt.setVisualOnly(true);
-        lightningBolt.setDamage(0);
         lightningBolt.setPos(pos);
         level.addFreshEntity(lightningBolt);
     }

@@ -119,7 +119,7 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
         if (anchor == Anchor.Hunger)
             return screenHeight - (getAndIncrementRightHeight(gui) - 2) - IMAGE_HEIGHT / 2;
         if (anchor == Anchor.Center)
-            return screenHeight - HOTBAR_HEIGHT - (int) (ICON_ROW_HEIGHT * 2.5f) - IMAGE_HEIGHT / 2 - (Math.max(gui.rightHeight, gui.leftHeight) - 49);
+            return screenHeight - HOTBAR_HEIGHT - (int) (ICON_ROW_HEIGHT * 2.5f) - IMAGE_HEIGHT / 2 - (Math.max(net.neoforged.neoforge.client.GuiHeights.rightHeight, net.neoforged.neoforge.client.GuiHeights.leftHeight) - 49);
         if (anchor == Anchor.TopLeft || anchor == Anchor.TopRight)
             return SCREEN_BORDER_MARGIN;
         return screenHeight - SCREEN_BORDER_MARGIN - IMAGE_HEIGHT;
@@ -127,8 +127,8 @@ public class ManaBarOverlay implements LayeredDraw.Layer {
     }
 
     private static int getAndIncrementRightHeight(Gui gui) {
-        int x = gui.rightHeight;
-        gui.rightHeight += 10;
+        int x = net.neoforged.neoforge.client.GuiHeights.rightHeight;
+        net.neoforged.neoforge.client.GuiHeights.rightHeight += 10;
         return x;
     }
 }

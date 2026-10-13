@@ -5,7 +5,7 @@ import net.minecraft.client.KeyMapping;
 
 public class ExtendedKeyMapping extends KeyMapping {
     public ExtendedKeyMapping(String description, net.neoforged.neoforge.client.settings.IKeyConflictContext keyConflictContext, final InputConstants.Type inputType, final int keyCode, String category) {
-        super(description, keyConflictContext, inputType.getOrCreate(keyCode), category);
+        super(description, inputType, keyCode, category);
     }
 
     /**

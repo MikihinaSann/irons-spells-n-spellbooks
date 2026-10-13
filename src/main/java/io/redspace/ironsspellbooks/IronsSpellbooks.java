@@ -27,11 +27,14 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.event.lifecycle.InterModProcessEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -57,12 +60,12 @@ public class IronsSpellbooks {
         MAGIC_MANAGER = new MagicManager();
         MagicHelper.MAGIC_MANAGER = MAGIC_MANAGER;
 
-        modEventBus.addListener(ModSetup::init);
-        modEventBus.addListener(this::enqueueIMC);
-        modEventBus.addListener(this::processIMC);
-        modEventBus.addListener(SchoolRegistry::registerRegistry);
-        modEventBus.addListener(SpellRegistry::registerRegistry);
-        modEventBus.addListener(UpgradeOrbTypeRegistry::registerDatapackRegistries);
+        modEventBus.addListener(FMLCommonSetupEvent.class, ModSetup::init);
+        modEventBus.addListener(InterModEnqueueEvent.class, this::enqueueIMC);
+        modEventBus.addListener(InterModProcessEvent.class, this::processIMC);
+        modEventBus.addListener(NewRegistryEvent.class, SchoolRegistry::registerRegistry);
+        modEventBus.addListener(NewRegistryEvent.class, SpellRegistry::registerRegistry);
+        modEventBus.addListener(DataPackRegistryEvent.NewRegistry.class, UpgradeOrbTypeRegistry::registerDatapackRegistries);
         //NeoForge.EVENT_BUS.register(this);
 
         //TODO: custom annotation would be nice
@@ -90,8 +93,8 @@ public class IronsSpellbooks {
         FluidRegistry.register(modEventBus);
         RecipeRegistry.register(modEventBus);
 
-        modEventBus.addListener(this::addPackFinders);
-        NeoForge.EVENT_BUS.addListener(this::addServerDataListeners);
+        modEventBus.addListener(AddPackFindersEvent.class, this::addPackFinders);
+        NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, this::addServerDataListeners);
 
         //ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfigs.SPEC,"irons_spellbooks-client.toml");
         modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfigs.SPEC, String.format("%s-client.toml", IronsSpellbooks.MODID));
@@ -122,7 +125,17 @@ public class IronsSpellbooks {
         var resourcePath = ModList.get().getModFileById(MODID).getFile().findResource(filename);
         var pack = Pack.readMetaAndCreate(
                 new PackLocationInfo(id, displayName, PackSource.BUILT_IN, Optional.empty()),
-                BuiltInPackSource.fromName((path) -> new PathPackResources(path, resourcePath)),
+                new Pack.ResourcesSupplier() {
+                    @Override
+                    public net.minecraft.server.packs.PackResources openPrimary(PackLocationInfo info) {
+                        return new PathPackResources(info, resourcePath);
+                    }
+
+                    @Override
+                    public net.minecraft.server.packs.PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
+                        return new PathPackResources(info, resourcePath);
+                    }
+                },
                 PackType.CLIENT_RESOURCES,
                 new PackSelectionConfig(false, Pack.Position.TOP, false)
         );

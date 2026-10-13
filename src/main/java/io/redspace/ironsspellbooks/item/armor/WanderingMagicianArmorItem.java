@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.entity.armor.WanderingMagicianModel;
 import io.redspace.ironsspellbooks.registries.ArmorMaterialRegistry;
@@ -15,7 +16,5 @@ public class WanderingMagicianArmorItem extends ExtendedArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new GenericCustomArmorRenderer<>(new WanderingMagicianModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.wanderingMagician(); }
 }

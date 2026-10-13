@@ -32,7 +32,7 @@ public class CreativeTabRegistry {
         TABS.register(eventBus);
     }
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EQUIPMENT_TAB = TABS.register("spellbook_equipment", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EQUIPMENT_TAB = TABS.register("spellbook_equipment", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .title(Component.translatable("itemGroup." + IronsSpellbooks.MODID + ".spell_equipment_tab"))
             .icon(() -> new ItemStack(ItemRegistry.IRON_SPELL_BOOK.get()))
             .displayItems((enabledFeatures, entries) -> {
@@ -148,7 +148,7 @@ public class CreativeTabRegistry {
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .build());
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MATERIALS_TAB = TABS.register("spellbook_materials", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MATERIALS_TAB = TABS.register("spellbook_materials", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .title(Component.translatable("itemGroup." + IronsSpellbooks.MODID + ".spell_materials_tab"))
             .icon(() -> new ItemStack(ItemRegistry.DIVINE_PEARL.get()))
             .displayItems((enabledFeatures, entries) -> {
@@ -261,7 +261,7 @@ public class CreativeTabRegistry {
             .withTabsBefore(EQUIPMENT_TAB.getKey())
             .build());
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKS_TAB = TABS.register("spellbook_blocks", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKS_TAB = TABS.register("spellbook_blocks", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .title(Component.translatable("itemGroup." + IronsSpellbooks.MODID + ".blocks_tab"))
             .icon(() -> new ItemStack(ItemRegistry.INSCRIPTION_TABLE_BLOCK_ITEM.get()))
             .displayItems((enabledFeatures, entries) -> {
@@ -274,7 +274,7 @@ public class CreativeTabRegistry {
             .withTabsBefore(MATERIALS_TAB.getKey())
             .build());
 
-    public static final Supplier<CreativeModeTab> SCROLLS_TAB = TABS.register("spellbook_scrolls", () -> CreativeModeTab.builder()
+    public static final Supplier<CreativeModeTab> SCROLLS_TAB = TABS.register("spellbook_scrolls", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .title(Component.translatable("itemGroup." + IronsSpellbooks.MODID + ".spellbook_scrolls_tab"))
             .icon(() -> new ItemStack(ItemRegistry.SCROLL.get()))
             .withTabsBefore(MATERIALS_TAB.getKey())

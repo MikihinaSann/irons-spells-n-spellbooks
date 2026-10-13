@@ -107,19 +107,18 @@ public abstract class ExtendedArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-        consumer.accept(new GeoRenderProvider() {
-            private GeoArmorRenderer<?> renderer;
-
-            @Override
-            public <T extends LivingEntity> HumanoidModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable HumanoidModel<T> original) {
-                if (this.renderer == null) {
-                    this.renderer = supplyRenderer();
-                }
-                return this.renderer;
-            }
-        });
+        // Fabric: geckolib invokes this during item construction on servers too;
+        // the provider class references client-only types, so only create it client-side.
+        if (net.fabricmc.loader.api.FabricLoader.getInstance().getEnvironmentType() == net.fabricmc.api.EnvType.CLIENT) {
+            consumer.accept(io.redspace.ironsspellbooks.render.ArmorRenderProviders.create(this::supplyRenderer));
+        }
     }
 
+    /**
+     * Fabric: declared {@code Object} return keeps {@code GeoArmorRenderer}/{@code HumanoidModel}
+     * out of item-class stack maps (they are client-only under the Fabric loader). The actual
+     * value is always a {@code GeoArmorRenderer} produced by ClientArmorRenderers.
+     */
     @OnlyIn(Dist.CLIENT)
-    public abstract GeoArmorRenderer<?> supplyRenderer();
+    public abstract Object supplyRenderer();
 }

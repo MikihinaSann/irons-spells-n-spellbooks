@@ -91,7 +91,7 @@ public class ArcaneAnvilJeiRecipe {
                 tuple.a.add(new ItemStack(leftItem));
                 var upgradeStack = new ItemStack(rightItem);
                 var result = new ItemStack(leftItem);
-                UpgradeData.set(result, UpgradeData.NONE.addUpgrade(result, Minecraft.getInstance().level.registryAccess().holderOrThrow(
+                UpgradeData.set(result, UpgradeData.NONE.addUpgrade(result, Minecraft.getInstance().level.registryAccess().lookupOrThrow(upgradeStack.get(ComponentRegistry.UPGRADE_ORB_TYPE).registryKey()).getOrThrow(
                         upgradeStack.get(ComponentRegistry.UPGRADE_ORB_TYPE)
                 ), UpgradeUtils.getRelevantEquipmentSlot(result)));
                 tuple.b.add(upgradeStack);

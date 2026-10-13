@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.spells.IPresetSpellContainer;
 import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
@@ -26,9 +27,7 @@ public class TarnishedCrownArmorItem extends ExtendedArmorItem implements IPrese
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new GenericCustomArmorRenderer<>(new TarnishedCrownModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.tarnishedCrown(); }
 
     @Override
     public void initializeSpellContainer(ItemStack itemStack) {

@@ -30,7 +30,7 @@ public class IronLootTableProviders {
         }
 
         @Override
-        protected void generate() {
+        public void generate() {
             //TODO: when adding table, make sure to add the block to known blocks (#add does it automatically)
             this.add(BlockRegistry.MITHRIL_ORE.get(), p_249875_ -> this.createOreDrop(p_249875_, ItemRegistry.RAW_MITHRIL.get()));
             this.add(BlockRegistry.MITHRIL_ORE_DEEPSLATE.get(), p_249875_ -> this.createOreDrop(p_249875_, ItemRegistry.RAW_MITHRIL.get()));
@@ -43,12 +43,11 @@ public class IronLootTableProviders {
         }
 
         @Override
-        protected void add(net.minecraft.world.level.block.Block pBlock, Function<net.minecraft.world.level.block.Block, LootTable.Builder> pFactory) {
+        public void add(net.minecraft.world.level.block.Block pBlock, Function<net.minecraft.world.level.block.Block, LootTable.Builder> pFactory) {
             knownBlocks.add(pBlock);
             super.add(pBlock, pFactory);
         }
 
-        @Override
         protected Iterable<net.minecraft.world.level.block.Block> getKnownBlocks() {
             return knownBlocks;
         }

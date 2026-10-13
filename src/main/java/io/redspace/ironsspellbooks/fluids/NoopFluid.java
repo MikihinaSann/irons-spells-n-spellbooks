@@ -19,6 +19,21 @@ public class NoopFluid extends BaseFlowingFluid {
     }
 
     @Override
+    protected boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState state, net.minecraft.world.level.BlockGetter level, net.minecraft.core.BlockPos pos, net.minecraft.world.level.material.Fluid fluid, net.minecraft.core.Direction direction) {
+        return false;
+    }
+
+    @Override
+    public net.minecraft.world.level.material.Fluid getSource() {
+        return this;
+    }
+
+    @Override
+    public net.minecraft.world.level.material.Fluid getFlowing() {
+        return this;
+    }
+
+    @Override
     protected BlockState createLegacyBlock(FluidState state) {
         return Blocks.AIR.defaultBlockState();
     }

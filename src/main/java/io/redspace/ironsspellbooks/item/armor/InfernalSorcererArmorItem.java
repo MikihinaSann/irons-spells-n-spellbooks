@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.effect.ImmolateEffect;
@@ -46,8 +47,6 @@ public class InfernalSorcererArmorItem extends ImbuableChestplateArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new GenericCustomArmorRenderer<>(new InfernalSorcererArmorModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.infernalSorcerer(); }
 
 }

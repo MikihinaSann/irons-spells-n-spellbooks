@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.entity.armor.GoldCrownModel;
@@ -21,7 +22,5 @@ public class GoldCrownArmorItem extends ExtendedArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new GenericCustomArmorRenderer<>(new GoldCrownModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.goldCrown(); }
 }

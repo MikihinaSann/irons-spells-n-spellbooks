@@ -77,7 +77,7 @@ public class NoAdditionSmithingTransformRecipe implements SmithingRecipe {
 
     @Override
     public boolean isIncomplete() {
-        return Stream.of(this.template, this.base).anyMatch(Ingredient::hasNoItems);
+        return Stream.of(this.template, this.base).anyMatch(Ingredient::isEmpty);
     }
 
     public static class Serializer implements RecipeSerializer<NoAdditionSmithingTransformRecipe> {

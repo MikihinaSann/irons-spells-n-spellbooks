@@ -186,6 +186,10 @@ public class ClientMagicData {
     }
 
     public static void handlePlayerSyncedData(SyncedSpellData playerSyncedData) {
+        IronsSpellbooks.LOGGER.info("ISS-SYNC id={} learned={} selection={}",
+                playerSyncedData.getServerPlayerId(),
+                playerSyncedData.getLearnedSpellCount(),
+                playerSyncedData.getSpellSelection());
         if (Log.SPELL_SELECTION) {
             IronsSpellbooks.LOGGER.debug("ClientMagicData.handlePlayerSyncedData {}", playerSyncedData.getSpellSelection());
         }

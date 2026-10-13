@@ -42,7 +42,7 @@ public class TyrosStatueBlockRenderer implements BlockEntityRenderer<DecorativeS
                             false,
                             poseStack,
                             Minecraft.getInstance().renderBuffers().bufferSource(), packedLight, packedOverlay,
-                            Minecraft.getInstance().getModelManager().getModel(ModelResourceLocation.standalone(IronsSpellbooks.id("item/stone_scythe")))
+                            Minecraft.getInstance().getModelManager().getModel(new ModelResourceLocation(IronsSpellbooks.id("item/stone_scythe"), "fabric_resource"))
                     );
                     poseStack.popPose();
                 }
@@ -68,8 +68,7 @@ public class TyrosStatueBlockRenderer implements BlockEntityRenderer<DecorativeS
     }
 
 
-    @Override
     public @NotNull AABB getRenderBoundingBox(@NotNull DecorativeStatueBlockEntity blockEntity) {
-        return AABB.INFINITE;
+        return net.neoforged.neoforge.common.util.NeoForgeBounds.INFINITE;
     }
 }

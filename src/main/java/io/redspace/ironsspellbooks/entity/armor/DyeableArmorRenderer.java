@@ -17,7 +17,7 @@ public class DyeableArmorRenderer<T extends Item & GeoItem> extends GenericCusto
     public void renderCubesOfBone(PoseStack poseStack, GeoBone bone, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
         color = 0xFFFFFFFF; // todo: default color?
         if (bone.getName().startsWith("dye") && this.currentStack != null) {
-            color = Minecraft.getInstance().getItemColors().getColor(this.currentStack, 0) | 0xFF000000;
+            color = Minecraft.getInstance().itemColors.getColor(this.currentStack, 0) | 0xFF000000;
         }
         super.renderCubesOfBone(poseStack, bone, buffer, packedLight, packedOverlay, color);
     }

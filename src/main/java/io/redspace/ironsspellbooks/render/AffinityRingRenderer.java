@@ -22,7 +22,7 @@ public class AffinityRingRenderer extends BlockEntityWithoutLevelRenderer {
 
 
     private final ItemRenderer renderer;
-    private final ModelResourceLocation defaultModel = ModelResourceLocation.standalone(IronsSpellbooks.id("item/affinity_ring_evocation"));
+    private final ModelResourceLocation defaultModel = new ModelResourceLocation(IronsSpellbooks.id("item/affinity_ring_evocation"), "fabric_resource");
 
     public AffinityRingRenderer(ItemRenderer renderDispatcher, EntityModelSet modelSet) {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), modelSet);
@@ -38,7 +38,7 @@ public class AffinityRingRenderer extends BlockEntityWithoutLevelRenderer {
         if (!AffinityData.hasAffinityData(itemStack)) {
             model = renderer.getItemModelShaper().getModelManager().getModel(defaultModel);
         } else {
-            var modelResource = ModelResourceLocation.standalone(getAffinityRingModelLocation(AffinityData.getAffinityData(itemStack).getSpell().getSchoolType()));
+            var modelResource = new ModelResourceLocation(getAffinityRingModelLocation(AffinityData.getAffinityData(itemStack).getSpell().getSchoolType()), "fabric_resource");
             model = renderer.getItemModelShaper().getModelManager().getModel(modelResource);
         }
 

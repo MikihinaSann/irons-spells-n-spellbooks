@@ -38,7 +38,7 @@ public class IronRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    public void buildRecipes(RecipeOutput recipeOutput) {
         quadRingSalvageRecipe(recipeOutput, ItemRegistry.FIREWARD_RING.get(), Ingredient.of(ItemRegistry.CINDER_ESSENCE.get()));
         simpleRingSalvageRecipe(recipeOutput, ItemRegistry.FROSTWARD_RING.get(), Ingredient.of(ItemRegistry.ICE_CRYSTAL.get()));
         simpleRingSalvageRecipe(recipeOutput, ItemRegistry.POISONWARD_RING.get(), Ingredient.of(ItemRegistry.NATURE_RUNE.get()));
@@ -230,7 +230,7 @@ public class IronRecipeProvider extends RecipeProvider {
                     new SmithingTransformRecipe(Ingredient.of(rune), baseArmor, Ingredient.of(essence), result),
                     null
             );
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result.getItem())
                     .requires(baseArmor)
                     .requires(rune)
                     .requires(essence)

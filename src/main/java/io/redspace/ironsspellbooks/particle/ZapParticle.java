@@ -153,7 +153,7 @@ public class ZapParticle extends TextureSheetParticle {
 
     @Override
     public AABB getRenderBoundingBox(float partialTicks) {
-        return AABB.INFINITE;
+        return net.neoforged.neoforge.common.util.NeoForgeBounds.INFINITE;
     }
 
     public static ParticleRenderType PARTICLE_EMISSIVE = new ParticleRenderType() {
@@ -168,7 +168,6 @@ public class ZapParticle extends TextureSheetParticle {
             return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
         }
 
-        @Override
         public boolean isTranslucent() {
             return true;
         }

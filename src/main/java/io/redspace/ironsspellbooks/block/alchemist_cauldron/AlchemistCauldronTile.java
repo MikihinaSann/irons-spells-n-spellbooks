@@ -477,7 +477,7 @@ public class AlchemistCauldronTile extends BlockEntity implements WorldlyContain
             setChanged();
             if (success) {
                 level.playSound(null, this.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.MASTER, 1, 1);
-                level.markAndNotifyBlock(this.getBlockPos(), this.level.getChunkAt(this.getBlockPos()), this.getBlockState(), this.getBlockState(), 1, 1);
+                level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 1);
             } else {
                 level.playSound(null, this.getBlockPos(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.MASTER, 1, 1);
             }

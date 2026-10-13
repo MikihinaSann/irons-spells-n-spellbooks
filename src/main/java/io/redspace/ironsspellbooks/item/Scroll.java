@@ -66,6 +66,9 @@ public class Scroll extends Item implements IScroll {
             if (ClientMagicData.isCasting()) {
                 return InteractionResultHolder.consume(stack);
             } else if (!ClientMagicData.getSyncedSpellData(player).isSpellLearned(spell)) {
+                io.redspace.ironsspellbooks.IronsSpellbooks.LOGGER.info("ISS-SCROLL blocked spell={} learned={}",
+                        spell.getSpellResource(),
+                        ClientMagicData.getSyncedSpellData(player).getLearnedSpellCount());
                 return InteractionResultHolder.pass(stack);
             } else {
                 return InteractionResultHolder.consume(stack);

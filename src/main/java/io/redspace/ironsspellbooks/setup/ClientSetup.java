@@ -510,22 +510,24 @@ public class ClientSetup {
     @SubscribeEvent
     public static void registerSpecialModels(ModelEvent.RegisterAdditional event) {
         for (SchoolType schoolType : SchoolRegistry.REGISTRY) {
-            event.register(ModelResourceLocation.standalone(AffinityRingRenderer.getAffinityRingModelLocation(schoolType)));
-            event.register(ModelResourceLocation.standalone(ScrollModel.getScrollModelLocation(schoolType)));
+            event.register(new ModelResourceLocation(AffinityRingRenderer.getAffinityRingModelLocation(schoolType), "standalone"));
+            event.register(new ModelResourceLocation(ScrollModel.getScrollModelLocation(schoolType), "standalone"));
         }
-        event.register(ModelResourceLocation.standalone(IronsSpellbooks.id("item/template_open_spell_book_model")));
-        event.register(ModelResourceLocation.standalone(IronsSpellbooks.id("item/pyrium_staff_haft")));
-        event.register(ModelResourceLocation.standalone(IronsSpellbooks.id("item/fiery_dagger")));
-        event.register(ModelResourceLocation.standalone(IronsSpellbooks.id("item/stone_scythe")));
+        event.register(new ModelResourceLocation(IronsSpellbooks.id("item/template_spell_book_model_open"), "standalone"));
+        event.register(new ModelResourceLocation(IronsSpellbooks.id("item/pyrium_staff_haft"), "standalone"));
+        event.register(new ModelResourceLocation(IronsSpellbooks.id("item/fiery_dagger"), "fabric_resource"));
+        event.register(new ModelResourceLocation(IronsSpellbooks.id("item/stone_scythe"), "standalone"));
     }
 
     @SubscribeEvent
     public static void replaceItemModels(ModelEvent.ModifyBakingResult event) {
         var key = new ModelResourceLocation(IronsSpellbooks.id("scroll"), "inventory");
         BakedModel model = event.getModels().get(key);
-        IronsSpellbooks.LOGGER.debug("replaceItemModels {}: {}", key, model.getClass());
+        if (model != null) {
+            IronsSpellbooks.LOGGER.debug("replaceItemModels {}: {}", key, model.getClass());
+        }
         event.getModels().computeIfPresent(key, (k, oldModel) -> new ScrollModel(oldModel, event.getModelBakery()));
-        event.getModels().computeIfPresent(ModelResourceLocation.standalone(IronsSpellbooks.id("item/fiery_dagger")), (k, oldModel) -> new SpectralItemModel(oldModel));
+        event.getModels().computeIfPresent(new ModelResourceLocation(IronsSpellbooks.id("item/fiery_dagger"), "fabric_resource"), (k, oldModel) -> new SpectralItemModel(oldModel));
     }
 }
 

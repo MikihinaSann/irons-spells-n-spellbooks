@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.entity.armor.priest.PriestArmorModel;
 import io.redspace.ironsspellbooks.entity.armor.priest.PriestArmorRenderer;
@@ -16,7 +17,5 @@ public class PriestArmorItem extends ImbuableChestplateArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new PriestArmorRenderer(new PriestArmorModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.priest(); }
 }

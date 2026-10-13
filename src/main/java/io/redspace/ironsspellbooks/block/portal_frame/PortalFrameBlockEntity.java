@@ -218,7 +218,7 @@ public class PortalFrameBlockEntity extends BlockEntity {
 
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
-        super.handleUpdateTag(tag, lookupProvider);
+        this.loadAdditional(tag, lookupProvider);
         this.clientIsConnected = tag.getBoolean("connected");
         color = tag.getInt("color");
     }

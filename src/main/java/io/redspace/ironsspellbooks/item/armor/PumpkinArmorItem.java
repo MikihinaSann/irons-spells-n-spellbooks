@@ -1,5 +1,6 @@
 package io.redspace.ironsspellbooks.item.armor;
 
+import io.redspace.ironsspellbooks.render.ClientArmorRenderers;
 import io.redspace.ironsspellbooks.entity.armor.pumpkin.PumpkinArmorModel;
 import io.redspace.ironsspellbooks.entity.armor.pumpkin.PumpkinArmorRenderer;
 import io.redspace.ironsspellbooks.registries.ArmorMaterialRegistry;
@@ -23,7 +24,5 @@ public class PumpkinArmorItem extends ExtendedArmorItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public GeoArmorRenderer<?> supplyRenderer() {
-        return new PumpkinArmorRenderer(new PumpkinArmorModel());
-    }
+    public Object supplyRenderer() { return ClientArmorRenderers.pumpkin(); }
 }

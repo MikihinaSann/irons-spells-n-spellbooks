@@ -27,7 +27,7 @@ public class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
+        var generator = event.getGenerator();
         PackOutput output = event.getGenerator().getPackOutput();
         ExistingFileHelper helper = event.getExistingFileHelper();
         var provider = event.getLookupProvider();

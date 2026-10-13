@@ -391,6 +391,9 @@ public class Utils {
     public static boolean serverSideInitiateCast(ServerPlayer serverPlayer) {
         var ssm = new SpellSelectionManager(serverPlayer);
         var spellItem = ssm.getSelection();
+        io.redspace.ironsspellbooks.IronsSpellbooks.LOGGER.info("ISS-CAST {} selection={} spellData={}",
+                serverPlayer.getScoreboardName(), spellItem,
+                spellItem != null ? ssm.getSelectedSpellData() : "n/a");
         if (spellItem != null) {
             var spellData = ssm.getSelectedSpellData();
             if (spellData != SpellData.EMPTY) {

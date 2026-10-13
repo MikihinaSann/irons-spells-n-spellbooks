@@ -20,7 +20,7 @@ public class BeardifierMixin /*implements IExtendedBeardifier*/ {
      * Intercept our own structure elements and apply custom processing as needed. Most is a mirror of default method.
      */
     @Inject(
-            method = {"lambda$forStructuresInChunk$2", "m_223930_"},
+            method = {"lambda$forStructuresInChunk$2", "m_223930_", "method_42694"},
             remap = false,
             at = @At(value = "HEAD"),
             cancellable = true)

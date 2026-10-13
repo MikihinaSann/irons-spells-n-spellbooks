@@ -5,7 +5,7 @@ import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.TagsProvider;
+import net.neoforged.neoforge.common.data.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class DamageTypeTagGenerator extends TagsProvider<DamageType> {
     public DamageTypeTagGenerator(PackOutput output, CompletableFuture<Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, Registries.DAMAGE_TYPE, lookupProvider, IronsSpellbooks.MODID, existingFileHelper);
+        super(output, Registries.DAMAGE_TYPE, lookupProvider, IronsSpellbooks.MODID);
     }
 
     private static TagKey<DamageType> create(String name) {
@@ -63,8 +63,8 @@ public class DamageTypeTagGenerator extends TagsProvider<DamageType> {
                 ISSDamageTypes.CAULDRON,
                 ISSDamageTypes.HEARTSTOP
         );
-        tag(BYPASS_EVASION).addOptional(
-                NeoForgeMod.POISON_DAMAGE.location()
+        tag(BYPASS_EVASION).addOptionalTag(
+                TagKey.create(Registries.DAMAGE_TYPE, NeoForgeMod.POISON_DAMAGE.location())
         );
 
         tag(LONG_CAST_IGNORE).add(
@@ -76,7 +76,7 @@ public class DamageTypeTagGenerator extends TagsProvider<DamageType> {
                 DamageTypes.DROWN,
                 DamageTypes.FALL
         );
-        tag(LONG_CAST_IGNORE).addOptional(
+        tag(LONG_CAST_IGNORE).addOptionalTag(
                 NeoForgeMod.POISON_DAMAGE.location()
         );
 

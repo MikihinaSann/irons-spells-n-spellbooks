@@ -60,7 +60,7 @@ public class SoulfireRayParticle extends TextureSheetParticle {
 
     @Override
     public AABB getRenderBoundingBox(float partialTicks) {
-        return AABB.INFINITE;
+        return net.neoforged.neoforge.common.util.NeoForgeBounds.INFINITE;
     }
 
     @Override

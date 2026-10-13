@@ -190,6 +190,10 @@ public class SyncedSpellData {
         return !spell.requiresLearning() || this.learnedSpellData.learnedSpells.contains(spell.getSpellResource());
     }
 
+    public int getLearnedSpellCount() {
+        return this.learnedSpellData.learnedSpells.size();
+    }
+
     public SpinAttackType getSpinAttackType() {
         return spinAttackType;
     }

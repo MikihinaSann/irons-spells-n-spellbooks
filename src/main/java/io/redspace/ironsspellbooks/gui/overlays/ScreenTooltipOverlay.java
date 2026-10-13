@@ -58,11 +58,7 @@ public class ScreenTooltipOverlay implements LayeredDraw.Layer {
         var bgColor2 = toRender.colors.map(Vector4i::y).orElse(0x90100010);
         var edgeColor1 = toRender.colors.map(Vector4i::z).orElse(0x705000FF);
         var edgeColor2 = toRender.colors.map(Vector4i::w).orElse(0x7028007f);
-        TooltipRenderUtil.renderTooltipBackground(guiHelper, x, y, maxTextWidth, totalHeight, 400,
-                bgColor1,
-                bgColor2,
-                edgeColor1,
-                edgeColor2);
+        TooltipRenderUtil.renderTooltipBackground(guiHelper, x, y, maxTextWidth, totalHeight, 400);
         guiHelper.flush();
         pose.translate(0.0F, 0.0F, 400.0F);
         int lineY = y;
