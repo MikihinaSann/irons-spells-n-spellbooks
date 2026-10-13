@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_21",
+  "package": "com.mumu17.ironsarms.mixin",
+  "plugin": "com.mumu17.ironsarms.mixin.IronsArmsMixinPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "ArcaneAnvilMenuMixin"
+  ]
+}
