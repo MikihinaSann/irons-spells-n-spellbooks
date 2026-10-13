@@ -1,16 +1,12 @@
 {
-  "replace": false,
   "values": [
-    "irons_spellbooks:magehunter",
-    "irons_spellbooks:keeper_flamberge",
-    "irons_spellbooks:spellbreaker",
-    "irons_spellbooks:amethyst_rapier",
-    "irons_spellbooks:claymore",
-    "irons_spellbooks:misery",
-    "irons_spellbooks:legionnaire_flamberge",
-    "irons_spellbooks:decrepit_scythe",
-    "irons_spellbooks:hellrazor",
-    "irons_spellbooks:boreal_blade",
-    "irons_spellbooks:twilight_gale"
+    "crystal_chronicles:paladin_sword",
+    "crystal_chronicles:spear",
+    "crystal_chronicles:lightning_bident",
+    "crystal_chronicles:chakram",
+    "crystal_chronicles:ice_hammer",
+    "crystal_chronicles:staff",
+    "crystal_chronicles:evocation_twinblade",
+    "crystal_chronicles:blood_scythe"
   ]
 }
