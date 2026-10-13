@@ -1,0 +1,18 @@
+package net.neoforged.fml.event.lifecycle;
+
+import net.neoforged.bus.api.Event;
+
+import java.util.function.Supplier;
+
+/**
+ * Common-setup lifecycle event stand-in; work is executed inline on Fabric.
+ */
+public class FMLCommonSetupEvent extends Event {
+    public void enqueueWork(Runnable work) {
+        work.run();
+    }
+
+    public <T> void enqueueWork(Supplier<T> work) {
+        work.get();
+    }
+}
