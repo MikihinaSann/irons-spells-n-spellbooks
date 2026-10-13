@@ -17,10 +17,18 @@
   "icon": "assets/irons_spellbooks/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "neoforge": [
+      "io.redspace.ironsspellbooks.IronsSpellbooks",
+      "io.redspace.ironslib.IronsLib",
+      "com.grandsigil.GrandSigil",
+      "net.veroxuniverse.crystal_chronicles.CrystalChronicles",
+      "com.yukami.efiscompat.EpicFightIronCompat",
+      "com.mumu17.ironsarms.IronsArms"
+    ],
+    "neoforge:setup": [
       "io.redspace.ironsspellbooks.IronsSpellbooksFabric"
     ],
-    "client": [
+    "neoforge:client_setup": [
       "io.redspace.ironsspellbooks.IronsSpellbooksFabricClient"
     ]
   },
@@ -38,7 +46,8 @@
     "fabric-api": "*",
     "geckolib": ">=4.9.3",
     "playeranimator": ">=2.0.4",
-    "trinkets": ">=3.10.0"
+    "trinkets": ">=3.10.0",
+    "neoforge_compat": "*"
   },
   "suggests": {
     "jei": "*",
@@ -116,6 +125,30 @@
       ],
       "net/minecraft/core/particles/BlockParticleOption": [
         "net/neoforged/neoforge/common/extensions/IBlockParticleOptionExtension"
+      ],
+      "net/minecraft/client/gui/screens/inventory/AbstractContainerScreen": [
+        "net/neoforged/neoforge/client/extensions/common/IScreenExtension"
+      ],
+      "net/minecraft/world/item/crafting/Ingredient": [
+        "net/neoforged/neoforge/common/extensions/IIngredientExtension"
+      ],
+      "net/minecraft/world/entity/ai/attributes/Attribute": [
+        "net/neoforged/neoforge/common/extensions/IAttributeExtension"
+      ],
+      "net/minecraft/network/protocol/PacketFlow": [
+        "net/neoforged/neoforge/common/extensions/IPacketFlowExtension"
+      ],
+      "net/minecraft/world/item/TooltipFlag": [
+        "net/neoforged/neoforge/common/extensions/ITooltipFlagExtension"
+      ],
+      "net/minecraft/world/level/biome/MobSpawnSettings": [
+        "net/neoforged/neoforge/common/extensions/IMobSpawnSettingsExtension"
+      ],
+      "net/minecraft/world/level/biome/BiomeGenerationSettings": [
+        "net/neoforged/neoforge/common/extensions/IBiomeGenerationSettingsExtension"
+      ],
+      "net/minecraft/world/level/ServerLevelAccessor": [
+        "net/neoforged/neoforge/common/extensions/ILevelAccessorExtension"
       ]
     }
   }

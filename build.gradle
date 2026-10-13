@@ -17,6 +17,13 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 loom {
     accessWidenerPath = file("src/main/resources/irons_spellbooks.accesswidener")
 
+    mods {
+        // ISS is the root mod (implicit); neoforge_compat comes from the subproject's sources
+        neoforge_compat {
+            sourceSet project(':neoforge-compat').sourceSets.main
+        }
+    }
+
     runs {
         configureEach {
             ideConfigGenerated true
@@ -47,6 +54,10 @@ dependencies {
     // Sources are written in Mojang (official) mappings; kept identical to upstream.
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // namedElements = the named (dev) variant of the compat jar
+    implementation(project(path: ":neoforge-compat", configuration: "namedElements")) {
+        transitive = false
+    }
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     // Local mod jars (Fabric builds) — Loom remaps file deps in mod configurations
@@ -89,6 +100,7 @@ dependencies {
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
     compileOnly "org.checkerframework:checker-qual:3.43.0"
     compileOnly "com.google.j2objc:j2objc-annotations:3.0.0"
+    compileOnly "com.google.errorprone:error_prone_annotations:2.36.0"
 
     implementation "com.google.code.gson:gson:2.10.1"
 }

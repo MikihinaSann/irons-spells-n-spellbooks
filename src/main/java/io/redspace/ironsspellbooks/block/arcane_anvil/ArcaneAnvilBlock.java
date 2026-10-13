@@ -102,7 +102,7 @@ public class ArcaneAnvilBlock extends FallingBlock {
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            io.redspace.ironsspellbooks.platform.fabric.FabricMenuHelper.openMenu((net.minecraft.server.level.ServerPlayer) pPlayer, pState.getMenuProvider(pLevel, pPos));
+            net.neoforged.neoforge.internal.fabric.FabricMenuHelper.openMenu((net.minecraft.server.level.ServerPlayer) pPlayer, pState.getMenuProvider(pLevel, pPos));
             pPlayer.awardStat(Stats.INTERACT_WITH_ANVIL);
             return InteractionResult.CONSUME;
         }

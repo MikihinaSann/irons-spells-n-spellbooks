@@ -38,7 +38,7 @@ public class CommandRegistry {
             ClearSpellSelectionCommand.register(commandDispatcher);
             IronsDebugCommand.register(commandDispatcher);
             GenerateSiteData.register(commandDispatcher);
-            commandDispatcher.register((LiteralArgumentBuilder<CommandSourceStack>) ((LiteralArgumentBuilder) LiteralArgumentBuilder.literal("it")).executes(source -> io.redspace.ironsspellbooks.platform.fabric.FabricMenuHelper.openMenu(((CommandSourceStack) source.getSource()).getPlayer(), new SimpleMenuProvider(
+            commandDispatcher.register((LiteralArgumentBuilder<CommandSourceStack>) ((LiteralArgumentBuilder) LiteralArgumentBuilder.literal("it")).executes(source -> net.neoforged.neoforge.internal.fabric.FabricMenuHelper.openMenu(((CommandSourceStack) source.getSource()).getPlayer(), new SimpleMenuProvider(
                     (i, inventory, player) ->
                             new InscriptionTableMenu(i, inventory, ContainerLevelAccess.NULL), Component.translatable("block.irons_spellbooks.inscription_table")
             )).orElse(0)));

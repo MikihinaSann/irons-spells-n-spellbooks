@@ -10,3 +10,5 @@ pluginManagement {
 }
 
 rootProject.name = 'irons-spells-n-spellbooks'
+
+include 'neoforge-compat'

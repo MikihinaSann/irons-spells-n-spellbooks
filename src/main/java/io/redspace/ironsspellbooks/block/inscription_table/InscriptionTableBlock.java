@@ -150,7 +150,7 @@ public class InscriptionTableBlock extends HorizontalDirectionalBlock implements
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            io.redspace.ironsspellbooks.platform.fabric.FabricMenuHelper.openMenu((net.minecraft.server.level.ServerPlayer) pPlayer, pState.getMenuProvider(pLevel, pPos));
+            net.neoforged.neoforge.internal.fabric.FabricMenuHelper.openMenu((net.minecraft.server.level.ServerPlayer) pPlayer, pState.getMenuProvider(pLevel, pPos));
             return InteractionResult.CONSUME;
         }
     }

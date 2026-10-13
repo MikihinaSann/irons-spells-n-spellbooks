@@ -72,7 +72,7 @@ public class IronsSpellbooksCommand {
 
     public static void registerInscriptionTableCommand(LiteralArgumentBuilder<CommandSourceStack> command) {
         command.then(Commands.literal("it")
-                .executes(source -> io.redspace.ironsspellbooks.platform.fabric.FabricMenuHelper.openMenu(source.getSource().getPlayer(), new SimpleMenuProvider(
+                .executes(source -> net.neoforged.neoforge.internal.fabric.FabricMenuHelper.openMenu(source.getSource().getPlayer(), new SimpleMenuProvider(
                         (i, inventory, player) ->
                                 new InscriptionTableMenu(i, inventory, ContainerLevelAccess.NULL), Component.translatable("block.irons_spellbooks.inscription_table")
                 )).orElse(0)));
