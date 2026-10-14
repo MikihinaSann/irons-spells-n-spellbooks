@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "lionfishapi",
+  "version": "3.1",
+  "name": "lionfishapi",
+  "description": "lionfishapi (NeoForge->Fabric compat build)",
+  "authors": [
+    "L_Ender"
+  ],
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "neoforge": [
+      "com.github.L_Ender.lionfishapi.LionfishAPI"
+    ]
+  },
+  "mixins": [
+    "lionfishapi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "neoforge_compat": "*"
+  }
+}

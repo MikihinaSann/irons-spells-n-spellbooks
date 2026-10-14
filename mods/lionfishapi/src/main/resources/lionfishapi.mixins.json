@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.L_Ender.lionfishapi.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "lionfishapi.refmap.json",
+  "mixins": [
+    "EntityMixin"
+  ],
+  "client": [
+    "client.ItemBlockRenderTypesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
