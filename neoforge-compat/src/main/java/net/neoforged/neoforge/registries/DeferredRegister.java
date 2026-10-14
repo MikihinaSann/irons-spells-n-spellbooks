@@ -117,6 +117,15 @@ public class DeferredRegister<R> {
         for (DeferredHolder<R, ?> entry : entries) {
             entry.bind(registry);
         }
+        // NeoForge mirrors every entry of neoforge:entity_data_serializers into
+        // vanilla's EntityDataSerializers.SERIALIZERS IdMap so SynchedEntityData
+        // accepts the serializer at runtime (its datapack-registry stub is inert).
+        if (registryKey.location().equals(ResourceLocation.fromNamespaceAndPath("neoforge", "entity_data_serializers"))) {
+            for (DeferredHolder<R, ?> entry : entries) {
+                net.minecraft.network.syncher.EntityDataSerializers
+                        .registerSerializer((net.minecraft.network.syncher.EntityDataSerializer<?>) entry.get());
+            }
+        }
         // Aliases: NeoForge's Registry.addAlias — a lookup redirection to the
         // target id, applied by MappedRegistryAliasMixin. Registering the same
         // object under a second id trips vanilla's intrusive-holder check.

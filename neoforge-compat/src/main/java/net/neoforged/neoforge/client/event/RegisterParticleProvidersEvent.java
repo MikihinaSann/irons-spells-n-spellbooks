@@ -22,8 +22,16 @@ public class RegisterParticleProvidersEvent extends Event {
     }
 
     public <T extends net.minecraft.core.particles.ParticleOptions> void registerSprite(
-            ParticleType<T> type, ParticleProvider<T> provider) {
-        registerSpecial(type, provider);
+            ParticleType<T> type, ParticleProvider.Sprite<T> provider) {
+        // NeoForge semantics: the provider creates a TextureSheetParticle and the
+        // particle type's sprite set is applied via pickSprite automatically.
+        registrations.add(() -> net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry.getInstance()
+                .register(type, spriteSet -> (options, level, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+                    net.minecraft.client.particle.Particle particle =
+                            provider.createParticle(options, level, x, y, z, xSpeed, ySpeed, zSpeed);
+                    ((net.minecraft.client.particle.TextureSheetParticle) particle).pickSprite(spriteSet);
+                    return particle;
+                }));
     }
 
     public <T extends net.minecraft.core.particles.ParticleOptions> void registerSpriteSet(

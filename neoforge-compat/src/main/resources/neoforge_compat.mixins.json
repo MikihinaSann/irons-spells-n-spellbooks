@@ -29,6 +29,12 @@
     "ServerEntityTrackingMixin",
     "ServerLevelDispatchMixin",
     "WandererTradesDispatchMixin",
+    "ProjectileImpactDispatchMixin$AbstractArrowDispatch",
+    "ProjectileImpactDispatchMixin$HurtingProjectileDispatch",
+    "ProjectileImpactDispatchMixin$ThrowableProjectileDispatch",
+    "ProjectileImpactDispatchMixin$ShulkerBulletDispatch",
+    "ProjectileImpactDispatchMixin$LlamaSpitDispatch",
+    "ProjectileImpactDispatchMixin$FireworkRocketDispatch",
     "MobEffectInstanceCuresMixin",
     "CommonPacketListenerChannelMixin",
     "MobEffectAttributeTemplateMixin",
@@ -39,11 +45,13 @@
     "api.LevelApiMixin",
     "api.ChunkAccessApiMixin",
     "api.ItemStackApiMixin",
+    "api.ArrowItemApiMixin",
     "api.ItemApiMixin",
     "api.SimpleJsonResourceReloadListenerApiMixin",
     "api.BlockBehaviourApiMixin",
     "api.BlockStateBaseApiMixin",
     "api.FluidApiMixin",
+    "api.ProjectileWeaponItemApiMixin",
     "api.PlayerApiMixin",
     "api.ItemPropertiesApiMixin",
     "api.CreativeModeTabBuilderApiMixin",
@@ -61,7 +69,9 @@
     "api.TooltipFlagApiMixin",
     "api.FluidStateApiMixin",
     "api.EntityTypeBuilderApiMixin",
-    "RegistriesMixin"
+    "RegistriesMixin",
+    "api.MobEffectInstanceApiMixin",
+    "api.ServerGamePacketListenerApiMixin"
   ],
   "client": [
     "BlockEntityDataPacketMixin",
@@ -90,7 +100,10 @@
     "api.DimensionSpecialEffectsApiMixin",
     "api.AbstractContainerScreenApiMixin",
     "api.BlockEntityRendererApiMixin",
-    "api.BakedModelApiMixin"
+    "api.BakedModelApiMixin",
+    "api.ModelBlockRendererApiMixin",
+    "api.GuiGraphicsApiMixin",
+    "api.ClientPacketListenerApiMixin"
   ],
   "injectors": {
     "defaultRequire": 1
