@@ -34,6 +34,9 @@ loom {
         citadel {
             sourceSet project(':mods:citadel').sourceSets.main
         }
+        cataclysm {
+            sourceSet project(':mods:cataclysm').sourceSets.main
+        }
     }
 
     runs {
@@ -84,6 +87,9 @@ dependencies {
         transitive = false
     }
     implementation(project(path: ":mods:citadel", configuration: "namedElements")) {
+        transitive = false
+    }
+    implementation(project(path: ":mods:cataclysm", configuration: "namedElements")) {
         transitive = false
     }
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
