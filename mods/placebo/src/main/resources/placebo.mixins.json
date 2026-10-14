@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "package": "dev.shadowsoffire.placebo.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "refmap": "placebo.refmap.json",
+    "mixins": [
+        "AnvilBlockMixin",
+        "HashCacheMixin",
+        "ItemStackMixin"
+    ],
+    "client": [
+        "client.AbstractContainerScreenMixin",
+        "client.ChatComponentMixin"
+    ],
+    "minVersion": "0.8"
+}

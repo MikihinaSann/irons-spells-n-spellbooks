@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "placebo",
+  "version": "9.9.4",
+  "name": "Placebo",
+  "description": "Placebo (NeoForge->Fabric compat build)",
+  "authors": [
+    "Shadows_of_Fire"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "neoforge": [
+      "dev.shadowsoffire.placebo.Placebo"
+    ]
+  },
+  "mixins": [
+    "placebo.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "neoforge_compat": "*"
+  },
+  "accessWidener": "placebo.accesswidener"
+}
