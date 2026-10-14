@@ -1,0 +1,32 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:scroll",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "irons_spellbooks:randomize_spell",
+              "quality": {
+                "min": 0.1,
+                "max": 0.5
+              },
+              "spell_filter": {
+                "spells": [
+                  "traveloptics:summon_desert_dwellers"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "empty",
+          "weight": 97
+        }
+      ]
+    }
+  ]
+}

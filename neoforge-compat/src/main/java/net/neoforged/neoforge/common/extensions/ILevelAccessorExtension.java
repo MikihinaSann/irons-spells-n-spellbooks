@@ -24,4 +24,12 @@ public interface ILevelAccessorExtension {
         }
         return Level.OVERWORLD;
     }
+
+    /**
+     * NeoForge's {@code ILevelReaderExtension.holderOrThrow} — resolves a holder
+     * directly off the level's registry access.
+     */
+    default <T> net.minecraft.core.Holder<T> holderOrThrow(ResourceKey<T> resourceKey) {
+        return self().registryAccess().lookupOrThrow(resourceKey.registryKey()).getOrThrow(resourceKey);
+    }
 }

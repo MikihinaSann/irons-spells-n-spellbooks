@@ -40,4 +40,14 @@ public interface IBakedModelExtension {
     default net.minecraft.client.renderer.texture.TextureAtlasSprite getParticleIcon(ModelData data) {
         return self().getParticleIcon();
     }
+
+    /**
+     * NeoForge's {@code getQuads(state, side, rand, modelData, renderType)}
+     * overload — vanilla models have no model-data or render-type awareness.
+     */
+    default java.util.List<net.minecraft.client.renderer.block.model.BakedQuad> getQuads(
+            @org.jetbrains.annotations.Nullable BlockState state, @org.jetbrains.annotations.Nullable net.minecraft.core.Direction side,
+            RandomSource rand, ModelData modelData, @org.jetbrains.annotations.Nullable RenderType renderType) {
+        return self().getQuads(state, side, rand);
+    }
 }

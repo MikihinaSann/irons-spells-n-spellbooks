@@ -48,11 +48,11 @@ public class Flare_Bomb_Entity extends ThrowableProjectile {
 
 
 
-    public Flare_Bomb_Entity(EntityType<Flare_Bomb_Entity> type, Level world) {
+    public Flare_Bomb_Entity(EntityType<? extends Flare_Bomb_Entity> type, Level world) {
         super(type, world);
     }
 
-    public Flare_Bomb_Entity(EntityType<Flare_Bomb_Entity> type, Level world, LivingEntity thrower) {
+    public Flare_Bomb_Entity(EntityType<? extends Flare_Bomb_Entity> type, Level world, LivingEntity thrower) {
         super(type, thrower, world);
     }
 

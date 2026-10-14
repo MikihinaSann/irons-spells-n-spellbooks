@@ -1,0 +1,156 @@
+accessWidener v2 named
+
+# StructureTemplatePool for village house injection
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+
+# DamageSources / DamageSource constructors
+
+# Entity level field
+accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/level/Level;
+
+# Dispenser behavior map
+accessible field net/minecraft/world/level/block/DispenserBlock DISPENSER_REGISTRY Ljava/util/Map;
+
+# RandomizableContainerBlockEntity loot table (debug)
+accessible field net/minecraft/world/level/block/entity/RandomizableContainerBlockEntity lootTable Lnet/minecraft/resources/ResourceKey;
+
+# FallingBlockEntity ctor + fields
+accessible method net/minecraft/world/entity/item/FallingBlockEntity <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)V
+accessible field net/minecraft/world/entity/item/FallingBlockEntity cancelDrop Z
+accessible field net/minecraft/world/entity/item/FallingBlockEntity blockState Lnet/minecraft/world/level/block/state/BlockState;
+
+# PiglinAi helpers
+accessible method net/minecraft/world/entity/monster/piglin/PiglinAi setAngerTarget (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
+accessible method net/minecraft/world/entity/monster/piglin/PiglinAi getAngerTarget (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)Ljava/util/Optional;
+
+# FogRenderer
+accessible field net/minecraft/client/renderer/FogRenderer MOB_EFFECT_FOG Ljava/util/List;
+accessible class net/minecraft/client/renderer/FogRenderer$MobEffectFogFunction
+accessible class net/minecraft/client/renderer/FogRenderer$FogData
+
+# EntityRenderDispatcher renderers map
+
+# CrossbowItem helpers
+accessible method net/minecraft/world/item/CrossbowItem tryLoadProjectiles (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)Z
+
+# PoisonMobEffect class for mixin targeting
+accessible class net/minecraft/world/effect/PoisonMobEffect
+
+# Hoglin zombification immunity
+accessible method net/minecraft/world/entity/monster/hoglin/Hoglin isImmuneToZombification ()Z
+
+# Path nodes accessor
+accessible method net/minecraft/world/entity/ai/navigation/PathNavigation shouldTargetNextNodeInDirection (Lnet/minecraft/world/phys/Vec3;)Z
+
+# HurtByTargetGoal timestamp
+accessible field net/minecraft/world/entity/ai/goal/target/HurtByTargetGoal timestamp I
+
+# AbstractTickableSoundInstance stopped
+accessible field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
+
+# WalkAnimationState
+accessible field net/minecraft/world/entity/WalkAnimationState position F
+accessible field net/minecraft/world/entity/LivingEntity walkAnimation Lnet/minecraft/world/entity/WalkAnimationState;
+mutable field net/minecraft/world/entity/LivingEntity walkAnimation Lnet/minecraft/world/entity/WalkAnimationState;
+
+# CombatTracker
+accessible field net/minecraft/world/damagesource/CombatTracker inCombat Z
+
+# PotionBrewing
+
+# BodyRotationControl
+accessible method net/minecraft/world/entity/ai/control/BodyRotationControl rotateHeadTowardsFront ()V
+accessible method net/minecraft/world/entity/ai/control/BodyRotationControl rotateHeadIfNecessary ()V
+accessible method net/minecraft/world/entity/ai/control/BodyRotationControl rotateBodyIfNecessary ()V
+accessible field net/minecraft/world/entity/ai/control/BodyRotationControl mob Lnet/minecraft/world/entity/Mob;
+
+# Level worldBorder (private, non-final)
+accessible field net/minecraft/world/level/Level worldBorder Lnet/minecraft/world/level/border/WorldBorder;
+mutable field net/minecraft/world/level/Level worldBorder Lnet/minecraft/world/level/border/WorldBorder;
+accessible field net/minecraft/world/damagesource/DamageSource causingEntity Lnet/minecraft/world/entity/Entity;
+accessible field net/minecraft/world/damagesource/DamageSource directEntity Lnet/minecraft/world/entity/Entity;
+
+# NeoForge-style access for the Fabric port
+accessible method net/minecraft/client/gui/components/Button <init> (IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/client/gui/components/Button$CreateNarration;)V
+accessible field net/minecraft/client/gui/components/Button$Builder message Lnet/minecraft/network/chat/Component;
+accessible field net/minecraft/client/gui/components/Button$Builder onPress Lnet/minecraft/client/gui/components/Button$OnPress;
+accessible field net/minecraft/client/gui/components/Button$Builder x I
+accessible field net/minecraft/client/gui/components/Button$Builder y I
+accessible field net/minecraft/client/gui/components/Button$Builder width I
+accessible field net/minecraft/client/gui/components/Button$Builder height I
+accessible field net/minecraft/client/gui/components/Button$Builder createNarration Lnet/minecraft/client/gui/components/Button$CreateNarration;
+accessible field net/minecraft/client/gui/components/Button$Builder tooltip Lnet/minecraft/client/gui/components/Tooltip;
+accessible field net/minecraft/client/gui/components/Button DEFAULT_NARRATION Lnet/minecraft/client/gui/components/Button$CreateNarration;
+accessible field net/minecraft/client/renderer/texture/SpriteContents originalImage Lcom/mojang/blaze3d/platform/NativeImage;
+accessible field net/minecraft/world/entity/Entity ENTITY_COUNTER Ljava/util/concurrent/atomic/AtomicInteger;
+extendable method net/minecraft/world/entity/ai/control/BodyRotationControl rotateHeadTowardsFront ()V
+accessible field net/minecraft/world/level/block/state/BlockBehaviour explosionResistance F
+accessible field net/minecraft/world/level/block/state/BlockBehaviour friction F
+accessible field net/minecraft/world/entity/Mob targetSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+accessible field net/minecraft/world/entity/Mob goalSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+accessible field net/minecraft/world/level/pathfinder/Path nodes Ljava/util/List;
+accessible class net/minecraft/world/entity/animal/PolarBear$PolarBearMeleeAttackGoal
+accessible method net/minecraft/world/entity/animal/PolarBear$PolarBearMeleeAttackGoal <init> (Lnet/minecraft/world/entity/animal/PolarBear;)V
+accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+accessible field net/minecraft/client/Minecraft itemColors Lnet/minecraft/client/color/item/ItemColors;
+accessible field net/minecraft/client/KeyMapping key Lcom/mojang/blaze3d/platform/InputConstants$Key;
+extendable method net/minecraft/data/loot/BlockLootSubProvider generate ()V
+extendable method net/minecraft/data/loot/BlockLootSubProvider add (Lnet/minecraft/world/level/block/Block;Ljava/util/function/Function;)V
+accessible method net/minecraft/data/loot/BlockLootSubProvider add (Lnet/minecraft/world/level/block/Block;Ljava/util/function/Function;)V
+accessible field net/minecraft/client/particle/Particle x D
+accessible field net/minecraft/client/particle/Particle y D
+accessible field net/minecraft/client/particle/Particle z D
+accessible method net/minecraft/client/particle/SpellParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/particle/SpriteSet;)V
+accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+accessible field net/minecraft/client/model/geom/LayerDefinitions OUTER_ARMOR_DEFORMATION Lnet/minecraft/client/model/geom/builders/CubeDeformation;
+accessible field net/minecraft/client/model/geom/LayerDefinitions INNER_ARMOR_DEFORMATION Lnet/minecraft/client/model/geom/builders/CubeDeformation;
+accessible method net/minecraft/world/entity/LivingEntity getHitbox ()Lnet/minecraft/world/phys/AABB;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+
+# PackRepository sources (builtin pack finders)
+
+# ==== merged libs: lionfishapi / citadel (structure, biome, pathfinding, screens) ====
+
+# ==== merged libs: placebo ====
+
+# ==== merged libs: apothic_attributes / citadel rendering ====
+
+# ==== merged libs: familiarslib ====
+mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+accessible field net/minecraft/client/renderer/entity/EntityRenderDispatcher renderers Ljava/util/Map;
+accessible field net/minecraft/world/item/alchemy/PotionBrewing containerMixes Ljava/util/List;
+accessible field net/minecraft/world/item/alchemy/PotionBrewing potionMixes Ljava/util/List;
+mutable field net/minecraft/world/item/alchemy/PotionBrewing containerMixes Ljava/util/List;
+mutable field net/minecraft/world/item/alchemy/PotionBrewing potionMixes Ljava/util/List;
+accessible class net/minecraft/world/item/alchemy/PotionBrewing$Mix
+accessible method net/minecraft/world/item/alchemy/PotionBrewing$Mix <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/core/Holder;)V
+accessible method net/minecraft/world/damagesource/DamageSources <init> (Lnet/minecraft/core/RegistryAccess;)V
+accessible method net/minecraft/world/damagesource/DamageSource <init> (Lnet/minecraft/core/Holder;)V
+accessible method net/minecraft/world/damagesource/DamageSource <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;)V
+accessible method net/minecraft/world/damagesource/DamageSource <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)V
+accessible method net/minecraft/world/damagesource/DamageSource <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;)V
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen imageWidth I
+accessible method net/minecraft/client/gui/GuiGraphics renderTooltipInternal (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;)V
+accessible method net/minecraft/world/inventory/AbstractContainerMenu updateDataSlotListeners (II)V
+
+# familiarslib AT — ResourceLocation(namespace, path) ctor
+accessible method net/minecraft/resources/ResourceLocation <init> (Ljava/lang/String;Ljava/lang/String;)V
+
+# ==== born_in_chaos_v1 accesstransformer.cfg equivalents ====
+accessible method net/minecraft/world/level/levelgen/feature/ScatteredOreFeature <init> (Lcom/mojang/serialization/Codec;)V
+accessible method net/minecraft/world/level/levelgen/feature/TreeFeature place (Lnet/minecraft/world/level/levelgen/feature/FeaturePlaceContext;)Z
+extendable method net/minecraft/world/level/levelgen/feature/TreeFeature place (Lnet/minecraft/world/level/levelgen/feature/FeaturePlaceContext;)Z
+
+# MCreator-generated access needs
+accessible class net/minecraft/world/entity/raid/Raid$RaiderType
+accessible class net/minecraft/world/entity/ai/control/MoveControl$Operation
+accessible method net/minecraft/world/level/GameRules$BooleanValue create (Z)Lnet/minecraft/world/level/GameRules$Type;
+accessible method net/minecraft/world/level/GameRules$IntegerValue create (I)Lnet/minecraft/world/level/GameRules$Type;
+accessible method net/minecraft/world/level/GameRules register (Ljava/lang/String;Lnet/minecraft/world/level/GameRules$Category;Lnet/minecraft/world/level/GameRules$Type;)Lnet/minecraft/world/level/GameRules$Key;

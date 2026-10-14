@@ -1,0 +1,69 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'fabric-loom' version "${loom_version}"
+}
+
+version = '2.0.2+fabric.1.21.1'
+group = mod_group_id
+
+base {
+    archivesName = 'alexscaves'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+loom {
+    accessWidenerPath = file("src/main/resources/alexscaves.accesswidener")
+}
+
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.ladysnake.org/releases" } // cardinal-components (trinkets dep)
+    maven { url = "https://maven.blamejared.com" }         // JEI
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    maven { url = "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // NeoForge compat shim - named (mojmap) variant for compilation; the runtime
+    // mod jar is loaded through the root project's loom.mods.
+    implementation(project(path: ':neoforge-compat', configuration: 'namedElements')) {
+        transitive = false
+    }
+    // citadel dependency (separate Fabric mod, not nested)
+    implementation(project(path: ':mods:citadel', configuration: 'namedElements')) {
+        transitive = false
+    }
+
+    // Forge Config API Port supplies net.neoforged.fml.config.* / ModConfigSpec
+    modCompileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.4"
+    compileOnly files("${rootDir}/libs/fcap-nested/core-3.8.0.jar")
+    compileOnly files("${rootDir}/libs/fcap-nested/toml-3.8.0.jar")
+
+    // JEI optional compat (same pins as the root project)
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.21.0.247"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge:19.21.0.247"
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.21.0.247"
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    compileOnly "org.checkerframework:checker-qual:3.43.0"
+    compileOnly "com.google.j2objc:j2objc-annotations:3.0.0"
+    compileOnly "com.google.errorprone:error_prone_annotations:2.36.0"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"   : "Alex's Caves",
+                "Specification-Vendor"  : "AlexModGuy",
+                "Implementation-Title"  : project.name,
+                "Implementation-Version": project.jar.archiveVersion,
+                "Implementation-Vendor" : "AlexModGuy"
+        ])
+    }
+}

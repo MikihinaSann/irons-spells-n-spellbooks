@@ -12,7 +12,7 @@ public interface IPayloadContext {
     /**
      * Schedule work on the main thread of the receiving side.
      */
-    void enqueueWork(Runnable runnable);
+    java.util.concurrent.CompletableFuture<Void> enqueueWork(Runnable runnable);
 
     /**
      * NeoForge's Supplier overload — runs inline on Fabric since payload
@@ -63,5 +63,13 @@ public interface IPayloadContext {
     /** NeoForge's protocol() - the connection protocol this packet belongs to. */
     default net.minecraft.network.ConnectionProtocol protocol() {
         return net.minecraft.network.ConnectionProtocol.PLAY;
+    }
+
+    /**
+     * NeoForge's connection() — the underlying netty connection. Null where no
+     * live connection is tracked.
+     */
+    default net.minecraft.network.Connection connection() {
+        return null;
     }
 }

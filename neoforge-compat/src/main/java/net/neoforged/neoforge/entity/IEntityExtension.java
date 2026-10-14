@@ -11,6 +11,9 @@ import org.jetbrains.annotations.Nullable;
  * are handled by the platform bridge where applicable.
  */
 public interface IEntityExtension {
+
+    /** NeoForge's persistent-data key stored under the entity's NBT. */
+    String PERSISTED_NBT_TAG = "ForgeData";
     default Entity self() {
         return (Entity) this;
     }
@@ -115,6 +118,64 @@ public interface IEntityExtension {
         return self().level().getFluidState(
                 net.minecraft.core.BlockPos.containing(self().getX(), self().getEyeY(), self().getZ()))
                 .getFluidType();
+    }
+
+    /**
+     * Starts/stops drop capture — implemented by the entity api mixin so
+     * {@code spawnAtLocation} feeds the capture list (NeoForge semantics).
+     */
+    @Nullable
+    default java.util.Collection<net.minecraft.world.entity.item.ItemEntity> captureDrops(
+            java.util.Collection<net.minecraft.world.entity.item.ItemEntity> value) {
+        return value;
+    }
+
+    /** NeoForge: whether a rider may mount while inside this fluid type. */
+    default boolean canBeRiddenUnderFluidType(net.neoforged.neoforge.fluids.FluidType type,
+            net.minecraft.world.entity.Entity rider) {
+        return false;
+    }
+
+    /**
+     * NeoForge's per-fluid-type height lookup over the entity's fluidHeight
+     * map — implemented by the entity api mixin, which can see the field.
+     */
+    default double getFluidTypeHeight(net.neoforged.neoforge.fluids.FluidType type) {
+        return 0;
+    }
+
+    /** NeoForge: the fluid type the entity is deepest inside. */
+    default net.neoforged.neoforge.fluids.FluidType getMaxHeightFluidType() {
+        return net.neoforged.neoforge.common.NeoForgeMod.EMPTY_TYPE.value();
+    }
+
+    /**
+     * NeoForge's {@code serializeNBT(Provider)} — full entity data without the
+     * id (vanilla {@code saveWithoutId} equivalent).
+     */
+    default net.minecraft.nbt.CompoundTag serializeNBT(net.minecraft.core.HolderLookup.Provider provider) {
+        net.minecraft.nbt.CompoundTag tag = new net.minecraft.nbt.CompoundTag();
+        self().saveWithoutId(tag);
+        return tag;
+    }
+
+    /**
+     * NeoForge's entity capability lookup — resolves through
+     * {@link net.neoforged.neoforge.capabilities.CapabilityRegistry}.
+     */
+    @Nullable
+    default <T> T getCapability(net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent.Capability<T> capability) {
+        return net.neoforged.neoforge.capabilities.CapabilityRegistry.getEntityCapability(capability, self());
+    }
+
+    /**
+     * NeoForge's two-arg form — the context object is unused by our capability
+     * registry (it only applies to block/item lookups).
+     */
+    @Nullable
+    default <T, C> T getCapability(net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent.Capability<T> capability,
+            @Nullable C context) {
+        return getCapability(capability);
     }
 
 }

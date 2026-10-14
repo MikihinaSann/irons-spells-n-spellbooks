@@ -88,6 +88,46 @@ public interface IItemExtension {
     }
 
     /**
+     * NeoForge's {@code Item.getFoodProperties(ItemStack, LivingEntity)} —
+     * per-consumer food stats; falls back to the stack's food component.
+     */
+    @org.jetbrains.annotations.Nullable
+    default net.minecraft.world.food.FoodProperties getFoodProperties(net.minecraft.world.item.ItemStack stack,
+            @org.jetbrains.annotations.Nullable net.minecraft.world.entity.LivingEntity entity) {
+        return stack.get(net.minecraft.core.component.DataComponents.FOOD);
+    }
+
+    /**
+     * NeoForge's {@code Item.getDefaultAttributeModifiers(ItemStack)} —
+     * per-stack attribute modifiers; falls back to the item's defaults.
+     */
+    default net.minecraft.world.item.component.ItemAttributeModifiers getDefaultAttributeModifiers(
+            net.minecraft.world.item.ItemStack stack) {
+        return self().getDefaultAttributeModifiers();
+    }
+
+    /**
+     * NeoForge's {@code Item.onEntitySwing} — return true to consume the swing
+     * without attack processing.
+     */
+    default boolean onEntitySwing(net.minecraft.world.item.ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
+        return false;
+    }
+
+    /**
+     * NeoForge's {@code Item.onDestroyed(ItemEntity)} — called when an item
+     * entity holding this stack is destroyed.
+     */
+    default void onDestroyed(net.minecraft.world.entity.item.ItemEntity itemEntity) {
+    }
+
+    /** Damage-source variant of {@link #onDestroyed(ItemEntity)}. */
+    default void onDestroyed(net.minecraft.world.entity.item.ItemEntity itemEntity,
+            net.minecraft.world.damagesource.DamageSource damageSource) {
+        onDestroyed(itemEntity);
+    }
+
+    /**
      * Whether this stack can walk on powdered snow for the wearer.
      */
     default boolean canWalkOnPowderedSnow(net.minecraft.world.item.ItemStack stack, net.minecraft.world.entity.LivingEntity wearer) {

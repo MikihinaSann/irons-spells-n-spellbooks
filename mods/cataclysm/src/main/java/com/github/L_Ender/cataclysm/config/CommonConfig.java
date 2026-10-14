@@ -369,6 +369,9 @@ public class CommonConfig {
             ChargeHpDamage = builder.comment("Charge Attack Hp Damage")
                     .translation(LANG_PREFIX + "charge_hp_damage")
                     .defineInRange("charge_hp_damage",CMCommonConfig.Harbinger.ChargeHpDamage, 0.0D, 1.0D);
+            HarbingerLightFire = builder.comment("Whether the Harbinger's death laser can light fires even when mob griefing is disabled")
+                    .translation(LANG_PREFIX + "harbinger_light_fire")
+                    .define("harbinger_light_fire",CMCommonConfig.Harbinger.HarbingerLightFire);
             combatConfig = new CombatConfig(builder, CMCommonConfig.Harbinger.healthMultiplier, CMCommonConfig.Harbinger.attackMultiplier);
             capConfig = new CapConfig(builder, CMCommonConfig.Harbinger.damageCap, CMCommonConfig.Harbinger.dpsCap,CMCommonConfig.Harbinger.dpsLimitTime,CMCommonConfig.Harbinger.rangeCap);
             healConfig = new NatureHealConfig(builder, CMCommonConfig.Harbinger.natureHeal);
@@ -388,6 +391,7 @@ public class CommonConfig {
         public final ModConfigSpec.DoubleValue DeathLaserdamage;
         public final ModConfigSpec.DoubleValue DeathLaserHpdamage;
         public final ModConfigSpec.DoubleValue ChargeHpDamage;
+        public final ModConfigSpec.BooleanValue HarbingerLightFire;
     }
 
     public static class Prowler {

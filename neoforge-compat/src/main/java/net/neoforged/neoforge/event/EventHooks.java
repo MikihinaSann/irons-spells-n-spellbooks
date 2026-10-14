@@ -122,4 +122,45 @@ public class EventHooks {
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(event);
         return event.getKnockbackVelocity();
     }
+
+    /** NeoForge: fires {@link LivingConversionEvent} for an in-place entity morph. */
+    public static void onLivingConvert(net.minecraft.world.entity.LivingEntity entity,
+            net.minecraft.world.entity.LivingEntity outcome) {
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(
+                new net.neoforged.neoforge.event.entity.living.LivingConversionEvent(entity, outcome));
+    }
+
+    /** NeoForge: fires {@link PlayerDestroyItemEvent} when a held item breaks. */
+    public static void onPlayerDestroyItem(net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.item.ItemStack stack,
+            net.minecraft.world.InteractionHand hand) {
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(
+                new net.neoforged.neoforge.event.entity.player.PlayerDestroyItemEvent(player, stack, hand));
+    }
+
+    /** NeoForge: fires {@link BlockGrowFeatureEvent}; returns it so callers see mutations. */
+    public static net.neoforged.neoforge.event.level.BlockGrowFeatureEvent fireBlockGrowFeature(
+            net.minecraft.world.level.LevelAccessor level, net.minecraft.util.RandomSource random,
+            net.minecraft.core.BlockPos pos,
+            net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> feature) {
+        var event = new net.neoforged.neoforge.event.level.BlockGrowFeatureEvent(level, random, pos, feature);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(event);
+        return event;
+    }
+
+    /** NeoForge: fires {@link net.neoforged.neoforge.event.entity.player.PlayerEvent.ItemSmeltedEvent}. */
+    public static void firePlayerSmeltedEvent(net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.item.ItemStack stack) {
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(
+                new net.neoforged.neoforge.event.entity.player.PlayerEvent.ItemSmeltedEvent(player, stack));
+    }
+
+    /** NeoForge: fires {@link FluidPlaceBlockEvent}; returns the resulting block state. */
+    public static net.minecraft.world.level.block.state.BlockState fireFluidPlaceBlockEvent(
+            net.minecraft.world.level.LevelAccessor level, net.minecraft.core.BlockPos pos,
+            net.minecraft.core.BlockPos liquidPos, net.minecraft.world.level.block.state.BlockState newState) {
+        var event = new net.neoforged.neoforge.event.level.FluidPlaceBlockEvent(level, pos, liquidPos, newState);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(event);
+        return event.isCanceled() ? event.getOriginalState() : event.getNewState();
+    }
 }

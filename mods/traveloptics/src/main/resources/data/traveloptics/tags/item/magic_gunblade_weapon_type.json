@@ -1,0 +1,7 @@
+{
+  "__comment": "items in this tag are treated as magic gunblade for features and mechanics specific to gunblade weapons",
+  "replace": false,
+  "values": [
+    "traveloptics:cursed_wraithblade"
+  ]
+}

@@ -19,6 +19,8 @@ public class NeoForgeCompatClient implements ClientModInitializer {
     public void onInitializeClient() {
         // The common onInitialize already scanned subscribers on this JVM
         // (deduped); a dedicated-server JVM skipped client-only ones correctly.
+        net.neoforged.neoforge.common.util.LogicalSidedProvider.setClient(
+                net.minecraft.client.Minecraft::getInstance);
         List<net.fabricmc.loader.api.ModContainer> mods = NeoForgeCompat.discoverNeoForgeMods();
         NeoForgeCompat.constructMods(mods, "neoforge:client");
         NeoForgeCompatLifecycle.runClientLifecycle();

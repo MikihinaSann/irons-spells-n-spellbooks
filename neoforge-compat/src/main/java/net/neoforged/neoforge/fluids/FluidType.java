@@ -49,6 +49,7 @@ public class FluidType {
     private final ResourceLocation overlayTexture;
     @Nullable
     private final ResourceLocation renderOverlayTexture;
+    private final java.util.Map<net.neoforged.neoforge.common.SoundAction, net.minecraft.sounds.SoundEvent> sounds;
 
     public FluidType(Properties properties) {
         this.descriptionId = properties.descriptionId;
@@ -75,6 +76,38 @@ public class FluidType {
         this.flowingTexture = properties.flowingTexture;
         this.overlayTexture = properties.overlayTexture;
         this.renderOverlayTexture = properties.renderOverlayTexture;
+        this.sounds = properties.sounds;
+    }
+
+    /**
+     * The sound registered for the given {@link SoundAction} (bucket
+     * fill/empty, vaporize), or null when unset.
+     */
+    @Nullable
+    public net.minecraft.sounds.SoundEvent getSound(net.neoforged.neoforge.common.SoundAction action) {
+        return sounds.get(action);
+    }
+
+    /**
+     * NeoForge's contextual sound lookup — the positional variant used for
+     * vaporize/bucket sounds at a location.
+     */
+    @Nullable
+    public net.minecraft.sounds.SoundEvent getSound(@Nullable net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos,
+            net.neoforged.neoforge.common.SoundAction action) {
+        return getSound(action);
+    }
+
+    /** NeoForge: whether this fluid vaporizes on placement (e.g. in the nether). */
+    public boolean isVaporizedOnPlacement(net.minecraft.world.level.Level level,
+            net.minecraft.core.BlockPos pos, FluidStack stack) {
+        return false;
+    }
+
+    /** NeoForge: side effect run when this fluid vaporizes on placement. */
+    public void onVaporize(@Nullable net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos, FluidStack stack) {
     }
 
     public final String getDescriptionId() {
@@ -301,6 +334,7 @@ public class FluidType {
         private ResourceLocation flowingTexture = ResourceLocation.withDefaultNamespace("block/water_flow");
         private ResourceLocation overlayTexture;
         private ResourceLocation renderOverlayTexture;
+        private final java.util.Map<net.neoforged.neoforge.common.SoundAction, net.minecraft.sounds.SoundEvent> sounds = new java.util.HashMap<>();
 
         public Properties descriptionId(String descriptionId) {
             this.descriptionId = descriptionId;
@@ -414,6 +448,11 @@ public class FluidType {
 
         public Properties renderOverlayTexture(ResourceLocation renderOverlayTexture) {
             this.renderOverlayTexture = renderOverlayTexture;
+            return this;
+        }
+
+        public Properties sound(net.neoforged.neoforge.common.SoundAction action, net.minecraft.sounds.SoundEvent sound) {
+            this.sounds.put(action, sound);
             return this;
         }
     }

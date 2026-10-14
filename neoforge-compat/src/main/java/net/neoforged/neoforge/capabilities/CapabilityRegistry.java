@@ -60,6 +60,16 @@ public final class CapabilityRegistry {
         return null;
     }
 
+    /**
+     * Entity capability lookup — no entity providers are registered yet, so
+     * this always resolves to null. Kept for API parity with NeoForge.
+     */
+    @Nullable
+    public static <T> T getEntityCapability(RegisterCapabilitiesEvent.Capability<T> capability,
+            net.minecraft.world.entity.Entity entity) {
+        return null;
+    }
+
     private CapabilityRegistry() {
     }
 

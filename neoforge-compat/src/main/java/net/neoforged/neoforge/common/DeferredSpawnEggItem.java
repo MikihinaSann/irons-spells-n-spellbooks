@@ -6,17 +6,41 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 /**
  * Spawn egg whose entity type is looked up lazily (deferred registration).
  */
 public class DeferredSpawnEggItem extends SpawnEggItem {
+    private static final List<DeferredSpawnEggItem> INSTANCES = new ArrayList<>();
+
     private final Supplier<? extends EntityType<? extends Mob>> entityTypeSupplier;
 
     public DeferredSpawnEggItem(Supplier<? extends EntityType<? extends Mob>> entityTypeSupplier, int backgroundColor, int highlightColor, Properties properties) {
         super(null, backgroundColor, highlightColor, properties);
         this.entityTypeSupplier = entityTypeSupplier;
+        INSTANCES.add(this);
+    }
+
+    /**
+     * Inserts every deferred egg into {@code SpawnEggItem.BY_ID} now that the
+     * entity-type holders are bound. Must run after deferred registration
+     * drains but before the client builds {@code ItemColors} (which iterates
+     * {@code SpawnEggItem.eggs()} to attach the tint handler).
+     */
+    public static void registerAllToByIdMap() {
+        var byId = net.neoforged.neoforge.internal.fabric.mixin.SpawnEggItemAccessor.getById();
+        int count = 0;
+        for (DeferredSpawnEggItem egg : INSTANCES) {
+            EntityType<? extends Mob> type = egg.entityTypeSupplier.get();
+            if (type != null) {
+                byId.put(type, egg);
+                count++;
+            }
+        }
+        net.neoforged.neoforge.internal.fabric.NeoForgeCompat.LOGGER.info("Registered {} deferred spawn eggs into BY_ID", count);
     }
 
     public DeferredSpawnEggItem(DeferredHolder<EntityType<?>, ? extends EntityType<? extends Mob>> entityType, int backgroundColor, int highlightColor, Properties properties) {

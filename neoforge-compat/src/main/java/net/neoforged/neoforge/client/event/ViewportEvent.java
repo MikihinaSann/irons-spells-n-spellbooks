@@ -143,6 +143,11 @@ public abstract class ViewportEvent extends Event {
             return type;
         }
 
+        /** NeoForge name for {@link #getType()}. */
+        public FogRenderer.FogMode getMode() {
+            return type;
+        }
+
         public float getNearPlaneDistance() {
             return nearPlaneDistance;
         }

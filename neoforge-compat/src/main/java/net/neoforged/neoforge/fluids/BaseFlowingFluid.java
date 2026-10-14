@@ -83,7 +83,8 @@ public abstract class BaseFlowingFluid extends FlowingFluid implements FluidType
     protected net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState state) {
         Block liquidBlock = block.get();
         if (liquidBlock instanceof LiquidBlock) {
-            return liquidBlock.defaultBlockState().setValue(LiquidBlock.LEVEL, state.getValue(LEVEL));
+            return liquidBlock.defaultBlockState().setValue(LiquidBlock.LEVEL,
+                    getLegacyLevel(state));
         }
         return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
     }

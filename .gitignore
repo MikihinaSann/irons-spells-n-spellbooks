@@ -32,3 +32,14 @@ libs
 # Files from Forge MDK
 forge*changelog.txt
 /runs/
+
+# local scratch artifacts
+_*.log
+_*.py
+_*.jar
+_decompile/
+_to_src/
+runclient.out
+runserver.out
+vineflower.jar
+neoforge-compat/logs/

@@ -1,0 +1,24 @@
+/*
+ * Copyright (c) Forge Development LLC and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.registries.holdersets;
+
+import net.minecraft.core.HolderSet;
+import net.neoforged.neoforge.common.extensions.IHolderSetExtension;
+
+/**
+ * Interface for mods' custom holderset types
+ */
+public interface ICustomHolderSet<T> extends HolderSet<T>, IHolderSetExtension<T> {
+    /**
+     * {@return HolderSetType registered to {@link ForgeRegistries.HOLDER_SET_TYPES}}
+     */
+    HolderSetType type();
+
+    @Override
+    default SerializationType serializationType() {
+        return SerializationType.OBJECT;
+    }
+}

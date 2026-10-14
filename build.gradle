@@ -37,6 +37,15 @@ loom {
         cataclysm {
             sourceSet project(':mods:cataclysm').sourceSets.main
         }
+        alexscaves {
+            sourceSet project(':mods:alexscaves').sourceSets.main
+        }
+        traveloptics {
+            sourceSet project(':mods:traveloptics').sourceSets.main
+        }
+        borninchaos {
+            sourceSet project(':mods:borninchaos').sourceSets.main
+        }
     }
 
     runs {
@@ -49,6 +58,7 @@ loom {
         }
         server {
             server()
+            vmArgs "-Diss.devAutoOp=true"
         }
     }
 }
@@ -90,6 +100,18 @@ dependencies {
         transitive = false
     }
     implementation(project(path: ":mods:cataclysm", configuration: "namedElements")) {
+        transitive = false
+    }
+    implementation(project(path: ":mods:alexscaves", configuration: "namedElements")) {
+        transitive = false
+    }
+    // traveloptics depends on root ISS, so it cannot be a project dependency
+    // (task cycle). Its named dev jar goes straight on the classpath; fabric
+    // discovers it as a mod at runtime.
+    implementation files("mods/traveloptics/build/devlibs/traveloptics-4.4.0.1+fabric.1.21.1-dev.jar")
+    // borninchaos is a standalone content mod (no dep on root ISS) — safe as a
+    // normal project dependency like alexscaves/cataclysm.
+    implementation(project(path: ":mods:borninchaos", configuration: "namedElements")) {
         transitive = false
     }
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"

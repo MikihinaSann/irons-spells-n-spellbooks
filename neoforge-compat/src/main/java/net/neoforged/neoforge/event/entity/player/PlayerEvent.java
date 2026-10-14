@@ -148,6 +148,11 @@ public abstract class PlayerEvent extends LivingEvent {
         private final net.minecraft.world.level.LevelAccessor level;
 
         public BreakSpeed(Player player, net.minecraft.world.level.block.state.BlockState state, float originalSpeed,
+                          net.minecraft.core.BlockPos pos) {
+            this(player, state, originalSpeed, pos, player.level());
+        }
+
+        public BreakSpeed(Player player, net.minecraft.world.level.block.state.BlockState state, float originalSpeed,
                           net.minecraft.core.BlockPos pos, net.minecraft.world.level.LevelAccessor level) {
             super(player);
             this.state = state;
@@ -179,6 +184,24 @@ public abstract class PlayerEvent extends LivingEvent {
 
         public net.minecraft.world.level.LevelAccessor getLevel() {
             return level;
+        }
+    }
+
+    /** Fired when a player takes an item out of a furnace/smoker/blast result slot. */
+    public static class ItemSmeltedEvent extends PlayerEvent {
+        private final net.minecraft.world.item.ItemStack smelted;
+
+        public ItemSmeltedEvent(Player player, net.minecraft.world.item.ItemStack smelted) {
+            super(player);
+            this.smelted = smelted;
+        }
+
+        public net.minecraft.world.item.ItemStack getSmelting() {
+            return smelted;
+        }
+
+        public net.minecraft.world.item.ItemStack getSmelted() {
+            return smelted;
         }
     }
 }

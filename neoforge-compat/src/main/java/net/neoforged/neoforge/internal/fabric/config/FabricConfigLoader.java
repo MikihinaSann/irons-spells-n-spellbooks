@@ -18,10 +18,19 @@ import java.util.concurrent.ConcurrentHashMap;
  * provides the real NeoForge config implementation (TOML load/save, file
  * watching, reloads), and bridges FCAP's load/reload/unload callbacks onto the
  * NeoForge-style mod bus as {@link ModConfigEvent}s.
+ *
+ * FCAP requires a real loaded Fabric mod id for registration, but merged
+ * NeoForge-style mods (e.g. efiscompat inside the irons_spellbooks jar) own a
+ * different logical mod id on the event bus. Each config therefore carries a
+ * {@code busOwner} — the compat modid used for {@link
+ * net.neoforged.neoforge.internal.fabric.FabricEventBus#postScoped} — tracked
+ * separately from the Fabric mod id FCAP is registered under.
  */
 public final class FabricConfigLoader {
     static final Logger LOGGER = LoggerFactory.getLogger("neoforge_compat");
     private static final Map<String, ModConfig> CONFIGS = new ConcurrentHashMap<>();
+    /** Bus-scoping owner per config (defaults to the registering Fabric mod id). */
+    private static final Map<ModConfig, String> CONFIG_BUS_OWNERS = new ConcurrentHashMap<>();
     /** Mod ids whose FCAP config events are already bridged to the mod bus. */
     private static final Set<String> WIRED_MOD_IDS = ConcurrentHashMap.newKeySet();
     /** Configs a {@link ModConfigEvent.Loading} was already posted for. */
@@ -31,15 +40,20 @@ public final class FabricConfigLoader {
     }
 
     public static void register(String modId, ModConfig.Type type, ModConfigSpec spec, String fileName) {
+        register(modId, type, spec, fileName, modId);
+    }
+
+    public static void register(String modId, ModConfig.Type type, ModConfigSpec spec, String fileName, String busOwner) {
         try {
             wireConfigEvents(modId);
             ModConfig config = NeoForgeConfigRegistry.INSTANCE.register(modId, type, spec, fileName);
             CONFIGS.put(fileName, config);
+            CONFIG_BUS_OWNERS.put(config, busOwner);
             // FCAP loads common/client configs synchronously inside register(),
             // before the config enters CONFIGS, so the bridge listener always
             // misses that first load; post the Loading event now instead.
             if (config.getLoadedConfig() != null && LOADING_POSTED.add(config)) {
-                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Loading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(busOwner, new ModConfigEvent.Loading(config));
             }
         } catch (Throwable t) {
             LOGGER.error("Failed to register config {}", fileName, t);
@@ -58,19 +72,23 @@ public final class FabricConfigLoader {
         NeoForgeModConfigEvents.loading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
                 LOADING_POSTED.add(config);
-                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Loading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(busOwner(config), new ModConfigEvent.Loading(config));
             }
         });
         NeoForgeModConfigEvents.reloading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
-                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Reloading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(busOwner(config), new ModConfigEvent.Reloading(config));
             }
         });
         NeoForgeModConfigEvents.unloading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
-                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Unloading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(busOwner(config), new ModConfigEvent.Unloading(config));
             }
         });
+    }
+
+    private static String busOwner(ModConfig config) {
+        return CONFIG_BUS_OWNERS.getOrDefault(config, config.getModId());
     }
 
     public static ModConfig get(String fileName) {

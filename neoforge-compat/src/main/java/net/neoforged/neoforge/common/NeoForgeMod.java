@@ -66,6 +66,27 @@ public class NeoForgeMod {
         return holder;
     }
 
+    // ------------------------------------------------------------------
+    // HolderSet types (neoforge:and/or/not/any) — NF registers these through
+    // a DeferredRegister on neoforge:holder_set_type.
+    // ------------------------------------------------------------------
+
+    private static net.minecraft.core.Holder<net.neoforged.neoforge.registries.holdersets.HolderSetType> holderSetType(
+            String name, net.neoforged.neoforge.registries.holdersets.HolderSetType type) {
+        return net.minecraft.core.Registry.registerForHolder(
+                net.neoforged.neoforge.registries.NeoForgeRegistries.HOLDER_SET_TYPES,
+                ResourceLocation.fromNamespaceAndPath("neoforge", name), type);
+    }
+
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.registries.holdersets.HolderSetType> AND_HOLDER_SET =
+            holderSetType("and", new net.neoforged.neoforge.registries.holdersets.AndHolderSet.Type());
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.registries.holdersets.HolderSetType> OR_HOLDER_SET =
+            holderSetType("or", new net.neoforged.neoforge.registries.holdersets.OrHolderSet.Type());
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.registries.holdersets.HolderSetType> NOT_HOLDER_SET =
+            holderSetType("not", new net.neoforged.neoforge.registries.holdersets.NotHolderSet.Type());
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.registries.holdersets.HolderSetType> ANY_HOLDER_SET =
+            holderSetType("any", new net.neoforged.neoforge.registries.holdersets.AnyHolderSet.Type());
+
     /** NeoForge's {@code minecraft:empty} fluid type (NF registers vanilla types under the minecraft namespace). */
     public static final net.minecraft.core.Holder<net.neoforged.neoforge.fluids.FluidType> EMPTY_TYPE =
             vanillaFluidType("empty", new net.neoforged.neoforge.fluids.FluidType(

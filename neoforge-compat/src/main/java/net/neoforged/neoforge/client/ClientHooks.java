@@ -32,6 +32,19 @@ public class ClientHooks {
      * registration at any point before model baking.
      */
     /**
+     * NeoForge's {@code LocalPlayer#aiStep} hook — fires
+     * {@link net.neoforged.neoforge.client.event.MovementInputUpdateEvent}
+     * after {@code Input#tick}. Kept as a named static so mod mixins can
+     * inject around the call site like they do on NeoForge.
+     */
+    public static void onMovementInputUpdate(net.minecraft.world.entity.player.Player player,
+            net.minecraft.client.player.Input input) {
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(
+                new net.neoforged.neoforge.client.event.MovementInputUpdateEvent(
+                        (net.minecraft.client.player.LocalPlayer) player, input));
+    }
+
+    /**
      * NeoForge's armor-model resolution: delegates to the item's client
      * extensions.
      */
@@ -151,6 +164,23 @@ public class ClientHooks {
             return Stream.of(component.getVisualOrderText()).map(ClientTooltipComponent::create);
         }
         return font.split(text, maxWidth).stream().map(ClientTooltipComponent::create);
+    }
+
+    /**
+     * NeoForge's {@code ClientHooks.handleCameraTransforms} — applies the
+     * model's {@link net.minecraft.client.renderer.block.model.ItemTransform}
+     * for the display context and returns the model to render.
+     */
+    public static net.minecraft.client.resources.model.BakedModel handleCameraTransforms(
+            com.mojang.blaze3d.vertex.PoseStack poseStack,
+            net.minecraft.client.resources.model.BakedModel model,
+            net.minecraft.world.item.ItemDisplayContext context, boolean leftHand) {
+        net.minecraft.client.renderer.block.model.ItemTransform transform =
+                model.getTransforms().getTransform(context);
+        if (transform != net.minecraft.client.renderer.block.model.ItemTransform.NO_TRANSFORM) {
+            transform.apply(leftHand, poseStack);
+        }
+        return model;
     }
 
     private ClientHooks() {

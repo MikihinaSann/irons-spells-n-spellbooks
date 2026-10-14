@@ -1,0 +1,14 @@
+{
+  "icon": "curios:slot/talent_slot",
+  "order": 254,
+  "amount": 2,
+  "quick_move_predicates": [
+    "trinkets:tag"
+  ],
+  "validator_predicates": [
+    "trinkets:tag"
+  ],
+  "tooltip_predicates": [
+    "trinkets:tag"
+  ]
+}

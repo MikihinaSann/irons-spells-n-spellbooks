@@ -90,10 +90,21 @@ public class NeoForgeCompat implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("neoforge_compat boot envType={}", FabricLoader.getInstance().getEnvironmentType());
-        ServerLifecycleEvents.SERVER_STARTED.register(server -> SERVER = server);
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> SERVER = null);
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            SERVER = server;
+            net.neoforged.neoforge.server.ServerLifecycleHooks.setCurrentServer(server);
+        });
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+            SERVER = null;
+            net.neoforged.neoforge.server.ServerLifecycleHooks.setCurrentServer(null);
+        });
+        net.neoforged.neoforge.common.util.LogicalSidedProvider.setServer(() -> SERVER);
 
         List<net.fabricmc.loader.api.ModContainer> mods = discoverNeoForgeMods();
+        // Enum constants must exist before any mod class is initialized —
+        // subscriber scanning can trigger clinit on classes whose statics do
+        // Enum#valueOf on the extended constants.
+        EnumExtensionLoader.process(mods);
         scanSubscribers(mods, DistExecutor.currentDist() == Dist.DEDICATED_SERVER);
         constructMods(mods, "neoforge");
         runCommonLifecycle();
@@ -503,6 +514,7 @@ public class NeoForgeCompat implements ModInitializer {
                 net.minecraft.core.Registry.register(
                         net.neoforged.neoforge.registries.NeoForgeRegistries.DATA_MAP_TYPES, id, type)));
         DeferredRegister.drainAll();
+        net.neoforged.neoforge.common.DeferredSpawnEggItem.registerAllToByIdMap();
         net.minecraft.core.registries.BuiltInRegistries.REGISTRY.forEach(reg ->
                 MOD_BUS.post(new net.neoforged.neoforge.registries.RegisterEvent(reg)));
         // Curios -> Trinkets: every registered ICurioItem becomes a Trinket.
@@ -548,6 +560,13 @@ public class NeoForgeCompat implements ModInitializer {
         MOD_BUS.post(new InterModEnqueueEvent());
         MOD_BUS.post(new InterModProcessEvent());
 
+        MOD_BUS.post(new net.neoforged.neoforge.common.world.chunk.RegisterTicketControllersEvent());
+
+        net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent loadComplete =
+                new net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent();
+        MOD_BUS.post(loadComplete);
+        loadComplete.drainWork();
+
         AddReloadListenerEvent reloadEvent = new AddReloadListenerEvent();
         MOD_BUS.post(reloadEvent);
         NeoForge.EVENT_BUS.post(reloadEvent);
@@ -592,8 +611,20 @@ public class NeoForgeCompat implements ModInitializer {
                         NeoForge.EVENT_BUS.post(new RegisterCommandsEvent(dispatcher, registryAccess, environment)));
         net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.START_SERVER_TICK.register(server ->
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.tick.ServerTickEvent.Pre(server != null, server)));
-        net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_SERVER_TICK.register(server ->
-                NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.tick.ServerTickEvent.Post(server != null, server)));
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_SERVER_TICK.register(server -> {
+            NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.tick.ServerTickEvent.Post(server != null, server));
+            net.neoforged.neoforge.common.WorldWorkerManager.tick();
+        });
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents.LOAD.register((server, level) -> {
+            for (var controller : TicketControllerRegistry.all()) {
+                controller.onLevelLoad(level);
+            }
+        });
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents.UNLOAD.register((server, level) -> {
+            for (var controller : TicketControllerRegistry.all()) {
+                controller.onLevelUnload(level);
+            }
+        });
         net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.START_WORLD_TICK.register(level ->
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.tick.LevelTickEvent.Pre(level)));
         net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_WORLD_TICK.register(level ->
@@ -629,6 +660,12 @@ public class NeoForgeCompat implements ModInitializer {
         net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent(handler.getPlayer()));
             NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(server.getPlayerList(), handler.getPlayer()));
+            if (Boolean.getBoolean("iss.devAutoOp")) {
+                com.mojang.authlib.GameProfile profile = handler.getPlayer().getGameProfile();
+                if (!server.getPlayerList().isOp(profile)) {
+                    server.getPlayerList().op(profile);
+                }
+            }
         });
         net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.DISCONNECT.register((handler, server) ->
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent(handler.getPlayer())));
@@ -736,9 +773,13 @@ public class NeoForgeCompat implements ModInitializer {
             }
         });
 
-        // global loot modifiers: neoforge:loot_table_id condition + JSON loader
+        // global loot modifiers: neoforge:loot_table_id condition + JSON loader.
+        // Newer datapacks use the common 'c' namespace (Alex's Caves 1.21.1).
         Registry.register(net.minecraft.core.registries.BuiltInRegistries.LOOT_CONDITION_TYPE,
                 net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "loot_table_id"),
+                net.neoforged.neoforge.common.conditions.LootTableIdCondition.TYPE);
+        Registry.register(net.minecraft.core.registries.BuiltInRegistries.LOOT_CONDITION_TYPE,
+                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("c", "loot_table_id"),
                 net.neoforged.neoforge.common.conditions.LootTableIdCondition.TYPE);
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
                 new net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener() {

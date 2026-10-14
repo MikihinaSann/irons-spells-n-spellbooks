@@ -1,5 +1,6 @@
 package net.neoforged.neoforge.client.extensions.common;
 
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.Event;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -51,6 +52,22 @@ public class RegisterClientExtensionsEvent extends Event {
     public void registerFluidType(IClientFluidTypeExtensions extensions, FluidType... fluidTypes) {
         for (FluidType fluidType : fluidTypes) {
             ClientExtensionsRegistry.registerFluidType(fluidType, extensions);
+        }
+    }
+
+    public void registerMobEffect(IClientMobEffectExtensions extensions, MobEffect... effects) {
+        for (MobEffect effect : effects) {
+            ClientExtensionsRegistry.registerMobEffect(effect, extensions);
+        }
+    }
+
+    public void registerMobEffect(IClientMobEffectExtensions extensions, Supplier<? extends MobEffect> effect) {
+        ClientExtensionsRegistry.registerMobEffect(effect.get(), extensions);
+    }
+
+    public void registerMobEffect(IClientMobEffectExtensions extensions, net.minecraft.core.Holder<MobEffect>... effects) {
+        for (net.minecraft.core.Holder<MobEffect> effect : effects) {
+            ClientExtensionsRegistry.registerMobEffect(effect.value(), extensions);
         }
     }
 }

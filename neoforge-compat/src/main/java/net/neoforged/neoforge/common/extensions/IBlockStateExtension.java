@@ -189,7 +189,7 @@ public interface IBlockStateExtension extends net.fabricmc.fabric.api.block.v1.F
         return blockExt().getAdjacentBlockPathType(self(), level, pos, mob, originalType);
     }
 
-    default float[] getBeaconColorMultiplier(LevelReader level, BlockPos pos, BlockPos beaconPos) {
+    default Integer getBeaconColorMultiplier(LevelReader level, BlockPos pos, BlockPos beaconPos) {
         return blockExt().getBeaconColorMultiplier(self(), level, pos, beaconPos);
     }
 

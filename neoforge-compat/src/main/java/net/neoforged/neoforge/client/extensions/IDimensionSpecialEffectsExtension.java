@@ -30,4 +30,13 @@ public interface IDimensionSpecialEffectsExtension {
     default boolean tickWeather(ClientLevel level, int ticks, Camera camera) {
         return false;
     }
+
+    /**
+     * NeoForge's per-dimension lightmap color adjustment hook — the vanilla
+     * default applies no changes.
+     */
+    default void adjustLightmapColors(net.minecraft.client.multiplayer.ClientLevel level,
+            float partialTicks, float skyDarken, float blockLightRedFlicker,
+            float skyLight, int minBlockLight, int maxSkyLight, org.joml.Vector3f combined) {
+    }
 }

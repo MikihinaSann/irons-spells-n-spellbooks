@@ -48,6 +48,13 @@ public final class NeoForgeFluidTypeRegistry {
         if (type != null) {
             return type;
         }
+        if (fluid instanceof net.neoforged.neoforge.fluids.FluidTypeCarrier carrier) {
+            type = carrier.getFluidType();
+            if (type != null) {
+                FLUID_TO_TYPE.put(fluid, type);
+                return type;
+            }
+        }
         return fluid == Fluids.EMPTY
                 ? net.neoforged.neoforge.common.NeoForgeMod.EMPTY_TYPE.value()
                 : net.neoforged.neoforge.common.NeoForgeMod.WATER_TYPE.value();

@@ -101,8 +101,17 @@ public class PayloadRegistrar {
                 ServerPlayNetworking.registerGlobalReceiver(type, (payload, context) -> {
                     IPayloadContext ctx = new IPayloadContext() {
                         @Override
-                        public void enqueueWork(Runnable runnable) {
-                            context.server().execute(runnable);
+                        public java.util.concurrent.CompletableFuture<Void> enqueueWork(Runnable runnable) {
+                            java.util.concurrent.CompletableFuture<Void> future = new java.util.concurrent.CompletableFuture<>();
+                            context.server().execute(() -> {
+                                try {
+                                    runnable.run();
+                                    future.complete(null);
+                                } catch (Throwable t) {
+                                    future.completeExceptionally(t);
+                                }
+                            });
+                            return future;
                         }
 
                         @Override
@@ -118,6 +127,11 @@ public class PayloadRegistrar {
                         @Override
                         public net.minecraft.network.protocol.PacketFlow flow() {
                             return net.minecraft.network.protocol.PacketFlow.SERVERBOUND;
+                        }
+
+                        @Override
+                        public net.minecraft.network.Connection connection() {
+                            return context.player().connection.connection;
                         }
                     };
                     handler.handle(payload, ctx);
@@ -136,8 +150,17 @@ public class PayloadRegistrar {
                 ClientPlayNetworking.registerGlobalReceiver(type, (payload, context) -> {
                     IPayloadContext ctx = new IPayloadContext() {
                         @Override
-                        public void enqueueWork(Runnable runnable) {
-                            context.client().execute(runnable);
+                        public java.util.concurrent.CompletableFuture<Void> enqueueWork(Runnable runnable) {
+                            java.util.concurrent.CompletableFuture<Void> future = new java.util.concurrent.CompletableFuture<>();
+                            context.client().execute(() -> {
+                                try {
+                                    runnable.run();
+                                    future.complete(null);
+                                } catch (Throwable t) {
+                                    future.completeExceptionally(t);
+                                }
+                            });
+                            return future;
                         }
 
                         @Override
@@ -153,6 +176,12 @@ public class PayloadRegistrar {
                         @Override
                         public net.minecraft.network.protocol.PacketFlow flow() {
                             return net.minecraft.network.protocol.PacketFlow.CLIENTBOUND;
+                        }
+
+                        @Override
+                        public net.minecraft.network.Connection connection() {
+                            var listener = net.minecraft.client.Minecraft.getInstance().getConnection();
+                            return listener == null ? null : listener.getConnection();
                         }
                     };
                     handler.handle(payload, ctx);

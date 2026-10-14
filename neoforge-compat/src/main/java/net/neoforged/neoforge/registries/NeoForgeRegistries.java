@@ -33,8 +33,7 @@ public class NeoForgeRegistries {
         public static final ResourceKey<Registry<MapCodec<? extends net.neoforged.neoforge.common.world.BiomeModifier>>> BIOME_MODIFIER_SERIALIZERS = key("biome_modifier_serializers");
         public static final ResourceKey<Registry<MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>>> STRUCTURE_MODIFIER_SERIALIZERS = key("structure_modifier_serializers");
         public static final ResourceKey<Registry<FluidType>> FLUID_TYPES = key("fluid_type");
-        @SuppressWarnings("unchecked")
-        public static final ResourceKey<Registry<?>> HOLDER_SET_TYPES = (ResourceKey<Registry<?>>) (ResourceKey<?>) key("holder_set_type");
+        public static final ResourceKey<Registry<net.neoforged.neoforge.registries.holdersets.HolderSetType>> HOLDER_SET_TYPES = key("holder_set_type");
         public static final ResourceKey<Registry<net.neoforged.neoforge.common.crafting.IngredientType<?>>> INGREDIENT_TYPES = key("ingredient_serializer");
         @SuppressWarnings("unchecked")
         public static final ResourceKey<Registry<?>> FLUID_INGREDIENT_TYPES = (ResourceKey<Registry<?>>) (ResourceKey<?>) key("fluid_ingredient_type");
@@ -62,6 +61,7 @@ public class NeoForgeRegistries {
     public static final Registry<MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>> STRUCTURE_MODIFIER_SERIALIZERS = makeRegistry(Keys.STRUCTURE_MODIFIER_SERIALIZERS);
     public static final Registry<FluidType> FLUID_TYPES = makeRegistry(Keys.FLUID_TYPES);
     public static final Registry<net.neoforged.neoforge.common.crafting.IngredientType<?>> INGREDIENT_TYPES = makeRegistry(Keys.INGREDIENT_TYPES);
+    public static final Registry<net.neoforged.neoforge.registries.holdersets.HolderSetType> HOLDER_SET_TYPES = makeRegistry(Keys.HOLDER_SET_TYPES);
     public static final Registry<MapCodec<? extends net.neoforged.neoforge.common.conditions.ICondition>> CONDITION_CODECS = makeRegistry(Keys.CONDITION_CODECS);
     public static final Registry<net.neoforged.neoforge.registries.datamaps.DataMapType<?, ?>> DATA_MAP_TYPES = makeRegistry(Keys.DATA_MAP_TYPES);
 }

@@ -38,13 +38,12 @@ public class DeferredHolder<R, T extends R> implements Holder<R>, Supplier<T> {
     }
 
     private void resolve() {
-        if (value == null && owner != null) {
-            owner.accept();
-        }
-        // Lookup-style holder (DeferredHolder.create) — no owning register:
-        // resolve lazily from the vanilla registry, matching NeoForge's
-        // ResourceKey-lookup holder semantics.
-        if (value == null && owner == null && key != null) {
+        // NeoForge binds holders only when the owning registry's RegisterEvent
+        // fires — never from arbitrary holder access. Draining the register
+        // here ran suppliers while their registry class's <clinit> was still
+        // on the stack (ACItemRegistry hashMap.put -> hashCode -> bind ->
+        // supplier reads ACBlockRegistry fields that are still null).
+        if (value == null && key != null) {
             net.minecraft.core.Registry<R> registry =
                     net.neoforged.neoforge.registries.DeferredRegister.lookupRegistry(key.registry());
             if (registry != null) {
@@ -213,10 +212,11 @@ public class DeferredHolder<R, T extends R> implements Holder<R>, Supplier<T> {
 
     @Override
     public int hashCode() {
+        // Match the bound intrinsic holder once resolved — vanilla maps keyed
+        // by Holder.Reference (AttributeMap, tag lookups) rely on its identity
+        // hash. resolve() only does a registry lookup now, so this is safe to
+        // call from arbitrary map operations again.
         resolve();
-        if (holder != null) {
-            return System.identityHashCode(holder);
-        }
-        return key.hashCode();
+        return holder != null ? holder.hashCode() : key.hashCode();
     }
 }

@@ -15,6 +15,16 @@ import org.jetbrains.annotations.Nullable;
  * {@code IItemExtensionMixin} (interface mixin), so their signatures must match.
  */
 public interface IItemStackExtension {
+
+    /**
+     * NeoForge's {@code ItemStack.getCraftingRemainingItem()} — the container
+     * item left behind after crafting.
+     */
+    default net.minecraft.world.item.ItemStack getCraftingRemainingItem() {
+        net.minecraft.world.item.ItemStack self = (net.minecraft.world.item.ItemStack) (Object) this;
+        net.minecraft.world.item.Item remaining = self.getItem().getCraftingRemainingItem();
+        return remaining == null ? net.minecraft.world.item.ItemStack.EMPTY : new net.minecraft.world.item.ItemStack(remaining);
+    }
     private ItemStack self() {
         return (ItemStack) (Object) this;
     }

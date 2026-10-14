@@ -1,0 +1,10 @@
+{
+  "__comment": "items in this tag are treated as magic gauntlets for features and mechanics specific to gauntlet weapons",
+  "replace": false,
+  "values": [
+    "traveloptics:infernal_devastator",
+    "traveloptics:infernal_devastator_level_one",
+    "traveloptics:infernal_devastator_level_two",
+    "traveloptics:infernal_devastator_level_three"
+  ]
+}

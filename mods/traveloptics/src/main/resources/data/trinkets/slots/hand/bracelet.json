@@ -1,0 +1,14 @@
+{
+  "icon": "curios:slot/augment_slot",
+  "order": 550,
+  "amount": 2,
+  "quick_move_predicates": [
+    "trinkets:tag"
+  ],
+  "validator_predicates": [
+    "trinkets:tag"
+  ],
+  "tooltip_predicates": [
+    "trinkets:tag"
+  ]
+}

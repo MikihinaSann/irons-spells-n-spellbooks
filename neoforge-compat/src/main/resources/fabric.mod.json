@@ -39,7 +39,20 @@
         "net/neoforged/neoforge/common/extensions/IBlockEntityExtension"
       ],
       "net/minecraft/world/level/Level": [
-        "net/neoforged/neoforge/attachment/IAttachmentHolder"
+        "net/neoforged/neoforge/attachment/IAttachmentHolder",
+        "net/neoforged/neoforge/common/extensions/ILevelExtension"
+      ],
+      "net/minecraft/world/entity/vehicle/AbstractMinecart": [
+        "net/neoforged/neoforge/common/extensions/IMinecartExtension"
+      ],
+      "net/minecraft/world/level/block/BaseRailBlock": [
+        "net/neoforged/neoforge/common/extensions/IBaseRailBlockExtension"
+      ],
+      "net/minecraft/world/level/block/FlowerPotBlock": [
+        "net/neoforged/neoforge/common/extensions/IFlowerPotBlockExtension"
+      ],
+      "net/minecraft/client/renderer/block/BlockRenderDispatcher": [
+        "net/neoforged/neoforge/client/extensions/IBlockRenderDispatcherExtension"
       ],
       "net/minecraft/world/level/chunk/ChunkAccess": [
         "net/neoforged/neoforge/attachment/IAttachmentHolder"
@@ -79,6 +92,9 @@
       ],
       "net/minecraft/world/entity/EntityType$Builder": [
         "net/neoforged/neoforge/common/extensions/IEntityTypeBuilderExtension"
+      ],
+      "net/minecraft/world/item/alchemy/PotionBrewing$Builder": [
+        "net/neoforged/neoforge/common/extensions/IBrewingBuilderExtension"
       ],
       "net/minecraft/world/entity/player/Player": [
         "net/neoforged/neoforge/common/extensions/IPlayerExtension"

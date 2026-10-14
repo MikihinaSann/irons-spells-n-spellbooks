@@ -84,6 +84,8 @@ final class NeoForgeCompatLifecycle {
 
         MOD_BUS.post(new RegisterClientExtensionsEvent());
 
+        MOD_BUS.post(new net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent());
+
         // NeoForge calls Item#initializeClient / FluidType#initializeClient for every
         // registered entry during client init - the extension lands in
         // ClientExtensionsRegistry via the consumer.
@@ -91,6 +93,7 @@ final class NeoForgeCompatLifecycle {
                 item.initializeClient(ext -> ClientExtensionsRegistry.registerItem(item, ext)));
         net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES.forEach(type ->
                 type.initializeClient(ext -> ClientExtensionsRegistry.registerFluidType(type, ext)));
+        NeoForgeFluidRenderHandlers.registerAll();
 
         net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent clientReload =
                 new net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent();
@@ -191,7 +194,7 @@ final class NeoForgeCompatLifecycle {
         ModelLoadingPlugin.register(context ->
                 additional.getModels().forEach(model -> context.addModels(model.id())));
         net.fabricmc.fabric.api.client.model.loading.v1.PreparableModelLoadingPlugin.register(
-                net.neoforged.neoforge.internal.fabric.NeoForgeModelLoadingPlugin::scanSeparateTransforms,
+                net.neoforged.neoforge.internal.fabric.NeoForgeModelLoadingPlugin::scanResources,
                 new net.neoforged.neoforge.internal.fabric.NeoForgeModelLoadingPlugin());
 
         // ---- runtime dispatch bridges ----
@@ -217,8 +220,14 @@ final class NeoForgeCompatLifecycle {
             entity.onRemovedFromLevel();
             NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world));
         });
-        ItemTooltipCallback.EVENT.register((stack, context, type, lines) ->
-                NeoForge.EVENT_BUS.post(new ItemTooltipEvent(stack, Minecraft.getInstance().player, lines, type)));
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
+            NeoForge.EVENT_BUS.post(new ItemTooltipEvent(stack, Minecraft.getInstance().player, lines, type));
+            // Curios parity: ICurioItem.getAttributesTooltip appends description
+            // lines and "When equipped as <slot>:" headers to the tooltip.
+            if (stack.getItem() instanceof top.theillusivec4.curios.api.type.capability.ICurioItem curioItem) {
+                curioItem.getAttributesTooltip(lines, context, stack);
+            }
+        });
         ClientReceiveMessageEvents.GAME.register((message, overlay) ->
                 NeoForge.EVENT_BUS.post(new ClientChatReceivedEvent(message, true)));
         ClientReceiveMessageEvents.CHAT.register((message, signedMessage, sender, params, receptionTimestamp) ->

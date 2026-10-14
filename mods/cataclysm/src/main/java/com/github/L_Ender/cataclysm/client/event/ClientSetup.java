@@ -237,6 +237,7 @@ public class ClientSetup {
 		registry.registerSpriteSet(ModParticle.IGNIS_ABYSS_EXPLODE.get(), CustomExplodeParticle.IgnisFactory::new);
 		registry.registerSpriteSet(ModParticle.IGNIS_SOUL_EXPLODE.get(), CustomExplodeParticle.IgnisFactory::new);
 		registry.registerSpriteSet(ModParticle.DESERT_GLYPH.get(), Desert_Glyph_Particle.GlyphFactory::new);
+		registry.registerSpriteSet(ModParticle.SANDSTORM.get(), SandStormParticle.Factory::new);
 		registry.registerSpriteSet(ModParticle.DUST_BLAST.get(), Dust_Blast_Particle.Factory::new);
 
 		registry.registerSpriteSet(ModParticle.PHANTOM_EMITTER.get(), Phantom_Emitter_Particle.Provider::new);

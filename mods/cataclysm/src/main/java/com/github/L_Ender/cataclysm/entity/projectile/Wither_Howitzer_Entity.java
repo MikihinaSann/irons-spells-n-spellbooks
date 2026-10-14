@@ -30,11 +30,11 @@ public class Wither_Howitzer_Entity extends ThrowableProjectile {
 
     private static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(Wither_Howitzer_Entity.class, EntityDataSerializers.FLOAT);
 
-    public Wither_Howitzer_Entity(EntityType<Wither_Howitzer_Entity> type, Level world) {
+    public Wither_Howitzer_Entity(EntityType<? extends Wither_Howitzer_Entity> type, Level world) {
         super(type, world);
     }
 
-    public Wither_Howitzer_Entity(EntityType<Wither_Howitzer_Entity> type, Level world, LivingEntity thrower) {
+    public Wither_Howitzer_Entity(EntityType<? extends Wither_Howitzer_Entity> type, Level world, LivingEntity thrower) {
         super(type, thrower, world);
     }
 

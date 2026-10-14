@@ -1,0 +1,479 @@
+{
+  "eldritch_abyssamorph": {
+    "subtitle": "subtitles.eldritch_abyssamorph",
+    "sounds": [
+      {
+        "name": "traveloptics:eldritch_abyssamorph",
+        "stream": true
+      }
+    ]
+  },
+  "annihilation_charge": {
+    "subtitle": "subtitles.annihilation_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:annihilation_charge",
+        "stream": true
+      }
+    ]
+  },
+  "abyssal_strike_trigger": {
+    "subtitle": "subtitles.abyssal_strike_trigger",
+    "sounds": [
+      {
+        "name": "traveloptics:abyssal_strike_trigger",
+        "stream": true
+      }
+    ]
+  },
+  "orbital_void_pulse": {
+    "subtitle": "subtitles.orbital_void_pulse",
+    "sounds": [
+      {
+        "name": "traveloptics:orbital_void_pulse",
+        "stream": true
+      }
+    ]
+  },
+  "aerial_collapse": {
+    "subtitle": "subtitles.aerial_collapse",
+    "sounds": [
+      {
+        "name": "traveloptics:aerial_collapse",
+        "stream": true
+      }
+    ]
+  },
+  "spectral_blink": {
+    "subtitle": "subtitles.spectral_blink",
+    "sounds": [
+      {
+        "name": "traveloptics:spectral_blink",
+        "stream": true
+      }
+    ]
+  },
+  "spectral_blink_charge": {
+    "subtitle": "subtitles.spectral_blink_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:spectral_blink_charge",
+        "stream": true
+      }
+    ]
+  },
+  "spectral_blink_success": {
+    "subtitle": "subtitles.spectral_blink_success",
+    "sounds": [
+      {
+        "name": "traveloptics:spectral_blink_success",
+        "stream": true
+      }
+    ]
+  },
+  "refined_abyss_blast_charge": {
+    "subtitle": "subtitles.refined_abyss_blast_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:refined_abyss_blast_charge",
+        "stream": true
+      }
+    ]
+  },
+  "refined_abyssal_blast_shoot": {
+    "subtitle": "subtitles.refined_abyssal_blast_shoot",
+    "sounds": [
+      {
+        "name": "traveloptics:refined_abyssal_blast_shoot",
+        "stream": true
+      }
+    ]
+  },
+  "refined_death_laser_shoot": {
+    "subtitle": "subtitles.refined_death_laser_shoot",
+    "sounds": [
+      {
+        "name": "traveloptics:refined_death_laser_shoot",
+        "stream": true
+      }
+    ]
+  },
+  "manifestation": {
+    "subtitle": "subtitles.manifestation",
+    "sounds": [
+      {
+        "name": "traveloptics:manifestation",
+        "stream": true
+      }
+    ]
+  },
+  "nullflare": {
+    "subtitle": "subtitles.nullflare",
+    "sounds": [
+      {
+        "name": "traveloptics:nullflare",
+        "stream": true
+      }
+    ]
+  },
+  "nullflare_two": {
+    "subtitle": "subtitles.nullflare",
+    "sounds": [
+      {
+        "name": "traveloptics:nullflare_two",
+        "stream": true
+      }
+    ]
+  },
+  "spirit_points_max": {
+    "subtitle": "subtitles.spirit_points_max",
+    "sounds": [
+      {
+        "name": "traveloptics:spirit_points_max",
+        "stream": true
+      }
+    ]
+  },
+  "reversal": {
+    "subtitle": "subtitles.reversal",
+    "sounds": [
+      {
+        "name": "traveloptics:reversal",
+        "stream": true
+      }
+    ]
+  },
+  "reversal_trigger": {
+    "subtitle": "subtitles.reversal_trigger",
+    "sounds": [
+      {
+        "name": "traveloptics:reversal_trigger",
+        "stream": true
+      }
+    ]
+  },
+  "refined_revenant_breath": {
+    "subtitle": "subtitles.refined_revenant_breath",
+    "sounds": [
+      {
+        "name": "traveloptics:refined_revenant_breath",
+        "stream": true
+      }
+    ]
+  },
+  "blast_stage_one": {
+    "subtitle": "subtitles.blast_stage_one",
+    "sounds": [
+      {
+        "name": "traveloptics:blast_stage_one",
+        "stream": true
+      }
+    ]
+  },
+  "blast_stage_two": {
+    "subtitle": "subtitles.blast_stage_two",
+    "sounds": [
+      {
+        "name": "traveloptics:blast_stage_two",
+        "stream": true
+      }
+    ]
+  },
+  "blast_stage_three": {
+    "subtitle": "subtitles.blast_stage_three",
+    "sounds": [
+      {
+        "name": "traveloptics:blast_stage_three",
+        "stream": true
+      }
+    ]
+  },
+  "spirit_threshold_one": {
+    "subtitle": "subtitles.spirit_threshold_one",
+    "sounds": [
+      {
+        "name": "traveloptics:spirit_threshold_one",
+        "stream": true
+      }
+    ]
+  },
+  "spirit_threshold_two": {
+    "subtitle": "subtitles.spirit_threshold_two",
+    "sounds": [
+      {
+        "name": "traveloptics:spirit_threshold_two",
+        "stream": true
+      }
+    ]
+  },
+  "cursed_blast_charge": {
+    "subtitle": "subtitles.cursed_blast_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:cursed_blast_charge",
+        "stream": true
+      }
+    ]
+  },
+  "nightwarden_start": {
+    "subtitle": "subtitles.nightwarden_start",
+    "sounds": [
+      {
+        "name": "traveloptics:nightwarden_start",
+        "stream": true
+      }
+    ]
+  },
+  "nightwarden_end": {
+    "subtitle": "subtitles.nightwarden_end",
+    "sounds": [
+      {
+        "name": "traveloptics:nightwarden_end",
+        "stream": true
+      }
+    ]
+  },
+  "eek": {
+    "subtitle": "subtitles.eek",
+    "sounds": [
+      {
+        "name": "traveloptics:eek",
+        "stream": true
+      }
+    ]
+  },
+  "ensnare_prepare": {
+    "subtitle": "subtitles.ensnare_prepare",
+    "sounds": [
+      {
+        "name": "traveloptics:ensnare_prepare",
+        "stream": true
+      }
+    ]
+  },
+  "ensnare_trigger": {
+    "subtitle": "subtitles.ensnare_trigger",
+    "sounds": [
+      {
+        "name": "traveloptics:ensnare_trigger",
+        "stream": true
+      }
+    ]
+  },
+  "banish_cast": {
+    "subtitle": "subtitles.banish_cast",
+    "sounds": [
+      {
+        "name": "traveloptics:banish_cast",
+        "stream": true
+      }
+    ]
+  },
+  "banish_charge": {
+    "subtitle": "subtitles.banish_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:banish_charge",
+        "stream": true
+      }
+    ]
+  },
+  "laser_shoot": {
+    "subtitle": "subtitles.laser_shoot",
+    "sounds": [
+      {
+        "name": "traveloptics:laser_shoot",
+        "stream": true
+      }
+    ]
+  },
+  "laser_charge": {
+    "subtitle": "subtitles.laser_charge",
+    "sounds": [
+      {
+        "name": "traveloptics:laser_charge",
+        "stream": true
+      }
+    ]
+  },
+  "tectonic_rift_eruption": {
+    "subtitle": "subtitles.tectonic_rift_eruption",
+    "sounds": [
+      {
+        "name": "traveloptics:tectonic_rift_eruption",
+        "stream": true
+      }
+    ]
+  },
+  "extinction_cast": {
+    "subtitle": "subtitles.extinction_cast",
+    "sounds": [
+      {
+        "name": "traveloptics:extinction_cast",
+        "stream": true
+      }
+    ]
+  },
+  "extinction_finish": {
+    "subtitle": "subtitles.extinction_finish",
+    "sounds": [
+      {
+        "name": "traveloptics:extinction_finish",
+        "stream": true
+      }
+    ]
+  },
+  "extinction_start": {
+    "subtitle": "subtitles.extinction_start",
+    "sounds": [
+      {
+        "name": "traveloptics:extinction_start",
+        "stream": true
+      }
+    ]
+  },
+  "refined_abyss_blast_portal": {
+    "subtitle": "subtitles.refined_abyss_blast_portal",
+    "sounds": [
+      {
+        "name": "traveloptics:refined_abyss_blast_portal",
+        "stream": true
+      }
+    ]
+  },
+  "asteroid_loop": {
+    "subtitle": "subtitles.asteroid_loop",
+    "sounds": [
+      {
+        "name": "traveloptics:asteroid_loop",
+        "stream": true
+      }
+    ]
+  },
+  "devastator_canon_transform": {
+    "subtitle": "subtitles.devastator_canon_transform",
+    "sounds": [
+      {
+        "name": "traveloptics:devastator_canon_transform",
+        "stream": true
+      }
+    ]
+  },
+  "devastator_blade_transformation": {
+    "subtitle": "subtitles.devastator_blade_transformation",
+    "sounds": [
+      {
+        "name": "traveloptics:devastator_blade_transformation",
+        "stream": true
+      }
+    ]
+  },
+  "devastator_blade_transformation_over": {
+    "subtitle": "subtitles.devastator_blade_transformation_over",
+    "sounds": [
+      {
+        "name": "traveloptics:devastator_blade_transformation_over",
+        "stream": true
+      }
+    ]
+  },
+  "devastator_canon_transformation_over": {
+    "subtitle": "subtitles.devastator_canon_transformation_over",
+    "sounds": [
+      {
+        "name": "traveloptics:devastator_canon_transformation_over",
+        "stream": true
+      }
+    ]
+  },
+  "aqua_vortex_active": {
+    "subtitle": "subtitles.aqua_vortex_active",
+    "sounds": [
+      {
+        "name": "traveloptics:aqua_vortex_active",
+        "stream": true
+      }
+    ]
+  },
+  "aqua_vortex_cast": {
+    "subtitle": "subtitles.aqua_vortex_cast",
+    "sounds": [
+      {
+        "name": "traveloptics:aqua_vortex_cast",
+        "stream": true
+      }
+    ]
+  },
+  "aqua_vortex_end": {
+    "subtitle": "subtitles.aqua_vortex_end",
+    "sounds": [
+      {
+        "name": "traveloptics:aqua_vortex_end",
+        "stream": true
+      }
+    ]
+  },
+  "hydroshot_impact": {
+    "subtitle": "subtitles.hydroshot_impact",
+    "sounds": [
+      {
+        "name": "traveloptics:hydroshot_impact",
+        "stream": true
+      }
+    ]
+  },
+  "aqua_cast_2": {
+    "subtitle": "subtitles.aqua_cast_2",
+    "sounds": [
+      {
+        "name": "traveloptics:aqua_cast_2",
+        "stream": true
+      }
+    ]
+  },
+  "aqua_missiles_cast": {
+    "subtitle": "subtitles.aqua_missiles_cast",
+    "sounds": [
+      {
+        "name": "traveloptics:aqua_missiles_cast",
+        "stream": true
+      }
+    ]
+  },
+  "rainfall_active": {
+    "subtitle": "subtitles.rainfall_active",
+    "sounds": [
+      {
+        "name": "traveloptics:rainfall_active",
+        "stream": true
+      }
+    ]
+  },
+  "acid_rain_active": {
+    "subtitle": "subtitles.acid_rain_active",
+    "sounds": [
+      {
+        "name": "traveloptics:acid_rain_active",
+        "stream": true
+      }
+    ]
+  },
+  "tidal_grasp_pull": {
+    "subtitle": "subtitles.tidal_grasp_pull",
+    "sounds": [
+      {
+        "name": "traveloptics:tidal_grasp_pull",
+        "stream": true
+      }
+    ]
+  },
+  "tidal_grasp_smack": {
+    "subtitle": "subtitles.tidal_grasp_smack",
+    "sounds": [
+      {
+        "name": "traveloptics:tidal_grasp_smack",
+        "stream": true
+      }
+    ]
+  }
+}

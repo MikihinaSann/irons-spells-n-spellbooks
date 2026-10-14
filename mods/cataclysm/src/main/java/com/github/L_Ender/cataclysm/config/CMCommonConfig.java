@@ -106,6 +106,7 @@ public class CMCommonConfig {
         public static double DeathLaserdamage = 5.0D;
         public static double DeathLaserHpdamage = 0.05D;
         public static double ChargeHpDamage = 0.06D;
+        public static boolean HarbingerLightFire = true;
     }
 
     public static class Prowler {
@@ -538,6 +539,7 @@ public class CMCommonConfig {
             Harbinger.Laserdamage = config.MOBS.HARBINGER.Laserdamage.get();
             Harbinger.DeathLaserdamage = config.MOBS.HARBINGER.DeathLaserdamage.get();
             Harbinger.DeathLaserHpdamage = config.MOBS.HARBINGER.DeathLaserHpdamage.get();
+            Harbinger.HarbingerLightFire = config.MOBS.HARBINGER.HarbingerLightFire.get();
             Harbinger.ChargeHpDamage = config.MOBS.HARBINGER.ChargeHpDamage.get();
 
             // Mobs - Prowler

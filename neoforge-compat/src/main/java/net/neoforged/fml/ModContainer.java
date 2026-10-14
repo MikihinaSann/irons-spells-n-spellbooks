@@ -55,7 +55,11 @@ public class ModContainer {
     }
 
     public void registerConfig(ModConfig.Type type, ModConfigSpec spec, String fileName) {
-        net.neoforged.neoforge.internal.fabric.config.FabricConfigLoader.register(getModId(), type, spec, fileName);
+        // FCAP needs the real fabric mod id; bus-scoped config events need the
+        // logical compat modid (e.g. efiscompat) so @EventBusSubscriber(modid=...)
+        // handlers actually receive them.
+        String busOwner = modIdOverride != null ? modIdOverride : getModId();
+        net.neoforged.neoforge.internal.fabric.config.FabricConfigLoader.register(getModId(), type, spec, fileName, busOwner);
     }
 
     public void registerConfig(ModConfig.Type type, ModConfigSpec spec) {

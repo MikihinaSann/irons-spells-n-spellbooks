@@ -31,6 +31,7 @@ public class Sandstorm_Entity extends Entity {
     protected static final EntityDataAccessor<Integer> LIFESPAN = SynchedEntityData.defineId(Sandstorm_Entity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Float> OFFSET = SynchedEntityData.defineId(Sandstorm_Entity.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> STATE = SynchedEntityData.defineId(Sandstorm_Entity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> CASTER_ID = SynchedEntityData.defineId(Sandstorm_Entity.class, EntityDataSerializers.INT);
     public AnimationState SpawnAnimationState = new AnimationState();
     public AnimationState DespawnAnimationState = new AnimationState();
     private LivingEntity caster;
@@ -148,6 +149,25 @@ public class Sandstorm_Entity extends Entity {
         this.casterUuid = p_190549_1_ == null ? null : p_190549_1_.getUUID();
     }
 
+    public void setOwner(@Nullable LivingEntity owner) {
+        this.setCaster(owner);
+        this.setCasterID(owner == null ? -1 : owner.getId());
+    }
+
+    public void setCasterID(int id) {
+        this.entityData.set(CASTER_ID, id);
+    }
+
+    @Nullable
+    public Entity getOwner() {
+        LivingEntity caster = this.getCaster();
+        if (caster != null) {
+            return caster;
+        }
+        int id = this.entityData.get(CASTER_ID);
+        return id >= 0 ? this.level().getEntity(id) : null;
+    }
+
     @Nullable
     public LivingEntity getCaster() {
         if (this.caster == null && this.casterUuid != null && this.level() instanceof ServerLevel) {
@@ -189,6 +209,7 @@ public class Sandstorm_Entity extends Entity {
         p_326229_.define(LIFESPAN, 300);
         p_326229_.define(OFFSET,0f);
         p_326229_.define(STATE,0);
+        p_326229_.define(CASTER_ID, -1);
     }
 
     public AnimationState getAnimationState(String input) {

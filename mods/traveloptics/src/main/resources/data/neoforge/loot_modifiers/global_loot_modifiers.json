@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "entries": [
+
+    "traveloptics:traveloptics/chest/frosted_prison_treasure_modifier",
+    "traveloptics:traveloptics/chest/ancient_city_modifier",
+
+    "traveloptics:traveloptics/entity/leviathan_modifier",
+    "traveloptics:traveloptics/entity/ignis_modifier",
+    "traveloptics:traveloptics/entity/harbinger_modifier",
+    "traveloptics:traveloptics/entity/maledictus_modifier",
+    "traveloptics:traveloptics/entity/ender_guardian_modifier",
+    "traveloptics:traveloptics/entity/ancient_remnant_modifier",
+    "traveloptics:traveloptics/entity/netherite_monstrosity_modifier",
+    "traveloptics:traveloptics/entity/amethyst_crab_modifier",
+    "traveloptics:traveloptics/entity/deepling_priest_modifier",
+    "traveloptics:traveloptics/entity/ender_golem_modifier",
+    "traveloptics:traveloptics/entity/ignited_berserker_modifier",
+    "traveloptics:traveloptics/entity/ignited_revenant_modifier",
+    "traveloptics:traveloptics/entity/kobolediator_modifier",
+    "traveloptics:traveloptics/entity/the_prowler_modifier",
+    "traveloptics:traveloptics/entity/wadjet_modifier",
+    "traveloptics:traveloptics/entity/the_watcher_modifier",
+    "traveloptics:traveloptics/entity/koboleton_modifier",
+    "traveloptics:traveloptics/entity/aptrgangr_modifier"
+  ]
+}

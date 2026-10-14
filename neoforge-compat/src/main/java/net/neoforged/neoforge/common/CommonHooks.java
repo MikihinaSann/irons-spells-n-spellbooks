@@ -76,4 +76,37 @@ public class CommonHooks {
     public static void onEmptyClick(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
         NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickEmpty(player, hand));
     }
+
+    /** NeoForge: fires {@link LivingDropsEvent}; returns true when canceled. */
+    public static boolean onLivingDrops(net.minecraft.world.entity.LivingEntity entity,
+            net.minecraft.world.damagesource.DamageSource source,
+            java.util.Collection<net.minecraft.world.entity.item.ItemEntity> drops,
+            boolean recentlyHit) {
+        return NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.LivingDropsEvent(
+                entity, source, drops, 0, recentlyHit)).isCanceled();
+    }
+
+    /** NeoForge: fires {@link LivingKnockBackEvent}; returns the (possibly mutated) event. */
+    public static net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent onLivingKnockBack(
+            net.minecraft.world.entity.LivingEntity entity, float strength, double ratioX, double ratioZ) {
+        var event = new net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent(entity, strength, ratioX, ratioZ);
+        NeoForge.EVENT_BUS.post(event);
+        return event;
+    }
+
+    /**
+     * NeoForge: fires {@link net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent};
+     * returns the event-adjusted burn time for the stack.
+     */
+    public static int getBurnTime(net.minecraft.world.item.ItemStack stack,
+            @org.jetbrains.annotations.Nullable net.minecraft.world.item.crafting.RecipeType<?> recipeType) {
+        if (stack.isEmpty()) {
+            return 0;
+        }
+        int burnTime = net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity.getFuel()
+                .getOrDefault(stack.getItem(), 0);
+        var event = new net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent(stack, burnTime, recipeType);
+        NeoForge.EVENT_BUS.post(event);
+        return event.getBurnTime();
+    }
 }

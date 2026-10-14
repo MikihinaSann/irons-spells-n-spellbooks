@@ -1,5 +1,6 @@
 package net.neoforged.neoforge.registries;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -24,14 +25,45 @@ import java.util.function.Supplier;
  * through {@link #drainAll()} during mod init.
  */
 public class DeferredRegister<R> {
-    /** Global queue of drains, in register() order — mirrors NeoForge firing RegisterEvent per registry. */
-    private static final List<Runnable> PENDING = new ArrayList<>();
+    /** Global queue of registers pending drain. */
+    private static final List<DeferredRegister<?>> PENDING = new ArrayList<>();
 
-    public static void drainAll() {
-        for (Runnable r : List.copyOf(PENDING)) {
-            r.run();
+    /**
+     * NeoForge's {@code GameData.getRegistrationOrder()}: Attribute,
+     * DataComponentType and ArmorMaterial first (Item, MobEffect and ArmorItem
+     * suppliers depend on them), then the vanilla registries in vanilla order,
+     * then everything else. Vanilla order is read off each registry's raw id
+     * inside the root registry — keySet() iteration order is hash order, not
+     * insertion order, and sorting on it produced mob_effect-after-potion.
+     */
+    @SuppressWarnings("unchecked")
+    private static int registrationIndex(DeferredRegister<?> register) {
+        ResourceLocation location = register.registryKey.location();
+        if (location.equals(Registries.ATTRIBUTE.location())) return -3;
+        if (location.equals(Registries.DATA_COMPONENT_TYPE.location())) return -2;
+        if (location.equals(Registries.ARMOR_MATERIAL.location())) return -1;
+        Registry<?> registry = lookupRegistry(location);
+        if (registry != null) {
+            int id = ((Registry<Registry<?>>) BuiltInRegistries.REGISTRY).getId(registry);
+            if (id >= 0) {
+                return id;
+            }
         }
+        return Integer.MAX_VALUE;
+    }
+
+    /**
+     * Drains all queued registers ordered by NeoForge's registration order, so
+     * suppliers may freely {@code get()} holders of earlier registries
+     * regardless of the order mods attached them.
+     */
+    public static void drainAll() {
+        List<DeferredRegister<?>> sorted = new ArrayList<>(PENDING);
         PENDING.clear();
+        sorted.sort(java.util.Comparator.comparingInt(DeferredRegister::registrationIndex));
+        for (DeferredRegister<?> register : sorted) {
+            register.accept();
+        }
     }
 
     private final ResourceKey<? extends Registry<R>> registryKey;
@@ -94,7 +126,7 @@ public class DeferredRegister<R> {
      * actual registration happens when {@link #drainAll()} is invoked by the entrypoint.
      */
     public void register(IEventBus bus) {
-        PENDING.add(this::accept);
+        PENDING.add(this);
     }
 
     /** Immediately registers (legacy call sites that never queued). */
@@ -124,6 +156,19 @@ public class DeferredRegister<R> {
             for (DeferredHolder<R, ?> entry : entries) {
                 net.minecraft.network.syncher.EntityDataSerializers
                         .registerSerializer((net.minecraft.network.syncher.EntityDataSerializer<?>) entry.get());
+            }
+        }
+        // NeoForgeRegistryCallbacks auto-registers a PoiType's matching block
+        // states into PoiTypes.TYPE_BY_STATE on registration.
+        if (registryKey.equals(Registries.POINT_OF_INTEREST_TYPE)) {
+            for (DeferredHolder<R, ?> entry : entries) {
+                net.minecraft.world.entity.ai.village.poi.PoiType poiType =
+                        (net.minecraft.world.entity.ai.village.poi.PoiType) entry.get();
+                registry.getHolder(entry.getKey()).ifPresent(holder ->
+                        net.neoforged.neoforge.internal.fabric.mixin.PoiTypesAccessor
+                                .invokeRegisterBlockStates(
+                                        (Holder<net.minecraft.world.entity.ai.village.poi.PoiType>) holder,
+                                        poiType.matchingStates()));
             }
         }
         // Aliases: NeoForge's Registry.addAlias — a lookup redirection to the

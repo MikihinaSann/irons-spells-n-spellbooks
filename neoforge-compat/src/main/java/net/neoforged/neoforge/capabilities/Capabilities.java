@@ -17,6 +17,8 @@ public final class Capabilities {
                 new RegisterCapabilitiesEvent.Capability<>(ResourceLocation.fromNamespaceAndPath("neoforge", "item_handler"), IItemHandler.class);
         public static final RegisterCapabilitiesEvent.Capability<IItemHandler> ITEM =
                 new RegisterCapabilitiesEvent.Capability<>(ResourceLocation.fromNamespaceAndPath("neoforge", "item_handler_item"), IItemHandler.class);
+        public static final RegisterCapabilitiesEvent.Capability<IItemHandler> ENTITY =
+                new RegisterCapabilitiesEvent.Capability<>(ResourceLocation.fromNamespaceAndPath("neoforge", "item_handler_entity"), IItemHandler.class);
     }
 
     public static final class FluidHandler {

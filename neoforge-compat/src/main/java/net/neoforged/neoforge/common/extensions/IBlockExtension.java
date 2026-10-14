@@ -199,7 +199,7 @@ public interface IBlockExtension extends net.fabricmc.fabric.api.block.v1.Fabric
         return state.getPistonPushReaction();
     }
 
-    default float[] getBeaconColorMultiplier(BlockState state, LevelReader level, BlockPos pos, BlockPos beaconPos) {
+    default Integer getBeaconColorMultiplier(BlockState state, LevelReader level, BlockPos pos, BlockPos beaconPos) {
         return null;
     }
 
