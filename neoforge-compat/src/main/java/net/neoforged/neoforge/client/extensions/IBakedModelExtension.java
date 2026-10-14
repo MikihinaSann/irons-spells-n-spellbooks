@@ -32,4 +32,12 @@ public interface IBakedModelExtension {
     default java.util.List<RenderType> getRenderTypes(net.minecraft.world.item.ItemStack itemStack, boolean fabulous) {
         return java.util.List.of(ItemBlockRenderTypes.getRenderType(itemStack, fabulous));
     }
+
+    /**
+     * NeoForge's {@code getParticleIcon(ModelData)} overload — the model data is
+     * ignored by vanilla-equivalent models.
+     */
+    default net.minecraft.client.renderer.texture.TextureAtlasSprite getParticleIcon(ModelData data) {
+        return self().getParticleIcon();
+    }
 }

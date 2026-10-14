@@ -70,6 +70,9 @@ public final class CapabilityRegistry {
             ENTRIES.add(entry);
             BY_TYPE.computeIfAbsent(reg.type(), k -> new ArrayList<>()).add(entry);
         }
+        for (RegisterCapabilitiesEvent.BlockRegistration<?> reg : event.getBlockRegistrations()) {
+            registerBlockProvider((RegisterCapabilitiesEvent.Capability) reg.capability(), (IBlockCapabilityProvider) reg.provider(), reg.blocks());
+        }
     }
 
     /** First-capability-wins lookup matching NeoForge semantics. */

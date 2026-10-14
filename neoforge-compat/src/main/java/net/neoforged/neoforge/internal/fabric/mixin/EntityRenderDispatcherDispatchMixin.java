@@ -55,6 +55,14 @@ public abstract class EntityRenderDispatcherDispatchMixin {
         var context = new net.minecraft.client.renderer.entity.EntityRendererProvider.Context(
                 (EntityRenderDispatcher) (Object) this, itemRenderer, blockRenderDispatcher, itemInHandRenderer,
                 mc.getResourceManager(), entityModels, font);
+        // Vanilla leaves EntityModelSet.roots empty until the first resource
+        // reload; NeoForge's AddLayers handlers may call bakeLayer() on the
+        // context's model set, so populate it eagerly from LayerDefinitions
+        // (which carries the EntityModelLayerRegistry merge).
+        if (entityModels != null && ((EntityModelSetAccessor) entityModels).neoforge_compat$getRoots().isEmpty()) {
+            ((EntityModelSetAccessor) entityModels)
+                    .neoforge_compat$setRoots(net.minecraft.client.model.geom.LayerDefinitions.createRoots());
+        }
         NeoForgeCompat.MOD_BUS.post(new EntityRenderersEvent.AddLayers(renderers,
                 (Map) playerRenderers, context));
     }

@@ -121,6 +121,24 @@
       ],
       "net/minecraft/world/level/ServerLevelAccessor": [
         "net/neoforged/neoforge/common/extensions/ILevelAccessorExtension"
+      ],
+      "net/minecraft/world/entity/LivingEntity": [
+        "net/neoforged/neoforge/common/extensions/ILivingEntityExtension"
+      ],
+      "net/minecraft/world/effect/MobEffect": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectExtension"
+      ],
+      "net/minecraft/world/effect/MobEffectInstance": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectInstanceExtension"
+      ],
+      "net/minecraft/client/gui/GuiGraphics": [
+        "net/neoforged/neoforge/client/extensions/IGuiGraphicsExtension"
+      ],
+      "net/minecraft/server/network/ServerGamePacketListenerImpl": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
+      ],
+      "net/minecraft/client/multiplayer/ClientPacketListener": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
       ]
     }
   }

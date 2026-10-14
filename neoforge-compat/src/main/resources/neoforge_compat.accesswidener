@@ -136,3 +136,28 @@ transitive-accessible field net/minecraft/world/level/block/state/BlockBehaviour
 transitive-accessible field net/minecraft/client/particle/Particle x D
 transitive-accessible field net/minecraft/client/particle/Particle y D
 transitive-accessible field net/minecraft/client/particle/Particle z D
+
+# LivingEntity effect-cure access for ILivingEntityExtension.removeEffectsCuredBy
+transitive-accessible method net/minecraft/world/entity/LivingEntity onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
+transitive-accessible field net/minecraft/world/entity/LivingEntity effectsDirty Z
+transitive-mutable field net/minecraft/world/entity/LivingEntity effectsDirty Z
+
+# placebo DeferredHelper SimpleParticleType(boolean) + PlaceboClient addLayer
+transitive-accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+transitive-accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+
+# citadel TabulaModel* — vanilla model deserializer ctors are protected
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemTransform$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemTransforms$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockElement$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockElementFace$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockFaceUV$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemOverride$Deserializer <init> ()V
+
+# IGuiGraphicsExtension.drawScrollingString calls AbstractWidget's protected helper
+transitive-accessible method net/minecraft/client/gui/components/AbstractWidget renderScrollingString (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIII)V
+
+# ICommonPacketListener.getConnection - the field is declared on the parent class
+transitive-accessible field net/minecraft/server/network/ServerCommonPacketListenerImpl connection Lnet/minecraft/network/Connection;
+transitive-accessible field net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl connection Lnet/minecraft/network/Connection;
+transitive-mutable field net/minecraft/client/model/geom/EntityModelSet roots Ljava/util/Map;

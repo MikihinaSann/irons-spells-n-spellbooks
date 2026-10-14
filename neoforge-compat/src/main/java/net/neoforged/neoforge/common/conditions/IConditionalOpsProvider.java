@@ -9,13 +9,13 @@ import net.minecraft.resources.RegistryOps;
 /**
  * Injected onto {@code SimpleJsonResourceReloadListener} (Mojmap 1.21 name) to
  * provide NeoForge's patched {@code makeConditionalOps()} method. NeoForge's
- * real implementation also adds {@code neoforge:conditions} handling — ours
- * returns plain registry ops since the conditions system is not ported.
+ * version returns {@link ConditionalOps} carrying a condition context; ours
+ * supplies the empty context (mods can register conditions through it).
  */
 public interface IConditionalOpsProvider {
-    default RegistryOps<JsonElement> makeConditionalOps() {
+    default ConditionalOps<JsonElement> makeConditionalOps() {
         var server = ServerLifecycleHooks.getCurrentServer();
         RegistryAccess access = server != null ? server.registryAccess() : RegistryAccess.EMPTY;
-        return RegistryOps.create(JsonOps.INSTANCE, access);
+        return new ConditionalOps<>(RegistryOps.create(JsonOps.INSTANCE, access), ICondition.IContext.EMPTY);
     }
 }

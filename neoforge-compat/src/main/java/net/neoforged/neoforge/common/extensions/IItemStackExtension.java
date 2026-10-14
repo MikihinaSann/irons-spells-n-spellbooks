@@ -21,16 +21,21 @@ public interface IItemStackExtension {
 
     /**
      * Whether the wearer can elytra-fly with this stack in the chest slot.
+     * Delegates to the item's {@link IItemExtension#canElytraFly} — the vanilla
+     * baseline answers true for a flight-enabled {@code ElytraItem}; overrides
+     * (e.g. Apothic's elytra-flight attribute) live on the item side.
      */
     default boolean canElytraFly(LivingEntity entity) {
-        return false;
+        return self().getItem().canElytraFly(self(), entity);
     }
 
     /**
-     * Elytra flight tick; return false to stop gliding.
+     * Elytra flight tick; return false to stop gliding. Delegates to the item's
+     * {@link IItemExtension#elytraFlightTick}; the vanilla default permits
+     * continued flight while vanilla itself handles real-elytra durability.
      */
     default boolean elytraFlightTick(LivingEntity entity, int flightTicks) {
-        return false;
+        return self().getItem().elytraFlightTick(self(), entity, flightTicks);
     }
 
     /**

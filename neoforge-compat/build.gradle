@@ -29,6 +29,12 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
+    // TypeResolver - the same lambda generic-resolution helper NeoForge's event
+    // bus uses to discover a method-reference listener's event type.
+    implementation "net.jodah:typetools:0.6.3"
+    include "net.jodah:typetools:0.6.3"
+    localRuntime "net.jodah:typetools:0.6.3"
+
     // Trinkets (Curios emulation target) + its cardinal-components runtime.
     // modCompileOnly so the mod jars don't leak unmapped onto dependents' runtime
     // classpath - the root project supplies them as real mod deps.
@@ -45,6 +51,9 @@ dependencies {
     compileOnly "org.checkerframework:checker-qual:3.43.0"
     compileOnly "com.google.j2objc:j2objc-annotations:3.0.0"
     compileOnly "com.google.errorprone:error_prone_annotations:2.36.0"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.11.4"
+    testRuntimeOnly files("${rootDir}/libs/trinkets-${trinkets_version}.jar")
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.11.4"
     implementation "com.google.code.gson:gson:2.10.1"
 }
 
@@ -58,4 +67,8 @@ jar {
                 "Implementation-Vendor" : mod_authors
         ])
     }
+}
+
+test {
+    useJUnitPlatform()
 }

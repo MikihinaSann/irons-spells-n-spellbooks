@@ -209,10 +209,14 @@ final class NeoForgeCompatLifecycle {
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) ->
                 NeoForge.EVENT_BUS.post(new ClientPlayerNetworkEvent.LoggingOut(
                         client.gameMode, client.player, handler)));
-        ClientEntityEvents.ENTITY_LOAD.register((entity, world) ->
-                NeoForge.EVENT_BUS.post(new EntityJoinLevelEvent(entity, world)));
-        ClientEntityEvents.ENTITY_UNLOAD.register((entity, world) ->
-                NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world)));
+        ClientEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+            entity.onAddedToLevel();
+            NeoForge.EVENT_BUS.post(new EntityJoinLevelEvent(entity, world));
+        });
+        ClientEntityEvents.ENTITY_UNLOAD.register((entity, world) -> {
+            entity.onRemovedFromLevel();
+            NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world));
+        });
         ItemTooltipCallback.EVENT.register((stack, context, type, lines) ->
                 NeoForge.EVENT_BUS.post(new ItemTooltipEvent(stack, Minecraft.getInstance().player, lines, type)));
         ClientReceiveMessageEvents.GAME.register((message, overlay) ->

@@ -62,6 +62,9 @@ public class AttachmentType<T> {
 
     /** Binds this type to a registry id and creates the backing Fabric attachment type. */
     public void bindFabric(ResourceLocation id) {
+        if (this.fabric != null) {
+            return;
+        }
         this.id = id;
         this.fabric = AttachmentRegistry.<T>create(id, builder -> {
             builder.initializer(() -> initializer.apply(null));

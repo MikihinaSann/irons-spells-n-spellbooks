@@ -12,7 +12,20 @@ public interface IItemExtension {
     }
 
     default boolean canElytraFly(net.minecraft.world.item.ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
-        return stack.canElytraFly(entity);
+        // Vanilla baseline: only an ElytraItem in good repair grants flight.
+        // (Delegating to stack.canElytraFly here would recurse — the stack-level
+        // extension delegates back to the item.)
+        return stack.getItem() instanceof net.minecraft.world.item.ElytraItem
+                && net.minecraft.world.item.ElytraItem.isFlyEnabled(stack);
+    }
+
+    /**
+     * NeoForge's elytraFlightTick — called every tick while elytra-flying; return
+     * false to stop flight. Vanilla has no per-item hook, so the default always
+     * permits continued flight.
+     */
+    default boolean elytraFlightTick(net.minecraft.world.item.ItemStack stack, net.minecraft.world.entity.LivingEntity entity, int flightTicks) {
+        return true;
     }
 
     /**

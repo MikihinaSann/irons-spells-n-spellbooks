@@ -117,20 +117,32 @@ public class DeferredRegister<R> {
         for (DeferredHolder<R, ?> entry : entries) {
             entry.bind(registry);
         }
-        // Aliases: re-register the same value under the alias id (MappedRegistry
-        // has no addAlias on vanilla - duplicate registration is the equivalent).
+        // Aliases: NeoForge's Registry.addAlias — a lookup redirection to the
+        // target id, applied by MappedRegistryAliasMixin. Registering the same
+        // object under a second id trips vanilla's intrusive-holder check.
         pendingAliases.forEach((alias, target) -> {
-            R value = registry.get(target);
-            if (value != null) {
-                @SuppressWarnings("unchecked")
-                Registry<R> reg = (Registry<R>) registry;
-                net.minecraft.core.Registry.register(reg, alias, value);
+            if (registry.containsKey(target)) {
+                RegistryAliases.addAlias(registry, alias, target);
             }
         });
         pendingAliases.clear();
     }
 
     private static final java.util.Map<ResourceKey<?>, net.minecraft.core.MappedRegistry<?>> DETACHED = new java.util.HashMap<>();
+
+    /**
+     * Finds the registry (builtin or a NewRegistryEvent-created custom registry)
+     * for the given registry-key name, or null if it doesn't exist.
+     */
+    @SuppressWarnings("unchecked")
+    static <R> net.minecraft.core.Registry<R> lookupRegistry(ResourceLocation registryKeyName) {
+        net.minecraft.core.Registry<?> registry = BuiltInRegistries.REGISTRY.get(registryKeyName);
+        if (registry != null) {
+            return (net.minecraft.core.Registry<R>) registry;
+        }
+        net.minecraft.core.MappedRegistry<?> custom = DETACHED.get(net.minecraft.resources.ResourceKey.createRegistryKey(registryKeyName));
+        return (net.minecraft.core.Registry<R>) custom;
+    }
     private static final org.slf4j.Logger DR_LOG = org.slf4j.LoggerFactory.getLogger("DeferredRegister");
 
     @SuppressWarnings("unchecked")

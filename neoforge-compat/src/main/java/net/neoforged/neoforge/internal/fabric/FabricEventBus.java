@@ -98,6 +98,7 @@ public class FabricEventBus implements IEventBus {
         List<Runnable> cleanup = registered.remove(object instanceof Class<?> ? object : new Identity(object));
         if (cleanup != null) {
             cleanup.forEach(Runnable::run);
+            dispatchCache.clear();
         }
     }
 
@@ -182,6 +183,12 @@ public class FabricEventBus implements IEventBus {
             }
         }
         // Fallback: bridge method on lambdas
+        // Same mechanism NeoForge's EventBus uses (TypeResolver resolves the
+        // Consumer<T> type argument, including method-reference lambdas).
+        Class<?> resolved = net.jodah.typetools.TypeResolver.resolveRawArgument(Consumer.class, consumer.getClass());
+        if (resolved != null && resolved != net.jodah.typetools.TypeResolver.Unknown.class && Event.class.isAssignableFrom(resolved)) {
+            return (Class<T>) resolved;
+        }
         for (Method m : consumer.getClass().getDeclaredMethods()) {
             if (m.getParameterCount() == 1 && Event.class.isAssignableFrom(m.getParameterTypes()[0])) {
                 return (Class<T>) m.getParameterTypes()[0];

@@ -11,7 +11,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
@@ -25,6 +24,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -69,8 +69,7 @@ public abstract class LivingEventDispatchMixin {
 
     @Unique
     private LivingIncomingDamageEvent irons_spellbooks$incomingEvent;
-    @Unique
-    private LivingDamageEvent.Pre irons_spellbooks$damagePreEvent;
+
     @Unique
     private LivingEntityUseItemEvent.Start irons_spellbooks$useStartEvent;
     @Unique
@@ -100,35 +99,25 @@ public abstract class LivingEventDispatchMixin {
         return event == null ? amount : event.getAmount();
     }
 
-    // ---- LivingDamageEvent.Pre / Post: wrapped around actuallyHurt. ----
-    @Inject(method = "actuallyHurt", at = @At("HEAD"), cancellable = true)
-    private void irons_spellbooks$onDamagePre(DamageSource source, float amount, CallbackInfo ci) {
-        irons_spellbooks$damagePreEvent = null;
-        LivingEntity self = (LivingEntity) (Object) this;
-        LivingDamageEvent.Pre event = new LivingDamageEvent.Pre(self, source, amount);
-        NeoForge.EVENT_BUS.post(event);
-        if (event.isCanceled()) {
-            ci.cancel();
-            return;
-        }
-        irons_spellbooks$damagePreEvent = event;
+    // ---- LivingDamageEvent.Pre / Post: dispatched by DamageEventDispatcher
+    // (per-thread frame, try/finally, Post carries the amount CombatTracker
+    // actually recorded). Player.actuallyHurt overrides without super — see
+    // PlayerDamageDispatchMixin. ----
+    @WrapMethod(method = "actuallyHurt")
+    private void irons_spellbooks$damageDispatch(DamageSource source, float amount,
+            com.llamalad7.mixinextras.injector.wrapoperation.Operation<Void> original) {
+        net.neoforged.neoforge.internal.fabric.DamageEventDispatcher.apply(
+                (LivingEntity) (Object) this, source, amount,
+                (src, adjusted) -> original.call(src, adjusted));
     }
 
-    @ModifyVariable(method = "actuallyHurt", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-    private float irons_spellbooks$adjustDamageAmount(float amount) {
-        LivingDamageEvent.Pre event = irons_spellbooks$damagePreEvent;
-        return event == null ? amount : event.getNewDamage();
-    }
-
-    @Inject(method = "actuallyHurt", at = @At("RETURN"))
-    private void irons_spellbooks$onDamagePost(DamageSource source, float amount, CallbackInfo ci) {
-        LivingDamageEvent.Pre pre = irons_spellbooks$damagePreEvent;
-        irons_spellbooks$damagePreEvent = null;
-        if (pre != null) {
-            LivingEntity self = (LivingEntity) (Object) this;
-            NeoForge.EVENT_BUS.post(new LivingDamageEvent.Post(self, source,
-                    pre.getOriginalDamage(), pre.getNewDamage(), 0.0F, 0.0F));
-        }
+    @ModifyArg(method = "actuallyHurt",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/world/damagesource/CombatTracker;recordDamage(Lnet/minecraft/world/damagesource/DamageSource;F)V"),
+            index = 1)
+    private float irons_spellbooks$recordFinalDamage(float amount) {
+        return net.neoforged.neoforge.internal.fabric.DamageEventDispatcher.record(
+                (LivingEntity) (Object) this, amount);
     }
 
     // ---- LivingDeathEvent. ----

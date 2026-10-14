@@ -1,8 +1,14 @@
 package net.neoforged.neoforge.client.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.datafixers.util.Either;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.neoforged.bus.api.ICancellableEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,9 +20,9 @@ import net.neoforged.bus.api.Event;
 public abstract class RenderTooltipEvent extends Event {
     private final ItemStack stack;
     private final GuiGraphics graphics;
-    private final int x;
-    private final int y;
-    private final Font font;
+    protected int x;
+    protected int y;
+    protected Font font;
     private final List<ClientTooltipComponent> components;
     private final PoseStack poseStack;
 
@@ -106,6 +112,91 @@ public abstract class RenderTooltipEvent extends Event {
 
         public void setBorderEnd(int borderEnd) {
             this.borderEnd = borderEnd;
+        }
+    }
+
+    /**
+     * Fired before a tooltip's components are computed — listeners may append or
+     * replace elements. NeoForge 1.21.1, ported verbatim shape.
+     */
+    public static class GatherComponents extends Event implements ICancellableEvent {
+        private final ItemStack itemStack;
+        private final int screenWidth;
+        private final int screenHeight;
+        private final List<Either<FormattedText, TooltipComponent>> tooltipElements;
+        private int maxWidth;
+
+        public GatherComponents(ItemStack itemStack, int screenWidth, int screenHeight, List<Either<FormattedText, TooltipComponent>> tooltipElements, int maxWidth) {
+            this.itemStack = itemStack;
+            this.screenWidth = screenWidth;
+            this.screenHeight = screenHeight;
+            this.tooltipElements = tooltipElements instanceof ArrayList<Either<FormattedText, TooltipComponent>> ? tooltipElements : new ArrayList<>(tooltipElements);
+            this.maxWidth = maxWidth;
+        }
+
+        public ItemStack getItemStack() {
+            return itemStack;
+        }
+
+        public int getScreenWidth() {
+            return screenWidth;
+        }
+
+        public int getScreenHeight() {
+            return screenHeight;
+        }
+
+        public List<Either<FormattedText, TooltipComponent>> getTooltipElements() {
+            return tooltipElements;
+        }
+
+        public int getMaxWidth() {
+            return maxWidth;
+        }
+
+        public void setMaxWidth(int maxWidth) {
+            this.maxWidth = maxWidth;
+        }
+    }
+
+    /**
+     * Fired before the tooltip renders; cancelable. NeoForge 1.21.1 shape.
+     */
+    public static class Pre extends RenderTooltipEvent implements ICancellableEvent {
+        private final int screenWidth;
+        private final int screenHeight;
+        private final net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner positioner;
+
+        public Pre(ItemStack stack, GuiGraphics graphics, int x, int y, int screenWidth, int screenHeight, Font font,
+                List<ClientTooltipComponent> components, net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner positioner) {
+            super(stack, graphics, x, y, font, components, graphics.pose());
+            this.screenWidth = screenWidth;
+            this.screenHeight = screenHeight;
+            this.positioner = positioner;
+        }
+
+        public int getScreenWidth() {
+            return screenWidth;
+        }
+
+        public int getScreenHeight() {
+            return screenHeight;
+        }
+
+        public net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner getTooltipPositioner() {
+            return positioner;
+        }
+
+        public void setFont(Font font) {
+            this.font = font;
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public void setY(int y) {
+            this.y = y;
         }
     }
 }

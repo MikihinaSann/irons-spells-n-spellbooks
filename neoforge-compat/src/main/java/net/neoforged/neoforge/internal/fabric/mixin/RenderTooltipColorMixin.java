@@ -23,12 +23,12 @@ import java.util.List;
  * the 9-arg overload, matching NeoForge's patch.
  */
 @Mixin(GuiGraphics.class)
-public abstract class RenderTooltipColorMixin {
+public abstract class RenderTooltipColorMixin implements net.neoforged.neoforge.client.extensions.IGuiGraphicsExtension {
 
     /** NeoForge adds this field to GuiGraphics; mixin-added here. Set from
      * the ItemStack tooltip overload before the internal renderer runs. */
     @org.spongepowered.asm.mixin.Unique
-    private ItemStack tooltipStack;
+    private ItemStack tooltipStack = ItemStack.EMPTY;
     @org.spongepowered.asm.mixin.Unique
     private Font tooltipFont;
     @org.spongepowered.asm.mixin.Unique
@@ -88,5 +88,44 @@ public abstract class RenderTooltipColorMixin {
         graphics.fillGradient(i + k - 1, j + 1, i + k, j + l - 1, z, borderStart, borderEnd);
         graphics.fillGradient(i, j + 1, i + k, j + 1, z, borderStart, borderStart);
         graphics.fillGradient(i, j + l - 1, i + k, j + l, z, borderEnd, borderEnd);
+    }
+
+    // ===== NeoForge's patched GuiGraphics overloads (GuiGraphics.java.patch) =====
+    // tooltipStack doubles as NeoForge's private tooltipStack field, shared with
+    // the color-event path above.
+
+    @Override
+    public void renderTooltip(Font font, java.util.List<net.minecraft.network.chat.Component> textComponents,
+            java.util.Optional<net.minecraft.world.inventory.tooltip.TooltipComponent> tooltipComponent,
+            ItemStack stack, int mouseX, int mouseY) {
+        GuiGraphics self = (GuiGraphics) (Object) this;
+        this.tooltipStack = stack;
+        var components = net.neoforged.neoforge.client.ClientHooks.gatherTooltipComponents(
+                stack, textComponents, tooltipComponent, mouseX, self.guiWidth(), self.guiHeight(), font);
+        self.renderTooltipInternal(font, components, mouseX, mouseY, net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner.INSTANCE);
+        this.tooltipStack = ItemStack.EMPTY;
+    }
+
+    @Override
+    public void renderComponentTooltip(Font font, java.util.List<? extends net.minecraft.network.chat.FormattedText> tooltips,
+            int mouseX, int mouseY, ItemStack stack) {
+        GuiGraphics self = (GuiGraphics) (Object) this;
+        this.tooltipStack = stack;
+        var components = net.neoforged.neoforge.client.ClientHooks.gatherTooltipComponents(
+                stack, tooltips, mouseX, self.guiWidth(), self.guiHeight(), font);
+        self.renderTooltipInternal(font, components, mouseX, mouseY, net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner.INSTANCE);
+        this.tooltipStack = ItemStack.EMPTY;
+    }
+
+    @Override
+    public void renderComponentTooltipFromElements(Font font,
+            java.util.List<com.mojang.datafixers.util.Either<net.minecraft.network.chat.FormattedText, net.minecraft.world.inventory.tooltip.TooltipComponent>> elements,
+            int mouseX, int mouseY, ItemStack stack) {
+        GuiGraphics self = (GuiGraphics) (Object) this;
+        this.tooltipStack = stack;
+        var components = net.neoforged.neoforge.client.ClientHooks.gatherTooltipComponentsFromElements(
+                stack, elements, mouseX, self.guiWidth(), self.guiHeight(), font);
+        self.renderTooltipInternal(font, components, mouseX, mouseY, net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner.INSTANCE);
+        this.tooltipStack = ItemStack.EMPTY;
     }
 }

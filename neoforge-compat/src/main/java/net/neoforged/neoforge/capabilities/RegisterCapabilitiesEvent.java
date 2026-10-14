@@ -1,5 +1,7 @@
 package net.neoforged.neoforge.capabilities;
 
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.Event;
@@ -21,6 +23,23 @@ public class RegisterCapabilitiesEvent extends Event {
         for (BlockEntityType<B> type : types) {
             registrations.add(new Registration<>(capability, type, provider));
         }
+    }
+
+    /**
+     * NeoForge's registerBlock — a block-level provider receiving
+     * (level, pos, state, blockEntity-or-null, side).
+     */
+    public <T> void registerBlock(Capability<T> capability, IBlockCapabilityProvider<T, Direction> provider, Block... blocks) {
+        blockRegistrations.add(new BlockRegistration<>(capability, provider, blocks));
+    }
+
+    public List<BlockRegistration<?>> getBlockRegistrations() {
+        return blockRegistrations;
+    }
+
+    private final List<BlockRegistration<?>> blockRegistrations = new ArrayList<>();
+
+    public record BlockRegistration<T>(Capability<T> capability, IBlockCapabilityProvider<T, Direction> provider, Block[] blocks) {
     }
 
     public List<Registration<?, ?>> getRegistrations() {

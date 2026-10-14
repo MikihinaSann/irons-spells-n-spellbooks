@@ -27,4 +27,11 @@ public interface IEventBus {
     <T extends Event> T post(T event);
 
     <T extends Event> T post(EventPriority phase, T event);
+
+    /**
+     * Starts the event bus's background listener thread. NeoForge uses this for
+     * deferred registration dispatch; {@link FabricEventBus} dispatches inline, so
+     * this is a lifecycle no-op kept for API parity (Placebo calls it).
+     */
+    void start();
 }

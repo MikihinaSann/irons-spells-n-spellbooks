@@ -120,10 +120,29 @@ public class NeoForgeCompat implements ModInitializer {
      */
     static void scanSubscribers(List<net.fabricmc.loader.api.ModContainer> mods, boolean dedicatedServer) {
         int found = 0;
+        java.util.Map<String, Integer> perMod = new java.util.LinkedHashMap<>();
         for (net.fabricmc.loader.api.ModContainer container : mods) {
             String fabricModId = container.getMetadata().getId();
             Set<String> localModIds = collectNeoForgeModIds(container);
-            for (Path root : container.getRootPaths()) {
+            int local = 0;
+            // loom.mods dev-injected mods report root "/" — their real class dirs
+            // live in the mod origin's paths. ModOrigin.getPaths() is only valid
+            // for Kind.PATH (NESTED/UNKNOWN throw) — fall back to root paths.
+            java.util.List<Path> roots;
+            if (container.getOrigin().getKind() == net.fabricmc.loader.api.metadata.ModOrigin.Kind.PATH) {
+                roots = container.getOrigin().getPaths().stream()
+                        .map(rp -> rp.toAbsolutePath().normalize())
+                        .filter(p -> !p.toString().equals(java.io.File.separator))
+                        .toList();
+            } else {
+                roots = List.of();
+            }
+            if (roots.isEmpty()) {
+                roots = container.getRootPaths();
+            }
+            roots = new ArrayList<>(new java.util.LinkedHashSet<>(roots));
+            for (Path root : roots) {
+                LOGGER.info("neoforge_compat scan mod {} root {}", fabricModId, root);
                 for (String className : listClasses(root)) {
                     SubscriberInfo info = readSubscriberInfo(root, className);
                     if (info == null) {
@@ -144,11 +163,14 @@ public class NeoForgeCompat implements ModInitializer {
                     }
                     if (registerSubscriber(className)) {
                         found++;
+                        local++;
                     }
                 }
             }
+            perMod.put(fabricModId, local);
         }
-        LOGGER.info("neoforge_compat subscriber scan registered {} classes from {} mod(s)", found, mods.size());
+        LOGGER.info("neoforge_compat subscriber scan registered {} classes from {} mod(s): {}",
+                found, mods.size(), perMod);
     }
 
     /** Mod ids declared by {@code neoforge}/{@code neoforge:client} entrypoints plus the fabric mod id. */
@@ -172,6 +194,10 @@ public class NeoForgeCompat implements ModInitializer {
         return ids;
     }
 
+    static boolean isSubscriberRegistered(String className) {
+        return REGISTERED_SUBSCRIBERS.contains(className);
+    }
+
     /** Register a subscriber class on both buses once. Mirrors the old sub() semantics. */
     static boolean registerSubscriber(String className) {
         if (!REGISTERED_SUBSCRIBERS.add(className)) {
@@ -188,11 +214,11 @@ public class NeoForgeCompat implements ModInitializer {
         }
     }
 
-    private record SubscriberInfo(String modid, boolean clientOnly, boolean serverOnly) {
+    record SubscriberInfo(String modid, boolean clientOnly, boolean serverOnly) {
     }
 
     /** Read @EventBusSubscriber from a .class file without loading it. */
-    private static SubscriberInfo readSubscriberInfo(Path root, String className) {
+    static SubscriberInfo readSubscriberInfo(Path root, String className) {
         Path classFile = Files.isDirectory(root)
                 ? root.resolve(className.replace('.', '/') + ".class")
                 : null;
@@ -262,7 +288,13 @@ public class NeoForgeCompat implements ModInitializer {
     private static InputStream openJarEntry(Path jarPath, String className) throws IOException {
         try (JarFile jar = new JarFile(jarPath.toFile())) {
             JarEntry entry = jar.getJarEntry(className.replace('.', '/') + ".class");
-            return entry == null ? null : jar.getInputStream(entry);
+            if (entry == null) {
+                return null;
+            }
+            // read eagerly — the returned stream must not outlive the JarFile
+            try (InputStream src = jar.getInputStream(entry)) {
+                return new java.io.ByteArrayInputStream(src.readAllBytes());
+            }
         } catch (IOException e) {
             return null;
         }
@@ -335,8 +367,7 @@ public class NeoForgeCompat implements ModInitializer {
             MOD_CONTAINERS.add(container);
             LOGGER.info("neoforge_compat constructed @Mod {} (modid {})", className, modid);
         } catch (Throwable t) {
-            LOGGER.debug("Skipping @Mod class {} - construction failed (optional dependency absent?)",
-                    className, t);
+            LOGGER.error("Skipping @Mod class {} - construction failed", className, t);
         }
     }
 
@@ -547,10 +578,15 @@ public class NeoForgeCompat implements ModInitializer {
         net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder.BUILD.register(builder ->
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent(
                         (net.minecraft.world.item.alchemy.PotionBrewing.Builder) builder)));
-        net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.ENTITY_LOAD.register((entity, world) ->
-                NeoForge.EVENT_BUS.post(new EntityJoinLevelEvent(entity, world)));
-        net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.ENTITY_UNLOAD.register((entity, world) ->
-                NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world)));
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+            // NeoForge calls Entity#onAddedToLevel when an entity enters the level
+            entity.onAddedToLevel();
+            NeoForge.EVENT_BUS.post(new EntityJoinLevelEvent(entity, world));
+        });
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.ENTITY_UNLOAD.register((entity, world) -> {
+            entity.onRemovedFromLevel();
+            NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world));
+        });
         ServerLifecycleEvents.SERVER_STARTING.register(server ->
                 NeoForge.EVENT_BUS.post(new ServerStartingEvent(server)));
         ServerLifecycleEvents.SERVER_STARTING.register(server ->
@@ -627,6 +663,19 @@ public class NeoForgeCompat implements ModInitializer {
                     addition.action().accept(new net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent.TabOutput(entries));
                 }
             }
+        });
+
+        // NeoForge's ItemStack.canElytraFly/elytraFlightTick correspond to FAPI's
+        // EntityElytraEvents.CUSTOM: consult the chest stack's extension methods.
+        // No early empty-stack bail — attribute/effect-driven flight (Apothic's
+        // elytra_flight, ISS Angel Wings) answers through the stack methods even
+        // for Items.AIR, and later-registered handlers (ISS) still run.
+        net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents.CUSTOM.register((entity, tickElytra) -> {
+            var chest = entity.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST);
+            if (!chest.canElytraFly(entity)) {
+                return false;
+            }
+            return !tickElytra || chest.elytraFlightTick(entity, entity.getFallFlyingTicks());
         });
 
         // builtin pack finders (server datapack hooks)

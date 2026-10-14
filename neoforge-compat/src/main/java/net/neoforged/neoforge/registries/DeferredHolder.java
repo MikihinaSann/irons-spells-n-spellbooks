@@ -41,6 +41,21 @@ public class DeferredHolder<R, T extends R> implements Holder<R>, Supplier<T> {
         if (value == null && owner != null) {
             owner.accept();
         }
+        // Lookup-style holder (DeferredHolder.create) — no owning register:
+        // resolve lazily from the vanilla registry, matching NeoForge's
+        // ResourceKey-lookup holder semantics.
+        if (value == null && owner == null && key != null) {
+            net.minecraft.core.Registry<R> registry =
+                    net.neoforged.neoforge.registries.DeferredRegister.lookupRegistry(key.registry());
+            if (registry != null) {
+                @SuppressWarnings("unchecked")
+                T found = (T) registry.get(key.location());
+                if (found != null) {
+                    this.value = found;
+                    this.holder = registry.getHolder(key).orElse(null);
+                }
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -23,7 +23,7 @@ public interface IEntityExtension {
         return self().isInLiquid();
     }
 
-    default boolean canSwimInFluidType(Object fluidType) {
+    default boolean canSwimInFluidType(net.neoforged.neoforge.fluids.FluidType fluidType) {
         return self().isInLiquid();
     }
 
@@ -43,6 +43,10 @@ public interface IEntityExtension {
     /** Whether the rider should face the entity's facing direction. */
     default boolean shouldRiderFaceForward(Player player) {
         return true;
+    }
+
+    /** Called when the entity is added to its level (NeoForge hook). */
+    default void onAddedToLevel() {
     }
 
     /** Called when the entity is removed from its level (NeoForge hook). */

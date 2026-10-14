@@ -33,6 +33,11 @@ public class NeoForgeMod {
      */
     public static net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> CREATIVE_FLIGHT;
 
+    /**
+     * NeoForge's {@code neoforge:swim_speed} attribute — RangedAttribute(1.0, 0, 1024).
+     */
+    public static net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SWIM_SPEED;
+
     public static void registerAttributes() {
         if (CREATIVE_FLIGHT == null) {
             var attr = new net.neoforged.neoforge.common.BooleanAttribute("attribute.neoforge.creative_flight", false);
@@ -40,6 +45,13 @@ public class NeoForgeMod {
             CREATIVE_FLIGHT = net.minecraft.core.Registry.registerForHolder(
                     net.minecraft.core.registries.BuiltInRegistries.ATTRIBUTE,
                     ResourceLocation.fromNamespaceAndPath("neoforge", "creative_flight"), attr);
+        }
+        if (SWIM_SPEED == null) {
+            var attr = new net.minecraft.world.entity.ai.attributes.RangedAttribute("attribute.neoforge.swim_speed", 1.0, 0.0, 1024.0);
+            attr.setSyncable(true);
+            SWIM_SPEED = net.minecraft.core.Registry.registerForHolder(
+                    net.minecraft.core.registries.BuiltInRegistries.ATTRIBUTE,
+                    ResourceLocation.fromNamespaceAndPath("neoforge", "swim_speed"), attr);
         }
     }
 
