@@ -1,0 +1,68 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'fabric-loom' version "${loom_version}"
+}
+
+version = '2.7.1'
+group = mod_group_id
+
+base {
+    archivesName = 'citadel'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+loom {
+    accessWidenerPath = file("src/main/resources/citadel.accesswidener")
+}
+
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.ladysnake.org/releases" }
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    maven { url = "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // NeoForge compat shim - named (mojmap) variant for compilation; the runtime
+    // mod jar is loaded through the root project's loom.mods.
+    implementation(project(path: ':neoforge-compat', configuration: 'namedElements')) {
+        transitive = false
+    }
+    // Forge Config API Port supplies net.neoforged.fml.config.* used by citadel configs
+    modCompileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.4"
+    compileOnly files("${rootDir}/libs/fcap-nested/core-3.8.0.jar")
+    compileOnly files("${rootDir}/libs/fcap-nested/toml-3.8.0.jar")
+
+    // JCodec 0.2.5 + JAADec (AlexModGuy fork) class trees extracted from the
+    // released upstream citadel-2.7.0-1.21.1.jar — private runtime libs for
+    // client/video/Video, bundled jar-in-jar (no Forge metadata).
+    implementation files("${projectDir}/vendor/citadel-video-deps.jar")
+    localRuntime files("${projectDir}/vendor/citadel-video-deps.jar")
+
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    compileOnly "org.checkerframework:checker-qual:3.43.0"
+    compileOnly "com.google.j2objc:j2objc-annotations:3.0.0"
+    compileOnly "com.google.errorprone:error_prone_annotations:2.36.0"
+}
+
+jar {
+    // JIJ the private video-decoder libs (extracted from upstream's shaded jar).
+    into('META-INF/jars') {
+        from layout.projectDirectory.file('vendor/citadel-video-deps.jar')
+    }
+    manifest {
+        attributes([
+                "Specification-Title"   : "Citadel",
+                "Specification-Vendor"  : "Alexthe666",
+                "Implementation-Title"  : project.name,
+                "Implementation-Version": project.jar.archiveVersion,
+                "Implementation-Vendor" : "Alexthe666"
+        ])
+    }
+}

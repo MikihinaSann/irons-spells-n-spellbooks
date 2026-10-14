@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "citadel",
+    "version": "2.7.1",
+    "name": "Citadel",
+    "description": "Citadel (NeoForge->Fabric compat build)",
+    "authors": [
+        "Alexthe666"
+    ],
+    "license": "LGPL-3.0",
+    "environment": "*",
+    "entrypoints": {
+        "neoforge": [
+            "com.github.alexthe666.citadel.Citadel"
+        ]
+    },
+    "mixins": [
+        "citadel.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.5",
+        "minecraft": "~1.21.1",
+        "java": ">=21",
+        "fabric-api": "*",
+        "neoforge_compat": "*"
+    },
+    "accessWidener": "citadel.accesswidener",
+    "jars": [
+        {
+            "file": "META-INF/jars/citadel-video-deps.jar"
+        }
+    ]
+}

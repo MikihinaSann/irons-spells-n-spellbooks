@@ -1,0 +1,15 @@
+accessWidener v2 named
+# Translated from citadel META-INF/accesstransformer.cfg (entries already covered
+# transitively by neoforge_compat.accesswidener are omitted).
+transitive-accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+transitive-mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+transitive-accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+transitive-mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+
+# TabulaModelBlock/TabulaModelHandler — vanilla model deserializer ctors are protected
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemTransform$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemTransforms$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockElement$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockElementFace$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/BlockFaceUV$Deserializer <init> ()V
+transitive-accessible method net/minecraft/client/renderer/block/model/ItemOverride$Deserializer <init> ()V
