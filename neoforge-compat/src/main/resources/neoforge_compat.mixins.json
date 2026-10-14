@@ -58,7 +58,10 @@
     "api.HolderApiMixin",
     "api.LevelAccessorApiMixin",
     "api.ServerLevelAccessorApiMixin",
-    "api.TooltipFlagApiMixin"
+    "api.TooltipFlagApiMixin",
+    "api.FluidStateApiMixin",
+    "api.EntityTypeBuilderApiMixin",
+    "RegistriesMixin"
   ],
   "client": [
     "BlockEntityDataPacketMixin",

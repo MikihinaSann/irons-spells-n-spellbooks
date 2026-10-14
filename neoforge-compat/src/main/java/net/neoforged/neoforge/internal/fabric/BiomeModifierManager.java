@@ -3,96 +3,87 @@ package net.neoforged.neoforge.internal.fabric;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DynamicOps;
-import com.mojang.serialization.JsonOps;
-
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.RegistryOps;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
+import net.neoforged.neoforge.common.world.ModifiableStructureInfo;
+import net.neoforged.neoforge.common.world.StructureModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * NeoForge-style biome modifier pipeline: loads
- * {@code data/<ns>/neoforge/biome_modifier/*.json}, decodes each through the
- * {@code neoforge:biome_modifier_serializers} registry, then applies every
- * modifier to every biome each time registries (re)load - mirroring NeoForge's
- * datapack-driven biome modification.
+ * NeoForge's {@code ServerLifecycleHooks#runModifiers} equivalent: reads the
+ * datapack-loaded {@code neoforge:biome_modifier} and
+ * {@code neoforge:structure_modifier} registries and applies each modifier to
+ * every biome / structure. Runs once per registry (re)build - datapack reloads
+ * reconstruct the registries, so modifiers always operate on fresh vanilla
+ * values and never accumulate.
  */
 public final class BiomeModifierManager {
     static final Logger LOGGER = LoggerFactory.getLogger("neoforge_compat");
 
-    private static final java.util.Map<ResourceLocation, JsonElement> RAW = new java.util.LinkedHashMap<>();
-
     private BiomeModifierManager() {
     }
 
-    /** Collects raw modifier JSONs during a datapack reload. */
-    public static void collect(ResourceManager manager) {
-        RAW.clear();
-        for (var entry : manager.listResources("neoforge/biome_modifier",
-                p -> p.getPath().endsWith(".json")).entrySet()) {
-            try (var reader = entry.getValue().openAsReader()) {
-                RAW.put(entry.getKey(), JsonParser.parseReader(reader));
-            } catch (Exception e) {
-                LOGGER.warn("Failed to read biome modifier {}", entry.getKey(), e);
-            }
-        }
-    }
-
-    /**
-     * Decodes the collected modifier JSONs and applies every modifier to every
-     * biome in the (re)built registry — call once per datapack/registry load.
-     */
     public static void applyAll(RegistryAccess registryAccess) {
-        if (RAW.isEmpty()) {
-            return;
-        }
         Registry<Biome> biomeRegistry = registryAccess.registry(Registries.BIOME).orElse(null);
         if (biomeRegistry == null) {
             return;
         }
-        java.util.function.Function<BiomeModifier, com.mojang.serialization.MapCodec<? extends BiomeModifier>> typeFn =
-                BiomeModifier::codec;
-        // registry values are MapCodecs; dispatch consumes them directly
-        java.util.function.Function<com.mojang.serialization.MapCodec<? extends BiomeModifier>, com.mojang.serialization.MapCodec<? extends BiomeModifier>> decoderFn =
-                c -> c;
-        @SuppressWarnings({"unchecked", "rawtypes"})
-        Codec<BiomeModifier> dispatchCodec = (Codec<BiomeModifier>) ((Codec) NeoForgeRegistries.BIOME_MODIFIER_SERIALIZERS.byNameCodec())
-                .dispatch("type", typeFn, decoderFn);
-        DynamicOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
-        List<BiomeModifier> modifiers = new ArrayList<>();
-        for (var entry : RAW.entrySet()) {
-            dispatchCodec.decode(ops, entry.getValue()).resultOrPartial(err ->
-                    LOGGER.warn("Failed to decode biome modifier {}: {}", entry.getKey(), err))
-                    .ifPresent(pair -> modifiers.add(pair.getFirst()));
-        }
-        if (modifiers.isEmpty()) {
+
+        List<BiomeModifier> biomeModifiers = registryAccess
+                .registry(NeoForgeRegistries.Keys.BIOME_MODIFIERS)
+                .map(reg -> reg.holders().map(Holder::value).toList())
+                .orElse(List.of());
+        List<StructureModifier> structureModifiers = registryAccess
+                .registry(NeoForgeRegistries.Keys.STRUCTURE_MODIFIERS)
+                .map(reg -> reg.holders().map(Holder::value).toList())
+                .orElse(List.of());
+
+        if (biomeModifiers.isEmpty() && structureModifiers.isEmpty()) {
             return;
         }
+
+        // Apply sorted biome modifiers to each biome (NF: biome.modifiableBiomeInfo()
+        // is per-instance; ours is built from the fresh registry values here, and
+        // applyBiomeModifiers writes the result onto the Biome fields).
         for (Holder<Biome> holder : biomeRegistry.holders().toList()) {
             Biome biome = holder.value();
-            ModifiableBiomeInfo info = new ModifiableBiomeInfo(new ModifiableBiomeInfo.BiomeInfo(
-                    biome.climateSettings, biome.specialEffects, biome.generationSettings, biome.mobSettings));
-            if (info.applyBiomeModifiers(holder, modifiers, registryAccess)) {
-                ModifiableBiomeInfo.BiomeInfo modified = info.getModifiedBiomeInfo();
-                biome.generationSettings = modified.generationSettings();
-                biome.mobSettings = modified.mobSpawnSettings();
-                biome.specialEffects = modified.effects();
-                biome.climateSettings = modified.climateSettings();
+            new ModifiableBiomeInfo(new ModifiableBiomeInfo.BiomeInfo(
+                    biome.climateSettings, biome.specialEffects, biome.generationSettings, biome.mobSettings))
+                    .applyBiomeModifiers(holder, biomeModifiers, registryAccess);
+        }
+
+        // NF rebuilds each chunk generator's indexed feature list after biome
+        // modifiers so newly-added placed features generate.
+        registryAccess.registry(Registries.LEVEL_STEM).ifPresent(stems ->
+                stems.forEach(stem -> {
+                    var gen = stem.generator();
+                    var access = (net.neoforged.neoforge.internal.fabric.mixin.ChunkGeneratorFeatureRefreshMixin) gen;
+                    access.neoforge$setFeaturesPerStep(com.google.common.base.Suppliers.memoize(() ->
+                            net.neoforged.neoforge.internal.fabric.mixin.ChunkGeneratorFeatureRefreshMixin
+                                    .neoforge$buildFeaturesPerStep(access.neoforge$getBiomeSource(),
+                                            access.neoforge$getGenerationSettingsGetter())));
+                }));
+
+        // Apply sorted structure modifiers to each structure (apply writes the
+        // modified settings onto the Structure field).
+        Registry<Structure> structureRegistry = registryAccess.registry(Registries.STRUCTURE).orElse(null);
+        if (structureRegistry != null) {
+            for (Holder<Structure> holder : structureRegistry.holders().toList()) {
+                Structure structure = holder.value();
+                new ModifiableStructureInfo(new ModifiableStructureInfo.StructureInfo(structure.settings))
+                        .applyStructureModifiers(holder, structureModifiers);
             }
         }
+
+        LOGGER.debug("Applied {} biome modifiers and {} structure modifiers",
+                biomeModifiers.size(), structureModifiers.size());
     }
 }

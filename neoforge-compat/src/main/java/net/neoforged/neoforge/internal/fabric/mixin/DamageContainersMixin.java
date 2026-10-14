@@ -19,6 +19,15 @@ public abstract class DamageContainersMixin implements net.neoforged.neoforge.co
     @Unique
     private final Stack<DamageContainer> neoforge_compat$damageContainers = new Stack<>();
 
+    /**
+     * Concrete implementation so {@code self()} resolves to a class method —
+     * the interface default alone produced AbstractMethodError at runtime.
+     */
+    @Override
+    public LivingEntity self() {
+        return (LivingEntity) (Object) this;
+    }
+
     @Override
     public Stack<DamageContainer> getDamageContainers() {
         return this.neoforge_compat$damageContainers;

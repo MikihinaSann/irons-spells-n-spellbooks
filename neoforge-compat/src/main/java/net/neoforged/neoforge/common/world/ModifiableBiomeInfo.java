@@ -59,6 +59,15 @@ public class ModifiableBiomeInfo {
       DynamicOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, registryAccess);
       JsonElement originalJson = (JsonElement)Biome.NETWORK_CODEC.encodeStart(ops, (Biome)biome.value()).result().orElse(null);
       this.modifiedBiomeInfo = builder.build();
+      // NeoForge stores this on the Biome and routes the Biome getters through
+      // it; our port writes the modified values onto the (access-widened) Biome
+      // fields instead, which produces the same observable result.
+      ModifiableBiomeInfo.BiomeInfo modified = this.modifiedBiomeInfo;
+      Biome value = biome.value();
+      value.climateSettings = modified.climateSettings();
+      value.specialEffects = modified.effects();
+      value.generationSettings = modified.generationSettings();
+      value.mobSettings = modified.mobSpawnSettings();
       JsonElement modifiedJson = (JsonElement)Biome.NETWORK_CODEC.encodeStart(ops, (Biome)biome.value()).result().orElse(null);
       if (originalJson != null && modifiedJson != null) {
          return !originalJson.equals(modifiedJson);

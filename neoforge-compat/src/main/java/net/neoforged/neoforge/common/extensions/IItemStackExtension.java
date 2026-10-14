@@ -141,4 +141,43 @@ public interface IItemStackExtension {
         return self().getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS,
                 net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
     }
+
+    /**
+     * NeoForge shield-disable check on the attacking weapon stack.
+     */
+    default boolean canDisableShield(net.minecraft.world.item.ItemStack shield,
+            net.minecraft.world.entity.LivingEntity entity, net.minecraft.world.entity.LivingEntity attacker) {
+        return self().getItem().canDisableShield(self(), shield, entity, attacker);
+    }
+
+    /**
+     * NeoForge widens vanilla's {@code hurtAndBreak(int, ServerLevel, ServerPlayer, Consumer)}
+     * to accept any {@link LivingEntity}. For non-players the durability change is
+     * applied directly since vanilla's overload requires a ServerPlayer.
+     */
+    default void hurtAndBreak(int amount, net.minecraft.server.level.ServerLevel level,
+            net.minecraft.world.entity.LivingEntity entity,
+            java.util.function.Consumer<net.minecraft.world.item.Item> onBreak) {
+        net.minecraft.world.item.ItemStack stack = self();
+        if (entity instanceof net.minecraft.server.level.ServerPlayer player) {
+            stack.hurtAndBreak(amount, level, player, onBreak);
+            return;
+        }
+        if (entity.hasInfiniteMaterials() || !stack.isDamageableItem()) {
+            return;
+        }
+        int damage = net.minecraft.world.item.enchantment.EnchantmentHelper.processDurabilityChange(
+                level, stack, amount);
+        if (damage <= 0) {
+            return;
+        }
+        int newDamage = stack.getDamageValue() + damage;
+        stack.setDamageValue(newDamage);
+        if (newDamage >= stack.getMaxDamage()) {
+            net.minecraft.world.item.Item item = stack.getItem();
+            stack.shrink(1);
+            stack.setDamageValue(0);
+            onBreak.accept(item);
+        }
+    }
 }

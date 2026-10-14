@@ -55,8 +55,65 @@ public class NeoForgeMod {
         }
     }
 
-    public static final net.neoforged.neoforge.fluids.FluidType WATER_TYPE =
-            new net.neoforged.neoforge.fluids.FluidType(net.neoforged.neoforge.fluids.FluidType.Properties.create());
+    private static net.minecraft.core.Holder<net.neoforged.neoforge.fluids.FluidType> vanillaFluidType(
+            String name, net.neoforged.neoforge.fluids.FluidType type,
+            net.minecraft.world.level.material.Fluid still, net.minecraft.world.level.material.Fluid flowing) {
+        var rl = net.minecraft.resources.ResourceLocation.withDefaultNamespace(name);
+        var holder = net.minecraft.core.Registry.registerForHolder(
+                net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES, rl, type);
+        net.neoforged.neoforge.fluids.NeoForgeFluidTypeRegistry.register(still, type, rl);
+        net.neoforged.neoforge.fluids.NeoForgeFluidTypeRegistry.register(flowing, type, rl);
+        return holder;
+    }
+
+    /** NeoForge's {@code minecraft:empty} fluid type (NF registers vanilla types under the minecraft namespace). */
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.fluids.FluidType> EMPTY_TYPE =
+            vanillaFluidType("empty", new net.neoforged.neoforge.fluids.FluidType(
+                    net.neoforged.neoforge.fluids.FluidType.Properties.create()
+                            .descriptionId("block.minecraft.air")
+                            .motionScale(1D)
+                            .canPushEntity(false)
+                            .canSwim(false)
+                            .canDrown(false)
+                            .fallDistanceModifier(1F)
+                            .pathType(null)
+                            .adjacentPathType(null)
+                            .density(0)
+                            .temperature(0)
+                            .viscosity(0)),
+                    net.minecraft.world.level.material.Fluids.EMPTY,
+                    net.minecraft.world.level.material.Fluids.EMPTY);
+
+    /** NeoForge's {@code minecraft:water} fluid type. */
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.fluids.FluidType> WATER_TYPE =
+            vanillaFluidType("water", new net.neoforged.neoforge.fluids.FluidType(
+                    net.neoforged.neoforge.fluids.FluidType.Properties.create()
+                            .descriptionId("block.minecraft.water")
+                            .fallDistanceModifier(0F)
+                            .canExtinguish(true)
+                            .canConvertToSource(true)
+                            .supportsBoating(true)),
+                    net.minecraft.world.level.material.Fluids.WATER,
+                    net.minecraft.world.level.material.Fluids.FLOWING_WATER);
+
+    /** NeoForge's {@code minecraft:lava} fluid type. */
+    public static final net.minecraft.core.Holder<net.neoforged.neoforge.fluids.FluidType> LAVA_TYPE =
+            vanillaFluidType("lava", new net.neoforged.neoforge.fluids.FluidType(
+                    net.neoforged.neoforge.fluids.FluidType.Properties.create()
+                            .descriptionId("block.minecraft.lava")
+                            .canSwim(false)
+                            .canDrown(false)
+                            .pathType(net.minecraft.world.level.pathfinder.PathType.LAVA)
+                            .adjacentPathType(null)),
+                    net.minecraft.world.level.material.Fluids.LAVA,
+                    net.minecraft.world.level.material.Fluids.FLOWING_LAVA);
+
+    /** NeoForge's {@code minecraft:milk} fluid type holder -- reserved for modded milk fluids. */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<
+            net.neoforged.neoforge.fluids.FluidType, net.neoforged.neoforge.fluids.FluidType> MILK_TYPE =
+            net.neoforged.neoforge.registries.DeferredHolder.create(
+                    net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.FLUID_TYPES,
+                    net.minecraft.resources.ResourceLocation.withDefaultNamespace("milk"));
 
     private static boolean mergedAttributeTooltips = false;
 
@@ -124,6 +181,75 @@ public class NeoForgeMod {
     public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.BiomeModifier>, ?> REMOVE_CARVERS_BIOME_MODIFIER_TYPE = bmType("remove_carvers");
     public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.BiomeModifier>, ?> ADD_SPAWN_COSTS_BIOME_MODIFIER_TYPE = bmType("add_spawn_costs");
     public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.BiomeModifier>, ?> REMOVE_SPAWN_COSTS_BIOME_MODIFIER_TYPE = bmType("remove_spawn_costs");
+
+    // ---- structure modifier serializer types (stock NeoForge codecs) ----
+    private static net.neoforged.neoforge.registries.DeferredHolder<
+            com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>,
+            ? extends com.mojang.serialization.MapCodec<?>> smType(String path) {
+        return net.neoforged.neoforge.registries.DeferredHolder.create(
+            net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", path));
+    }
+
+    public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>, ?> NONE_STRUCTURE_MODIFIER_TYPE = smType("none");
+    public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>, ?> ADD_SPAWNS_STRUCTURE_MODIFIER_TYPE = smType("add_spawns");
+    public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>, ?> REMOVE_SPAWNS_STRUCTURE_MODIFIER_TYPE = smType("remove_spawns");
+    public static final net.neoforged.neoforge.registries.DeferredHolder<com.mojang.serialization.MapCodec<? extends net.neoforged.neoforge.common.world.StructureModifier>, ?> CLEAR_SPAWNS_STRUCTURE_MODIFIER_TYPE = smType("clear_spawns");
+
+    /** Registers the stock {@code neoforge:} structure modifier serializers. */
+    public static void registerStructureModifierSerializers() {
+        var reg = net.neoforged.neoforge.registries.NeoForgeRegistries.STRUCTURE_MODIFIER_SERIALIZERS;
+        net.minecraft.core.Registry.register(reg,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "none"),
+            com.mojang.serialization.MapCodec.unit(
+                    () -> net.neoforged.neoforge.common.world.NoneStructureModifier.INSTANCE));
+        net.minecraft.core.Registry.register(reg,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "add_spawns"),
+            com.mojang.serialization.codecs.RecordCodecBuilder.<net.neoforged.neoforge.common.world.StructureModifiers.AddSpawnsStructureModifier>mapCodec(builder -> builder.group(
+                    net.minecraft.core.RegistryCodecs.homogeneousList(
+                            net.minecraft.core.registries.Registries.STRUCTURE,
+                            net.minecraft.world.level.levelgen.structure.Structure.DIRECT_CODEC)
+                        .fieldOf("structures")
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.AddSpawnsStructureModifier::structures),
+                    com.mojang.serialization.Codec.either(
+                            net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData.CODEC.listOf(),
+                            net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData.CODEC).xmap(
+                            either -> either.map(java.util.function.Function.identity(), java.util.List::of),
+                            list -> list.size() == 1 ? com.mojang.datafixers.util.Either.right(list.get(0))
+                                    : com.mojang.datafixers.util.Either.left(list))
+                        .fieldOf("spawners")
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.AddSpawnsStructureModifier::spawners))
+                .apply(builder, net.neoforged.neoforge.common.world.StructureModifiers.AddSpawnsStructureModifier::new)));
+        net.minecraft.core.Registry.register(reg,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "remove_spawns"),
+            com.mojang.serialization.codecs.RecordCodecBuilder.<net.neoforged.neoforge.common.world.StructureModifiers.RemoveSpawnsStructureModifier>mapCodec(builder -> builder.group(
+                    net.minecraft.core.RegistryCodecs.homogeneousList(
+                            net.minecraft.core.registries.Registries.STRUCTURE,
+                            net.minecraft.world.level.levelgen.structure.Structure.DIRECT_CODEC)
+                        .fieldOf("structures")
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.RemoveSpawnsStructureModifier::structures),
+                    net.minecraft.core.RegistryCodecs.homogeneousList(net.minecraft.core.registries.Registries.ENTITY_TYPE)
+                        .fieldOf("entity_types")
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.RemoveSpawnsStructureModifier::entityTypes))
+                .apply(builder, net.neoforged.neoforge.common.world.StructureModifiers.RemoveSpawnsStructureModifier::new)));
+        net.minecraft.core.Registry.register(reg,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "clear_spawns"),
+            com.mojang.serialization.codecs.RecordCodecBuilder.<net.neoforged.neoforge.common.world.StructureModifiers.ClearSpawnsStructureModifier>mapCodec(builder -> builder.group(
+                    net.minecraft.core.RegistryCodecs.homogeneousList(
+                            net.minecraft.core.registries.Registries.STRUCTURE,
+                            net.minecraft.world.level.levelgen.structure.Structure.DIRECT_CODEC)
+                        .fieldOf("structures")
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.ClearSpawnsStructureModifier::structures),
+                    com.mojang.serialization.Codec.<java.util.List<net.minecraft.world.entity.MobCategory>, net.minecraft.world.entity.MobCategory>either(
+                            net.minecraft.world.entity.MobCategory.CODEC.listOf(),
+                            net.minecraft.world.entity.MobCategory.CODEC).<java.util.Set<net.minecraft.world.entity.MobCategory>>xmap(
+                            either -> either.map(java.util.Set::copyOf, java.util.Set::of),
+                            set -> set.size() == 1 ? com.mojang.datafixers.util.Either.right(set.toArray(net.minecraft.world.entity.MobCategory[]::new)[0])
+                                    : com.mojang.datafixers.util.Either.left(java.util.List.copyOf(set)))
+                        .optionalFieldOf("categories", java.util.EnumSet.allOf(net.minecraft.world.entity.MobCategory.class))
+                        .forGetter(net.neoforged.neoforge.common.world.StructureModifiers.ClearSpawnsStructureModifier::categories))
+                .apply(builder, net.neoforged.neoforge.common.world.StructureModifiers.ClearSpawnsStructureModifier::new)));
+    }
 
     /** Registers the stock {@code neoforge:} biome modifier serializers,
      * matching NeoForge DeferredRegister contents. */
@@ -245,7 +371,7 @@ public class NeoForgeMod {
     /** Registers the stock {@code neoforge:} condition serializers,
      * matching NeoForge's CONDITION_CODECS DeferredRegister. */
     public static void registerConditionCodecs() {
-        var reg = net.neoforged.neoforge.registries.NeoForgeRegistries.CONDITION_SERIALIZERS;
+        var reg = net.neoforged.neoforge.registries.NeoForgeRegistries.CONDITION_CODECS;
         net.minecraft.core.Registry.register(reg, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "and"), net.neoforged.neoforge.common.conditions.AndCondition.CODEC);
         net.minecraft.core.Registry.register(reg, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "false"), net.neoforged.neoforge.common.conditions.FalseCondition.CODEC);
         net.minecraft.core.Registry.register(reg, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "item_exists"), net.neoforged.neoforge.common.conditions.ItemExistsCondition.CODEC);
@@ -257,9 +383,8 @@ public class NeoForgeMod {
     }
 
     /** Registers the stock {@code neoforge:} fluid type (water). */
+    /** Vanilla fluid types self-register in the static holders above; kept for the old call site. */
     public static void registerFluidTypes() {
-        net.minecraft.core.Registry.register(net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES,
-            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "water"), WATER_TYPE);
     }
 
     public static void registerIngredientTypes() {

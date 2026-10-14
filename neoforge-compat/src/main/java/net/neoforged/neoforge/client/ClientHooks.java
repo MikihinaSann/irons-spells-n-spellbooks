@@ -31,6 +31,47 @@ public class ClientHooks {
      * EntityRenderersEvent.RegisterLayerDefinitions; Fabric accepts direct
      * registration at any point before model baking.
      */
+    /**
+     * NeoForge's armor-model resolution: delegates to the item's client
+     * extensions.
+     */
+    public static net.minecraft.client.model.Model getArmorModel(
+            net.minecraft.world.entity.LivingEntity entityLiving, net.minecraft.world.item.ItemStack itemStack,
+            net.minecraft.world.entity.EquipmentSlot slot, net.minecraft.client.model.HumanoidModel<?> _default) {
+        return net.neoforged.neoforge.client.extensions.common.IClientItemExtensions.of(itemStack)
+                .getGenericArmorModel(entityLiving, itemStack, slot, _default);
+    }
+
+    /**
+     * NeoForge's armor-texture resolution: item override first, then the
+     * material layer texture.
+     */
+    public static net.minecraft.resources.ResourceLocation getArmorTexture(
+            net.minecraft.world.entity.Entity entity, net.minecraft.world.item.ItemStack armor,
+            net.minecraft.world.item.ArmorMaterial.Layer layer, boolean innerModel,
+            net.minecraft.world.entity.EquipmentSlot slot) {
+        net.minecraft.resources.ResourceLocation result = armor.getItem().getArmorTexture(armor, entity, slot, layer,
+                innerModel);
+        return result != null ? result : layer.texture(innerModel);
+    }
+
+    /**
+     * Copies the original humanoid model's pose/visibility onto a replacement.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T extends net.minecraft.world.entity.LivingEntity> void copyModelProperties(
+            net.minecraft.client.model.HumanoidModel<T> original,
+            net.minecraft.client.model.HumanoidModel<?> replacement) {
+        original.copyPropertiesTo((net.minecraft.client.model.HumanoidModel<T>) replacement);
+        replacement.head.visible = original.head.visible;
+        replacement.hat.visible = original.hat.visible;
+        replacement.body.visible = original.body.visible;
+        replacement.rightArm.visible = original.rightArm.visible;
+        replacement.leftArm.visible = original.leftArm.visible;
+        replacement.rightLeg.visible = original.rightLeg.visible;
+        replacement.leftLeg.visible = original.leftLeg.visible;
+    }
+
     public static void registerLayerDefinition(ModelLayerLocation location, Supplier<LayerDefinition> supplier) {
         net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry
                 .registerModelLayer(location, supplier::get);

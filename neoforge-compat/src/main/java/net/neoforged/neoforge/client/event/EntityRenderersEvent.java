@@ -106,4 +106,35 @@ public abstract class EntityRenderersEvent extends Event {
             return context;
         }
     }
+
+    /**
+     * Fired when the skull renderers map is built — allows registering custom
+     * {@link net.minecraft.world.level.block.SkullBlock.Type} models.
+     * NeoForge posts this from {@code SkullBlockRenderer.createSkullRenderers}.
+     */
+    public static class CreateSkullModels extends EntityRenderersEvent {
+        private final java.util.Map<net.minecraft.world.level.block.SkullBlock.Type,
+                net.minecraft.client.model.SkullModelBase> models = new java.util.LinkedHashMap<>();
+        private final net.minecraft.client.model.geom.EntityModelSet entityModelSet;
+
+        @org.jetbrains.annotations.ApiStatus.Internal
+        public CreateSkullModels(net.minecraft.client.model.geom.EntityModelSet entityModelSet) {
+            this.entityModelSet = entityModelSet;
+        }
+
+        public void registerSkullModel(net.minecraft.world.level.block.SkullBlock.Type type,
+                net.minecraft.client.model.SkullModelBase model) {
+            this.models.put(type, model);
+        }
+
+        public net.minecraft.client.model.geom.EntityModelSet getEntityModelSet() {
+            return entityModelSet;
+        }
+
+        @org.jetbrains.annotations.ApiStatus.Internal
+        public java.util.Map<net.minecraft.world.level.block.SkullBlock.Type,
+                net.minecraft.client.model.SkullModelBase> getModels() {
+            return java.util.Collections.unmodifiableMap(models);
+        }
+    }
 }

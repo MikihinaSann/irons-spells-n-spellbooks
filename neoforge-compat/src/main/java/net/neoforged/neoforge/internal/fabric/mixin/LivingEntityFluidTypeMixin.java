@@ -25,7 +25,7 @@ public abstract class LivingEntityFluidTypeMixin {
         if (!cir.getReturnValue() && !neoforge_compat$drownCheck) {
             neoforge_compat$drownCheck = true;
             try {
-                if (!((Entity) (Object) this).canDrownInFluidType(NeoForgeMod.WATER_TYPE)) {
+                if (!((Entity) (Object) this).canDrownInFluidType(NeoForgeMod.WATER_TYPE.value())) {
                     cir.setReturnValue(true);
                 }
             } finally {

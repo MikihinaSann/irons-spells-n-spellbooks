@@ -25,6 +25,14 @@ public abstract class MinecraftInputDispatchMixin {
         if (event.isCanceled()) {
             ci.cancel();
         }
+        // NeoForge: PlayerInteractEvent.RightClickEmpty fires for each hand when
+        // the crosshair target is a miss (or absent) before item use is attempted.
+        if (mc.player != null && (mc.hitResult == null
+                || mc.hitResult.getType() == net.minecraft.world.phys.HitResult.Type.MISS)) {
+            for (var hand : net.minecraft.world.InteractionHand.values()) {
+                net.neoforged.neoforge.common.CommonHooks.onEmptyClick(mc.player, hand);
+            }
+        }
     }
 
     @Inject(method = "startAttack", at = @At("HEAD"), cancellable = true)
@@ -34,6 +42,19 @@ public abstract class MinecraftInputDispatchMixin {
         NeoForge.EVENT_BUS.post(event);
         if (event.isCanceled()) {
             cir.setReturnValue(false);
+        }
+        // NeoForge: PlayerInteractEvent.LeftClickEmpty fires client-side on an
+        // air left-click, then a payload notifies the server which posts the
+        // event there too (CommonHooks.onEmptyLeftClick).
+        if (mc.player != null && (mc.hitResult == null
+                || mc.hitResult.getType() == net.minecraft.world.phys.HitResult.Type.MISS)) {
+            var leftClick = new net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty(mc.player);
+            NeoForge.EVENT_BUS.post(leftClick);
+            if (net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(
+                    net.neoforged.neoforge.internal.fabric.EmptyClickPayload.TYPE)) {
+                net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(
+                        new net.neoforged.neoforge.internal.fabric.EmptyClickPayload());
+            }
         }
     }
 

@@ -16,7 +16,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * otherwise this would recurse.
  */
 @Mixin(Entity.class)
-public abstract class EntityFluidTypeMixin {
+public abstract class EntityFluidTypeMixin implements IEntityExtension {
+
+    /**
+     * Concrete implementation so {@code self()} resolves to a class method —
+     * the interface default alone produced AbstractMethodError at runtime.
+     */
+    @Override
+    public Entity self() {
+        return (Entity) (Object) this;
+    }
 
     private static final ClassValue<Boolean> OVERRIDES_PUSHED_BY_FLUID = new ClassValue<>() {
         @Override
@@ -32,7 +41,7 @@ public abstract class EntityFluidTypeMixin {
     @Inject(method = "isPushedByFluid", at = @At("RETURN"), cancellable = true)
     private void irons_spellbooks$typedFluidPush(CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValue() && OVERRIDES_PUSHED_BY_FLUID.get(this.getClass())) {
-            cir.setReturnValue(((Entity) (Object) this).isPushedByFluid(NeoForgeMod.WATER_TYPE));
+            cir.setReturnValue(((Entity) (Object) this).isPushedByFluid(NeoForgeMod.WATER_TYPE.value()));
         }
     }
 }

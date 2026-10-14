@@ -1,37 +1,51 @@
 package net.neoforged.neoforge.event;
 
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.Event;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.BiConsumer;
-
 /**
- * Collects default-component modifications; applied by rebuilding item defaults
- * at bootstrap.
+ * NeoForge's default-components event: listeners patch item component maps via
+ * {@link #modify}. The collected patch builders are applied to the items'
+ * {@code components} by {@link #apply()} after the event finishes dispatching.
  */
 public class ModifyDefaultComponentsEvent extends Event {
-    private final List<Modification<?>> modifications = new ArrayList<>();
+    private final Map<Item, DataComponentPatch.Builder> changes = new IdentityHashMap<>();
 
-    public record Modification<T>(Item item, DataComponentType<T> type, T value) {
+    private DataComponentPatch.Builder builder(Item item) {
+        return changes.computeIfAbsent(item, i -> {
+            DataComponentPatch.Builder builder = DataComponentPatch.builder();
+            i.components().forEach(builder::set);
+            return builder;
+        });
     }
 
-    public <T> void modify(Item item, BiConsumer<DataComponentType<T>, T> action) {
-        // Signature kept for compat; call sites should use modify(item, type, value)
+    public <T> void modify(ItemLike item, DataComponentType<T> type, T value) {
+        builder(item.asItem()).set(type, value);
     }
 
-    public <T> void modify(Item item, DataComponentType<T> type, T value) {
-        modifications.add(new Modification<>(item, type, value));
+    public <T> void modify(ItemLike item, Supplier<DataComponentType<T>> type, T value) {
+        modify(item, type.get(), value);
     }
 
-    public void modify(Item item, DataComponentPatch.Builder builder) {
-        // Accumulated patch application handled by caller via getPatchBuilder
+    /**
+     * Applies the listener's patch edits to the item's patch builder.
+     */
+    public void modify(ItemLike item, Consumer<DataComponentPatch.Builder> patch) {
+        patch.accept(builder(item.asItem()));
     }
 
-    public List<Modification<?>> getModifications() {
-        return modifications;
+    /**
+     * Applies all collected patches onto the items' component maps. Called once
+     * by the compat layer after the event finishes dispatching.
+     */
+    public void apply() {
+        changes.forEach((item, builder) -> item.modifyDefaultComponentsFrom(builder.build()));
     }
 }

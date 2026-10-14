@@ -26,7 +26,7 @@ import net.minecraft.util.Unit;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public interface ICondition {
-   Codec<ICondition> CODEC = NeoForgeRegistries.CONDITION_SERIALIZERS.byNameCodec().dispatch(ICondition::codec, Function.identity());
+   Codec<ICondition> CODEC = NeoForgeRegistries.CONDITION_CODECS.byNameCodec().dispatch(ICondition::codec, Function.identity());
    Codec<List<ICondition>> LIST_CODEC = CODEC.listOf();
 
    static <V, T> Optional<T> getConditionally(Codec<T> codec, DynamicOps<V> ops, V element) {

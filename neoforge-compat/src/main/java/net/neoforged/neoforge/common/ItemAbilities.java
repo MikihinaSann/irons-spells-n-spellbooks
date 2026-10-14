@@ -41,4 +41,25 @@ public class ItemAbilities {
     public static final ItemAbility FISHING_ROD_CAST = ItemAbility.get("fishing_rod_cast");
     public static final ItemAbility BRUSH_BRUSH = ItemAbility.get("brush_brush");
     public static final ItemAbility MACE_SMASH = ItemAbility.get("mace_smash");
+    public static final ItemAbility SHEARS_TRIM = ItemAbility.get("shears_trim");
+
+    // Default actions supported by each tool type
+    public static final java.util.Set<ItemAbility> DEFAULT_AXE_ACTIONS = of(AXE_DIG, AXE_STRIP, AXE_SCRAPE, AXE_WAX_OFF);
+    public static final java.util.Set<ItemAbility> DEFAULT_HOE_ACTIONS = of(HOE_DIG, HOE_TILL);
+    public static final java.util.Set<ItemAbility> DEFAULT_SHOVEL_ACTIONS = of(SHOVEL_DIG, SHOVEL_FLATTEN, SHOVEL_DOUSE);
+    public static final java.util.Set<ItemAbility> DEFAULT_PICKAXE_ACTIONS = of(PICKAXE_DIG);
+    public static final java.util.Set<ItemAbility> DEFAULT_SWORD_ACTIONS = of(SWORD_DIG, SWORD_SWEEP);
+    public static final java.util.Set<ItemAbility> DEFAULT_SHEARS_ACTIONS = of(SHEARS_DIG, SHEARS_HARVEST,
+            SHEARS_REMOVE_ARMOR, SHEARS_CARVE, SHEARS_DISARM, SHEARS_TRIM);
+    public static final java.util.Set<ItemAbility> DEFAULT_SHIELD_ACTIONS = of(SHIELD_BLOCK);
+    public static final java.util.Set<ItemAbility> DEFAULT_FISHING_ROD_ACTIONS = of(FISHING_ROD_CAST);
+    public static final java.util.Set<ItemAbility> DEFAULT_TRIDENT_ACTIONS = of(TRIDENT_THROW);
+    public static final java.util.Set<ItemAbility> DEFAULT_BRUSH_ACTIONS = of(BRUSH_BRUSH);
+    public static final java.util.Set<ItemAbility> DEFAULT_FLINT_ACTIONS = of(FIRESTARTER_LIGHT);
+    public static final java.util.Set<ItemAbility> DEFAULT_FIRECHARGE_ACTIONS = of(FIRESTARTER_LIGHT);
+
+    private static java.util.Set<ItemAbility> of(ItemAbility... actions) {
+        return java.util.stream.Stream.of(actions)
+                .collect(java.util.stream.Collectors.toCollection(com.google.common.collect.Sets::newIdentityHashSet));
+    }
 }

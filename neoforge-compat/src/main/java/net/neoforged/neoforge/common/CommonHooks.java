@@ -37,4 +37,43 @@ public class CommonHooks {
     public static int getLootingLevel(Entity target, Entity killer, net.minecraft.world.damagesource.DamageSource source) {
         return 0;
     }
+
+    public static boolean onLivingDeath(net.minecraft.world.entity.LivingEntity entity,
+            net.minecraft.world.damagesource.DamageSource src) {
+        return NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.LivingDeathEvent(entity, src)).isCanceled();
+    }
+
+    public static void onLivingJump(net.minecraft.world.entity.LivingEntity entity) {
+        NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.LivingEvent.LivingJumpEvent(entity));
+    }
+
+    /**
+     * NeoForge: fires {@link LivingShieldBlockEvent} from inside
+     * {@code LivingEntity.hurt}, replacing the vanilla shield block check.
+     */
+    public static net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent onDamageBlock(
+            net.minecraft.world.entity.LivingEntity blocker,
+            net.neoforged.neoforge.common.damagesource.DamageContainer container,
+            boolean blocked) {
+        var event = new net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent(blocker, container, blocked);
+        NeoForge.EVENT_BUS.post(event);
+        return event;
+    }
+
+    /**
+     * NeoForge: fires {@link LivingFallEvent} at the head of
+     * {@code LivingEntity.causeFallDamage}; {@code null} cancels the fall.
+     */
+    public static float[] onLivingFall(
+            net.minecraft.world.entity.LivingEntity entity, float distance, float damageMultiplier) {
+        var event = new net.neoforged.neoforge.event.entity.living.LivingFallEvent(entity, distance, damageMultiplier);
+        if (NeoForge.EVENT_BUS.post(event).isCanceled()) {
+            return null;
+        }
+        return new float[] { event.getDistance(), event.getDamageMultiplier() };
+    }
+
+    public static void onEmptyClick(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickEmpty(player, hand));
+    }
 }

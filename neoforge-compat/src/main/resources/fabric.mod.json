@@ -50,6 +50,15 @@
       "net/minecraft/world/item/Item": [
         "net/neoforged/neoforge/common/extensions/IItemExtension"
       ],
+      "net/minecraft/world/item/ArrowItem": [
+        "net/neoforged/neoforge/common/extensions/IArrowItemExtension"
+      ],
+      "net/minecraft/world/item/ProjectileWeaponItem": [
+        "net/neoforged/neoforge/common/extensions/IProjectileWeaponItemExtension"
+      ],
+      "net/minecraft/client/renderer/block/ModelBlockRenderer": [
+        "net/neoforged/neoforge/client/extensions/common/IModelBlockRendererExtension"
+      ],
       "net/minecraft/core/Holder": [
         "net/neoforged/neoforge/common/extensions/IHolderExtension"
       ],
@@ -64,6 +73,12 @@
       ],
       "net/minecraft/world/level/material/Fluid": [
         "net/neoforged/neoforge/common/extensions/IFluidExtension"
+      ],
+      "net/minecraft/world/level/material/FluidState": [
+        "net/neoforged/neoforge/common/extensions/IFluidStateExtension"
+      ],
+      "net/minecraft/world/entity/EntityType$Builder": [
+        "net/neoforged/neoforge/common/extensions/IEntityTypeBuilderExtension"
       ],
       "net/minecraft/world/entity/player/Player": [
         "net/neoforged/neoforge/common/extensions/IPlayerExtension"

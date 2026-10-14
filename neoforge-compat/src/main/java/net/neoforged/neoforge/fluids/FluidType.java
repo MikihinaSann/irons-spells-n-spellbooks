@@ -123,6 +123,13 @@ public class FluidType {
         return canSwim;
     }
 
+    /**
+     * NeoForge's swim check for entities in this fluid type.
+     */
+    public boolean canSwim(net.minecraft.world.entity.Entity entity) {
+        return canSwim;
+    }
+
     public boolean canDrownIn(LivingEntity entity) {
         return canDrown;
     }

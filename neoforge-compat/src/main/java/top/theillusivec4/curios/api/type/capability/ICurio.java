@@ -87,6 +87,15 @@ public interface ICurio {
         return false;
     }
 
+    /**
+     * Stack-aware variant — Curios API 9.x signature. Defaults to the legacy
+     * slot-only check so existing implementations keep working.
+     */
+    default boolean canWalkOnPowderedSnow(SlotContext slotContext,
+            net.minecraft.world.item.ItemStack stack) {
+        return canWalkOnPowderedSnow(slotContext);
+    }
+
     default boolean canWalkOnPowderedSnow(SlotContext slotContext) {
         return false;
     }

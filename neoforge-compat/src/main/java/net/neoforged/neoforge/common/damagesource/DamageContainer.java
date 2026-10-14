@@ -1,59 +1,162 @@
 package net.neoforged.neoforge.common.damagesource;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+
+import org.jetbrains.annotations.ApiStatus;
+
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 
 /**
- * NeoForge's per-hit damage container. Captures a single incoming attack's
- * context so listeners can adjust amounts/flags coherently.
+ * DamageContainer encapsulates aspects of the entity damage sequence so that
+ * relevant context related to damage dealt is accessible throughout the entire
+ * sequence.
+ * <p>Note: certain values will be defaults until the stage in the sequence when they are set.</p>
  */
 public class DamageContainer {
+    public enum Reduction {
+        /** Damage reduced from post attack invulnerability. */
+        INVULNERABILITY,
+        /** Damage reduced from the effects of armor. */
+        ARMOR,
+        /** Damage reduced from enchantments on armor. */
+        ENCHANTMENTS,
+        /** Damage reduced from active mob effects. */
+        MOB_EFFECTS,
+        /** Damage absorbed by absorption. */
+        ABSORPTION
+    }
+
+    private final EnumMap<Reduction, List<IReductionFunction>> reductionFunctions = new EnumMap<>(Reduction.class);
+    private final float originalDamage;
     private final DamageSource source;
-    private final LivingEntity entity;
-    private float originalDamage;
     private float newDamage;
-    private int postAttackInvulnerabilityTicks;
+    private final EnumMap<Reduction, Float> reductions = new EnumMap<>(Reduction.class);
+    private float blockedDamage = 0f;
+    private float shieldDamage = 0;
+    private int invulnerabilityTicksAfterAttack = 20;
+    private LivingEntity entity;
 
-    public DamageContainer(DamageSource source, LivingEntity entity, float amount) {
+    public DamageContainer(DamageSource source, float originalDamage) {
         this.source = source;
+        this.originalDamage = originalDamage;
+        this.newDamage = originalDamage;
+    }
+
+    /** Shim-internal constructor that also records the entity being hurt. */
+    @ApiStatus.Internal
+    public DamageContainer(DamageSource source, LivingEntity entity, float originalDamage) {
+        this(source, originalDamage);
         this.entity = entity;
-        this.originalDamage = amount;
-        this.newDamage = amount;
-        this.postAttackInvulnerabilityTicks = entity.invulnerableTime;
+        this.invulnerabilityTicksAfterAttack = entity.invulnerableTime;
     }
 
-    public DamageSource getSource() {
-        return source;
-    }
-
-    public LivingEntity getEntity() {
-        return entity;
-    }
-
+    /** {@return the value passed into {@link LivingEntity#hurt(DamageSource, float)} before any modifications are made} */
     public float getOriginalDamage() {
         return originalDamage;
     }
 
+    /** {@return the damage source for this damage sequence} */
+    public DamageSource getSource() {
+        return source;
+    }
+
+    /** {@return the entity being hurt, when known} */
+    public LivingEntity getEntity() {
+        return entity;
+    }
+
+    /**
+     * This sets the current damage value for the entity at the stage in the damage sequence in which it is set.
+     * Subsequent steps in the damage sequence will use and modify this value accordingly. If this is called in
+     * the final step of the sequence, this value will be applied against the entity's health.
+     *
+     * @param damage the amount to harm this entity at the end of the damage sequence
+     */
+    public void setNewDamage(float damage) {
+        this.newDamage = damage;
+    }
+
+    /** {@return the current amount expected to be applied to the entity or used in subsequent damage calculations} */
     public float getNewDamage() {
         return newDamage;
     }
 
-    public void setNewDamage(float newDamage) {
-        this.newDamage = newDamage;
+    /**
+     * Adds a callback modifier to the vanilla damage reductions. Each function will be performed in sequence
+     * on the vanilla value at the time the {@link DamageContainer.Reduction} type is set by vanilla.
+     *
+     * @param type              The reduction type your function will apply to
+     * @param reductionFunction takes the current reduction from vanilla and any preceding functions and returns a new
+     *                          value for the reduction. These are always executed in insertion order.
+     */
+    public void addModifier(Reduction type, IReductionFunction reductionFunction) {
+        this.reductionFunctions.computeIfAbsent(type, a -> new ArrayList<>()).add(reductionFunction);
     }
 
-    public int getPostAttackInvulnerabilityTicks() {
-        return postAttackInvulnerabilityTicks;
+    /** {@return the damage blocked during the {@link LivingShieldBlockEvent}} */
+    public float getBlockedDamage() {
+        return blockedDamage;
     }
 
+    /** {@return the durability applied to the applicable shield after {@link LivingShieldBlockEvent} returned a successful block} */
+    public float getShieldDamage() {
+        return shieldDamage;
+    }
+
+    /**
+     * Explicitly sets the invulnerability ticks after the damage has been applied.
+     *
+     * @param ticks Ticks of invulnerability after this damage sequence
+     */
     public void setPostAttackInvulnerabilityTicks(int ticks) {
-        this.postAttackInvulnerabilityTicks = ticks;
+        this.invulnerabilityTicksAfterAttack = ticks;
     }
 
-    public float getModifier(IReductionFunction reductionFunction) {
-        return 0;
+    /** {@return the number of ticks this entity will be invulnerable after damage is applied} */
+    public int getPostAttackInvulnerabilityTicks() {
+        return invulnerabilityTicksAfterAttack;
     }
 
-    public interface IReductionFunction {
+    /**
+     * This provides a post-reduction value for the reduction and modifiers. This will always return zero
+     * before {@link LivingDamageEvent.Pre} and will consume all
+     * modifiers prior to the event.
+     *
+     * @param type the specific source type of the damage reduction
+     * @return The amount of damage reduced by armor after vanilla armor reductions and added modifiers
+     */
+    public float getReduction(Reduction type) {
+        return reductions.getOrDefault(type, 0f);
+    }
+
+    //=============INTERNAL METHODS - DO NOT USE===================
+
+    @ApiStatus.Internal
+    public void setBlockedDamage(LivingShieldBlockEvent event) {
+        if (event.getBlocked()) {
+            this.blockedDamage = event.getBlockedDamage();
+            this.shieldDamage = event.shieldDamage();
+            this.newDamage -= this.blockedDamage;
+        }
+    }
+
+    @ApiStatus.Internal
+    public void setReduction(Reduction reduction, float amount) {
+        float modifiedReduction = modifyReduction(reduction, amount);
+        this.reductions.put(reduction, modifiedReduction);
+        this.newDamage -= modifiedReduction;
+    }
+
+    private float modifyReduction(Reduction type, float reduction) {
+        for (var func : reductionFunctions.getOrDefault(type, List.of())) {
+            reduction = func.modify(this, reduction);
+        }
+        return reduction;
     }
 }

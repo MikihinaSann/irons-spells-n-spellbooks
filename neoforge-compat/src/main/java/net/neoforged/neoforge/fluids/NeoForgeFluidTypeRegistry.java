@@ -9,38 +9,26 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Links vanilla {@link Fluid}s to their {@link FluidType}. Populated when
- * fluids carrying a type are registered; vanilla fluids get defaults.
+ * Links vanilla {@link Fluid}s to their {@link FluidType}. Vanilla mappings are
+ * registered by {@link net.neoforged.neoforge.common.NeoForgeMod} static
+ * initializers so {@code type == NeoForgeMod.WATER_TYPE.value()} identity
+ * comparisons work; modded fluids may call {@link #register}.
  */
 public final class NeoForgeFluidTypeRegistry {
     private static final Map<Fluid, FluidType> FLUID_TO_TYPE = new ConcurrentHashMap<>();
     private static final Map<FluidType, ResourceLocation> TYPE_TO_KEY = new ConcurrentHashMap<>();
-
-    private static FluidType waterType;
-    private static FluidType lavaType;
-    private static FluidType emptyType;
+    private static boolean initialized;
 
     private NeoForgeFluidTypeRegistry() {
     }
 
+    /** Forces {@link net.neoforged.neoforge.common.NeoForgeMod} class-load, which registers the vanilla fluid types. */
     public static synchronized void init() {
-        if (waterType != null) {
+        if (initialized) {
             return;
         }
-        waterType = new FluidType(FluidType.Properties.create()
-                .descriptionId("block.minecraft.water")
-                .canSwim(true).canDrown(true).canHydrate(true).canExtinguish(true)
-                .supportsBoating(true));
-        lavaType = new FluidType(FluidType.Properties.create()
-                .descriptionId("block.minecraft.lava")
-                .canSwim(false).canDrown(true).canHydrate(false)
-                .lightLevel(15).temperature(1300).density(3000).viscosity(6000));
-        emptyType = new FluidType(FluidType.Properties.create());
-        register(Fluids.WATER, waterType, ResourceLocation.fromNamespaceAndPath("minecraft", "water_type"));
-        register(Fluids.FLOWING_WATER, waterType, null);
-        register(Fluids.LAVA, lavaType, ResourceLocation.fromNamespaceAndPath("minecraft", "lava_type"));
-        register(Fluids.FLOWING_LAVA, lavaType, null);
-        register(Fluids.EMPTY, emptyType, ResourceLocation.fromNamespaceAndPath("minecraft", "empty_type"));
+        initialized = true;
+        net.neoforged.neoforge.common.NeoForgeMod.registerFluidTypes();
     }
 
     public static void register(Fluid fluid, FluidType type, @Nullable ResourceLocation typeId) {
@@ -60,12 +48,22 @@ public final class NeoForgeFluidTypeRegistry {
         if (type != null) {
             return type;
         }
-        return fluid == Fluids.EMPTY ? emptyType : waterType;
+        return fluid == Fluids.EMPTY
+                ? net.neoforged.neoforge.common.NeoForgeMod.EMPTY_TYPE.value()
+                : net.neoforged.neoforge.common.NeoForgeMod.WATER_TYPE.value();
     }
 
     @Nullable
     public static ResourceLocation getKeyFor(FluidType type) {
         init();
-        return TYPE_TO_KEY.get(type);
+        ResourceLocation key = TYPE_TO_KEY.get(type);
+        if (key == null) {
+            var holder = net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES.getResourceKey(type);
+            key = holder.map(k -> k.location()).orElse(null);
+            if (key != null) {
+                TYPE_TO_KEY.put(type, key);
+            }
+        }
+        return key;
     }
 }

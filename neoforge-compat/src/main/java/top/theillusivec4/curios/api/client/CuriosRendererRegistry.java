@@ -48,14 +48,21 @@ public final class CuriosRendererRegistry {
                         living, slotReference.index(), false, true);
                 EntityRenderDispatcher dispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
                 EntityRenderer<?> renderer = dispatcher.getRenderer(entity);
-                getRenderer(item).render(stack, ctx, matrices, (RenderLayerParent) renderer, vertexConsumers,
-                        light, limbAngle, limbDistance, tickDelta, animationProgress, headYaw, headPitch);
+                getRenderer(item).ifPresent(curioRenderer -> curioRenderer.render(stack, ctx, matrices,
+                        (RenderLayerParent) renderer, vertexConsumers,
+                        light, limbAngle, limbDistance, tickDelta, animationProgress, headYaw, headPitch));
             }
         });
     }
 
-    public static ICurioRenderer getRenderer(Item item) {
+    /**
+     * Curios signature returns an {@link java.util.Optional}; renderers are
+     * built lazily on first request (equivalent to Curios' deferred load()).
+     */
+    public static java.util.Optional<ICurioRenderer> getRenderer(Item item) {
         Supplier<ICurioRenderer> factory = FACTORIES.get(item);
-        return factory == null ? null : RENDERERS.computeIfAbsent(item, k -> factory.get());
+        return factory == null
+                ? java.util.Optional.empty()
+                : java.util.Optional.of(RENDERERS.computeIfAbsent(item, k -> factory.get()));
     }
 }

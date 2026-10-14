@@ -70,6 +70,10 @@ public interface ICurioItem {
         return getCurio(stack).getDropRule(slotContext, source, lootingLevel, recentlyHit);
     }
 
+    default boolean canWalkOnPowderedSnow(SlotContext slotContext, ItemStack stack) {
+        return getCurio(stack).canWalkOnPowderedSnow(slotContext);
+    }
+
     /**
      * Tooltip lines describing curio attribute modifiers. Mutates and returns
      * the provided list.

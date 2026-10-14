@@ -26,6 +26,18 @@ public interface ICurioStacksHandler {
     /** Whether items in this slot render. */
     boolean isVisible();
 
+    /**
+     * Per-slot render flags; the size always matches {@link #getStacks()}.
+     * Trinkets has no per-slot render toggle, so every entry reports true.
+     */
+    default net.minecraft.core.NonNullList<Boolean> getRenders() {
+        var list = net.minecraft.core.NonNullList.<Boolean>createWithCapacity(getSlots());
+        for (int i = 0; i < getSlots(); i++) {
+            list.add(Boolean.TRUE);
+        }
+        return list;
+    }
+
     /** Whether the slot render may be toggled by the wearer. */
     boolean canToggleRendering();
 

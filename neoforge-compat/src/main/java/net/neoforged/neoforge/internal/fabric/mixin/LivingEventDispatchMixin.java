@@ -11,6 +11,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.damagesource.DamageContainer;
+import net.neoforged.neoforge.common.extensions.ILivingEntityExtension;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
@@ -25,6 +28,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -293,5 +298,97 @@ public abstract class LivingEventDispatchMixin {
         if (event.isCanceled()) {
             ci.cancel();
         }
+    }
+
+    // ---- LivingShieldBlockEvent: NeoForge replaces the vanilla shield block
+    // inside hurt with CommonHooks.onDamageBlock. The wrap fires the event and
+    // the block proceeds when ev.getBlocked() is true. Shield durability uses
+    // ev.shieldDamage(). Partial blocking (setBlockedDamage < damage) cannot
+    // flow the remainder back through this wrap — vanilla zeroes the amount
+    // unconditionally inside the if, so the remainder is only approximate there.
+    @Unique
+    private net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent irons_spellbooks$shieldBlockEvent;
+
+    @WrapOperation(method = "hurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/LivingEntity;isDamageSourceBlocked(Lnet/minecraft/world/damagesource/DamageSource;)Z"))
+    private boolean irons_spellbooks$shieldBlockCheck(LivingEntity self, DamageSource source,
+            Operation<Boolean> original) {
+        DamageContainer container = ((ILivingEntityExtension) self).getDamageContainers().peek();
+        var ev = CommonHooks.onDamageBlock(self, container, original.call(self, source));
+        container.setBlockedDamage(ev);
+        irons_spellbooks$shieldBlockEvent = ev;
+        return ev.getBlocked();
+    }
+
+    @WrapOperation(method = "hurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/LivingEntity;hurtCurrentlyUsedShield(F)V"))
+    private void irons_spellbooks$shieldDamage(LivingEntity self, float amount, Operation<Void> original) {
+        var ev = irons_spellbooks$shieldBlockEvent;
+        irons_spellbooks$shieldBlockEvent = null;
+        if (ev != null && ev.shieldDamage() > 0) {
+            original.call(self, ev.shieldDamage());
+        }
+    }
+
+    // ---- LivingFallEvent: NeoForge fires at the head of causeFallDamage;
+    // null result cancels the fall entirely. ----
+    @WrapMethod(method = "causeFallDamage")
+    private boolean irons_spellbooks$livingFall(float distance, float damageMultiplier,
+            DamageSource source, Operation<Boolean> original) {
+        float[] ret = CommonHooks.onLivingFall((LivingEntity) (Object) this, distance, damageMultiplier);
+        if (ret == null) {
+            return false;
+        }
+        return original.call(ret[0], ret[1], source);
+    }
+
+    // ---- LivingJumpEvent: NeoForge fires at the end of jumpFromGround after
+    // the jump has been committed (hasImpulse set). ----
+    @Inject(method = "jumpFromGround", at = @At("RETURN"))
+    private void irons_spellbooks$livingJump(CallbackInfo ci) {
+        CommonHooks.onLivingJump((LivingEntity) (Object) this);
+    }
+
+    // ---- MobEffectEvent.Remove: NeoForge filters effect removal through
+    // EventHooks.onEffectRemoved in both removeEffect(Holder) and
+    // removeAllEffects (the milk/cure path); canceled effects stay applied. ----
+    @Shadow
+    private java.util.Map<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>,
+            net.minecraft.world.effect.MobEffectInstance> activeEffects;
+
+    @Shadow
+    protected abstract void onEffectRemoved(net.minecraft.world.effect.MobEffectInstance instance);
+
+    @Inject(method = "removeEffect(Lnet/minecraft/core/Holder;)Z", at = @At("HEAD"), cancellable = true)
+    private void irons_spellbooks$removeEffectCheck(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect,
+            CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.MobEffectEvent.Remove(self, effect, null))
+                .isCanceled()) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "removeAllEffects", at = @At("HEAD"), cancellable = true)
+    private void irons_spellbooks$removeAllEffectsFiltered(CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (self.level().isClientSide() || this.activeEffects.isEmpty()) {
+            cir.setReturnValue(false);
+            return;
+        }
+        java.util.Map<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>,
+                net.minecraft.world.effect.MobEffectInstance> map = new java.util.HashMap<>(this.activeEffects.size());
+        for (var entry : this.activeEffects.entrySet()) {
+            if (!NeoForge.EVENT_BUS
+                    .post(new net.neoforged.neoforge.event.entity.living.MobEffectEvent.Remove(self, entry.getValue(), null))
+                    .isCanceled()) {
+                map.put(entry.getKey(), entry.getValue());
+            }
+        }
+        map.keySet().forEach(this.activeEffects::remove);
+        for (var instance : map.values()) {
+            this.onEffectRemoved(instance);
+        }
+        cir.setReturnValue(true);
     }
 }

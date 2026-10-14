@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
  * are handled by the platform bridge where applicable.
  */
 public interface IEntityExtension {
-    private Entity self() {
+    default Entity self() {
         return (Entity) this;
     }
 
@@ -107,4 +107,14 @@ public interface IEntityExtension {
     default CompoundTag getPersistentData() {
         return net.neoforged.neoforge.common.extensions.EntityPersistentData.get(self());
     }
+
+    /**
+     * The {@link net.neoforged.neoforge.fluids.FluidType} the entity's eyes are in.
+     */
+    default net.neoforged.neoforge.fluids.FluidType getEyeInFluidType() {
+        return self().level().getFluidState(
+                net.minecraft.core.BlockPos.containing(self().getX(), self().getEyeY(), self().getZ()))
+                .getFluidType();
+    }
+
 }

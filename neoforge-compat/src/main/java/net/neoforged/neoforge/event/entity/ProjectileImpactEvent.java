@@ -4,37 +4,25 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.ICancellableEvent;
 
+/**
+ * Fired when a projectile impacts something. Canceling prevents the vanilla
+ * {@code Projectile#onHit} handling. Ported from NeoForge 21.1.
+ */
 public class ProjectileImpactEvent extends EntityEvent implements ICancellableEvent {
-    private final HitResult rayTraceResult;
+    private final HitResult ray;
     private final Projectile projectile;
-    private ImpactRule impactRule = ImpactRule.DEFAULT;
-
-    public enum ImpactRule {
-        DEFAULT,
-        SKIP_ENTITY,
-        SKIP_BLOCK,
-        SKIP_ALL
-    }
 
     public ProjectileImpactEvent(Projectile projectile, HitResult ray) {
         super(projectile);
+        this.ray = ray;
         this.projectile = projectile;
-        this.rayTraceResult = ray;
     }
 
     public HitResult getRayTraceResult() {
-        return rayTraceResult;
+        return ray;
     }
 
     public Projectile getProjectile() {
         return projectile;
-    }
-
-    public ImpactRule getImpactRule() {
-        return impactRule;
-    }
-
-    public void setImpactRule(ImpactRule rule) {
-        this.impactRule = rule;
     }
 }

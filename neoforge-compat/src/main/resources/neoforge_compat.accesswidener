@@ -161,3 +161,9 @@ transitive-accessible method net/minecraft/client/gui/components/AbstractWidget 
 transitive-accessible field net/minecraft/server/network/ServerCommonPacketListenerImpl connection Lnet/minecraft/network/Connection;
 transitive-accessible field net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl connection Lnet/minecraft/network/Connection;
 transitive-mutable field net/minecraft/client/model/geom/EntityModelSet roots Ljava/util/Map;
+
+# cataclysm worldgen modifiers: Structure.settings write-back + shield damage hook
+transitive-accessible field net/minecraft/world/level/levelgen/structure/Structure settings Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;
+transitive-mutable field net/minecraft/world/level/levelgen/structure/Structure settings Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;
+transitive-accessible method net/minecraft/world/entity/LivingEntity hurtCurrentlyUsedShield (F)V
+accessible	field	net/minecraft/client/renderer/texture/TextureAtlas	texturesByName	Ljava/util/Map;

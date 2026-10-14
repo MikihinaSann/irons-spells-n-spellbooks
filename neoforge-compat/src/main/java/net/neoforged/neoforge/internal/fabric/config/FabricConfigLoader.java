@@ -39,7 +39,7 @@ public final class FabricConfigLoader {
             // before the config enters CONFIGS, so the bridge listener always
             // misses that first load; post the Loading event now instead.
             if (config.getLoadedConfig() != null && LOADING_POSTED.add(config)) {
-                NeoForgeCompat.MOD_BUS.post(new ModConfigEvent.Loading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Loading(config));
             }
         } catch (Throwable t) {
             LOGGER.error("Failed to register config {}", fileName, t);
@@ -58,17 +58,17 @@ public final class FabricConfigLoader {
         NeoForgeModConfigEvents.loading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
                 LOADING_POSTED.add(config);
-                NeoForgeCompat.MOD_BUS.post(new ModConfigEvent.Loading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Loading(config));
             }
         });
         NeoForgeModConfigEvents.reloading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
-                NeoForgeCompat.MOD_BUS.post(new ModConfigEvent.Reloading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Reloading(config));
             }
         });
         NeoForgeModConfigEvents.unloading(modId).register(config -> {
             if (CONFIGS.containsValue(config)) {
-                NeoForgeCompat.MOD_BUS.post(new ModConfigEvent.Unloading(config));
+                NeoForgeCompat.MOD_BUS.postScoped(modId, new ModConfigEvent.Unloading(config));
             }
         });
     }

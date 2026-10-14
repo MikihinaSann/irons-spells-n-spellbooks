@@ -113,6 +113,12 @@ public abstract class PlayerInteractEvent extends PlayerEvent implements ICancel
         }
     }
 
+    public static class RightClickEmpty extends PlayerInteractEvent {
+        public RightClickEmpty(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+            super(player, hand, player.blockPosition(), null);
+        }
+    }
+
     /** Right-click air with empty offhand considerations (left click air). */
     public static class LeftClickEmpty extends PlayerInteractEvent {
         public LeftClickEmpty(Player player) {

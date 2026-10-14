@@ -76,6 +76,19 @@ public class EntityTeleportEvent extends EntityEvent implements ICancellableEven
     }
 
     /** Fired when an entity teleports via chorus fruit. */
+    public static class EnderEntity extends EntityTeleportEvent {
+        private final net.minecraft.world.entity.LivingEntity entityLiving;
+
+        public EnderEntity(net.minecraft.world.entity.LivingEntity entity, double targetX, double targetY, double targetZ) {
+            super(entity, targetX, targetY, targetZ);
+            this.entityLiving = entity;
+        }
+
+        public net.minecraft.world.entity.LivingEntity getEntityLiving() {
+            return entityLiving;
+        }
+    }
+
     public static class ChorusFruit extends EntityTeleportEvent {
         public ChorusFruit(net.minecraft.world.entity.LivingEntity entity, double targetX, double targetY, double targetZ) {
             super(entity, targetX, targetY, targetZ);

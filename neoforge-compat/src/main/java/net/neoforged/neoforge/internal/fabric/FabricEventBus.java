@@ -20,7 +20,7 @@ import java.util.function.Consumer;
  * Handlers are dispatched synchronously, ordered by {@link EventPriority}.
  */
 public class FabricEventBus implements IEventBus {
-    private record Listener<T extends Event>(EventPriority priority, boolean receiveCanceled, Consumer<T> consumer) {
+    private record Listener<T extends Event>(EventPriority priority, boolean receiveCanceled, Consumer<T> consumer, String owner) {
     }
 
     private final Map<Class<?>, List<Listener<?>>> listeners = new ConcurrentHashMap<>();
@@ -30,6 +30,15 @@ public class FabricEventBus implements IEventBus {
 
     @Override
     public void register(Object target) {
+        register(target, null);
+    }
+
+    /**
+     * {@code owner} tags each listener with the mod id that registered it, so
+     * {@link #postScoped} can deliver mod-owned events (config load/reload) only
+     * to that mod's listeners — matching NeoForge's per-mod event bus.
+     */
+    public void register(Object target, String owner) {
         Class<?> clazz = target instanceof Class<?> c ? c : target.getClass();
         List<Runnable> cleanup = new ArrayList<>();
         for (Method method : collectSubscribed(clazz)) {
@@ -38,7 +47,7 @@ public class FabricEventBus implements IEventBus {
             if (eventType == null) {
                 continue;
             }
-            Listener<Event> listener = new Listener<>(ann.priority(), ann.receiveCanceled(), event -> invoke(target, method, event));
+            Listener<Event> listener = new Listener<>(ann.priority(), ann.receiveCanceled(), event -> invoke(target, method, event), owner);
             listeners.computeIfAbsent(eventType, k -> new ArrayList<>()).add(listener);
             cleanup.add(() -> listeners.get(eventType).remove(listener));
         }
@@ -120,10 +129,15 @@ public class FabricEventBus implements IEventBus {
 
     @Override
     public <T extends Event> void addListener(EventPriority priority, boolean receiveCanceled, Class<T> eventType, Consumer<T> consumer) {
+        addListener(priority, receiveCanceled, eventType, consumer, null);
+    }
+
+    /** Owner-tagged variant used by {@link #scoped}. */
+    public <T extends Event> void addListener(EventPriority priority, boolean receiveCanceled, Class<T> eventType, Consumer<T> consumer, String owner) {
         if (eventType == Event.class) {
             consumer = typeFilteringConsumer(consumer);
         }
-        listeners.computeIfAbsent(eventType, k -> new ArrayList<>()).add(new Listener<>(priority, receiveCanceled, consumer));
+        listeners.computeIfAbsent(eventType, k -> new ArrayList<>()).add(new Listener<>(priority, receiveCanceled, consumer, owner));
         sortAll();
     }
 
@@ -200,6 +214,102 @@ public class FabricEventBus implements IEventBus {
     @Override
     public <T extends Event> T post(T event) {
         return post(null, event);
+    }
+
+    /**
+     * Post a mod-owned event: delivered only to listeners registered by
+     * {@code owner} (via {@link #scoped}) plus untagged listeners. NeoForge
+     * gives each mod its own event bus, so e.g. a config {@code Loading} event
+     * for mod A never reaches mod B's handlers.
+     */
+    public <T extends Event> T postScoped(String owner, T event) {
+        for (Listener<?> l : listenersFor(event.getClass())) {
+            @SuppressWarnings("unchecked")
+            Listener<T> listener = (Listener<T>) l;
+            if (listener.owner() != null && !listener.owner().equals(owner)) {
+                continue;
+            }
+            if (event.isCanceled() && !listener.receiveCanceled()) {
+                continue;
+            }
+            listener.consumer().accept(event);
+        }
+        return event;
+    }
+
+    /**
+     * Returns an {@link IEventBus} view that tags every registration with
+     * {@code owner}. Posting through the view still hits the shared bus.
+     */
+    public IEventBus scoped(String owner) {
+        return new ScopedBus(owner);
+    }
+
+    private class ScopedBus implements IEventBus {
+        private final String owner;
+
+        ScopedBus(String owner) {
+            this.owner = owner;
+        }
+
+        @Override
+        public void register(Object object) {
+            FabricEventBus.this.register(object, owner);
+        }
+
+        @Override
+        public void unregister(Object object) {
+            FabricEventBus.this.unregister(object);
+        }
+
+        @Override
+        public <T extends Event> void addListener(Consumer<T> consumer) {
+            FabricEventBus.this.addListener(EventPriority.NORMAL, false, resolveType(consumer), consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(Class<T> eventType, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(EventPriority.NORMAL, false, eventType, consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(EventPriority priority, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(priority, false, resolveType(consumer), consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(boolean receiveCanceled, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(EventPriority.NORMAL, receiveCanceled, resolveType(consumer), consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(boolean receiveCanceled, Class<T> eventType, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(EventPriority.NORMAL, receiveCanceled, eventType, consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(EventPriority priority, boolean receiveCanceled, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(priority, receiveCanceled, resolveType(consumer), consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> void addListener(EventPriority priority, boolean receiveCanceled, Class<T> eventType, Consumer<T> consumer) {
+            FabricEventBus.this.addListener(priority, receiveCanceled, eventType, consumer, owner);
+        }
+
+        @Override
+        public <T extends Event> T post(T event) {
+            return FabricEventBus.this.post(event);
+        }
+
+        @Override
+        public <T extends Event> T post(EventPriority phase, T event) {
+            return FabricEventBus.this.post(phase, event);
+        }
+
+        @Override
+        public void start() {
+        }
     }
 
     @Override

@@ -84,6 +84,19 @@ public final class CuriosApi {
         return com.google.common.collect.ImmutableMultimap.of();
     }
 
+    /**
+     * Adds a slot modifier to the given attribute map — Curios semantics:
+     * wraps the slot identifier in a {@link SlotAttribute}.
+     */
+    public static void addSlotModifier(
+            com.google.common.collect.Multimap<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>,
+                    net.minecraft.world.entity.ai.attributes.AttributeModifier> map,
+            String identifier, net.minecraft.resources.ResourceLocation id, double amount,
+            net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation operation) {
+        map.put(SlotAttribute.getOrCreate(identifier),
+                new net.minecraft.world.entity.ai.attributes.AttributeModifier(id, amount, operation));
+    }
+
     public static CuriosHelper getCuriosHelper() {
         return CuriosHelper.INSTANCE;
     }
@@ -109,6 +122,45 @@ public final class CuriosApi {
                 }
             });
             return slots;
+        }
+
+        /**
+         * Curios API: the entity's curio inventory, empty when it has no
+         * trinket component.
+         */
+        public java.util.Optional<top.theillusivec4.curios.api.type.capability.ICuriosItemHandler> getCuriosHandler(
+                net.minecraft.world.entity.LivingEntity entity) {
+            return getCuriosInventory(entity);
+        }
+
+        /** Curios API: first curio matching the predicate. */
+        public java.util.Optional<SlotResult> findFirstCurio(
+                net.minecraft.world.entity.LivingEntity entity,
+                java.util.function.Predicate<ItemStack> filter) {
+            return getCuriosInventory(entity).flatMap(inv -> inv.findFirstCurio(filter));
+        }
+
+        /** Curios API: first curio matching the item. */
+        public java.util.Optional<SlotResult> findFirstCurio(
+                net.minecraft.world.entity.LivingEntity entity, Item item) {
+            return getCuriosInventory(entity).flatMap(inv -> inv.findFirstCurio(item));
+        }
+
+        /** Curios API: all curios matching the predicate. */
+        public java.util.List<SlotResult> findCurios(
+                net.minecraft.world.entity.LivingEntity entity,
+                java.util.function.Predicate<ItemStack> filter) {
+            return getCuriosInventory(entity)
+                    .map(inv -> inv.findCurios(filter))
+                    .orElse(java.util.List.of());
+        }
+
+        /** Curios API: all curios matching the item. */
+        public java.util.List<SlotResult> findCurios(
+                net.minecraft.world.entity.LivingEntity entity, Item item) {
+            return getCuriosInventory(entity)
+                    .map(inv -> inv.findCurios(item))
+                    .orElse(java.util.List.of());
         }
     }
 }

@@ -23,4 +23,11 @@ public interface IHolderExtension<T> {
     default ResourceKey<T> getKey() {
         return self().unwrapKey().orElseThrow(() -> new IllegalStateException("Trying to access key on tag-based holder"));
     }
+
+    /**
+     * NeoForge name for the holder itself when used as a delegate.
+     */
+    default Holder<T> getDelegate() {
+        return self();
+    }
 }

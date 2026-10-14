@@ -75,6 +75,13 @@ public interface IClientFluidTypeExtensions {
         return of(NeoForgeFluidTypeRegistry.getTypeFor(fluid));
     }
 
+    /**
+     * {@return the client extensions for the fluid state's type}
+     */
+    static IClientFluidTypeExtensions of(net.minecraft.world.level.material.FluidState state) {
+        return of(state.getType());
+    }
+
     /** Lookup helper — resolves the extension for a {@link FluidStack}. */
     static IClientFluidTypeExtensions of(FluidStack stack) {
         return of(stack.getFluid());

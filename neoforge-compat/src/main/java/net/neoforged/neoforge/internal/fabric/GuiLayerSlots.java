@@ -88,7 +88,7 @@ public final class GuiLayerSlots {
                     yield Slot.AFTER_CROSSHAIR;
                 }
                 if (anchor.equals(VanillaGuiLayers.HOTBAR)
-                        || anchor.equals(VanillaGuiLayers.JUMP_BAR)
+                        || anchor.equals(VanillaGuiLayers.JUMP_METER)
                         || anchor.equals(VanillaGuiLayers.EXPERIENCE_BAR)) {
                     yield Slot.AFTER_XP;
                 }

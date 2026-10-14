@@ -31,10 +31,49 @@ public interface IClientItemExtensions {
         return null;
     }
 
-    @Nullable
     default Model getGenericArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot,
                                        HumanoidModel<?> original) {
-        return null;
+        HumanoidModel<?> replacement = getHumanoidArmorModel(entityLiving, itemStack, armorSlot, original);
+        if (replacement != original && replacement != null) {
+            net.neoforged.neoforge.client.ClientHooks.copyModelProperties(original, replacement);
+            return replacement;
+        }
+        return original;
+    }
+
+    /**
+     * Humanoid armor model override — the generic model hook adapts it.
+     */
+    @Nullable
+    default HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack,
+            EquipmentSlot armorSlot, HumanoidModel<?> original) {
+        return original;
+    }
+
+    /**
+     * Called to apply custom model animations to a humanoid armor model.
+     */
+    default void setupModelAnimations(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot equipmentSlot,
+            Model model, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks,
+            float netHeadYaw, float headPitch) {
+    }
+
+    /**
+     * Default dye color for this armor stack.
+     */
+    default int getDefaultDyeColor(ItemStack stack) {
+        return stack.is(net.minecraft.tags.ItemTags.DYEABLE)
+                ? net.minecraft.util.FastColor.ARGB32.opaque(net.minecraft.world.item.component.DyedItemColor
+                        .getOrDefault(stack, net.minecraft.world.item.component.DyedItemColor.LEATHER_COLOR))
+                : 0xFFFFFFFF;
+    }
+
+    /**
+     * Tint color for an armor material layer.
+     */
+    default int getArmorLayerTintColor(ItemStack stack, LivingEntity entity,
+            net.minecraft.world.item.ArmorMaterial.Layer layer, int layerIdx, int fallbackColor) {
+        return layer.dyeable() ? fallbackColor : 0xFFFFFFFF;
     }
 
     @Nullable

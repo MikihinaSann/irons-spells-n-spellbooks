@@ -161,7 +161,7 @@ public class NeoForgeCompat implements ModInitializer {
                     if (info.serverOnly && !dedicatedServer) {
                         continue;
                     }
-                    if (registerSubscriber(className)) {
+                    if (registerSubscriber(className, info.modid.isEmpty() ? fabricModId : info.modid)) {
                         found++;
                         local++;
                     }
@@ -199,13 +199,13 @@ public class NeoForgeCompat implements ModInitializer {
     }
 
     /** Register a subscriber class on both buses once. Mirrors the old sub() semantics. */
-    static boolean registerSubscriber(String className) {
+    static boolean registerSubscriber(String className, String owner) {
         if (!REGISTERED_SUBSCRIBERS.add(className)) {
             return false;
         }
         try {
             Class<?> clazz = Class.forName(className);
-            MOD_BUS.register(clazz);
+            MOD_BUS.register(clazz, owner);
             NeoForge.EVENT_BUS.register(clazz);
             return true;
         } catch (Throwable t) {
@@ -363,7 +363,7 @@ public class NeoForgeCompat implements ModInitializer {
         net.neoforged.fml.ModContainer container =
                 new net.neoforged.fml.ModContainer(fabric, modid);
         try {
-            construct(clazz, MOD_BUS, container);
+            construct(clazz, MOD_BUS.scoped(modid), container);
             MOD_CONTAINERS.add(container);
             LOGGER.info("neoforge_compat constructed @Mod {} (modid {})", className, modid);
         } catch (Throwable t) {
@@ -469,12 +469,30 @@ public class NeoForgeCompat implements ModInitializer {
         NeoForgeMod.registerAttributes();
         NeoForgeMod.registerIngredientTypes();
         NeoForgeMod.registerBiomeModifierSerializers();
+        NeoForgeMod.registerStructureModifierSerializers();
         NeoForgeMod.registerConditionCodecs();
         NeoForgeMod.registerFluidTypes();
         MOD_BUS.post(new NewRegistryEvent());
         var datapackRegistryEvent = new net.neoforged.neoforge.registries.DataPackRegistryEvent.NewRegistry();
         MOD_BUS.post(datapackRegistryEvent);
         datapackRegistryEvent.finish();
+        // NeoForge's own datapack registries (NF registers these in NeoForgeMod's
+        // DataPackRegistryEvent.NewRegistry listener). Server-only like upstream;
+        // the elementsDirPath mixin resolves data/<ns>/neoforge/<key>/.
+        net.fabricmc.fabric.api.event.registry.DynamicRegistries.register(
+                net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.BIOME_MODIFIERS,
+                com.mojang.serialization.Codec.lazyInitialized(() ->
+                        net.neoforged.neoforge.registries.NeoForgeRegistries.BIOME_MODIFIER_SERIALIZERS
+                                .byNameCodec()
+                                .dispatch("type", net.neoforged.neoforge.common.world.BiomeModifier::codec,
+                                        java.util.function.Function.identity())));
+        net.fabricmc.fabric.api.event.registry.DynamicRegistries.register(
+                net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.STRUCTURE_MODIFIERS,
+                com.mojang.serialization.Codec.lazyInitialized(() ->
+                        net.neoforged.neoforge.registries.NeoForgeRegistries.STRUCTURE_MODIFIER_SERIALIZERS
+                                .byNameCodec()
+                                .dispatch("type", net.neoforged.neoforge.common.world.StructureModifier::codec,
+                                        java.util.function.Function.identity())));
         java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<?>>,
                 java.util.Map<net.minecraft.resources.ResourceLocation,
                         net.neoforged.neoforge.registries.datamaps.DataMapType<?, ?>>> dataMapAttachments = new java.util.HashMap<>();
@@ -494,7 +512,12 @@ public class NeoForgeCompat implements ModInitializer {
                         new top.theillusivec4.curios.api.type.capability.TrinketCurioAdapter(curioItem));
             }
         });
-        MOD_BUS.post(new net.neoforged.neoforge.event.ModifyDefaultComponentsEvent());
+        {
+            net.neoforged.neoforge.event.ModifyDefaultComponentsEvent componentEvent =
+                    new net.neoforged.neoforge.event.ModifyDefaultComponentsEvent();
+            MOD_BUS.post(componentEvent);
+            componentEvent.apply();
+        }
         MOD_BUS.post(new FMLCommonSetupEvent());
 
         net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent payloadEvent =
@@ -587,6 +610,11 @@ public class NeoForgeCompat implements ModInitializer {
             entity.onRemovedFromLevel();
             NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world));
         });
+        // NF runs biome/structure modifiers inside handleServerAboutToStart,
+        // before the ServerAboutToStartEvent is fired - register first so this
+        // callback executes ahead of the event posts below.
+        ServerLifecycleEvents.SERVER_STARTING.register(server ->
+                BiomeModifierManager.applyAll(server.registryAccess()));
         ServerLifecycleEvents.SERVER_STARTING.register(server ->
                 NeoForge.EVENT_BUS.post(new ServerStartingEvent(server)));
         ServerLifecycleEvents.SERVER_STARTING.register(server ->
@@ -644,6 +672,21 @@ public class NeoForgeCompat implements ModInitializer {
             NeoForge.EVENT_BUS.post(event);
             return event.isCanceled() ? net.minecraft.world.InteractionResult.FAIL : net.minecraft.world.InteractionResult.PASS;
         });
+        net.fabricmc.fabric.api.event.player.AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+            var event = new net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.LeftClickBlock(player, pos, direction);
+            NeoForge.EVENT_BUS.post(event);
+            return event.isCanceled() ? net.minecraft.world.InteractionResult.FAIL : net.minecraft.world.InteractionResult.PASS;
+        });
+
+        // LeftClickEmpty: client posts the event locally, then notifies the
+        // server through this C2S payload so listeners also run server-side.
+        net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playC2S()
+                .register(EmptyClickPayload.TYPE, EmptyClickPayload.STREAM_CODEC);
+        net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.registerGlobalReceiver(
+                EmptyClickPayload.TYPE, (payload, context) ->
+                        context.server().execute(() -> NeoForge.EVENT_BUS.post(
+                                new net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty(
+                                        context.player()))));
         net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
             var event = new net.neoforged.neoforge.event.level.BlockEvent.BreakEvent(world, pos, state, player);
             NeoForge.EVENT_BUS.post(event);
@@ -683,31 +726,10 @@ public class NeoForgeCompat implements ModInitializer {
         MOD_BUS.post(serverPacks);
         BuiltinPackSources.addAll(PackType.SERVER_DATA, serverPacks.getSources());
 
-        // NeoForge biome modifiers: collect datapack JSONs, then apply to the
-        // freshly-built biome registry at server start and after /reload.
-        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
-                new net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener() {
-                    @Override
-                    public net.minecraft.resources.ResourceLocation getFabricId() {
-                        return net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(
-                                "neoforge", "biome_modifiers");
-                    }
-
-                    @Override
-                    public java.util.concurrent.CompletableFuture<Void> reload(
-                            net.minecraft.server.packs.resources.PreparableReloadListener.PreparationBarrier barrier,
-                            net.minecraft.server.packs.resources.ResourceManager manager,
-                            net.minecraft.util.profiling.ProfilerFiller prepProfiler,
-                            net.minecraft.util.profiling.ProfilerFiller reloadProfiler,
-                            java.util.concurrent.Executor backgroundExecutor, java.util.concurrent.Executor gameExecutor) {
-                        return java.util.concurrent.CompletableFuture.runAsync(() ->
-                                        BiomeModifierManager.collect(manager),
-                                        backgroundExecutor)
-                                .thenCompose(barrier::wait);
-                    }
-                });
-        ServerLifecycleEvents.SERVER_STARTING.register(server ->
-                BiomeModifierManager.applyAll(server.registryAccess()));
+        // NeoForge biome/structure modifiers: loaded as datapack registries
+        // (registered above via DynamicRegistries), applied before
+        // ServerAboutToStartEvent and re-applied after /reload since the
+        // datapack loader rebuilds the biome/structure registries fresh.
         ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, commandManager, success) -> {
             if (success) {
                 BiomeModifierManager.applyAll(server.registryAccess());

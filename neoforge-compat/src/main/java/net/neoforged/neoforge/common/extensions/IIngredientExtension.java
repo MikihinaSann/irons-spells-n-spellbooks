@@ -30,4 +30,11 @@ public interface IIngredientExtension {
     default boolean isSimple() {
         return true;
     }
+
+    /**
+     * NeoForge name for vanilla {@code Ingredient#isEmpty()}.
+     */
+    default boolean hasNoItems() {
+        return ((net.minecraft.world.item.crafting.Ingredient) (Object) this).isEmpty();
+    }
 }

@@ -54,4 +54,13 @@ public abstract class LivingEvent extends net.neoforged.neoforge.event.entity.En
             }
         }
     }
+
+    /**
+     * Fired when an entity jumps (LivingEntity#jumpFromGround). Not cancellable.
+     */
+    public static class LivingJumpEvent extends LivingEvent {
+        public LivingJumpEvent(net.minecraft.world.entity.LivingEntity e) {
+            super(e);
+        }
+    }
 }
