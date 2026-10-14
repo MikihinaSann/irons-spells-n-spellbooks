@@ -22,6 +22,18 @@ loom {
         neoforge_compat {
             sourceSet project(':neoforge-compat').sourceSets.main
         }
+        lionfishapi {
+            sourceSet project(':mods:lionfishapi').sourceSets.main
+        }
+        placebo {
+            sourceSet project(':mods:placebo').sourceSets.main
+        }
+        apothic_attributes {
+            sourceSet project(':mods:apothic_attributes').sourceSets.main
+        }
+        citadel {
+            sourceSet project(':mods:citadel').sourceSets.main
+        }
     }
 
     runs {
@@ -56,6 +68,22 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     // namedElements = the named (dev) variant of the compat jar
     implementation(project(path: ":neoforge-compat", configuration: "namedElements")) {
+        transitive = false
+    }
+    // TypeResolver (bundled jar-in-jar inside neoforge_compat for prod; localRuntime for dev)
+    localRuntime "net.jodah:typetools:0.6.3"
+    // Standalone ported libraries (separate Fabric mods). namedElements = named
+    // (mojmap) variant; runtime loading is via loom.mods above.
+    implementation(project(path: ":mods:lionfishapi", configuration: "namedElements")) {
+        transitive = false
+    }
+    implementation(project(path: ":mods:placebo", configuration: "namedElements")) {
+        transitive = false
+    }
+    implementation(project(path: ":mods:apothic_attributes", configuration: "namedElements")) {
+        transitive = false
+    }
+    implementation(project(path: ":mods:citadel", configuration: "namedElements")) {
         transitive = false
     }
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"

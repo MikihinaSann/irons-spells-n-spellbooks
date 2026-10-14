@@ -12,3 +12,7 @@ pluginManagement {
 rootProject.name = 'irons-spells-n-spellbooks'
 
 include 'neoforge-compat'
+include 'mods:lionfishapi'
+include 'mods:placebo'
+include 'mods:apothic_attributes'
+include 'mods:citadel'
