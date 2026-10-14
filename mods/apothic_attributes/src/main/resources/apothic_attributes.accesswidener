@@ -1,0 +1,14 @@
+accessWidener v2 named
+# Translated from apothic_attributes META-INF/accesstransformer.cfg
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen imageWidth I
+accessible method net/minecraft/client/gui/GuiGraphics renderTooltipInternal (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;)V
+accessible method net/minecraft/client/particle/CritParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)V
+accessible field net/minecraft/world/entity/projectile/AbstractArrow piercingIgnoreEntityIds Lit/unimi/dsi/fastutil/ints/IntOpenHashSet;
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+accessible field net/minecraft/world/effect/MobEffect attributeModifiers Ljava/util/Map;
+accessible class net/minecraft/world/effect/MobEffect$AttributeTemplate
+accessible method net/minecraft/world/entity/ai/attributes/AttributeInstance getModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)Ljava/util/Map;
+accessible field net/minecraft/world/entity/LivingEntity lastHurt F

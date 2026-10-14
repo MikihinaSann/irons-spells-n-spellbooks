@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "apothic_attributes",
+  "version": "2.11.0",
+  "name": "Apothic Attributes",
+  "description": "Apothic Attributes (NeoForge->Fabric compat build)",
+  "authors": [
+    "Shadows_of_Fire"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "neoforge": [
+      "dev.shadowsoffire.apothic_attributes.ApothicAttributes"
+    ]
+  },
+  "mixins": [
+    "apothic_attributes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "neoforge_compat": "*",
+    "placebo": "*"
+  },
+  "accessWidener": "apothic_attributes.accesswidener"
+}

@@ -1,0 +1,62 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'fabric-loom' version "${loom_version}"
+}
+
+version = '2.11.0'
+group = mod_group_id
+
+base {
+    archivesName = 'apothic_attributes'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+loom {
+    accessWidenerPath = file("src/main/resources/apothic_attributes.accesswidener")
+}
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.ladysnake.org/releases" }
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://maven.blamejared.com" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // NeoForge compat shim - named (mojmap) variant for compilation; the runtime
+    // mod jar is loaded through the root project's loom.mods.
+    implementation(project(path: ':neoforge-compat', configuration: 'namedElements')) {
+        transitive = false
+    }
+    // Curios facade types reference Trinkets classes in signatures
+    modCompileOnly files("${rootDir}/libs/trinkets-${trinkets_version}.jar")
+    implementation(project(path: ':mods:placebo', configuration: 'namedElements')) {
+        transitive = false
+    }
+    compileOnly "mezz.jei:jei-1.21.1-fabric-api:19.21.0.247"
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.21.0.247"
+
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    compileOnly "org.checkerframework:checker-qual:3.43.0"
+    compileOnly "com.google.j2objc:j2objc-annotations:3.0.0"
+    compileOnly "com.google.errorprone:error_prone_annotations:2.36.0"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"   : "Apothic Attributes",
+                "Specification-Vendor"  : "Shadows_of_Fire",
+                "Implementation-Title"  : project.name,
+                "Implementation-Version": project.jar.archiveVersion,
+                "Implementation-Vendor" : "Shadows_of_Fire"
+        ])
+    }
+}
