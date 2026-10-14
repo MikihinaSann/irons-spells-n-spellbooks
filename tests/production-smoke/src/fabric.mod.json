@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "iss_prod_probe",
+  "version": "1.0.0",
+  "name": "ISS Production ABI Probe",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "issprobe.IssProdProbe"
+    ],
+    "client": [
+      "issprobe.IssProdProbeClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "1.21.1",
+    "neoforge_compat": "*",
+    "apothic_attributes": "*"
+  },
+  "mixins": [
+    "iss_probe.mixins.json"
+  ]
+}
