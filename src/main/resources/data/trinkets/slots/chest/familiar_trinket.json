@@ -1,0 +1,13 @@
+{
+  "icon": "curios:slot/familiar_trinket_slot",
+  "order": 1000,
+  "quick_move_predicates": [
+    "trinkets:tag"
+  ],
+  "validator_predicates": [
+    "trinkets:tag"
+  ],
+  "tooltip_predicates": [
+    "trinkets:tag"
+  ]
+}

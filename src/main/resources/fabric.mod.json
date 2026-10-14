@@ -23,7 +23,8 @@
       "com.grandsigil.GrandSigil",
       "net.veroxuniverse.crystal_chronicles.CrystalChronicles",
       "com.yukami.efiscompat.EpicFightIronCompat",
-      "com.mumu17.ironsarms.IronsArms"
+      "com.mumu17.ironsarms.IronsArms",
+      "net.alshanex.familiarslib.FamiliarsLib"
     ],
     "neoforge:setup": [
       "io.redspace.ironsspellbooks.IronsSpellbooksFabric"
@@ -36,7 +37,8 @@
     "irons_spellbooks.mixins.json",
     "irons_lib.mixins.json",
     "mixins.epicironcompat.json",
-    "mixins.ironsarms.json"
+    "mixins.ironsarms.json",
+    "familiarslib.mixins.json"
   ],
   "accessWidener": "irons_spellbooks.accesswidener",
   "depends": {
@@ -149,7 +151,33 @@
       ],
       "net/minecraft/world/level/ServerLevelAccessor": [
         "net/neoforged/neoforge/common/extensions/ILevelAccessorExtension"
+      ],
+      "net/minecraft/world/entity/LivingEntity": [
+        "net/neoforged/neoforge/common/extensions/ILivingEntityExtension"
+      ],
+      "net/minecraft/world/effect/MobEffect": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectExtension"
+      ],
+      "net/minecraft/world/effect/MobEffectInstance": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectInstanceExtension"
+      ],
+      "net/minecraft/client/gui/GuiGraphics": [
+        "net/neoforged/neoforge/client/extensions/IGuiGraphicsExtension"
+      ],
+      "net/minecraft/server/network/ServerGamePacketListenerImpl": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
+      ],
+      "net/minecraft/client/multiplayer/ClientPacketListener": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
       ]
     }
-  }
+  },
+  "provides": [
+    "irons_lib",
+    "grandsigil",
+    "crystal_chronicles",
+    "efiscompat",
+    "ironsarms",
+    "familiarslib"
+  ]
 }

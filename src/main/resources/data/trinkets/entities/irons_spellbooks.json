@@ -15,6 +15,7 @@
     "hand/ring",
     "hand/glove",
     "offhand/ring",
-    "offhand/glove"
+    "offhand/glove",
+    "chest/familiar_trinket"
   ]
 }
