@@ -19,6 +19,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModelBase;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -400,6 +401,12 @@ public class CMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
         if (itemStackIn.is(ModItems.CURSED_BOW.get())) {
             float ageInTicks = Minecraft.getInstance().player == null ? 0F : Minecraft.getInstance().player.tickCount + partialTick;
             float pullAmount = Cursed_bow.getPullingAmount(itemStackIn, partialTick);
+            LocalPlayer viewer = Minecraft.getInstance().player;
+            if (viewer != null && pullAmount > 0.0F
+                    && (viewer.getMainHandItem() == itemStackIn || viewer.getOffhandItem() == itemStackIn)
+                    && !(viewer.isUsingItem() && viewer.getUseItem().is(itemStackIn.getItem()))) {
+                pullAmount = 0.0F;
+            }
 
             matrixStackIn.pushPose();
             matrixStackIn.translate(0.5F, 0.5f, 0.5f);
@@ -416,6 +423,12 @@ public class CMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
         if (itemStackIn.is(ModItems.WRATH_OF_THE_DESERT.get())) {
             float ageInTicks = Minecraft.getInstance().player == null ? 0F : Minecraft.getInstance().player.tickCount + partialTick;
             float pullAmount = Wrath_of_the_desert.getPullingAmount(itemStackIn, partialTick);
+            LocalPlayer viewer = Minecraft.getInstance().player;
+            if (viewer != null && pullAmount > 0.0F
+                    && (viewer.getMainHandItem() == itemStackIn || viewer.getOffhandItem() == itemStackIn)
+                    && !(viewer.isUsingItem() && viewer.getUseItem().is(itemStackIn.getItem()))) {
+                pullAmount = 0.0F;
+            }
 
             matrixStackIn.pushPose();
             matrixStackIn.translate(0.5F, 0.5f, 0.5f);

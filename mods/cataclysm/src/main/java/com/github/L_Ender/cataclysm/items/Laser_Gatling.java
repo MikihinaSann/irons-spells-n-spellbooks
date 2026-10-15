@@ -138,7 +138,7 @@ public class Laser_Gatling extends Item {
 
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean held) {
         super.inventoryTick(stack, level, entity, i, held);
-        boolean using = entity instanceof LivingEntity living && living.getUseItem().equals(stack);
+        boolean using = entity instanceof LivingEntity living && living.getUseItem().is(stack.getItem());
 
             if (using ) {
                 stack.set(ModDataComponents.LASER_GATLING, true);

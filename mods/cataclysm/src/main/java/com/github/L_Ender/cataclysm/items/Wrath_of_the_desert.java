@@ -48,7 +48,7 @@ public class Wrath_of_the_desert extends Item {
 
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean held) {
         super.inventoryTick(stack, level, entity, i, held);
-        boolean using = entity instanceof LivingEntity living && living.getUseItem().equals(stack);
+        boolean using = entity instanceof LivingEntity living && living.getUseItem().is(stack.getItem());
         int useTime = getUseTime(stack);
         ChargeAnimationComponent flaskContents = stack.getOrDefault(ModDataComponents.CHARGE_ANIMATION, ChargeAnimationComponent.EMPTY);
 
@@ -88,6 +88,9 @@ public class Wrath_of_the_desert extends Item {
         ChargeAnimationComponent flaskContents = stack.getOrDefault(ModDataComponents.CHARGE_ANIMATION, ChargeAnimationComponent.EMPTY);
         float prev = flaskContents.PrevUseTime();
         float current = flaskContents.UseTime();
+        if (current <= 0) {
+            return 0.0F;
+        }
         return prev + f * (current - prev);
     }
 
