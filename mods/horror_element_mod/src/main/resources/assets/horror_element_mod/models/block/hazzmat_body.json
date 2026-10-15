@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/chestbursted_hazmat",
+  "textures": {
+    "all": "horror_element_mod:block/blood_7",
+    "particle": "horror_element_mod:block/blood_7",
+    "2": "horror_element_mod:block/chestbursted_hazzmat"
+  },
+  "render_type": "cutout"
+}

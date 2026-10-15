@@ -90,7 +90,7 @@ public class SupremeBonescallerEntity extends Monster implements RangedAttackMob
       this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(1, new SupremeBonescallerEntity.RangedAttackGoal(this, 1.25, 45, 10.0F) {
          @Override
          public boolean canContinueToUse() {

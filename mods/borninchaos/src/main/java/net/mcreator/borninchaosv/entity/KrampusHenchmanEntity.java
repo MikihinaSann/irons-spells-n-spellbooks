@@ -96,7 +96,7 @@ public class KrampusHenchmanEntity extends Monster implements GeoEntity {
       this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(6, new FloatGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
    }
 
    public SoundEvent getAmbientSound() {

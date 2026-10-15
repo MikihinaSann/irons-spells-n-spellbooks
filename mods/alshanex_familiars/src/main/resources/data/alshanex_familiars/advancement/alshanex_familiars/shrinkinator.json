@@ -1,0 +1,31 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/root",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:shrinking_station"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.shrinkinator"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.shrinkinator.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alshanex_familiars:shrinking_station"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

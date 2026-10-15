@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "W": {
+      "item": "irons_spellbooks:wizard_boots"
+    },
+    "R": {
+      "item": "somakespells:aqua_rune"
+    },
+    "E": {
+      "item": "irons_spellbooks:arcane_essence"
+    }
+  },
+  "pattern": [
+    "WR",
+    "E "
+  ],
+  "result": {
+    "id": "somakespells:aquamancer_boots"
+  }
+}

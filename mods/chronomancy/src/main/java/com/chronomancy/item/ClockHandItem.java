@@ -1,4 +1,5 @@
 package com.chronomancy.item;
+import com.chronomancy.client.equipment.ChronoRenderProviders;
 
 import com.chronomancy.ChronomancyMod;
 import com.chronomancy.registry.ChronoAttributes;

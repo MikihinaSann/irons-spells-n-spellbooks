@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "options": "#minecraft:on_random_loot",
+              "levels": 30
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 6,
+        "max": 16
+      },
+      "entries": [
+        {
+          "type": "loot_table",
+          "value": "minecraft:gameplay/fishing/fish"
+        }
+      ]
+    }
+  ]
+}

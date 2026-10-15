@@ -15,10 +15,10 @@ import java.util.Arrays;
  * {@code data/<ns>/neoforge/loot_modifiers} JSON.
  */
 public abstract class LootModifier implements IGlobalLootModifier {
-    protected final LootItemCondition[] conditionsIn;
+    protected final LootItemCondition[] conditions;
 
     protected LootModifier(LootItemCondition[] conditionsIn) {
-        this.conditionsIn = conditionsIn;
+        this.conditions = conditionsIn;
     }
 
     @NotNull
@@ -28,7 +28,7 @@ public abstract class LootModifier implements IGlobalLootModifier {
     @Override
     public final it.unimi.dsi.fastutil.objects.ObjectArrayList<ItemStack> apply(
             it.unimi.dsi.fastutil.objects.ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        for (LootItemCondition condition : conditionsIn) {
+        for (LootItemCondition condition : conditions) {
             if (!condition.test(context)) {
                 return generatedLoot;
             }
@@ -41,6 +41,6 @@ public abstract class LootModifier implements IGlobalLootModifier {
         return instance.group(LootItemCondition.CODEC.listOf()
                 .xmap(list -> list.stream().map(Holder::value).toArray(LootItemCondition[]::new),
                         array -> Arrays.stream(array).<Holder<LootItemCondition>>map(Holder::direct).toList())
-                .fieldOf("conditions").forGetter(m -> m.conditionsIn));
+                .fieldOf("conditions").forGetter(m -> m.conditions));
     }
 }

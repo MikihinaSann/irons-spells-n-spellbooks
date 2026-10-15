@@ -84,7 +84,7 @@ public class SupremeBonescallerNotDespawnEntity extends Monster implements Range
    protected void registerGoals() {
       super.registerGoals();
       this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(1, new SupremeBonescallerNotDespawnEntity.RangedAttackGoal(this, 1.25, 45, 10.0F) {

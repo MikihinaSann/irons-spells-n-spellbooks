@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "somakespells:dark_metal_battlemage_helmet",
+      "required": false
+    },
+    {
+      "id": "somakespells:dark_metal_battlemage_chestplate",
+      "required": false
+    },
+    {
+      "id": "somakespells:dark_metal_battlemage_leggings",
+      "required": false
+    },
+    {
+      "id": "somakespells:dark_metal_battlemage_boots",
+      "required": false
+    },
+    "somakespells:ceranium_helmet",
+    "somakespells:ceranium_chestplate",
+    "somakespells:ceranium_leggings",
+    "somakespells:ceranium_boots",
+    "somakespells:aquamancer_helmet",
+    "somakespells:aquamancer_chestplate",
+    "somakespells:aquamancer_leggings",
+    "somakespells:aquamancer_boots",
+    "somakespells:abyssium_helmet",
+    "somakespells:abyssium_chestplate",
+    "somakespells:abyssium_leggings",
+    "somakespells:abyssium_boots"
+  ]
+}

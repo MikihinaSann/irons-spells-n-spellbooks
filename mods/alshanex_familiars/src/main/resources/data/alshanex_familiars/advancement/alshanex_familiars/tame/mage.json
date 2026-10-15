@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:mage_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_mage"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_mage.desc"
+    }
+  },
+  "criteria": {
+    "tame_mage": {
+      "trigger": "familiarslib:mage_taming"
+    }
+  }
+}

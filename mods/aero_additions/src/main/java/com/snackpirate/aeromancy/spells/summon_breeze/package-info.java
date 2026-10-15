@@ -1,0 +1,6 @@
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+package com.snackpirate.aeromancy.spells.summon_breeze;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;

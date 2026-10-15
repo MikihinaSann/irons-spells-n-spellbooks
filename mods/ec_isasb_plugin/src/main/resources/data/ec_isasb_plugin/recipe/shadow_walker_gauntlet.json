@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "irons_spellbooks:ender_rune"
+    }
+  },
+  "pattern": [
+    "rc",
+    "c "
+  ],
+  "result": {
+    "count": 1,
+    "id": "ec_isasb_plugin:shadow_walker_gauntlet"
+  }
+}

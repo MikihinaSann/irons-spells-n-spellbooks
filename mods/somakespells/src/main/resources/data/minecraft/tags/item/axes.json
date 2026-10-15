@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:glacium_greataxe",
+    "somakespells:sculkborne_axe",
+    {
+      "id": "somakespells:trumpet_axe",
+      "required": false
+    }
+  ]
+}

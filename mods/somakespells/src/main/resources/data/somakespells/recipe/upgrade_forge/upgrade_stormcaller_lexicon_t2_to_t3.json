@@ -1,0 +1,37 @@
+{
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:stormcaller_lexicon_2_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:stormcaller_lexicon_3_spell_book"
+  },
+  "school": "irons_spellbooks:lightning",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:lightning_bottle"
+      },
+      "count": 10
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:lightning_rod"
+      },
+      "count": 12
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:energized_core"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:lightning_upgrade_orb"
+      },
+      "count": 3
+    }
+  ]
+}

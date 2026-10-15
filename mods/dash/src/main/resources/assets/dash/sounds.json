@@ -1,0 +1,11 @@
+{
+  "entity.player.ench_dash": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "entity.phantom.flap"
+      }
+    ],
+    "subtitle": "subtitles.entity.player.ench_dash"
+  }
+}

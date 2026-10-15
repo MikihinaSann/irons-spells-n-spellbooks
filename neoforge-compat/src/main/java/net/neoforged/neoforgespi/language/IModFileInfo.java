@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 public interface IModFileInfo {
-    default Path getFile() {
+    default net.neoforged.neoforgespi.locating.IModFile getFile() {
         return null;
     }
 

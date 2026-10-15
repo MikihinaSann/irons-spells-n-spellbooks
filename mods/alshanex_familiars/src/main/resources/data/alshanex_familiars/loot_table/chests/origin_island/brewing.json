@@ -1,0 +1,77 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 2,
+        "max": 6
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "water"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "awkward"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 5
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glistering_melon_slice",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_carrot",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

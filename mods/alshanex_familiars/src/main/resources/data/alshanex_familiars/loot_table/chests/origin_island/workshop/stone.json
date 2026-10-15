@@ -1,0 +1,104 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_pickaxe",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "options": "#minecraft:on_random_loot",
+              "levels": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:blank_rune"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tuff"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_ore",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 2,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ore",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ore",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:artificer_cane",
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

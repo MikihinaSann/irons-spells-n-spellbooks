@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:acid_orb",
+    "irons_spellbooks:firefly_swarm",
+    "irons_spellbooks:poison_splash",
+    "irons_spellbooks:poison_breath"
+  ]
+}

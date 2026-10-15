@@ -24,8 +24,7 @@
     "java": ">=21",
     "fabric-api": "*",
     "neoforge_compat": ">=1.0.0",
-    "lionfishapi": ">=3.1",
-    "trinkets": ">=3.10.0"
+    "lionfishapi": ">=3.1"
   },
   "recommends": {
     "jei": "*"

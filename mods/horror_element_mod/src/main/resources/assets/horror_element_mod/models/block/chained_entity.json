@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/chained_entity",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "1": "horror_element_mod:block/chained_entity"
+  },
+  "render_type": "translucent"
+}

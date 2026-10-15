@@ -4,17 +4,14 @@ accessible field net/minecraft/world/entity/LivingEntity jumping Z
 accessible method net/minecraft/server/level/ChunkMap randomState ()Lnet/minecraft/world/level/levelgen/RandomState;
 accessible field net/minecraft/world/level/block/entity/BlockEntityType validBlocks Ljava/util/Set;
 mutable field net/minecraft/world/level/block/entity/BlockEntityType validBlocks Ljava/util/Set;
-accessible method net/minecraft/world/entity/Entity getAllowedMovement (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 accessible method net/minecraft/world/entity/Entity collide (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 accessible field net/minecraft/world/level/chunk/LevelChunkSection biomes Lnet/minecraft/world/level/chunk/PalettedContainerRO;
-accessible method net/minecraft/client/Camera move (DDD)V
+accessible method net/minecraft/client/Camera move (FFF)V
 accessible method net/minecraft/client/Camera setRotation (FF)V
-accessible method net/minecraft/client/Camera getMaxZoom (D)D
+accessible method net/minecraft/client/Camera getMaxZoom (F)F
 accessible field net/minecraft/world/entity/vehicle/Boat DATA_ID_TYPE Lnet/minecraft/network/syncher/EntityDataAccessor;
 accessible field net/minecraft/world/entity/vehicle/Boat status Lnet/minecraft/world/entity/vehicle/Boat$Status;
 accessible field net/minecraft/world/entity/vehicle/Boat lastYd D
-accessible field net/minecraft/client/renderer/RenderBuffers fixedBuffers Lit/unimi/dsi/fastutil/objects/Object2ObjectLinkedOpenHashMap;
-mutable field net/minecraft/client/renderer/RenderBuffers fixedBuffers Lit/unimi/dsi/fastutil/objects/Object2ObjectLinkedOpenHashMap;
 accessible class net/minecraft/world/level/levelgen/SurfaceRules$Condition
 accessible class net/minecraft/world/level/levelgen/SurfaceRules$Context
 accessible class net/minecraft/world/level/levelgen/SurfaceRules$LazyYCondition
@@ -24,8 +21,8 @@ accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockY 
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockZ I
 accessible field net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate palettes Ljava/util/List;
 accessible field net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate entityInfoList Ljava/util/List;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Lnet/minecraft/resources/ResourceKey>;
-mutable field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Lnet/minecraft/resources/ResourceKey>;
+accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;
+mutable field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;
 accessible field net/minecraft/client/gui/screens/advancements/AdvancementWidget advancementNode Lnet/minecraft/advancements/AdvancementNode;
 accessible field net/minecraft/client/gui/screens/advancements/AdvancementWidget parent Lnet/minecraft/client/gui/screens/advancements/AdvancementWidget;
 accessible field net/minecraft/client/gui/screens/advancements/AdvancementsScreen selectedTab Lnet/minecraft/client/gui/screens/advancements/AdvancementTab;
@@ -35,7 +32,6 @@ accessible method net/minecraft/client/multiplayer/ClientChunkCache$Storage inRa
 accessible method net/minecraft/world/entity/projectile/AbstractArrow startFalling ()V
 accessible field net/minecraft/world/entity/Entity nextStep F
 accessible field net/minecraft/client/renderer/GameRenderer effectActive Z
-accessible class net/minecraft/world/item/crafting/SimpleCookingSerializer$CookieBaker
 accessible field net/minecraft/client/sounds/SoundManager soundEngine Lnet/minecraft/client/sounds/SoundEngine;
 accessible field net/minecraft/client/sounds/SoundEngine tickingSounds Ljava/util/List;
 accessible field net/minecraft/client/sounds/SoundEngine queuedTickableSounds Ljava/util/List;
@@ -44,7 +40,7 @@ accessible method net/minecraft/world/level/levelgen/SurfaceRules$Context <init>
 accessible class net/minecraft/world/level/levelgen/SurfaceRules$SurfaceRule
 accessible method net/minecraft/world/level/levelgen/SurfaceRules$Context updateXZ (II)V
 accessible method net/minecraft/world/level/levelgen/SurfaceRules$Context updateY (IIIIII)V
-accessible field net/minecraft/client/multiplayer/ClientLevel tintCaches Lnet/minecraft/client/color/block/BlockTintCache>;
+accessible field net/minecraft/client/multiplayer/ClientLevel tintCaches Lit/unimi/dsi/fastutil/objects/Object2ObjectArrayMap;
 accessible field net/minecraft/world/entity/projectile/FireworkRocketEntity lifetime I
 accessible field net/minecraft/world/entity/projectile/FireworkRocketEntity DATA_ID_FIREWORKS_ITEM Lnet/minecraft/network/syncher/EntityDataAccessor;
 accessible field net/minecraft/world/entity/projectile/FireworkRocketEntity DATA_ATTACHED_TO_TARGET Lnet/minecraft/network/syncher/EntityDataAccessor;

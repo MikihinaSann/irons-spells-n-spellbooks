@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "alshanex_familiars:item/consumables/magic_resist_tier_3"
+  }
+}

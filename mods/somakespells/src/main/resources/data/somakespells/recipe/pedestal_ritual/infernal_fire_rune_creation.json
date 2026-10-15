@@ -1,0 +1,99 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ],
+  "type": "somakespells:pedestal_ritual",
+  "center_item": {
+    "item": "somakespells:soul_fire_rune"
+  },
+  "pedestal_groups": [
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_rod"
+          },
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "somakespells:infernal_fire_rune",
+    "count": 1
+  },
+  "required_ritual_mode": "infernal_fire"
+}

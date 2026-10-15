@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "somakespells:item/template_dagger",
+    "textures": {
+      "layer0": "somakespells:item/totem_dagger"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "minecraft:item/handheld",
+      "textures": {
+        "layer0": "somakespells:item/totem_dagger_item"
+      }
+    }
+  }
+}

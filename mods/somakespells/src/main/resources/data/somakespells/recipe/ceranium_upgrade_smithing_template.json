@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N#N",
+    "#O#",
+    "N#N"
+  ],
+  "key": {
+    "#": {
+      "item": "cataclysm:lacrima"
+    },
+    "N": {
+      "item": "minecraft:copper_ingot"
+    },
+    "O": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+  },
+  "result": {
+    "id": "somakespells:ceranium_upgrade_smithing_template",
+    "count": 1
+  }
+}

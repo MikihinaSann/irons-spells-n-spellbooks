@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:ice_block",
+    "irons_spellbooks:ice_spikes",
+    "irons_spellbooks:icicle",
+    "alshanex_familiars:ice_chamber",
+    "irons_spellbooks:snowball",
+    "irons_spellbooks:cone_of_cold"
+  ]
+}

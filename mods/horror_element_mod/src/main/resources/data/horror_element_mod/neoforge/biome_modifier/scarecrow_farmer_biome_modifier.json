@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "plains",
+    "savanna_plateau",
+    "sunflower_plains"
+  ],
+  "features": "horror_element_mod:scarecrow_farmer",
+  "step": "underground_ores"
+}

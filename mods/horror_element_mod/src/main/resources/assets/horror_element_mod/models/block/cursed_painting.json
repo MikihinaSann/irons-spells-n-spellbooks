@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/cursed_painting",
+  "textures": {
+    "all": "horror_element_mod:block/sound_player",
+    "particle": "horror_element_mod:block/sound_player",
+    "1": "horror_element_mod:block/cursed_painting"
+  },
+  "render_type": "translucent"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "alshanex_familiars:graveyard/yard",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "alshanex_familiars:graveyard/yard",
+        "processors": "alshanex_familiars:graveyard",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

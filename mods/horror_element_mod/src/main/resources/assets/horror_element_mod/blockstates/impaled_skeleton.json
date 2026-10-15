@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/impaled_skeleton"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/impaled_skeleton",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/impaled_skeleton",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/impaled_skeleton",
+      "y": 270
+    }
+  }
+}

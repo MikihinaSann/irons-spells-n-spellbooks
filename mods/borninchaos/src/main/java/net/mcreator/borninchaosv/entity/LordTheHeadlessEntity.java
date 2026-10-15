@@ -84,17 +84,17 @@ public class LordTheHeadlessEntity extends Monster implements GeoEntity {
             return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < 2.89 && this.mob.getSensing().hasLineOfSight(entity);
          }
       });
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
       this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(6, new FloatGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, MrPumpkinControlledEntity.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, PumpkinSpiritEntity.class, false, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Warden.class, false, false));
-      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, InfernalSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, MrPumpkinControlledEntity.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, PumpkinSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Warden.class, false, false));
+      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, InfernalSpiritEntity.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

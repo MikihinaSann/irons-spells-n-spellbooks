@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/heads_on_stick",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "2": "horror_element_mod:block/head_on_stick"
+  },
+  "render_type": "cutout"
+}

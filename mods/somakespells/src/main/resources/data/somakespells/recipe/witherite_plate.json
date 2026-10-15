@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:witherite_ingot"
+    },
+    "B": {
+      "item": "somakespells:witherite_star"
+    }
+  },
+  "result": {
+    "id": "somakespells:witherite_plate",
+    "count": 1
+  }
+}

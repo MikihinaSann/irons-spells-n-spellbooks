@@ -28,6 +28,12 @@ public class ModFileInfo {
         }
 
         @Override
+        public String getFileName() {
+            return roots.isEmpty() || roots.get(0).getFileName() == null
+                    ? "unknown" : roots.get(0).getFileName().toString();
+        }
+
+        @Override
         public java.nio.file.Path findResource(String... path) {
             // resolve the first root that actually contains the resource; fall
             // back to the first root so callers still get a usable path

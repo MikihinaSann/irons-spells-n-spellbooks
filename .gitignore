@@ -52,3 +52,15 @@ _v_classes/
 _v_dec/
 _vanilla/
 mods/placebo/logs/
+
+# dev-session artifacts (decompile refs, sim renders, one-off scripts)
+__pycache__/
+_addons_src/
+_bicxef/
+_efsrc/
+biped_tmp*.json
+biped_old_tmp.json
+_*.png
+_*.ps1
+_*.txt
+architectury_inject_*/

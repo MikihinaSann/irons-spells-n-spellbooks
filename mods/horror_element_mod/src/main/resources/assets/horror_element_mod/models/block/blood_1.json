@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/blood_1",
+  "textures": {
+    "all": "horror_element_mod:block/blood_7",
+    "particle": "horror_element_mod:block/blood_7",
+    "1": "horror_element_mod:block/blood_1"
+  },
+  "render_type": "solid"
+}

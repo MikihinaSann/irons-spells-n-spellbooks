@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#is_overworld",
+  "features": "horror_element_mod:hazzmat_head",
+  "step": "underground_ores"
+}

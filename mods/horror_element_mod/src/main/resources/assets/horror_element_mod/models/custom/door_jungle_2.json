@@ -1,0 +1,179 @@
+{
+  "credit": "Made with Blockbench",
+  "texture_size": [
+    128,
+    128
+  ],
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        1,
+        32
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            4,
+            6,
+            4.125
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            4,
+            4,
+            4.125
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            10,
+            4,
+            12,
+            4.125
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            6,
+            4,
+            10,
+            4.125
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            6,
+            4,
+            4,
+            0
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            8,
+            0,
+            6,
+            4
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        3.75,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.48,
+        0.48
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        3.75,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.48,
+        0.48
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        49,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        9.25,
+        2.5
+      ],
+      "scale": [
+        0.67,
+        0.69,
+        0.66
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        49,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        9.25,
+        2.5
+      ],
+      "scale": [
+        0.67,
+        0.69,
+        0.66
+      ]
+    },
+    "ground": {
+      "rotation": [
+        49,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        10.25,
+        -0.5
+      ],
+      "scale": [
+        0.67,
+        0.69,
+        0.66
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "all",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "color": 0,
+      "children": [
+        {
+          "name": "door",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "color": 0,
+          "children": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

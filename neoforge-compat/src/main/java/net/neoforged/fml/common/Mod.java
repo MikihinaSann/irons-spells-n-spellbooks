@@ -1,5 +1,7 @@
 package net.neoforged.fml.common;
 
+import net.neoforged.api.distmarker.Dist;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,5 +14,5 @@ public @interface Mod {
 
     String modid() default "";
 
-    String dist() default "";
+    Dist[] dist() default {};
 }

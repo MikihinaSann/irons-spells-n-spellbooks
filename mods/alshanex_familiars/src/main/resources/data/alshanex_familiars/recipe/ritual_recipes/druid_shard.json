@@ -1,0 +1,40 @@
+{
+  "type": "alshanex_familiars:ritual_recipe",
+  "central_item": {
+    "item": "alshanex_familiars:pet_soul"
+  },
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:greater_oakskin_elixir"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:arcane_essence"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:nature_rune"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:spore_blossom"
+      },
+      "count": 1,
+      "consume": false
+    }
+  ],
+  "result": {
+    "id": "alshanex_familiars:druid_shard"
+  },
+  "particle_type": "minecraft:composter"
+}

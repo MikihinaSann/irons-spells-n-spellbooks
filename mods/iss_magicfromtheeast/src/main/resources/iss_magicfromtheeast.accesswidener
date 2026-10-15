@@ -1,0 +1,18 @@
+accessWidener v2 named
+
+# Entity level field
+accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/level/Level;
+
+# Gui heart type enum (addon heart types)
+accessible class net/minecraft/client/gui/Gui$HeartType
+
+# ItemInHandRenderer selection enum for mixin
+accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
+
+# EnchantmentHelper private iteration + visitor
+accessible method net/minecraft/world/item/enchantment/EnchantmentHelper runIterationOnItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;)V
+accessible class net/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor
+
+# Enchantment private modifiers
+accessible method net/minecraft/world/item/enchantment/Enchantment modifyItemFilteredCount (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
+accessible method net/minecraft/world/item/enchantment/Enchantment modifyDamageFilteredValue (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;)V

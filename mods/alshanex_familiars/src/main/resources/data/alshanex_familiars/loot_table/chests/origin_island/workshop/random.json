@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/workshop/potions"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/workshop/rings"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/workshop/scrolls"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/workshop/stone"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/workshop/wood"
+        }
+      ]
+    }
+  ]
+}

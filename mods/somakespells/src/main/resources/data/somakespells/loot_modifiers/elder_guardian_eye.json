@@ -1,0 +1,8 @@
+{
+  "type": "somakespells:entity_item",
+  "conditions": [],
+  "entity_id": "minecraft:elder_guardian",
+  "item": {
+    "id": "somakespells:elder_guardian_eye"
+  }
+}

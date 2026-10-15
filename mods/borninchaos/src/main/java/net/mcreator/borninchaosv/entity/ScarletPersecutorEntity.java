@@ -103,7 +103,7 @@ public class ScarletPersecutorEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.8, 20) {
          protected Vec3 getPosition() {
@@ -116,10 +116,10 @@ public class ScarletPersecutorEntity extends Monster implements GeoEntity {
       });
       this.goalSelector.addGoal(5, new LeapAtTargetGoal(this, 0.5F));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, AbstractGolem.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, PumpkinSpiritEntity.class, false, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, AbstractGolem.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, PumpkinSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

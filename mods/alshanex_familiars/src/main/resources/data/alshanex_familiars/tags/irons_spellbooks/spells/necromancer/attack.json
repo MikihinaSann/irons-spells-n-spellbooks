@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:devour",
+    "irons_spellbooks:blood_needles",
+    "irons_spellbooks:blood_slash",
+    "irons_spellbooks:wither_skull",
+    "irons_spellbooks:firefly_swarm",
+    "irons_spellbooks:ray_of_siphoning"
+  ]
+}

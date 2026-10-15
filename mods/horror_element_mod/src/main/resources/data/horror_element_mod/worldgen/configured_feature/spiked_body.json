@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "size": 1,
+    "discard_chance_on_air_exposure": 0,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "blockstate_match",
+          "block_state": {
+            "Name": "minecraft:brown_mushroom"
+          }
+        },
+        "state": {
+          "Name": "horror_element_mod:spiked_body"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "blockstate_match",
+          "block_state": {
+            "Name": "minecraft:red_mushroom"
+          }
+        },
+        "state": {
+          "Name": "horror_element_mod:spiked_body"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "blockstate_match",
+          "block_state": {
+            "Name": "minecraft:short_grass"
+          }
+        },
+        "state": {
+          "Name": "horror_element_mod:spiked_body"
+        }
+      }
+    ]
+  }
+}

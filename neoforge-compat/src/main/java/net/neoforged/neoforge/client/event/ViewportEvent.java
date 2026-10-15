@@ -148,6 +148,11 @@ public abstract class ViewportEvent extends Event {
             return type;
         }
 
+        /** NeoForge exposes the LevelRenderer here; lazily fetch the vanilla one. */
+        public net.minecraft.client.renderer.LevelRenderer getRenderer() {
+            return net.minecraft.client.Minecraft.getInstance().levelRenderer;
+        }
+
         public float getNearPlaneDistance() {
             return nearPlaneDistance;
         }

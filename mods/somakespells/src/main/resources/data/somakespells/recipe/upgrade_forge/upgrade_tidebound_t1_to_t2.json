@@ -1,0 +1,37 @@
+{
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:tidebound_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:tidebound_2_spell_book"
+  },
+  "school": "somakespells:aqua",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:nautilus_shell"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:prismarine_shard"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "somakespells:elder_guardian_eye"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "somakespells:aqua_upgrade_orb"
+      },
+      "count": 2
+    }
+  ]
+}

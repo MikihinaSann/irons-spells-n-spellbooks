@@ -1,0 +1,8 @@
+// 1.21.7	2025-07-04T14:12:07.4646416	Tags for minecraft:enchantment mod id dash
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/c/tags/enchantment/entity_auxiliary_movement_enhancements.json
+0f34ed57824a509e3d97b8c41a62234bef62752b data/dash/tags/enchantment/dashing_incompatible.json
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/minecraft/tags/enchantment/on_random_loot.json
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/minecraft/tags/enchantment/on_traded_equipment.json
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/minecraft/tags/enchantment/tradeable.json
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/minecraft/tags/enchantment/trades/snow_special.json
+7ebf1cc38dd4b6545c278fc916ca150f94c5d875 data/minecraft/tags/enchantment/treasure.json

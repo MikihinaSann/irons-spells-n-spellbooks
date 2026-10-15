@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:echo_shard"
+    },
+    "B": {
+      "item": "minecraft:sculk_vein"
+    },
+    "C": {
+      "item": "born_in_chaos_v1:bone_handle"
+    }
+  },
+  "pattern": [
+    "AB ",
+    "AC ",
+    " C "
+  ],
+  "result": {
+    "id": "somakespells:sculkborne_axe"
+  }
+}

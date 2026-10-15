@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "alshanex_familiars:cleric_trinket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "alshanex_familiars:healing_curio"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    }
+  ]
+}

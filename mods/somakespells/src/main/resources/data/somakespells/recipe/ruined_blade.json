@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "V": {
+      "item": "minecraft:sculk_vein"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "  E",
+    "VE ",
+    "SV "
+  ],
+  "result": {
+    "id": "somakespells:ruined_blade"
+  }
+}

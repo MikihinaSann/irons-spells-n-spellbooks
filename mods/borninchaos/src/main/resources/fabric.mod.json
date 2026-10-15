@@ -22,8 +22,7 @@
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-api": "*",
-    "neoforge_compat": ">=1.0.0",
-    "geckolib": "*"
+    "neoforge_compat": ">=1.0.0"
   },
   "recommends": {
     "jei": "*"

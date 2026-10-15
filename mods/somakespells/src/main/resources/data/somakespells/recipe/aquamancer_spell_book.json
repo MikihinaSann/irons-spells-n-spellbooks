@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "A": {
+      "item": "irons_spellbooks:arcane_essence"
+    },
+    "N": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "H": {
+      "item": "irons_spellbooks:hogskin"
+    }
+  },
+  "pattern": [
+    "MAA",
+    "NHH",
+    "MAA"
+  ],
+  "result": {
+    "id": "somakespells:aquamancer_spell_book"
+  }
+}

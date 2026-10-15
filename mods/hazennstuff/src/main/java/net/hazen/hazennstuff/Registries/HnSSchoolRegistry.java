@@ -1,0 +1,61 @@
+package net.hazen.hazennstuff.Registries;
+
+import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
+import io.redspace.ironsspellbooks.api.spells.SchoolType;
+import io.redspace.ironsspellbooks.registries.SoundRegistry;
+import java.util.function.Supplier;
+import net.hazen.hazennstuff.HazenNStuff;
+import net.hazen.hazennstuff.Datagen.HnSTags;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class HnSSchoolRegistry {
+   private static final DeferredRegister<SchoolType> HNS_SCHOOLS = DeferredRegister.create(SchoolRegistry.SCHOOL_REGISTRY_KEY, "hazennstuff");
+   public static final ResourceLocation RADIANCE_RESOURCE = HazenNStuff.id("radiance");
+   public static final Supplier<SchoolType> RADIANCE = registerSchool(
+      new SchoolType(
+         RADIANCE_RESOURCE,
+         HnSTags.RADIANCE_FOCUS,
+         Component.translatable("school.hazennstuff.radiance").withStyle(Style.EMPTY.withColor(14984938)),
+         HnSAttributeRegistry.RADIANCE_SPELL_POWER,
+         HnSAttributeRegistry.RADIANCE_SPELL_RESIST,
+         SoundRegistry.EVOCATION_CAST,
+         HnSDamageTypes.RADIANCE_MAGIC
+      )
+   );
+   public static final ResourceLocation SHADOW_RESOURCE = HazenNStuff.id("shadow");
+   public static final Supplier<SchoolType> SHADOW = registerSchool(
+      new SchoolType(
+         SHADOW_RESOURCE,
+         HnSTags.SHADOW_FOCUS,
+         Component.translatable("school.hazennstuff.shadow").withStyle(Style.EMPTY.withColor(5585535)),
+         HnSAttributeRegistry.SHADOW_SPELL_POWER,
+         HnSAttributeRegistry.SHADOW_SPELL_RESIST,
+         SoundRegistry.EVOCATION_CAST,
+         HnSDamageTypes.SHADOW_MAGIC
+      )
+   );
+   public static final ResourceLocation COSMIC_RESOURCE = HazenNStuff.id("cosmic");
+   public static final Supplier<SchoolType> COSMIC = registerSchool(
+      new SchoolType(
+         COSMIC_RESOURCE,
+         HnSTags.COSMIC_FOCUS,
+         Component.translatable("school.hazennstuff.cosmic").withStyle(Style.EMPTY.withColor(4665750)),
+         HnSAttributeRegistry.COSMIC_SPELL_POWER,
+         HnSAttributeRegistry.COSMIC_SPELL_RESIST,
+         HnSSounds.COSMIC_CAST_INSTANT,
+         HnSDamageTypes.COSMIC_MAGIC
+      )
+   );
+
+   public static void register(IEventBus eventBus) {
+      HNS_SCHOOLS.register(eventBus);
+   }
+
+   private static Supplier<SchoolType> registerSchool(SchoolType type) {
+      return HNS_SCHOOLS.register(type.getId().getPath(), () -> type);
+   }
+}

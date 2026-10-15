@@ -102,9 +102,9 @@ public class MissionaryRaiderEntity extends Raider implements RangedAttackMob, G
       this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.7));
       this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(4, new FloatGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
       this.goalSelector.addGoal(1, new MissionaryRaiderEntity.RangedAttackGoal(this, 1.25, 60, 15.0F) {
          @Override
          public boolean canContinueToUse() {

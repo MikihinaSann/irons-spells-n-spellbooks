@@ -162,5 +162,11 @@ public final class CuriosApi {
                     .map(inv -> inv.findCurios(item))
                     .orElse(java.util.List.of());
         }
+
+        /** Curios API legacy name: first equipped curio of the item type. */
+        public java.util.Optional<SlotResult> findEquippedCurio(
+                Item item, net.minecraft.world.entity.LivingEntity entity) {
+            return findFirstCurio(entity, item);
+        }
     }
 }

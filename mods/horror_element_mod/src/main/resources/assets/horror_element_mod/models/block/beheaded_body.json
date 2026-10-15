@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/decapited_body",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "0": "horror_element_mod:block/cadaver"
+  },
+  "render_type": "cutout"
+}

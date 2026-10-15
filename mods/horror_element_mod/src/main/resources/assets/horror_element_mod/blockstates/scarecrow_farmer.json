@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/scarecrow_farmer"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/scarecrow_farmer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/scarecrow_farmer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/scarecrow_farmer",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/impaled_villager",
+  "textures": {
+    "all": "horror_element_mod:block/impaled_villager",
+    "particle": "horror_element_mod:block/blood_3",
+    "0": "horror_element_mod:block/impaled_villager"
+  },
+  "render_type": "solid"
+}

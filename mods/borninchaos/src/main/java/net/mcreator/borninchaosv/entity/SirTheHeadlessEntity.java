@@ -85,14 +85,14 @@ public class SirTheHeadlessEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.9));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(5, new FloatGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, PumpkinSpiritEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, MrPumpkinControlledEntity.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, PumpkinSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, MrPumpkinControlledEntity.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

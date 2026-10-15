@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_quartz_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.1
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_iron_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.2
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_netherite_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.3
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_redstone_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.4
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_copper_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.5
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_gold_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.6
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_emerald_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.7
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_diamond_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.8
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_lapis_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.9
+      }
+    },
+    {
+      "model": "ec_isasb_plugin:item/shadow_walker_gauntlet_amethyst_trim",
+      "predicate": {
+        "minecraft:trim_type": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "ec_isasb_plugin:item/gauntlet/shadow_walker"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/harp",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:familiar_tome"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.full_collection"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.full_collection.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "challenge"
+  },
+  "criteria": {
+    "tame_archmage": {
+      "trigger": "familiarslib:archmage_taming"
+    },
+    "tame_bard": {
+      "trigger": "familiarslib:bard_taming"
+    },
+    "tame_cleric": {
+      "trigger": "familiarslib:cleric_taming"
+    },
+    "tame_druid": {
+      "trigger": "familiarslib:druid_taming"
+    },
+    "tame_frostling": {
+      "trigger": "familiarslib:frostling_taming"
+    },
+    "tame_hunter": {
+      "trigger": "familiarslib:hunter_taming"
+    },
+    "tame_illusionist": {
+      "trigger": "familiarslib:illusionist_taming"
+    },
+    "tame_mage": {
+      "trigger": "familiarslib:mage_taming"
+    },
+    "tame_necromancer": {
+      "trigger": "familiarslib:necromancer_taming"
+    },
+    "tame_plague": {
+      "trigger": "familiarslib:plague_taming"
+    },
+    "tame_scorcher": {
+      "trigger": "familiarslib:scorcher_taming"
+    },
+    "tame_summoner": {
+      "trigger": "familiarslib:summoner_taming"
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

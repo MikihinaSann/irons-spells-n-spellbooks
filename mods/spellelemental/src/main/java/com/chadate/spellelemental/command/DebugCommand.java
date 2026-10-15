@@ -1,0 +1,43 @@
+package com.chadate.spellelemental.command;
+
+import com.chadate.spellelemental.network.ElementData;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+
+public final class DebugCommand {
+   private DebugCommand() {
+   }
+
+   public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+      dispatcher.register(
+         (LiteralArgumentBuilder)((LiteralArgumentBuilder)Commands.literal("spell_debug").requires(src -> src.hasPermission(0)))
+            .then(
+               Commands.literal("toggle")
+                  .then(
+                     Commands.argument("enabled", BoolArgumentType.bool())
+                        .executes(ctx -> toggle((CommandSourceStack)ctx.getSource(), BoolArgumentType.getBool(ctx, "enabled")))
+                  )
+            )
+      );
+   }
+
+   private static int toggle(CommandSourceStack source, boolean enabled) {
+      if (source.getEntity() instanceof ServerPlayer player) {
+         PacketDistributor.sendToPlayer(player, new ElementData.ElementDebugToggle(enabled), new CustomPacketPayload[0]);
+      }
+
+      return 1;
+   }
+
+   public static void onRegisterCommands(RegisterCommandsEvent event) {
+      register(event.getDispatcher());
+      AttributeTestCommand.register(event.getDispatcher());
+   }
+}

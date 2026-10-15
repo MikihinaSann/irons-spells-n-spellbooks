@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/acid_blood_2",
+  "textures": {
+    "all": "horror_element_mod:block/acid_blood_1",
+    "particle": "horror_element_mod:block/acid_blood_1",
+    "0": "horror_element_mod:block/acid_blood_2"
+  },
+  "render_type": "translucent"
+}

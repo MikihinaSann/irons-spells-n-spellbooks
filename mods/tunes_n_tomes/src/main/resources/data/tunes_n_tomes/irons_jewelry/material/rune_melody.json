@@ -1,0 +1,18 @@
+{
+  "descriptionId": "material.tunes_n_tomes.rune_melody",
+  "paletteLocation": "tunes_n_tomes:palettes/rune_melody",
+  "ingredient": {
+    "item": "tunes_n_tomes:melody_rune"
+  },
+  "materialType": [
+    "spellbooks_rune"
+  ],
+  "quality": 1.5,
+  "bonusParameters": {
+    "irons_jewelry:attribute": {
+      "attribute": "tunes_n_tomes:melody_spell_power",
+      "amount": 0.025,
+      "operation": "add_multiplied_total"
+    }
+  }
+}

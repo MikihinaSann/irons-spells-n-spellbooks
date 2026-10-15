@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "iss_magicfromtheeast:block/jadestone_bricks_slab"
+    },
+    "type=double": {
+      "model": "iss_magicfromtheeast:block/jadestone_bricks"
+    },
+    "type=top": {
+      "model": "iss_magicfromtheeast:block/jadestone_bricks_slab_top"
+    }
+  }
+}

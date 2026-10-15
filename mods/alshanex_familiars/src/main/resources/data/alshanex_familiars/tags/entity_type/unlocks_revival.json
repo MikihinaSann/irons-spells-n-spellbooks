@@ -1,0 +1,6 @@
+{
+  "values": [
+    "irons_spellbooks:dead_king",
+    {"id": "gametechbcs_spellbooks:hard_dead_king", "required": false}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "somakespells:entity_item",
+  "conditions": [],
+  "entity_id": "cataclysm:ignis",
+  "min_count": 1,
+  "max_count": 4,
+  "item": {
+    "id": "somakespells:ignitium_core"
+  }
+}

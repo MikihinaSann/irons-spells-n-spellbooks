@@ -1,0 +1,22 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/root",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:life_fruit_tier_1"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.upgrade_familiar"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.upgrade_familiar.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "task"
+  },
+  "criteria": {
+    "apply_upgrade": {
+      "trigger": "familiarslib:consumable_use"
+    }
+  }
+}

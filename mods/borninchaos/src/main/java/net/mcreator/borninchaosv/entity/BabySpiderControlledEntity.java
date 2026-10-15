@@ -157,7 +157,7 @@ public class BabySpiderControlledEntity extends TamableAnimal implements GeoEnti
             return super.canContinueToUse() && BabySpiderAtackCondssionProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
       this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(8, new FloatGoal(this));
    }

@@ -21,9 +21,7 @@
     "fabricloader": ">=0.19.5",
     "minecraft": "~1.21.1",
     "java": ">=21",
-    "fabric-api": "*",
-    "forgeconfigapiport": ">=21.1.0",
-    "trinkets": ">=3.10.0"
+    "fabric-api": "*"
   },
   "accessWidener": "neoforge_compat.accesswidener",
   "mixins": [

@@ -1,0 +1,26 @@
+{
+  "name": "horror_element_mod:fortified_church",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "horror_element_mod:haunted_church",
+        "projection": "rigid",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "minecraft:block_ignore",
+              "blocks": [
+                {
+                  "Name": "minecraft:structure_block"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

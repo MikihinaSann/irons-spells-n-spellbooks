@@ -55,6 +55,12 @@ public class RegisterClientExtensionsEvent extends Event {
         }
     }
 
+    public void registerFluidType(IClientFluidTypeExtensions extensions, net.minecraft.core.Holder<FluidType>... fluidTypes) {
+        for (net.minecraft.core.Holder<FluidType> fluidType : fluidTypes) {
+            ClientExtensionsRegistry.registerFluidType(fluidType.value(), extensions);
+        }
+    }
+
     public void registerMobEffect(IClientMobEffectExtensions extensions, MobEffect... effects) {
         for (MobEffect effect : effects) {
             ClientExtensionsRegistry.registerMobEffect(effect, extensions);

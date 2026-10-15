@@ -137,8 +137,8 @@ public class CorpseFishEntity extends Monster implements GeoEntity {
       this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(3, new RandomSwimmingGoal(this, 1.0, 40));
       this.goalSelector.addGoal(4, new TryFindWaterGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Drowned.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Drowned.class, false, false));
    }
 
    public SoundEvent getAmbientSound() {

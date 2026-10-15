@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "alshanex_familiars:pet_archmage_statue_model",
+    "alshanex_familiars:pet_beastmaster_statue_model",
+    "alshanex_familiars:pet_cleric_statue_model",
+    "alshanex_familiars:pet_druid_statue_model",
+    "alshanex_familiars:ritual_core"
+  ]
+}

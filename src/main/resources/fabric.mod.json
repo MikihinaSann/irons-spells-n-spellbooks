@@ -46,9 +46,6 @@
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-api": "*",
-    "geckolib": ">=4.9.3",
-    "playeranimator": ">=2.0.4",
-    "trinkets": ">=3.10.0",
     "neoforge_compat": "*"
   },
   "suggests": {

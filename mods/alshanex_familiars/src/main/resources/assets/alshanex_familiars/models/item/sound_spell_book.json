@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "alshanex_familiars:item/sound_spellbook_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "alshanex_familiars:item/sound_spell_book"
+      }
+    },
+    "head": {
+      "textures": {
+        "book": "alshanex_familiars:item/spell_book_models/sound_spellbook",
+        "particle": "alshanex_familiars:item/spell_book_models/sound_spellbook"
+      },
+      "parent": "irons_spellbooks:item/template_spell_book_model_open"
+    }
+  }
+}

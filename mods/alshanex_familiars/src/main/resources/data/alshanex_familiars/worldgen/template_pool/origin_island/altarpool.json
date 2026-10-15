@@ -1,0 +1,15 @@
+{
+  "name": "alshanex_familiars:origin_island/altarpool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "alshanex_familiars:origin_island/centeraltar",
+        "processors": "alshanex_familiars:origin_island_sus_gravel",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

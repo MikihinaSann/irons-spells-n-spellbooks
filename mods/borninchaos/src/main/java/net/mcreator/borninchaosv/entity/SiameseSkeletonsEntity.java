@@ -94,7 +94,7 @@ public class SiameseSkeletonsEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new RestrictSunGoal(this) {
          public boolean canUse() {

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/cursed_painting_screamer"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/cursed_painting_screamer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/cursed_painting_screamer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/cursed_painting_screamer",
+      "y": 270
+    }
+  }
+}

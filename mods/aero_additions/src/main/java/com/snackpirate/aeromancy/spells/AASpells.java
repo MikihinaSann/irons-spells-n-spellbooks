@@ -1,0 +1,179 @@
+package com.snackpirate.aeromancy.spells;
+
+import com.snackpirate.aeromancy.AASounds;
+import com.snackpirate.aeromancy.Aeromancy;
+import com.snackpirate.aeromancy.data.AADamageTypes;
+import com.snackpirate.aeromancy.data.AAItemTags;
+import com.snackpirate.aeromancy.spells.airblast.AirblastSpell;
+import com.snackpirate.aeromancy.spells.airstep.AirstepSpell;
+import com.snackpirate.aeromancy.spells.asphyxiate.AsphyxiateSpell;
+import com.snackpirate.aeromancy.spells.asphyxiate.BreathlessEffect;
+import com.snackpirate.aeromancy.spells.dash.DashSpell;
+import com.snackpirate.aeromancy.spells.feather_fall.FeatherFallSpell;
+import com.snackpirate.aeromancy.spells.feather_fall.FlightEffect;
+import com.snackpirate.aeromancy.spells.flush.FlushSpell;
+import com.snackpirate.aeromancy.spells.summon_breeze.SummonedBreeze;
+import com.snackpirate.aeromancy.spells.tornado.TornadoEntity;
+import com.snackpirate.aeromancy.spells.updraft.UpdraftEntity;
+import com.snackpirate.aeromancy.spells.updraft.UpdraftSpell;
+import com.snackpirate.aeromancy.spells.wind_blade.WindBladeProjectile;
+import com.snackpirate.aeromancy.spells.wind_blade.WindBladeSpell;
+import com.snackpirate.aeromancy.spells.wind_charge.MagicWindCharge;
+import com.snackpirate.aeromancy.spells.wind_charge.WindChargeSpell;
+import com.snackpirate.aeromancy.spells.wind_shield.WindShieldEffect;
+import com.snackpirate.aeromancy.spells.wind_shield.WindShieldSpell;
+import io.redspace.ironsspellbooks.api.attribute.MagicRangedAttribute;
+import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.spells.SchoolType;
+import io.redspace.ironsspellbooks.effect.MagicMobEffect;
+import java.util.function.Supplier;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.EntityType.Builder;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+public class AASpells {
+   private static final DeferredRegister<AbstractSpell> SPELLS = DeferredRegister.create(SpellRegistry.SPELL_REGISTRY_KEY, "aero_additions");
+   public static final Supplier<AbstractSpell> WIND_CHARGE = registerSpell(new WindChargeSpell());
+   public static final Supplier<AbstractSpell> UPDRAFT = registerSpell(new UpdraftSpell());
+   public static final Supplier<AbstractSpell> AIRSTEP = registerSpell(new AirstepSpell());
+   public static final Supplier<AbstractSpell> ASPHYXIATE = registerSpell(new AsphyxiateSpell());
+   public static final Supplier<AbstractSpell> FEATHER_FALL = registerSpell(new FeatherFallSpell());
+   public static final Supplier<AbstractSpell> WIND_SHIELD = registerSpell(new WindShieldSpell());
+   public static final Supplier<AbstractSpell> AIRBLAST = registerSpell(new AirblastSpell());
+   public static final Supplier<AbstractSpell> WIND_BLADE = registerSpell(new WindBladeSpell());
+   public static final Supplier<AbstractSpell> FLUSH = registerSpell(new FlushSpell());
+   public static final Supplier<AbstractSpell> DASH = registerSpell(new DashSpell());
+
+   private static Supplier<AbstractSpell> registerSpell(AbstractSpell spell) {
+      return SPELLS.register(spell.getSpellName(), () -> spell);
+   }
+
+   public static void register(IEventBus eventBus) {
+      SPELLS.register(eventBus);
+      AASpells.Entities.ENTITIES.register(eventBus);
+      AASpells.Schools.SCHOOLS.register(eventBus);
+      AASpells.Attributes.ATTRIBUTES.register(eventBus);
+      AASpells.MobEffects.MOB_EFFECTS.register(eventBus);
+   }
+
+   public static class Attributes {
+      private static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, "aero_additions");
+      public static final DeferredHolder<Attribute, Attribute> WIND_MAGIC_RESIST = newResistanceAttribute("wind");
+      public static final DeferredHolder<Attribute, Attribute> WIND_SPELL_POWER = newPowerAttribute("wind");
+
+      private static DeferredHolder<Attribute, Attribute> newResistanceAttribute(String id) {
+         return ATTRIBUTES.register(
+            id + "_magic_resist", () -> new MagicRangedAttribute("attribute.aero_additions." + id + "_magic_resist", 1.0, -100.0, 100.0).setSyncable(true)
+         );
+      }
+
+      private static DeferredHolder<Attribute, Attribute> newPowerAttribute(String id) {
+         return ATTRIBUTES.register(
+            id + "_spell_power", () -> new MagicRangedAttribute("attribute.aero_additions." + id + "_spell_power", 1.0, -100.0, 100.0).setSyncable(true)
+         );
+      }
+   }
+
+   public static class Entities {
+      private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, "aero_additions");
+      private static final DeferredRegister<EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS = DeferredRegister.create(
+         net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.ENTITY_DATA_SERIALIZERS, "aero_additions"
+      );
+      public static final DeferredHolder<EntityType<?>, EntityType<MagicWindCharge>> MAGIC_WIND_CHARGE = ENTITIES.register(
+         "magic_wind_charge",
+         () -> Builder.<MagicWindCharge>of(MagicWindCharge::new, MobCategory.MISC)
+            .sized(0.3125F, 0.3125F)
+            .clientTrackingRange(64)
+            .build(Aeromancy.id("magic_wind_charge").toString())
+      );
+      public static final DeferredHolder<EntityType<?>, EntityType<UpdraftEntity>> UPDRAFT_VISUAL_ENTITY = ENTITIES.register(
+         "updraft_visual",
+         () -> Builder.<UpdraftEntity>of(UpdraftEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(64).build(Aeromancy.id("updraft_visual").toString())
+      );
+      public static final DeferredHolder<EntityType<?>, EntityType<SummonedBreeze>> SUMMONED_BREEZE = ENTITIES.register(
+         "summoned_breeze",
+         () -> Builder.<SummonedBreeze>of(SummonedBreeze::new, MobCategory.CREATURE)
+            .sized(0.6F, 1.77F)
+            .clientTrackingRange(64)
+            .build(Aeromancy.id("summoned_breeze").toString())
+      );
+      public static final DeferredHolder<EntityType<?>, EntityType<WindBladeProjectile>> WIND_BLADE_PROJECTILE = ENTITIES.register(
+         "wind_blade",
+         () -> Builder.<WindBladeProjectile>of(WindBladeProjectile::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(64).build(Aeromancy.id("wind_blade").toString())
+      );
+      public static final DeferredHolder<EntityType<?>, EntityType<TornadoEntity>> TORNADO = ENTITIES.register(
+         "tornado", () -> Builder.<TornadoEntity>of(TornadoEntity::new, MobCategory.MISC).sized(10.0F, 6.0F).clientTrackingRange(64).build(Aeromancy.id("tornado").toString())
+      );
+   }
+
+   public static class MobEffects {
+      public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, "aero_additions");
+      public static final DeferredHolder<MobEffect, MobEffect> WIND_SHIELD = MOB_EFFECTS.register(
+         "wind_shield", () -> new WindShieldEffect(MobEffectCategory.BENEFICIAL, 13888490)
+      );
+      public static final DeferredHolder<MobEffect, MobEffect> BREATHLESS = MOB_EFFECTS.register(
+         "breathless",
+         () -> new BreathlessEffect(MobEffectCategory.HARMFUL, 13888490)
+            .addAttributeModifier(
+               net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED, Aeromancy.id("breathless_slow"), -0.3F, Operation.ADD_MULTIPLIED_BASE
+            )
+            .addAttributeModifier(
+               net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE, Aeromancy.id("breathless_weak"), -0.3F, Operation.ADD_MULTIPLIED_BASE
+            )
+      );
+      public static final DeferredHolder<MobEffect, MobEffect> FLIGHT = MOB_EFFECTS.register(
+         "flight",
+         () -> new FlightEffect(MobEffectCategory.BENEFICIAL, 13888490)
+            .addAttributeModifier(
+               net.minecraft.world.entity.ai.attributes.Attributes.WATER_MOVEMENT_EFFICIENCY, Aeromancy.id("effect.flight"), 1.0, Operation.ADD_VALUE
+            )
+            .addAttributeModifier(
+               net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED, Aeromancy.id("effect.flight"), 0.15F, Operation.ADD_MULTIPLIED_BASE
+            )
+      );
+      public static final DeferredHolder<MobEffect, MobEffect> TELELINKED = MOB_EFFECTS.register(
+         "telelinked", () -> new MagicMobEffect(MobEffectCategory.BENEFICIAL, 14382335)
+      );
+      public static final DeferredHolder<MobEffect, MobEffect> AIRSTEPPING = MOB_EFFECTS.register(
+         "airstepping", () -> new MagicMobEffect(MobEffectCategory.BENEFICIAL, 13888490)
+      );
+      public static final DeferredHolder<MobEffect, StunEffect> STUNNED = MOB_EFFECTS.register(
+         "stunned", () -> new StunEffect(MobEffectCategory.HARMFUL, 16776960, ParticleTypes.ANGRY_VILLAGER)
+      );
+   }
+
+   public static class Schools {
+      public static final ResourceLocation WIND_RESOURCE = Aeromancy.id("wind");
+      private static final DeferredRegister<SchoolType> SCHOOLS = DeferredRegister.create(SchoolRegistry.SCHOOL_REGISTRY_KEY, "aero_additions");
+      public static final Supplier<SchoolType> WIND = registerSchool(
+         new SchoolType(
+            WIND_RESOURCE,
+            AAItemTags.WIND_FOCUS,
+            Component.translatable("school.aero_additions.wind").withColor(10729215),
+            AASpells.Attributes.WIND_SPELL_POWER,
+            AASpells.Attributes.WIND_MAGIC_RESIST,
+            AASounds.WIND_CAST,
+            AADamageTypes.WIND_MAGIC
+         )
+      );
+
+      private static Supplier<SchoolType> registerSchool(SchoolType schoolType) {
+         return SCHOOLS.register(schoolType.getId().getPath(), () -> schoolType);
+      }
+   }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/cordyceps_farmer",
+  "textures": {
+    "all": "horror_element_mod:block/cow_hud",
+    "particle": "horror_element_mod:block/cow_hud",
+    "1": "horror_element_mod:block/cordyceps_farmer"
+  },
+  "render_type": "cutout"
+}

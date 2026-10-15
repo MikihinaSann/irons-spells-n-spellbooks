@@ -91,7 +91,7 @@ public class DecayingZombieNotDespawnEntity extends Monster implements GeoEntity
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new RestrictSunGoal(this) {
          public boolean canUse() {
@@ -115,8 +115,8 @@ public class DecayingZombieNotDespawnEntity extends Monster implements GeoEntity
       this.goalSelector.addGoal(5, new BreakDoorGoal(this, e -> true));
       this.goalSelector.addGoal(6, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

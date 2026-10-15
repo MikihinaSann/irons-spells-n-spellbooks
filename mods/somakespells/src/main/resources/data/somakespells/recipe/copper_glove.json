@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "R": {
+      "item": "minecraft:fire_charge"
+    },
+    "B": {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "pattern": [
+    " CB",
+    "CMC",
+    "RC "
+  ],
+  "result": {
+    "id": "somakespells:copper_glove"
+  }
+}

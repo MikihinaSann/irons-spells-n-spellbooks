@@ -1,0 +1,61 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:tidebound_spell_book",
+    "somakespells:tidebound_2_spell_book",
+    "somakespells:tidebound_3_spell_book",
+    "somakespells:starless_grimoire_spell_book",
+    "somakespells:starless_grimoire_2_spell_book",
+    "somakespells:starless_grimoire_3_spell_book",
+    "somakespells:voidbound_codex_spell_book",
+    "somakespells:voidbound_codex_2_spell_book",
+    "somakespells:voidbound_codex_3_spell_book",
+    "somakespells:invoker_canon_spell_book",
+    "somakespells:invoker_canon_2_spell_book",
+    "somakespells:invoker_canon_3_spell_book",
+    "somakespells:burning_magma_spell_book",
+    "somakespells:burning_magma_2_spell_book",
+    "somakespells:burning_magma_3_spell_book",
+    "somakespells:dawnlit_gospel_spell_book",
+    "somakespells:dawnlit_gospel_2_spell_book",
+    "somakespells:dawnlit_gospel_3_spell_book",
+    "somakespells:frostvein_codex_spell_book",
+    "somakespells:frostvein_codex_2_spell_book",
+    "somakespells:frostvein_codex_3_spell_book",
+    "somakespells:stormcaller_lexicon_spell_book",
+    "somakespells:stormcaller_lexicon_2_spell_book",
+    "somakespells:stormcaller_lexicon_3_spell_book",
+    "somakespells:verdant_testament_spell_book",
+    "somakespells:verdant_testament_2_spell_book",
+    "somakespells:verdant_testament_3_spell_book",
+    "somakespells:sanguine_testament_spell_book",
+    "somakespells:sanguine_testament_2_spell_book",
+    "somakespells:sanguine_testament_3_spell_book",
+    {
+      "id": "somakespells:stoneheart_codex_spell_book",
+      "required": false
+    },
+    {
+      "id": "somakespells:stoneheart_codex_2_spell_book",
+      "required": false
+    },
+    {
+      "id": "somakespells:stoneheart_codex_3_spell_book",
+      "required": false
+    },
+    {
+      "id": "somakespells:resonance_canticle_spell_book",
+      "required": false
+    },
+    {
+      "id": "somakespells:resonance_canticle_2_spell_book",
+      "required": false
+    },
+    {
+      "id": "somakespells:resonance_canticle_3_spell_book",
+      "required": false
+    },
+    "somakespells:aquamancer_spell_book",
+    "somakespells:storm_scriptures_spell_book"
+  ]
+}

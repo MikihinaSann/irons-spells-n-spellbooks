@@ -1,0 +1,6 @@
+{
+  "attribute": "irons_spellbooks:blood_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:blood_upgrade_orb_small"
+}

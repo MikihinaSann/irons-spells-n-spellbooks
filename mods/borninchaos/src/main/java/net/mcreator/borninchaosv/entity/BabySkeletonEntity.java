@@ -104,7 +104,7 @@ public class BabySkeletonEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Wolf.class, 6.0F, 1.0, 1.0));
       this.goalSelector.addGoal(5, new AvoidEntityGoal(this, DreadHoundEntity.class, 6.0F, 1.0, 1.0));

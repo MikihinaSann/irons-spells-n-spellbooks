@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cataclysm:essence_of_the_storm"
+    },
+    {
+      "item": "cataclysm:essence_of_the_storm"
+    }
+  ],
+  "result": {
+    "id": "somakespells:ceranium_ingot",
+    "count": 1
+  }
+}

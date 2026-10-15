@@ -107,8 +107,8 @@ public class BloodyGadflyEntity extends Monster implements GeoEntity {
       this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Spider.class, 12.0F, 1.0, 1.2));
       this.goalSelector.addGoal(5, new AvoidEntityGoal(this, CaveSpider.class, 12.0F, 1.0, 1.2));
       this.goalSelector.addGoal(6, new FloatGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Player.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Cow.class, false, false) {
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Cow.class, false, false) {
          public boolean canUse() {
             double x = BloodyGadflyEntity.this.getX();
             double y = BloodyGadflyEntity.this.getY();
@@ -127,7 +127,7 @@ public class BloodyGadflyEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GadflyAttackConditionProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Horse.class, false, false) {
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Horse.class, false, false) {
          public boolean canUse() {
             double x = BloodyGadflyEntity.this.getX();
             double y = BloodyGadflyEntity.this.getY();

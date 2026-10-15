@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "somakespells:dark_metal_battlemage_leggings",
+      "required": false
+    },
+    "somakespells:ceranium_leggings",
+    "somakespells:aquamancer_leggings",
+    "somakespells:abyssium_leggings"
+  ]
+}

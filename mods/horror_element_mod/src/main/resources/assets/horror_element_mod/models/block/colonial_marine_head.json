@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/colonial_marines_head",
+  "textures": {
+    "all": "horror_element_mod:block/colonial_marine_skull",
+    "particle": "horror_element_mod:block/colonial_marine_skull",
+    "1": "horror_element_mod:block/colonial_marine_skull"
+  },
+  "render_type": "translucent"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "V": {
+      "item": "irons_spellbooks:bloody_vellum"
+    },
+    "S": {
+      "item": "irons_spellbooks:weapon_parts"
+    }
+  },
+  "pattern": [
+    "  M",
+    "VM ",
+    "SV "
+  ],
+  "result": {
+    "id": "somakespells:fragmented_sword_1"
+  }
+}

@@ -93,7 +93,7 @@ public class MaggotEntity extends Monster implements GeoEntity {
       this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(4, new FloatGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
    }
 
    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float f) {

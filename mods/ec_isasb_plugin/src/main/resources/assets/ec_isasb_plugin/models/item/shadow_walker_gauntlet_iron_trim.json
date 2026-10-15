@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ec_isasb_plugin:item/gauntlet/shadow_walker",
+    "layer1": "expanded_combat:trims/items/gauntlet_trim_iron"
+  }
+}

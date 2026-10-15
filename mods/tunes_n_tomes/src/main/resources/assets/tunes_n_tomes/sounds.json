@@ -1,0 +1,287 @@
+{
+  "clef": {
+    "subtitle": "subtitles.clef",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:clef",
+        "stream": true
+      }
+    ]
+  },
+  "harp_wave": {
+    "subtitle": "subtitles.harp_wave",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_wave",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:harp_vibration",
+        "stream": true
+      }
+    ]
+  },
+  "harp_symphony": {
+    "subtitle": "subtitles.harp_symphony",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_symphony",
+        "stream": true
+      }
+    ]
+  },
+  "harp_explosion_cast": {
+    "subtitle": "subtitles.harp_explosion_cast",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_explosion_cast",
+        "stream": true
+      }
+    ]
+  },
+  "harp_explosion": {
+    "subtitle": "subtitles.harp_explosion",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_explosion",
+        "stream": true
+      }
+    ]
+  },
+  "harp_laser": {
+    "subtitle": "subtitles.harp_laser",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_laser",
+        "stream": true
+      }
+    ]
+  },
+  "angel_cast": {
+    "subtitle": "subtitles.angel_cast",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:angel",
+        "stream": true
+      }
+    ]
+  },
+  "healing_aura": {
+    "subtitle": "subtitles.healing_aura",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:healing_aura",
+        "stream": true
+      }
+    ]
+  },
+  "angelic_harp": {
+    "subtitle": "subtitles.angelic_harp",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:angelic_harp_1",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:angelic_harp_2",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:angelic_harp_3",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:angelic_harp_4",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:angelic_harp_5",
+        "stream": true
+      }
+    ]
+  },
+  "bird_chirp": {
+    "subtitle": "subtitles.bird_chirp",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bird_chirp",
+        "stream": true
+      },
+      {
+        "name": "tunes_n_tomes:bird_chirp_chain",
+        "stream": true
+      }
+    ]
+  },
+  "birds_cast": {
+    "subtitle": "subtitles.birds_cast",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:harp_speed",
+        "stream": true
+      }
+    ]
+  },
+  "birds_spawn": {
+    "subtitle": "subtitles.birds_spawn",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:speed_aura",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_1": {
+    "subtitle": "subtitles.bard_song_1",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_1",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_2": {
+    "subtitle": "subtitles.bard_song_2",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_2",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_3": {
+    "subtitle": "subtitles.bard_song_3",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_3",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_4": {
+    "subtitle": "subtitles.bard_song_4",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_4",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_5": {
+    "subtitle": "subtitles.bard_song_5",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_5",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_6": {
+    "subtitle": "subtitles.bard_song_6",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_6",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_7": {
+    "subtitle": "subtitles.bard_song_7",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_7",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_8": {
+    "subtitle": "subtitles.bard_song_8",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_8",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_9": {
+    "subtitle": "subtitles.bard_song_9",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_9",
+        "stream": true
+      }
+    ]
+  },
+  "bard_song_10": {
+    "subtitle": "subtitles.bard_song_10",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:bard_song_10",
+        "stream": true
+      }
+    ]
+  },
+  "dal_segno": {
+    "subtitle": "subtitles.dal_segno",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:dal_segno",
+        "stream": true
+      }
+    ]
+  },
+  "crescendo": {
+    "subtitle": "subtitles.crescendo",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:crescendo",
+        "stream": true
+      }
+    ]
+  },
+  "fortissimo": {
+    "subtitle": "subtitles.fortissimo",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:fortissimo",
+        "stream": true
+      }
+    ]
+  },
+  "ball_throw": {
+    "subtitle": "subtitles.ball_throw",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:toss_energyball",
+        "stream": true
+      }
+    ]
+  },
+  "hope_burst": {
+    "subtitle": "subtitles.hope_burst",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:shield_on",
+        "stream": true
+      }
+    ]
+  },
+  "fortissimo_charge": {
+    "subtitle": "subtitles.fortissimo_charge",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:fortissimo_charge",
+        "stream": true
+      }
+    ]
+  },
+  "piercing_solo": {
+    "subtitle": "subtitles.piercing_solo",
+    "sounds": [
+      {
+        "name": "tunes_n_tomes:piercing_solo",
+        "stream": true
+      }
+    ]
+  }
+}

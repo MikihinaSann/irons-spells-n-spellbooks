@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/barricade_birch"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/barricade_birch",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/barricade_birch",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/barricade_birch",
+      "y": 270
+    }
+  }
+}

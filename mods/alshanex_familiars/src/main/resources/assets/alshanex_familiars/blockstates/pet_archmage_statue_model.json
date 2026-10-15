@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "alshanex_familiars:block/pet_archmage_statue_model"},
+		"facing=east": {"model": "alshanex_familiars:block/pet_archmage_statue_model", "y": 90},
+		"facing=south": {"model": "alshanex_familiars:block/pet_archmage_statue_model", "y": 180},
+		"facing=west": {"model": "alshanex_familiars:block/pet_archmage_statue_model", "y": 270}
+	}
+}

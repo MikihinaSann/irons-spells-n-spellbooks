@@ -1,0 +1,37 @@
+{
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:fragmented_sword_2"
+  },
+  "result_book": {
+    "id": "somakespells:fragmented_sword_3"
+  },
+  "school": "irons_spellbooks:blood",
+  "requires_max_progress": false,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:blood_vial"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      },
+      "count": 12
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:bloody_vellum"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:blood_upgrade_orb"
+      },
+      "count": 3
+    }
+  ]
+}

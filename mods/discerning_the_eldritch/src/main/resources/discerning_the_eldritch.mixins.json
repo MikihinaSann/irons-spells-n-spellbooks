@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.acetheeldritchking.discerning_the_eldritch.mixins",
+  "refmap": "discerning_the_eldritch.refmap.json",
+  "plugin": "net.acetheeldritchking.discerning_the_eldritch.mixins.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "entity.CultistEntityMixin",
+    "recipes.RecipeCraftingHolderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

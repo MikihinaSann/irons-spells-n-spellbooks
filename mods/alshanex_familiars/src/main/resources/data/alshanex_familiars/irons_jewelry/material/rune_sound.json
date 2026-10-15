@@ -1,0 +1,18 @@
+{
+  "descriptionId": "material.alshanex_familiars.rune_sound",
+  "ingredient": {
+    "item": "alshanex_familiars:sound_rune"
+  },
+  "materialType": [
+    "spellbooks_rune"
+  ],
+  "paletteLocation": "alshanex_familiars:palettes/rune_sound",
+  "quality": 1.5,
+  "bonusParameters": {
+    "irons_jewelry:attribute": {
+      "attribute": "familiarslib:sound_spell_power",
+      "amount": 0.025,
+      "operation": "add_multiplied_total"
+    }
+  }
+}

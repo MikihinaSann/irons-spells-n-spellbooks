@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ec_isasb_plugin:item/gauntlet/wandering_magician",
+    "layer1": "expanded_combat:trims/items/gauntlet_trim_iron"
+  }
+}

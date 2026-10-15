@@ -86,12 +86,12 @@ public class ZombieBruiserEntity extends Monster implements GeoEntity {
             return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < 2.56 && this.mob.getSensing().hasLineOfSight(entity);
          }
       });
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new RestrictSunGoal(this));
       this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.6));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Villager.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
    }
 
    public SoundEvent getAmbientSound() {

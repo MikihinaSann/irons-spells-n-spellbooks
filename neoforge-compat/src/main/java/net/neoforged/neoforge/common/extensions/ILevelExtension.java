@@ -15,4 +15,15 @@ public interface ILevelExtension {
     default ModelData getModelData(BlockPos pos) {
         return ModelData.EMPTY;
     }
+
+    /**
+     * NeoForge's block-capability lookup — resolves through
+     * {@link net.neoforged.neoforge.capabilities.CapabilityRegistry}.
+     */
+    @org.jetbrains.annotations.Nullable
+    default <T> T getCapability(net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent.Capability<T> capability,
+            BlockPos pos, @org.jetbrains.annotations.Nullable net.minecraft.core.Direction context) {
+        return net.neoforged.neoforge.capabilities.CapabilityRegistry.getCapability(
+                capability, (net.minecraft.world.level.Level) this, pos, null, null, context);
+    }
 }

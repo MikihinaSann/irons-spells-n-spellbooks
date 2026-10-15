@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 10
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:honey_bottle"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 7
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:honeycomb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/crucified_body",
+  "textures": {
+    "all": "horror_element_mod:block/blood_9",
+    "particle": "horror_element_mod:block/blood_9",
+    "1": "horror_element_mod:block/crucified_body"
+  },
+  "render_type": "cutout"
+}

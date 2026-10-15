@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/gaz_mask_head",
+  "textures": {
+    "all": "horror_element_mod:block/hazmat_skull",
+    "particle": "horror_element_mod:block/hazmat_skull",
+    "1": "horror_element_mod:block/hazmat_skull"
+  },
+  "render_type": "translucent"
+}

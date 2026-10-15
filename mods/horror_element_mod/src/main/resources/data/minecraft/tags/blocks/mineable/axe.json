@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "horror_element_mod:axed_door_birch_fell",
+    "horror_element_mod:axed_door_birch",
+    "horror_element_mod:axed_door_spruce_fell",
+    "horror_element_mod:axed_door_spruce",
+    "horror_element_mod:axed_door_oak_fell",
+    "horror_element_mod:axed_door_oak",
+    "horror_element_mod:axed_door_jungle_fell",
+    "horror_element_mod:axed_door_jungle",
+    "horror_element_mod:axed_door_dark_oak_fell",
+    "horror_element_mod:axed_door_darkoak",
+    "horror_element_mod:axed_door_bamboo_fell",
+    "horror_element_mod:axeddoorbamboo",
+    "horror_element_mod:barricade_birch_bloody",
+    "horror_element_mod:barricade_birch",
+    "horror_element_mod:barricade_dark_oak_bloody",
+    "horror_element_mod:barricade_darkoak",
+    "horror_element_mod:barricade_spruce_bloody",
+    "horror_element_mod:barricadespruce",
+    "horror_element_mod:barricade_oak_bloody",
+    "horror_element_mod:barricadeoak"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/redstone_trigerrer"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/redstone_trigerrer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/redstone_trigerrer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/redstone_trigerrer",
+      "y": 270
+    }
+  }
+}

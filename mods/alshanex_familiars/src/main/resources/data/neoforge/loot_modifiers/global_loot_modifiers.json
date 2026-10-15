@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "entries": [
+    "alshanex_familiars:chest_loot/ancient_city_modifier",
+    "alshanex_familiars:chest_loot/blacksmith_modifier",
+    "alshanex_familiars:chest_loot/end_city_modifier",
+    "alshanex_familiars:chest_loot/evoker_fort_modifier",
+    "alshanex_familiars:chest_loot/jungle_modifier",
+    "alshanex_familiars:chest_loot/mountain_tower_modifier",
+    "alshanex_familiars:chest_loot/pyromancer_tower_modifier",
+    "alshanex_familiars:chest_loot/priest_house_modifier",
+    "alshanex_familiars:chest_loot/mansion_modifier",
+    "alshanex_familiars:chest_loot/icebreaker_modifier",
+    "alshanex_familiars:chest_loot/ice_den_modifier",
+
+    "alshanex_familiars:entity_loot/additional_power_essence",
+    "alshanex_familiars:entity_loot/strange_mushroom_loot",
+    "alshanex_familiars:entity_loot/spider_loot",
+    "alshanex_familiars:entity_loot/items_from_shearing_bogged",
+    "alshanex_familiars:entity_loot/items_from_sniffing",
+    "alshanex_familiars:entity_loot/dragon_tear_drop"
+  ]
+}

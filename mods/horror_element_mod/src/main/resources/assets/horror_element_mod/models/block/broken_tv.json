@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/broken_tv",
+  "textures": {
+    "all": "horror_element_mod:block/broken_tv_1",
+    "particle": "horror_element_mod:block/broken_tv_1",
+    "1": "horror_element_mod:block/tv"
+  },
+  "render_type": "translucent"
+}

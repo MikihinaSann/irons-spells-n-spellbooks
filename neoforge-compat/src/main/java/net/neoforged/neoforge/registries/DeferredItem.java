@@ -10,14 +10,14 @@ import java.util.function.Supplier;
 /**
  * NeoForge-style typed holder for items.
  */
-public class DeferredItem<T extends Item> extends DeferredHolder<Item, T> {
+public class DeferredItem<T extends Item> extends DeferredHolder<Item, T> implements net.minecraft.world.level.ItemLike {
     public DeferredItem(ResourceKey<?> registryKey, ResourceLocation location, Supplier<T> supplier) {
         super(registryKey, location, supplier);
     }
 
     /** Creates a new stack of size 1. */
     public ItemStack toStack() {
-        return new ItemStack(this);
+        return new ItemStack((net.minecraft.world.level.ItemLike) this);
     }
 
     /** NeoForge's {@code DeferredItem.createItem(ResourceLocation)}. */
@@ -27,6 +27,11 @@ public class DeferredItem<T extends Item> extends DeferredHolder<Item, T> {
     }
 
     public ItemStack toStack(int count) {
-        return new ItemStack(this, count);
+        return new ItemStack((net.minecraft.world.level.ItemLike) this, count);
+    }
+
+    @Override
+    public Item asItem() {
+        return get();
     }
 }

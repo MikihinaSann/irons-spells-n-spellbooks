@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/trapped_leg"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/trapped_leg",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/trapped_leg",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/trapped_leg",
+      "y": 270
+    }
+  }
+}

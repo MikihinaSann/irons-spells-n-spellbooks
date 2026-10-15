@@ -1,0 +1,116 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"loader": "neoforge:composite",
+	"children": {
+		"base": {
+			"textures": {
+				"0": "somakespells:item/others/elemental_fires",
+				"particle": "somakespells:item/others/elemental_fires"
+			},
+			"elements": [
+				{
+					"from": [10, 11, 10],
+					"to": [6, 7, 6],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"faces": {
+						"north": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"east": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"south": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"west": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"up": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"down": {"uv": [3, 0, 4, 1], "texture": "#0"}
+					}
+				},
+				{
+					"from": [9.5, 10.5, 9.5],
+					"to": [6.5, 7.5, 6.5],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"faces": {
+						"north": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"east": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"south": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"west": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"up": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"down": {"uv": [4, 0, 5, 1], "texture": "#0"}
+					}
+				},
+				{
+					"from": [7, 8, 7],
+					"to": [9, 10, 9],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"faces": {
+						"north": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"east": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"south": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"west": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"up": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"down": {"uv": [3, 1, 4, 2], "texture": "#0"}
+					}
+				}
+			]
+		},
+		"emissive": {
+			"textures": {
+				"0": "somakespells:item/others/elemental_fires_emissive",
+				"particle": "somakespells:item/others/elemental_fires_emissive"
+			},
+			"elements": [
+				{
+					"from": [10, 11, 10],
+					"to": [6, 7, 6],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"neoforge_data": {"block_light": 15, "sky_light": 15, "ambient_occlusion": false},
+					"faces": {
+						"north": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"east": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"south": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"west": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"up": {"uv": [3, 0, 4, 1], "texture": "#0"},
+						"down": {"uv": [3, 0, 4, 1], "texture": "#0"}
+					}
+				},
+				{
+					"from": [9.5, 10.5, 9.5],
+					"to": [6.5, 7.5, 6.5],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"neoforge_data": {"block_light": 15, "sky_light": 15, "ambient_occlusion": false},
+					"faces": {
+						"north": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"east": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"south": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"west": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"up": {"uv": [4, 0, 5, 1], "texture": "#0"},
+						"down": {"uv": [4, 0, 5, 1], "texture": "#0"}
+					}
+				},
+				{
+					"from": [7, 8, 7],
+					"to": [9, 10, 9],
+					"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+					"neoforge_data": {"block_light": 15, "sky_light": 15, "ambient_occlusion": false},
+					"faces": {
+						"north": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"east": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"south": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"west": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"up": {"uv": [3, 1, 4, 2], "texture": "#0"},
+						"down": {"uv": [3, 1, 4, 2], "texture": "#0"}
+					}
+				}
+			]
+		}
+	},
+	"item_render_order": ["base", "emissive"],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 2, 1]
+		},
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [0, -2, 0],
+			"scale": [2, 2, 2]
+		}
+	}
+}

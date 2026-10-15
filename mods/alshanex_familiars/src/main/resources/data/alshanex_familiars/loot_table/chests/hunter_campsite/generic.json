@@ -1,0 +1,111 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 2,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:entities/creeper"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:entities/skeleton"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:entities/spider"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:entities/zombie"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:white_wool"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "weight": 2,
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow"
+        },
+        {
+          "weight": 1,
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "options": "#minecraft:on_random_loot",
+              "levels": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 4,
+        "max": 8
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:arrow"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:arcane_essence"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "alshanex_familiars:hunter_trinket"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "irons_spellbooks:chests/additional_generic_loot"
+        }
+      ]
+    }
+  ]
+}

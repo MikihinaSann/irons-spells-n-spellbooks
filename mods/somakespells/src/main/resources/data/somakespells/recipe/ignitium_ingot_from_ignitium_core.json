@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "somakespells:ignitium_core"
+    },
+    {
+      "item": "somakespells:ignitium_core"
+    }
+  ],
+  "result": {
+    "id": "cataclysm:ignitium_ingot",
+    "count": 1
+  }
+}

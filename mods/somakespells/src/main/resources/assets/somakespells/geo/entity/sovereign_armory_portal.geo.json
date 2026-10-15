@@ -1,0 +1,81 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.sovereign_armory_portal",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 4.0,
+        "visible_bounds_height": 4.0,
+        "visible_bounds_offset": [0, 0, 0]
+      },
+      "bones": [
+        {
+          "name": "portal_root",
+          "pivot": [0, 0, 0]
+        },
+        {
+          "name": "outer_ring",
+          "parent": "portal_root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-22, -22, -0.5],
+              "size": [44, 44, 1],
+              "uv": {
+                "north": {"uv": [0, 0], "uv_size": [64, 64]},
+                "south": {"uv": [0, 0], "uv_size": [64, 64]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "main_ring",
+          "parent": "portal_root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-18, -18, -0.75],
+              "size": [36, 36, 1.5],
+              "uv": {
+                "north": {"uv": [64, 0], "uv_size": [64, 64]},
+                "south": {"uv": [64, 0], "uv_size": [64, 64]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "inner_ring",
+          "parent": "portal_root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-13, -13, -1],
+              "size": [26, 26, 2],
+              "uv": {
+                "north": {"uv": [0, 64], "uv_size": [64, 64]},
+                "south": {"uv": [0, 64], "uv_size": [64, 64]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "portal_surface",
+          "parent": "portal_root",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-10, -10, -1.25],
+              "size": [20, 20, 2.5],
+              "uv": {
+                "north": {"uv": [64, 64], "uv_size": [64, 64]},
+                "south": {"uv": [64, 64], "uv_size": [64, 64]}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

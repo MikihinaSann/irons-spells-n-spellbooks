@@ -1,0 +1,42 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"0": "somakespells:item/centauri",
+		"particle": "somakespells:item/centauri"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, 55],
+			"translation": [0, 10.5, 4.25],
+			"scale": [1.75, 1.75, 0.75]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -55],
+			"translation": [0, 5.5, 4.25],
+			"scale": [1.15, 1.15, 0.75]
+		},
+		"firstperson_righthand": {
+			"rotation": [-69, -90, 0],
+			"translation": [1.13, 7.5, 1.13],
+			"scale": [1.15, 1.15, 0.75]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-69, 90, 0],
+			"translation": [1.13, 7.5, 1.13],
+			"scale": [1.15, 1.15, 0.75]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.8, 0.8, 0.45]
+		},
+		"gui": {
+			"scale": [1.45, 1.45, 0.9]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"scale": [1.45, 1.45, 0.9]
+		}
+	}
+}

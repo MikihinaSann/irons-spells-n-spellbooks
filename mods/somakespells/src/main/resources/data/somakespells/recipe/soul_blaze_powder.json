@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "somakespells:soul_blaze_rod"
+    }
+  ],
+  "result": {
+    "id": "somakespells:soul_blaze_powder",
+    "count": 2
+  }
+}

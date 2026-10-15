@@ -168,7 +168,7 @@ public class MrPumpkinControlledEntity extends TamableAnimal implements GeoEntit
       });
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(7, new LeapAtTargetGoal(this, 0.5F));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

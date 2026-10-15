@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "iss_magicfromtheeast:block/chiseled_jade_vertical",
+    "east": "iss_magicfromtheeast:block/jade_lion_right",
+    "north": "iss_magicfromtheeast:block/jade_lion_front",
+    "particle": "iss_magicfromtheeast:block/jade_lion_back",
+    "south": "iss_magicfromtheeast:block/jade_lion_back",
+    "up": "iss_magicfromtheeast:block/chiseled_jade_vertical",
+    "west": "iss_magicfromtheeast:block/jade_lion_left"
+  }
+}

@@ -1,0 +1,4 @@
+accessWidener v2 named
+
+# Entity level field
+accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/level/Level;

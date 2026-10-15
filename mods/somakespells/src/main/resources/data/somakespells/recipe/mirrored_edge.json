@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "iss_magicfromtheeast"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "iss_magicfromtheeast:yin_yang_core"
+    },
+    "D": {
+      "item": "iss_magicfromtheeast:refined_jade_block"
+    },
+    "E": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "BCD",
+    " A ",
+    " E "
+  ],
+  "result": {
+    "id": "somakespells:mirrored_edge"
+  }
+}

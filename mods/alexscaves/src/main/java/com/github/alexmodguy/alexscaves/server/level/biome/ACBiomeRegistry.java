@@ -2,7 +2,7 @@ package com.github.alexmodguy.alexscaves.server.level.biome;
 
 import com.github.alexmodguy.alexscaves.AlexsCaves;
 import com.github.alexthe666.citadel.server.world.ExpandedBiomes;
-import net.minecraft.client.Minecraft;
+import com.github.alexmodguy.alexscaves.client.misc.ACClientAccess;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -121,7 +121,7 @@ public class ACBiomeRegistry {
     }
 
     public static float calculateBiomeSkyOverride(Entity player) {
-        int i = Minecraft.getInstance().options.biomeBlendRadius().get();
+        int i = player.level().isClientSide() ? ACClientAccess.biomeBlendRadius() : 0;
         if (i == 0) {
             return ACBiomeRegistry.getBiomeSkyOverride(player.level().getBiome(player.blockPosition()));
         } else {

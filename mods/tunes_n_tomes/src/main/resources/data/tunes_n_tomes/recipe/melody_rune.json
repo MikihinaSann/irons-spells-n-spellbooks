@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "irons_spellbooks:blank_rune"
+    },
+    "N": {
+      "item": "minecraft:note_block"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NBN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tunes_n_tomes:melody_rune"
+  }
+}

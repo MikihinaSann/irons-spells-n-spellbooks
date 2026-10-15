@@ -1,0 +1,7 @@
+{
+	"parent": "somakespells:item/ignitium_staff",
+	"textures": {
+		"1": "somakespells:item/staffs/infernal_fire_ignitium_staff",
+		"2": "somakespells:item/staffs/infernal_fire_ignitium_staff_anim"
+	}
+}

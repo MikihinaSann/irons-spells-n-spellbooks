@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 6,
+        "max": 23
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar_cane"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 3,
+        "max": 7
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 7
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:azalea_leaves"
+        }
+      ]
+    }
+  ]
+}

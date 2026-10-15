@@ -1,4 +1,5 @@
 package com.gametechbc.traveloptics.api.item;
+import com.gametechbc.traveloptics.render.TORenderProviders;
 
 import io.redspace.ironsspellbooks.api.item.weapons.ExtendedSwordItem;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;

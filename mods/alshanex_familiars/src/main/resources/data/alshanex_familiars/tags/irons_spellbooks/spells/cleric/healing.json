@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:cleanse",
+    "irons_spellbooks:healing_circle",
+    "irons_spellbooks:blessing_of_life"
+  ]
+}

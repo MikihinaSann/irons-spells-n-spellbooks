@@ -1,0 +1,67 @@
+package net.hazen.hazennstuff.Item.Armor.AzureLib.Blazeborne;
+
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.item.armor.IDisableHat;
+import io.redspace.ironsspellbooks.item.armor.IDisableJacket;
+import java.util.List;
+import net.hazen.hazennstuff.Compat.ArsNoveauCompat;
+import net.hazen.hazennstuff.Compat.MalumCompat;
+import net.hazen.hazennstuff.Datagen.HnSTags;
+import net.hazen.hazennstuff.Item.Armor.AzureLib.CreakingSorcerer.CreakingSorcererArmorItem;
+import net.hazen.hazennstuff.Item.HnSUtilities.HnSArmorMaterials;
+import net.hazen.hazennstuff.Item.HnSUtilities.ImbuableHnSArmorItem;
+import net.hazen.hazennstuff.Registries.HnSEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ArmorItem.Type;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.ItemAttributeModifiers.Builder;
+import net.minecraft.world.item.component.ItemAttributeModifiers.Entry;
+import net.minecraft.world.level.Level;
+
+public class BlazeborneArmorItem extends ImbuableHnSArmorItem implements IDisableJacket, IDisableHat {
+   public BlazeborneArmorItem(Type type, Properties settings) {
+      super(HnSArmorMaterials.BLAZEBORNE_MATERIAL, type, settings, pureTier(AttributeRegistry.FIRE_SPELL_POWER));
+   }
+
+   @Override
+   public List<Entry> createExtraAttributes() {
+      EquipmentSlotGroup group = EquipmentSlotGroup.bySlot(this.getEquipmentSlot());
+      Builder attributes = ItemAttributeModifiers.builder();
+      MalumCompat.addArcaneResonance(attributes, group);
+      ArsNoveauCompat.addMaxMana(attributes, group);
+      ArsNoveauCompat.addManaRegen(attributes, group);
+      return attributes.build().modifiers();
+   }
+
+   public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+      if (entity instanceof Player player && !level.isClientSide() && this.isWearingFullSet(player)) {
+         this.evaluateArmorEffects(player);
+      }
+
+      if (!level.isClientSide && entity instanceof Player player) {
+         player.getArmorSlots().forEach(wornArmor -> {
+            if (wornArmor != null && wornArmor.is(HnSTags.ARMORS_FOR_IDLE)) {
+               this.dispatcher.idle(player, wornArmor);
+            }
+         });
+      }
+   }
+
+   private void evaluateArmorEffects(Player player) {
+      if (!player.hasEffect(HnSEffects.MAGE_SET_BONUS)) {
+         player.addEffect(new MobEffectInstance(HnSEffects.MAGE_SET_BONUS, 320, 0, false, false, false));
+      }
+   }
+
+   private boolean isWearingFullSet(Player player) {
+      return player.getItemBySlot(Type.HELMET.getSlot()).getItem() instanceof CreakingSorcererArmorItem
+         && player.getItemBySlot(Type.CHESTPLATE.getSlot()).getItem() instanceof CreakingSorcererArmorItem
+         && player.getItemBySlot(Type.LEGGINGS.getSlot()).getItem() instanceof CreakingSorcererArmorItem
+         && player.getItemBySlot(Type.BOOTS.getSlot()).getItem() instanceof CreakingSorcererArmorItem;
+   }
+}

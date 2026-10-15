@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/villager_head",
+  "textures": {
+    "all": "horror_element_mod:block/villager_head",
+    "particle": "horror_element_mod:block/villager_head",
+    "0": "horror_element_mod:block/villager_head"
+  },
+  "render_type": "solid"
+}

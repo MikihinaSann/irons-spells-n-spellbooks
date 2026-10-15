@@ -1,0 +1,22 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/bottle_soul",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:lightning_mage_shard"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.reincarnation"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.reincarnation.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "use_shard": {
+      "trigger": "familiarslib:shard_use"
+    }
+  }
+}

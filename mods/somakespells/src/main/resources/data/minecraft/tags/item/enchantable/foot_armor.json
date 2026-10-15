@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "somakespells:dark_metal_battlemage_boots",
+      "required": false
+    },
+    "somakespells:ceranium_boots",
+    "somakespells:aquamancer_boots",
+    "somakespells:abyssium_boots"
+  ]
+}

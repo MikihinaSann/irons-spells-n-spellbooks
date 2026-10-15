@@ -1,0 +1,47 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"emerge": {
+			"animation_length": 0.6,
+			"bones": {
+				"weapon_root": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 20]
+						},
+						"0.6": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [0.65, 0.65, 0.65]
+						},
+						"0.6": {
+							"vector": [1, 1, 1]
+						}
+					}
+				}
+			}
+		},
+		"fly": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"weapon_root": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, -180]
+						},
+						"0.5": {
+							"vector": [0, 0, -360]
+						}
+					}
+				}
+			}
+		}
+	}
+}

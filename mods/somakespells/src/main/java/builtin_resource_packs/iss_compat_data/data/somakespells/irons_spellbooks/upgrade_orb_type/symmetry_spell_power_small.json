@@ -1,0 +1,6 @@
+{
+  "attribute": "iss_magicfromtheeast:symmetry_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:symmetry_upgrade_orb_small"
+}

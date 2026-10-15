@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "iss_magicfromtheeast:jade_block"
+  },
+  "result": {
+    "id": "iss_magicfromtheeast:jade_stair",
+    "count": 1
+  }
+}

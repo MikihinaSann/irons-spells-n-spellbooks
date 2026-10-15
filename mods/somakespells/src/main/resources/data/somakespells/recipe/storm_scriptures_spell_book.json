@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "A": {
+      "item": "irons_spellbooks:arcane_essence"
+    },
+    "L": {
+      "item": "irons_spellbooks:lightning_bottle"
+    },
+    "H": {
+      "item": "irons_spellbooks:hogskin"
+    }
+  },
+  "pattern": [
+    "MAA",
+    "LHH",
+    "MAA"
+  ],
+  "result": {
+    "id": "somakespells:storm_scriptures_spell_book"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/root",
+  "display": {
+    "icon": {
+      "id": "irons_spellbooks:necronomicon_spell_book"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.learn_necromancy"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.learn_necromancy.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "slay_dead_king": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "#alshanex_familiars:unlocks_revival"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

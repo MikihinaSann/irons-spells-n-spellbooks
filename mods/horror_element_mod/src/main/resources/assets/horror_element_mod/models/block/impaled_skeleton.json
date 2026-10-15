@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/skeleton_impaled",
+  "textures": {
+    "all": "horror_element_mod:block/impaled_skeleton",
+    "particle": "horror_element_mod:block/impaled_skeleton",
+    "2": "horror_element_mod:block/impaled_skeleton"
+  },
+  "render_type": "translucent"
+}

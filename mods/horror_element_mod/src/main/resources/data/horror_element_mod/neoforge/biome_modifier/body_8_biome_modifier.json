@@ -1,0 +1,27 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "badlands",
+    "bamboo_jungle",
+    "birch_forest",
+    "cherry_grove",
+    "dark_forest",
+    "deep_dark",
+    "dripstone_caves",
+    "eroded_badlands",
+    "forest",
+    "jungle",
+    "lush_caves",
+    "mangrove_swamp",
+    "old_growth_pine_taiga",
+    "old_growth_spruce_taiga",
+    "savanna",
+    "sparse_jungle",
+    "swamp",
+    "windswept_savanna",
+    "wooded_badlands",
+    "taiga"
+  ],
+  "features": "horror_element_mod:body_8",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/axed_door_oak_fell"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/axed_door_oak_fell",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/axed_door_oak_fell",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/axed_door_oak_fell",
+      "y": 270
+    }
+  }
+}

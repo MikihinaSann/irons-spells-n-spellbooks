@@ -149,7 +149,7 @@ public class ControlledBabySkeletonEntity extends TamableAnimal implements GeoEn
       this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
       this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

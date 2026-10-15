@@ -1,0 +1,57 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:aquamancer_staff",
+    "somakespells:ignitium_staff",
+    "somakespells:soul_fire_ignitium_staff",
+    {
+      "id": "somakespells:infernal_fire_ignitium_staff",
+      "required": false
+    },
+    "somakespells:archangels_staff",
+    "somakespells:withered_rose_staff",
+    {
+      "id": "somakespells:clef_sword",
+      "required": false
+    },
+    {
+      "id": "somakespells:rock_sword",
+      "required": false
+    },
+    {
+      "id": "somakespells:monolith_sword",
+      "required": false
+    },
+    {
+      "id": "somakespells:trumpet_axe",
+      "required": false
+    },
+    "somakespells:hallow_sword",
+    "somakespells:fragmented_sword_1",
+    "somakespells:fragmented_sword_2",
+    "somakespells:fragmented_sword_3",
+    "somakespells:centauri",
+    "somakespells:last_mourning",
+    "somakespells:mirrored_edge",
+    "somakespells:radiant_judgment",
+    "somakespells:scorn",
+    "somakespells:sculkborne_axe",
+    "somakespells:tide_piercer",
+    "somakespells:totem_dagger",
+    "somakespells:core_splitter",
+    "somakespells:copper_glove",
+    "somakespells:witherite_glaive",
+    "somakespells:ruined_blade",
+    "somakespells:glacium_greataxe",
+		"somakespells:boltcutter_dagger",
+		"somakespells:forbidden_hammer",
+		"somakespells:exo_light_saber",
+		"somakespells:flare_light_saber",
+		"somakespells:frostflow_light_saber",
+		"somakespells:plague_light_saber",
+		"somakespells:exo_dual_saber",
+		"somakespells:flare_dual_saber",
+		"somakespells:frostflow_dual_saber",
+		"somakespells:plague_dual_saber"
+  ]
+}

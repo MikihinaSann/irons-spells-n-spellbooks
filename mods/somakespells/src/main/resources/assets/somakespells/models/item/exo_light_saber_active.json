@@ -1,0 +1,6 @@
+{
+	"parent": "somakespells:item/light_saber_model",
+	"textures": {
+		"blade": "somakespells:item/swords/saber_exo"
+	}
+}

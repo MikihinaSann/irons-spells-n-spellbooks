@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "somakespells:dark_metal_battlemage_helmet",
+      "required": false
+    },
+    "somakespells:ceranium_helmet",
+    "somakespells:aquamancer_helmet",
+    "somakespells:abyssium_helmet"
+  ]
+}

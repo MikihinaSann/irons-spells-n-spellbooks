@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/bloody_grave",
+  "textures": {
+    "all": "horror_element_mod:block/bloody_grave",
+    "particle": "horror_element_mod:block/bloody_grave",
+    "0": "horror_element_mod:block/bloody_grave"
+  },
+  "render_type": "solid"
+}

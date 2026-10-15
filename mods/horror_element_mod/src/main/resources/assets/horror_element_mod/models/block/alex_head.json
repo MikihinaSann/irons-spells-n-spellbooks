@@ -1,0 +1,15 @@
+{
+  "parent": "horror_element_mod:custom/alex_head",
+  "textures": {
+    "all": "horror_element_mod:block/alex_face",
+    "particle": "horror_element_mod:block/alex_face",
+    "1": "horror_element_mod:block/alex_face",
+    "2": "horror_element_mod:block/bord_droit_alex",
+    "3": "horror_element_mod:block/bord_gauche_alex",
+    "4": "horror_element_mod:block/coup_alex",
+    "5": "horror_element_mod:block/derriere_des_cheveux_alex",
+    "6": "horror_element_mod:block/clou_alex",
+    "8": "horror_element_mod:block/spine_alex"
+  },
+  "render_type": "solid"
+}

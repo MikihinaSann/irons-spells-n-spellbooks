@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/german_officer_head"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/german_officer_head",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/german_officer_head",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/german_officer_head",
+      "y": 270
+    }
+  }
+}

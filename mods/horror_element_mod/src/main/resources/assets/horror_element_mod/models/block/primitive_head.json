@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/primitive_skull",
+  "textures": {
+    "all": "horror_element_mod:block/primitive_skull",
+    "particle": "horror_element_mod:block/primitive_skull",
+    "1": "horror_element_mod:block/primitive_skull"
+  },
+  "render_type": "solid"
+}

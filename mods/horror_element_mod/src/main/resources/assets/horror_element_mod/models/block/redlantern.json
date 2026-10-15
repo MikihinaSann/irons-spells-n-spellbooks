@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/red_lantern",
+  "textures": {
+    "all": "horror_element_mod:block/red_lantern_2",
+    "particle": "horror_element_mod:block/red_lantern_2",
+    "0": "horror_element_mod:block/red_animated_lantern"
+  },
+  "render_type": "cutout"
+}

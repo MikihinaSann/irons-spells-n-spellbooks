@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/door_iron",
+  "textures": {
+    "all": "horror_element_mod:block/door_iron",
+    "particle": "minecraft:block/iron_block",
+    "3": "horror_element_mod:block/door_iron"
+  },
+  "render_type": "cutout_mipped"
+}

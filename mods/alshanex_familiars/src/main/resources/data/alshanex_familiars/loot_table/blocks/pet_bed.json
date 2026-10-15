@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "alshanex_familiars:pet_bed"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "alshanex_familiars:blocks/pet_bed"
+}

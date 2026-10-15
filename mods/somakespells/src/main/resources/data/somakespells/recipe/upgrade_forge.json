@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "IA ",
+    "LNL",
+    "F F"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "irons_spellbooks:arcane_essence"
+    },
+    "L": {
+      "tag": "c:stripped_logs"
+    },
+    "N": {
+      "item": "minecraft:anvil"
+    },
+    "F": {
+      "tag": "c:fences/wooden"
+    }
+  },
+  "result": {
+    "id": "somakespells:upgrade_forge",
+    "count": 1
+  }
+}

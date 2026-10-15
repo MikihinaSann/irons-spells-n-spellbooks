@@ -180,8 +180,8 @@ public class ClocksmithEntity extends NeutralWizard implements IMerchantWizard, 
         // Нейтрален: нападает только на того, кто ударил первым.
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
-                this::isHostileTowards));
-        this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
+                e -> this.isHostileTowards((net.minecraft.world.entity.LivingEntity) e)));
+        this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal(this, false));
     }
 
     /** Один удар — и он уже враг (у магов ISS по умолчанию сначала предупреждение). */

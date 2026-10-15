@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 /**
  * NeoForge-style typed holder for blocks.
  */
-public class DeferredBlock<T extends Block> extends DeferredHolder<Block, T> {
+public class DeferredBlock<T extends Block> extends DeferredHolder<Block, T> implements net.minecraft.world.level.ItemLike {
     public DeferredBlock(ResourceKey<?> registryKey, ResourceLocation location, Supplier<T> supplier) {
         super(registryKey, location, supplier);
     }
@@ -18,5 +18,10 @@ public class DeferredBlock<T extends Block> extends DeferredHolder<Block, T> {
     public static <T extends Block> DeferredBlock<T> createBlock(ResourceLocation key) {
         return new DeferredBlock<>(
                 net.minecraft.core.registries.Registries.BLOCK, key, () -> null);
+    }
+
+    @Override
+    public net.minecraft.world.item.Item asItem() {
+        return get().asItem();
     }
 }

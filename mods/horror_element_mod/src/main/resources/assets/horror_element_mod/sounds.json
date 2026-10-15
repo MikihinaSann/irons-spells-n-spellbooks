@@ -1,0 +1,74 @@
+{
+  "kids_laughing": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:kids_laughing",
+        "stream": false
+      }
+    ]
+  },
+  "breaking_glass": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:breaking_glass",
+        "stream": false
+      }
+    ]
+  },
+  "laboratory_alarm": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:son_alarme",
+        "stream": false
+      }
+    ]
+  },
+  "heart_beating": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:heartbeat-sound",
+        "stream": false
+      }
+    ]
+  },
+  "acouphene": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:acouphene",
+        "stream": false
+      }
+    ]
+  },
+  "predator_clicking_noise": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:cliquettements_de_predator",
+        "stream": false
+      }
+    ]
+  },
+  "screamer": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:screamer",
+        "stream": false
+      }
+    ]
+  },
+  "window1": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:door_shut1",
+        "stream": true
+      }
+    ]
+  },
+  "window2": {
+    "sounds": [
+      {
+        "name": "horror_element_mod:door_shut2",
+        "stream": true
+      }
+    ]
+  }
+}

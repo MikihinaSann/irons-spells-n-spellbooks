@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:cursium_core",
+    "somakespells:ignitium_core",
+    "somakespells:abyssium_core",
+    "somakespells:witherite_star"
+  ]
+}

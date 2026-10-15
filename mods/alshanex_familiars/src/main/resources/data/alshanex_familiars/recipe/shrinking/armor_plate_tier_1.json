@@ -1,0 +1,10 @@
+{
+  "type": "alshanex_familiars:shrinking_recipe",
+  "input": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "alshanex_familiars:armor_plate_tier_1",
+    "count": 1
+  }
+}

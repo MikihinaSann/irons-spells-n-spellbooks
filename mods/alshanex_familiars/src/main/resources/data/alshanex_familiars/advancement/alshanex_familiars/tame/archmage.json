@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:archmage_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_archmage"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_archmage.desc"
+    }
+  },
+  "criteria": {
+    "tame_archmage": {
+      "trigger": "familiarslib:archmage_taming"
+    }
+  }
+}

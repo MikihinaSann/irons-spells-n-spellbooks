@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:evocation_rune"
+    },
+    "B": {
+      "item": "irons_spellbooks:arcane_ingot"
+    },
+    "C": {
+      "item": "irons_spellbooks:hogskin"
+    },
+    "D": {
+      "item": "irons_spellbooks:gold_spell_book"
+    }
+  },
+  "pattern": [
+    "ABB",
+    "DCC",
+    "ABB"
+  ],
+  "result": {
+    "id": "somakespells:invoker_canon_spell_book"
+  }
+}

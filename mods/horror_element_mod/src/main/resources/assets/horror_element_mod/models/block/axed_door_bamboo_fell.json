@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/door_bamboo_2",
+  "textures": {
+    "all": "horror_element_mod:block/door_bamboo",
+    "particle": "minecraft:block/bamboo_planks",
+    "0": "horror_element_mod:block/door_bamboo_2"
+  },
+  "render_type": "cutout_mipped"
+}

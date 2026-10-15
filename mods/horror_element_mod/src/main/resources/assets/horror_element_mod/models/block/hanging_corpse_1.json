@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/hanging_corpse_block",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "0": "horror_element_mod:block/steeverottencadaver"
+  },
+  "render_type": "translucent"
+}

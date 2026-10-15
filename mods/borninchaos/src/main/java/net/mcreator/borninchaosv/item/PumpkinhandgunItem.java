@@ -1,4 +1,5 @@
 package net.mcreator.borninchaosv.item;
+import net.mcreator.borninchaosv.BorninchaosClientRenderers;
 
 import java.util.function.Consumer;
 import net.mcreator.borninchaosv.item.renderer.PumpkinhandgunItemRenderer;
@@ -39,17 +40,9 @@ public class PumpkinhandgunItem extends Item implements GeoItem {
    }
 
    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-      consumer.accept(new GeoRenderProvider() {
-         private PumpkinhandgunItemRenderer renderer;
-
-         public BlockEntityWithoutLevelRenderer getGeoItemRenderer() {
-            if (this.renderer == null) {
-               this.renderer = new PumpkinhandgunItemRenderer();
-            }
-
-            return this.renderer;
-         }
-      });
+      if (net.fabricmc.loader.api.FabricLoader.getInstance().getEnvironmentType() == net.fabricmc.api.EnvType.CLIENT) {
+         consumer.accept(BorninchaosClientRenderers.itemProvider(BorninchaosClientRenderers::pumpkinhandgunItem));
+      }
    }
 
    private PlayState idlePredicate(AnimationState event) {

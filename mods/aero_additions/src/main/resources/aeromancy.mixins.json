@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.snackpirate.aeromancy.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "GustSpellMixin",
+    "ServerPacketListenerMixin",
+    "ServerPlayerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

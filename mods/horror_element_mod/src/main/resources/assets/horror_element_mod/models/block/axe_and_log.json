@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/axe_and_log",
+  "textures": {
+    "all": "horror_element_mod:block/oak_log",
+    "particle": "horror_element_mod:block/oak_log",
+    "1": "horror_element_mod:block/log_and_axe"
+  },
+  "render_type": "solid"
+}

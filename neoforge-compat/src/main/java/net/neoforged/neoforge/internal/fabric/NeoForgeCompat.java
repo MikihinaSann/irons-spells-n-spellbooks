@@ -364,16 +364,21 @@ public class NeoForgeCompat implements ModInitializer {
         String modid = modAnn == null ? fabric.getMetadata().getId()
                 : (!modAnn.modid().isEmpty() ? modAnn.modid() : modAnn.value());
         // honor @Mod dist if present
-        if (modAnn != null && !modAnn.dist().isEmpty()) {
-            String dist = modAnn.dist();
-            boolean onServer = DistExecutor.currentDist() == Dist.DEDICATED_SERVER;
-            if (("DEDICATED_SERVER".equals(dist) && !onServer) || ("CLIENT".equals(dist) && onServer)) {
+        if (modAnn != null && modAnn.dist().length > 0) {
+            Dist[] dists = modAnn.dist();
+            Dist current = DistExecutor.currentDist();
+            boolean allowed = false;
+            for (Dist d : dists) {
+                if (d == current) { allowed = true; break; }
+            }
+            if (!allowed) {
                 return;
             }
         }
         net.neoforged.fml.ModContainer container =
                 new net.neoforged.fml.ModContainer(fabric, modid);
         try {
+            net.neoforged.fml.ModLoadingContext.setActiveContainer(container);
             construct(clazz, MOD_BUS.scoped(modid), container);
             MOD_CONTAINERS.add(container);
             LOGGER.info("neoforge_compat constructed @Mod {} (modid {})", className, modid);
@@ -641,6 +646,10 @@ public class NeoForgeCompat implements ModInitializer {
             entity.onRemovedFromLevel();
             NeoForge.EVENT_BUS.post(new EntityLeaveLevelEvent(entity, world));
         });
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
+                NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.level.ChunkEvent.Load(chunk, world, false)));
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.CHUNK_UNLOAD.register((world, chunk) ->
+                NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.level.ChunkEvent.Unload(chunk, world)));
         // NF runs biome/structure modifiers inside handleServerAboutToStart,
         // before the ServerAboutToStartEvent is fired - register first so this
         // callback executes ahead of the event posts below.

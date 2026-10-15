@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "tunes_n_tomes:item/melody_spellbook_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "tunes_n_tomes:item/melody_spell_book"
+      }
+    },
+    "head": {
+      "textures": {
+        "book": "tunes_n_tomes:item/spell_book_models/melody_spellbook",
+        "particle": "tunes_n_tomes:item/spell_book_models/melody_spellbook"
+      },
+      "parent": "irons_spellbooks:item/template_spell_book_model_open"
+    }
+  }
+}

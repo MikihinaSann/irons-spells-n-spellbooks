@@ -1,0 +1,13 @@
+newmtl m_0deaf3f1-0e11-f65a-b5fb-f2f9a67b323f
+Ns 100.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:block/
+newmtl none
+Ns 100.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0

@@ -1,0 +1,43 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ],
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:voidbound_codex_2_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:voidbound_codex_3_spell_book"
+  },
+  "school": "irons_spellbooks:ender",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "born_in_chaos_v1:phantom_powder"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:chorus_fruit"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "cataclysm:void_core"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:ender_upgrade_orb"
+      },
+      "count": 3
+    }
+  ]
+}

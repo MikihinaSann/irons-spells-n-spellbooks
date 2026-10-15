@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/slashed_skull",
+  "textures": {
+    "all": "horror_element_mod:block/slashed_skull",
+    "particle": "horror_element_mod:block/slashed_skull",
+    "0": "horror_element_mod:block/slashed_skull"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/impaled_soldier"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/impaled_soldier",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/impaled_soldier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/impaled_soldier",
+      "y": 270
+    }
+  }
+}

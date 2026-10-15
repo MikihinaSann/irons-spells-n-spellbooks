@@ -1,0 +1,13 @@
+{
+  "type": "alshanex_familiars:conditional_add_modifier",
+  "chance": 0.1,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/sniffer_digging"
+    }
+  ],
+  "items": [
+    "alshanex_familiars:crystal_berry"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:aquamancer_staff",
+    "somakespells:ignitium_staff",
+    "somakespells:soul_fire_ignitium_staff",
+    {
+      "id": "somakespells:infernal_fire_ignitium_staff",
+      "required": false
+    },
+    "somakespells:archangels_staff",
+    "somakespells:withered_rose_staff",
+    {
+      "id": "somakespells:lullaby_flute",
+      "required": false
+    }
+  ]
+}

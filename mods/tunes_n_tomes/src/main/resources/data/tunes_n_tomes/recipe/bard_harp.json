@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "tunes_n_tomes:melody_rune"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "M": {
+      "item": "irons_spellbooks:arcane_ingot"
+    }
+  },
+  "pattern": [
+    "RMM",
+    "MSS",
+    "MS "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tunes_n_tomes:bard_harp"
+  }
+}

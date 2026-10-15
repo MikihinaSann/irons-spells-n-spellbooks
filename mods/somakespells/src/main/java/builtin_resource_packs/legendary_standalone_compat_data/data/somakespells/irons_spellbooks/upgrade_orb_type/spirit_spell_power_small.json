@@ -1,0 +1,6 @@
+{
+  "attribute": "irons_spellbooks:evocation_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:spirit_upgrade_orb_small"
+}

@@ -1,4 +1,5 @@
 package com.gametechbc.traveloptics.api.item;
+import com.gametechbc.traveloptics.render.TORenderProviders;
 
 import com.google.common.base.Suppliers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;

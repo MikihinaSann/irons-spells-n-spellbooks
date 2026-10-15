@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/produce/fruit"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/produce/honey"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/produce/kelp"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/produce/meat"
+        },
+        {
+          "weight": 1,
+          "type": "loot_table",
+          "value": "alshanex_familiars:chests/origin_island/produce/sugarcane"
+        }
+      ]
+    }
+  ]
+}

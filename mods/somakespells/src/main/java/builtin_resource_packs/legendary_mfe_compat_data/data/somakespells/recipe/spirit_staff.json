@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "iss_magicfromtheeast:crystallized_soul"
+    },
+    "O": {
+      "item": "iss_magicfromtheeast:spirit_upgrade_orb"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    " CO",
+    " CC",
+    "D  "
+  ],
+  "result": {
+    "id": "somakespells:spirit_staff"
+  }
+}

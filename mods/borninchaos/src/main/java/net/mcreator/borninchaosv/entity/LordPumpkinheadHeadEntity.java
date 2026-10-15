@@ -89,11 +89,11 @@ public class LordPumpkinheadHeadEntity extends Monster implements RangedAttackMo
    protected void registerGoals() {
       super.registerGoals();
       this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(5, new FloatGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Warden.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Warden.class, false, false));
       this.goalSelector.addGoal(1, new LordPumpkinheadHeadEntity.RangedAttackGoal(this, 1.25, 25, 20.0F) {
          @Override
          public boolean canContinueToUse() {

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": [],
+  "base": {
+    "item": "irons_spellbooks:wizard_leggings"
+  },
+  "result": {
+    "count": 1,
+    "id": "alshanex_familiars:bard_leggings"
+  },
+  "template": {
+    "item": "alshanex_familiars:sound_rune"
+  }
+}

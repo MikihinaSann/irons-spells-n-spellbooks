@@ -34,6 +34,14 @@ public class RegisterEvent extends Event {
         }
     }
 
+    /** NeoForge-style single-value registration: registers when this event's registry matches. */
+    @SuppressWarnings("unchecked")
+    public <T> void register(ResourceKey<? extends Registry<T>> key, ResourceLocation name, java.util.function.Supplier<? extends T> value) {
+        if (key.equals(this.registry.key())) {
+            Registry.register((Registry<T>) registry, name, value.get());
+        }
+    }
+
     public static class RegisterHelper<T> {
         private final Registry<T> registry;
 

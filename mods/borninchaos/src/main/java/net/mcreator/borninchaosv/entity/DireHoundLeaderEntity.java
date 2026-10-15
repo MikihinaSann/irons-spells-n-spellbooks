@@ -94,7 +94,7 @@ public class DireHoundLeaderEntity extends Monster implements GeoEntity {
             return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < 2.25 && this.mob.getSensing().hasLineOfSight(entity);
          }
       });
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false) {
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
          public boolean canUse() {
             double x = DireHoundLeaderEntity.this.getX();
             double y = DireHoundLeaderEntity.this.getY();
@@ -117,26 +117,26 @@ public class DireHoundLeaderEntity extends Monster implements GeoEntity {
       this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0.7));
       this.goalSelector.addGoal(5, new FloatGoal(this));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, BabySkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, BabySkeletonMinionEntity.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, BoneImpEntity.class, false, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, BoneImpMinionEntity.class, false, false));
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, BonescallerEntity.class, false, false));
-      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, DecrepitSkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, SkeletonThrasherEntity.class, false, false));
-      this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, SupremeBonescallerEntity.class, false, false));
-      this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, SupremeBonescallerStage2Entity.class, false, false));
-      this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Skeleton.class, false, false));
-      this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, WitherSkeleton.class, false, false));
-      this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, SpiritGuideEntity.class, false, false));
-      this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, SpiritGuideAssistantEntity.class, false, false));
-      this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, BonescallerNotDespawnEntity.class, false, false));
-      this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, SupremeBonescallerNotDespawnEntity.class, false, false));
-      this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, SkeletonThrasherNotDespawnEntity.class, false, false));
-      this.targetSelector.addGoal(24, new NearestAttackableTargetGoal(this, SiameseSkeletonsEntity.class, false, false));
-      this.targetSelector.addGoal(25, new NearestAttackableTargetGoal(this, SiameseSkeletonsleftEntity.class, false, false));
-      this.targetSelector.addGoal(26, new NearestAttackableTargetGoal(this, SiameseSkeletonsrightEntity.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, BabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, BabySkeletonMinionEntity.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, BoneImpEntity.class, false, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, BoneImpMinionEntity.class, false, false));
+      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, BonescallerEntity.class, false, false));
+      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, DecrepitSkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, SkeletonThrasherEntity.class, false, false));
+      this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, SupremeBonescallerEntity.class, false, false));
+      this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, SupremeBonescallerStage2Entity.class, false, false));
+      this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, Skeleton.class, false, false));
+      this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, WitherSkeleton.class, false, false));
+      this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, SpiritGuideEntity.class, false, false));
+      this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, SpiritGuideAssistantEntity.class, false, false));
+      this.targetSelector.addGoal(21, new NearestAttackableTargetGoal<>(this, BonescallerNotDespawnEntity.class, false, false));
+      this.targetSelector.addGoal(22, new NearestAttackableTargetGoal<>(this, SupremeBonescallerNotDespawnEntity.class, false, false));
+      this.targetSelector.addGoal(23, new NearestAttackableTargetGoal<>(this, SkeletonThrasherNotDespawnEntity.class, false, false));
+      this.targetSelector.addGoal(24, new NearestAttackableTargetGoal<>(this, SiameseSkeletonsEntity.class, false, false));
+      this.targetSelector.addGoal(25, new NearestAttackableTargetGoal<>(this, SiameseSkeletonsleftEntity.class, false, false));
+      this.targetSelector.addGoal(26, new NearestAttackableTargetGoal<>(this, SiameseSkeletonsrightEntity.class, false, false));
    }
 
    public SoundEvent getAmbientSound() {

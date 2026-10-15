@@ -1,0 +1,38 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/memory_fragment",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:ritual_core"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.origin_island"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.origin_island.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "at_origin_island": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "alshanex_familiars:origin_island"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

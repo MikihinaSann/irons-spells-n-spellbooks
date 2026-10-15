@@ -37,6 +37,8 @@ public class FamiliarsLib {
 
         AttributeRegistry.ATTRIBUTES.register(modEventBus);
 
+        FSchoolRegistry.SCHOOLS.register(modEventBus);
+
         CriteriaTriggersRegistry.TRIGGERS.register(modEventBus);
 
         FParticleRegistry.register(modEventBus);

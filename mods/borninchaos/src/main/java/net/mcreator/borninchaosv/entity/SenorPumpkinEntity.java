@@ -102,7 +102,7 @@ public class SenorPumpkinEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8, 20) {
          protected Vec3 getPosition() {
             RandomSource random = SenorPumpkinEntity.this.getRandom();
@@ -114,11 +114,11 @@ public class SenorPumpkinEntity extends Monster implements GeoEntity {
       });
       this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
       this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, PumpkinSpiritEntity.class, false, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Warden.class, false, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, InfernalSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PumpkinSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Warden.class, false, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, InfernalSpiritEntity.class, false, false));
       this.targetSelector.addGoal(11, new HurtByTargetGoal(this, new Class[0]));
    }
 

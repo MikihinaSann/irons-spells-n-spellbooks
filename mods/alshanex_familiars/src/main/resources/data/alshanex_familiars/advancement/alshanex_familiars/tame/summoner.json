@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:summoner_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_summoner"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_summoner.desc"
+    }
+  },
+  "criteria": {
+    "tame_summoner": {
+      "trigger": "familiarslib:summoner_taming"
+    }
+  }
+}

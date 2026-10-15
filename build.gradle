@@ -49,6 +49,54 @@ loom {
         chronomancy {
             sourceSet project(':mods:chronomancy').sourceSets.main
         }
+        tunes_n_tomes {
+            sourceSet project(':mods:tunes_n_tomes').sourceSets.main
+        }
+        dash {
+            sourceSet project(':mods:dash').sourceSets.main
+        }
+        somakespells {
+            sourceSet project(':mods:somakespells').sourceSets.main
+        }
+        horror_element_mod {
+            sourceSet project(':mods:horror_element_mod').sourceSets.main
+        }
+        alshanex_familiars {
+            sourceSet project(':mods:alshanex_familiars').sourceSets.main
+        }
+        discerning_the_eldritch {
+            sourceSet project(':mods:discerning_the_eldritch').sourceSets.main
+        }
+        cobweb {
+            sourceSet project(':mods:cobweb').sourceSets.main
+        }
+        hazennstuff {
+            sourceSet project(':mods:hazennstuff').sourceSets.main
+        }
+        aero_additions {
+            sourceSet project(':mods:aero_additions').sourceSets.main
+        }
+        spellelemental {
+            sourceSet project(':mods:spellelemental').sourceSets.main
+        }
+        soul_fire_d {
+            sourceSet project(':mods:soul_fire_d').sourceSets.main
+        }
+        prometheus {
+            sourceSet project(':mods:prometheus').sourceSets.main
+        }
+        expandability {
+            sourceSet project(':mods:expandability').sourceSets.main
+        }
+        iss_magicfromtheeast {
+            sourceSet project(':mods:iss_magicfromtheeast').sourceSets.main
+        }
+        cataclysm_spellbooks {
+            sourceSet project(':mods:cataclysm_spellbooks').sourceSets.main
+        }
+        aces_spell_utils {
+            sourceSet project(':mods:aces_spell_utils').sourceSets.main
+        }
     }
 
     runs {
@@ -116,6 +164,22 @@ dependencies {
     // chronomancy also depends on root ISS — same dev-jar classpath trick as
     // traveloptics to avoid the project-dependency cycle.
     implementation files("mods/chronomancy/build/devlibs/chronomancy-1.0.4+fabric.1.21.1-dev.jar")
+    implementation files("mods/tunes_n_tomes/build/devlibs/tunes_n_tomes-1.1.0+fabric.1.21.1-dev.jar")
+    implementation files("mods/dash/build/devlibs/dash-1.2.1+fabric.1.21.1-dev.jar")
+    implementation files("mods/somakespells/build/devlibs/somakespells-1.0.9+fabric.1.21.1-dev.jar")
+    implementation files("mods/horror_element_mod/build/devlibs/horror_element_mod-1.6.2+fabric.1.21.1-dev.jar")
+    implementation files("mods/alshanex_familiars/build/devlibs/alshanex_familiars-4.0.4+fabric.1.21.1-dev.jar")
+    implementation files("mods/discerning_the_eldritch/build/devlibs/discerning_the_eldritch-1.4.3+fabric.1.21.1-dev.jar")
+    implementation files("mods/cobweb/build/devlibs/cobweb-1.4.0+fabric.1.21.1-dev.jar")
+    implementation files("mods/hazennstuff/build/devlibs/hazennstuff-hazennstuff+fabric.1.21.1-dev.jar")
+    implementation files("mods/aero_additions/build/devlibs/aero_additions-aero_additions+fabric.1.21.1-dev.jar")
+    implementation files("mods/spellelemental/build/devlibs/spellelemental-spellelemental+fabric.1.21.1-dev.jar")
+    implementation files("mods/soul_fire_d/build/devlibs/soul_fire_d-soul_fire_d+fabric.1.21.1-dev.jar")
+    implementation files("mods/prometheus/build/devlibs/prometheus-prometheus+fabric.1.21.1-dev.jar")
+    implementation files("mods/expandability/build/devlibs/expandability-expandability+fabric.1.21.1-dev.jar")
+    implementation files("mods/iss_magicfromtheeast/build/devlibs/iss_magicfromtheeast-1.1.5+fabric.1.21.1-dev.jar")
+    implementation files("mods/cataclysm_spellbooks/build/devlibs/cataclysm_spellbooks-1.1.11+fabric.1.21.1-dev.jar")
+    implementation files("mods/aces_spell_utils/build/devlibs/aces_spell_utils-1.2.1+fabric.1.21.1-dev.jar")
     // borninchaos is a standalone content mod (no dep on root ISS) — safe as a
     // normal project dependency like alexscaves/cataclysm.
     implementation(project(path: ":mods:borninchaos", configuration: "namedElements")) {
@@ -224,6 +288,19 @@ tasks.register('copyAnimations', Copy) {
 tasks.classes.dependsOn(tasks.copyAnimations)
 tasks.processResources.dependsOn(tasks.copyAnimations)
 tasks.sourcesJar.dependsOn(tasks.copyAnimations)
+
+// Vendored addon modules expose dev jars via files() inputs — declare explicit
+// task deps so Gradle's implicit-dependency validation accepts them.
+def addonModules = ['aces_spell_utils', 'aero_additions', 'alexscaves', 'alshanex_familiars',
+    'apothic_attributes', 'borninchaos', 'cataclysm', 'cataclysm_spellbooks', 'chronomancy',
+    'citadel', 'cobweb', 'dash', 'discerning_the_eldritch', 'expandability',
+    'hazennstuff', 'horror_element_mod', 'iss_magicfromtheeast', 'lionfishapi', 'placebo',
+    'prometheus', 'somakespells', 'soul_fire_d', 'spellelemental', 'traveloptics', 'tunes_n_tomes']
+['remapJar', 'remapSourcesJar'].each { taskName ->
+    tasks.named(taskName) {
+        mustRunAfter addonModules.collect { ":mods:$it:remapJar" }
+    }
+}
 
 idea {
     module {

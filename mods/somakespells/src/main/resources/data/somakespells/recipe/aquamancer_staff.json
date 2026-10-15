@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "N": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "A": {
+      "item": "somakespells:aqua_upgrade_orb"
+    },
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    }
+  },
+  "pattern": [
+    " NA",
+    " NN",
+    "M  "
+  ],
+  "result": {
+    "id": "somakespells:aquamancer_staff"
+  }
+}

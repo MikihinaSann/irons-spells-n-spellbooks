@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "iss_magicfromtheeast:block/chiseled_jade_vertical",
+    "side": "iss_magicfromtheeast:block/chiseled_jade_side",
+    "top": "iss_magicfromtheeast:block/chiseled_jade_vertical"
+  }
+}

@@ -90,7 +90,7 @@ public class LifestealerEntity extends Monster implements GeoEntity {
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(5, new FloatGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 100.0F));
    }
 

@@ -1,0 +1,8 @@
+{
+  "type": "somakespells:entity_item",
+  "conditions": [],
+  "entity_id": "cataclysm:the_harbinger",
+  "item": {
+    "id": "somakespells:witherite_star"
+  }
+}

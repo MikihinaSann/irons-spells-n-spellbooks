@@ -7,4 +7,10 @@ import java.nio.file.Path;
  */
 public interface IModFile {
     Path findResource(String... pathName);
+
+    /** File name of the mod jar/dir — used by mod-list generators. */
+    default String getFileName() {
+        Path p = findResource();
+        return p != null && p.getFileName() != null ? p.getFileName().toString() : "unknown";
+    }
 }

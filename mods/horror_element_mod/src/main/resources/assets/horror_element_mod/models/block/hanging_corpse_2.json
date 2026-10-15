@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/hanging_corpse_block_model_2",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "0": "horror_element_mod:block/hanging_corpse_2"
+  },
+  "render_type": "translucent"
+}

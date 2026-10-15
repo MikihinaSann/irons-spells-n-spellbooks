@@ -1,0 +1,31 @@
+{
+  "parent": "irons_spellbooks:irons_spellbooks/spell_book_diamond",
+  "display": {
+    "icon": {
+      "id": "tunes_n_tomes:melody_spell_book"
+    },
+    "title": {
+      "translate": "advancement.tunes_n_tomes.spell_book_melody"
+    },
+    "description": {
+      "translate": "advancement.tunes_n_tomes.spell_book_melody.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "challenge"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tunes_n_tomes:melody_spell_book"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

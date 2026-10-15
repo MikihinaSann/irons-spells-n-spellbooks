@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "iss_magicfromtheeast:jade_ore",
+    "iss_magicfromtheeast:deepslate_jade_ore",
+    "iss_magicfromtheeast:jade_block",
+    "iss_magicfromtheeast:jade_slab",
+    "iss_magicfromtheeast:jade_stair",
+    "iss_magicfromtheeast:jade_wall",
+    "iss_magicfromtheeast:chiseled_jade",
+    "iss_magicfromtheeast:jade_lion_head_block",
+    "iss_magicfromtheeast:jadestone_bricks",
+    "iss_magicfromtheeast:jadestone_bricks_slab",
+    "iss_magicfromtheeast:jadestone_bricks_stair",
+    "iss_magicfromtheeast:jadestone_bricks_wall",
+    "iss_magicfromtheeast:chiseled_jadestone_bricks",
+    "iss_magicfromtheeast:jadestone_bricks_pillar"
+  ]
+}

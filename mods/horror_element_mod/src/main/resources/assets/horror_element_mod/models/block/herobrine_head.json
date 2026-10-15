@@ -1,0 +1,15 @@
+{
+  "parent": "horror_element_mod:custom/herobrine_head",
+  "textures": {
+    "all": "horror_element_mod:block/face_herobrine",
+    "particle": "horror_element_mod:block/face_herobrine",
+    "0": "horror_element_mod:block/coup_herobrine",
+    "1": "horror_element_mod:block/derriere_herobrine",
+    "2": "horror_element_mod:block/dessus_herobrine",
+    "3": "horror_element_mod:block/droite_herobrine",
+    "4": "horror_element_mod:block/face_herobrine",
+    "5": "horror_element_mod:block/gauche_herobrine",
+    "6": "horror_element_mod:block/colonne_herobrine"
+  },
+  "render_type": "solid"
+}

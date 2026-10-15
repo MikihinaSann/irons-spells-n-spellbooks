@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "somakespells:cursium_core"
+    },
+    {
+      "item": "somakespells:cursium_core"
+    }
+  ],
+  "result": {
+    "id": "cataclysm:cursium_ingot",
+    "count": 1
+  }
+}

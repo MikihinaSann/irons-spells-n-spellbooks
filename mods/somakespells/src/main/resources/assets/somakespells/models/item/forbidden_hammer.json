@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "somakespells:item/forbidden_hammer_model",
+    "textures": {
+      "0": "somakespells:item/swords/forbidden_hammer",
+      "1": "somakespells:item/swords/forbidden_hammer_anim",
+      "particle": "somakespells:item/swords/forbidden_hammer"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "minecraft:item/handheld",
+      "textures": {
+        "layer0": "somakespells:item/forbidden_hammer_item"
+      }
+    }
+  }
+}

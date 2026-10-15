@@ -118,7 +118,7 @@ public class SiameseSkeletonsrightEntity extends Monster implements GeoEntity {
       this.goalSelector.addGoal(6, new AvoidEntityGoal(this, DireHoundLeaderEntity.class, 6.0F, 1.0, 1.2));
       this.goalSelector.addGoal(7, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
    }
 
    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float f) {

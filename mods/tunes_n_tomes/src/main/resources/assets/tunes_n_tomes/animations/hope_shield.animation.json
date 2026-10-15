@@ -1,0 +1,60 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"aura_shield": {
+			"loop": true,
+			"animation_length": 2,
+			"override_previous_animation": true,
+			"bones": {
+				"ef_circle_ground": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, -360, 0]
+						}
+					},
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"ef_circle_note": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, -360, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -1, 0]
+						},
+						"0.5": {
+							"vector": [0, 1, 0]
+						},
+						"1.0": {
+							"vector": [0, -1, 0]
+						},
+						"1.5": {
+							"vector": [0, 1, 0]
+						},
+						"2.0": {
+							"vector": [0, -1, 0]
+						}
+					},
+					"scale": {
+						"vector": [0.5, 0.7, 0.5]
+					}
+				},
+				"allef_note": {
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}

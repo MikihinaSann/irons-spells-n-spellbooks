@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "horror_element_mod:herobrine_sanctum",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 26,
+    "separation": 21,
+    "salt": 594372582
+  }
+}

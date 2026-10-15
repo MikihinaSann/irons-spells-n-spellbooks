@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/impaled_soldier",
+  "textures": {
+    "all": "horror_element_mod:block/blood_9",
+    "particle": "horror_element_mod:block/blood_9",
+    "2": "horror_element_mod:block/impaled_soldier"
+  },
+  "render_type": "cutout"
+}

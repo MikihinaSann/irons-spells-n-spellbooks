@@ -1,0 +1,15 @@
+{
+  "name": "alshanex_familiars:origin_island/bottom1pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "alshanex_familiars:origin_island/bottom",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/german_officer_skull",
+  "textures": {
+    "all": "horror_element_mod:block/villager_head",
+    "particle": "horror_element_mod:block/villager_head",
+    "1": "horror_element_mod:block/german_skull"
+  },
+  "render_type": "translucent"
+}

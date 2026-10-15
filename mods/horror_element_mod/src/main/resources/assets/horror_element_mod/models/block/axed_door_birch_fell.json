@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/door_birch_2",
+  "textures": {
+    "all": "horror_element_mod:block/door_birch",
+    "particle": "minecraft:block/birch_planks",
+    "0": "horror_element_mod:block/door_birch_2"
+  },
+  "render_type": "cutout_mipped"
+}

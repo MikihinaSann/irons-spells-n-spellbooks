@@ -89,11 +89,11 @@ public class FallenChaosKnightEntity extends Monster implements GeoEntity {
             return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < 1.96 && this.mob.getSensing().hasLineOfSight(entity);
          }
       });
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new BreakDoorGoal(this, e -> true));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Vindicator.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, false));
       this.goalSelector.addGoal(7, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
    }

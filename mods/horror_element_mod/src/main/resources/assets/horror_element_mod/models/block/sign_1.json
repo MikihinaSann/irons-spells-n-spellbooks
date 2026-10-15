@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/sign",
+  "textures": {
+    "all": "horror_element_mod:block/sound_player",
+    "particle": "horror_element_mod:block/sound_player",
+    "2": "horror_element_mod:block/get_out"
+  },
+  "render_type": "solid"
+}

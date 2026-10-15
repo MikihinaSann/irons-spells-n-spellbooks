@@ -1,0 +1,76 @@
+{
+  "type": "somakespells:pedestal_ritual",
+  "center_item": {
+    "item": "somakespells:ignitium_core"
+  },
+  "pedestal_groups": [
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "irons_spellbooks:cinder_essence"
+          },
+          "count": 4
+        },
+        {
+          "ingredient": {
+            "item": "minecraft:blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "minecraft:fire_charge"
+          },
+          "count": 8
+        },
+        {
+          "ingredient": {
+            "item": "minecraft:blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "irons_spellbooks:cinder_essence"
+          },
+          "count": 4
+        },
+        {
+          "ingredient": {
+            "item": "minecraft:blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "minecraft:fire_charge"
+          },
+          "count": 8
+        },
+        {
+          "ingredient": {
+            "item": "minecraft:blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "somakespells:fire",
+    "count": 1
+  }
+}

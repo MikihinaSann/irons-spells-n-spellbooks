@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/barricade_darkoak",
+  "textures": {
+    "all": "horror_element_mod:block/window_barricade_darkoak",
+    "particle": "horror_element_mod:block/window_barricade_darkoak",
+    "2": "horror_element_mod:block/window_barricade_darkoak"
+  },
+  "render_type": "cutout"
+}

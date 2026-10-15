@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/sound_player",
+    "up": "horror_element_mod:block/sound_player",
+    "north": "horror_element_mod:block/sound_player",
+    "east": "horror_element_mod:block/sound_player",
+    "south": "horror_element_mod:block/sound_player",
+    "west": "horror_element_mod:block/sound_player",
+    "particle": "horror_element_mod:block/sound_player"
+  },
+  "render_type": "solid"
+}

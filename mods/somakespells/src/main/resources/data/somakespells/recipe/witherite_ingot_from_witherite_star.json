@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "somakespells:witherite_star"
+    },
+    {
+      "item": "somakespells:witherite_star"
+    }
+  ],
+  "result": {
+    "id": "cataclysm:witherite_ingot",
+    "count": 1
+  }
+}

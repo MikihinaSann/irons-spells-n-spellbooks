@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/wooden_shutter_open",
+  "textures": {
+    "all": "horror_element_mod:block/wooden_shutter",
+    "particle": "horror_element_mod:block/wooden_shutter",
+    "0": "horror_element_mod:block/wooden_shutter"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,20 @@
+{
+  "placement": {
+    "type": "minecraft:concentric_rings",
+    "count": 128,
+    "distance": 35,
+    "preferred_biomes": "#alshanex_familiars:origin_island_biased_to",
+    "salt": 352086352,
+    "spread": 5,
+    "exclusion_zone": {
+      "chunk_count": 7,
+      "other_set": "minecraft:ocean_monuments"
+    }
+  },
+  "structures": [
+    {
+      "structure": "alshanex_familiars:origin_island",
+      "weight": 1
+    }
+  ]
+}

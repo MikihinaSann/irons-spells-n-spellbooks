@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/spiked_villager"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/spiked_villager",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/spiked_villager",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/spiked_villager",
+      "y": 270
+    }
+  }
+}

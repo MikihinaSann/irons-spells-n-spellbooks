@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "alshanex_familiars:item/consumables/life_fruit_tier_1"
+  }
+}

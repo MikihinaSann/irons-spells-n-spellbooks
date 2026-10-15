@@ -1,0 +1,10 @@
+{
+  "parent": "horror_element_mod:custom/door_darkoak",
+  "textures": {
+    "all": "horror_element_mod:block/door_darkoak",
+    "particle": "horror_element_mod:block/dark_oak_planks",
+    "1": "horror_element_mod:block/axe_general",
+    "6": "horror_element_mod:block/door_darkoak"
+  },
+  "render_type": "cutout_mipped"
+}

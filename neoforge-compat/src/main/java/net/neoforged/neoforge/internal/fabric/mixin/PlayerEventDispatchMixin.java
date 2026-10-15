@@ -55,4 +55,16 @@ public abstract class PlayerEventDispatchMixin {
         NeoForge.EVENT_BUS.post(event);
         return event.getDamageMultiplier();
     }
+
+    /** PlayerXpEvent.XpChange - mutates the XP amount awarded by giveExperiencePoints. */
+    @org.spongepowered.asm.mixin.injection.ModifyVariable(
+            method = "giveExperiencePoints(I)V",
+            at = @At("HEAD"),
+            argsOnly = true)
+    private int irons_spellbooks$onXpChange(int amount) {
+        var event = new net.neoforged.neoforge.event.entity.player.PlayerXpEvent.XpChange(
+                (Player)(Object)this, amount);
+        NeoForge.EVENT_BUS.post(event);
+        return event.getAmount();
+    }
 }

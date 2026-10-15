@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/redstone_lamp_on",
+    "up": "horror_element_mod:block/redstone_lamp_on",
+    "north": "horror_element_mod:block/redstone_lamp_on",
+    "east": "horror_element_mod:block/redstone_lamp_on",
+    "south": "horror_element_mod:block/redstone_lamp_on",
+    "west": "horror_element_mod:block/redstone_lamp_on",
+    "particle": "horror_element_mod:block/redstone_lamp_on"
+  },
+  "render_type": "solid"
+}

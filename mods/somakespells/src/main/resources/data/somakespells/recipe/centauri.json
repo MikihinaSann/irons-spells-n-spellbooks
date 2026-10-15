@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "B": {
+      "item": "irons_spellbooks:bloody_vellum"
+    },
+    "C": {
+      "item": "born_in_chaos_v1:bone_handle"
+    }
+  },
+  "pattern": [
+    "  A",
+    "BA ",
+    "CB "
+  ],
+  "result": {
+    "id": "somakespells:centauri"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "alshanex_familiars:graveyard",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "location": "alshanex_familiars:graveyard/grave_coffin",
+        "processors": "alshanex_familiars:grave",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 4,
+      "element": {
+        "location": "alshanex_familiars:graveyard/grave_empty",
+        "processors": "alshanex_familiars:grave",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+        {
+      "weight": 2,
+      "element": {
+        "location": "alshanex_familiars:graveyard/grave_armor",
+        "processors": "alshanex_familiars:grave",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+        {
+      "weight": 1,
+      "element": {
+        "location": "alshanex_familiars:graveyard/grave_open",
+        "processors": "alshanex_familiars:grave",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

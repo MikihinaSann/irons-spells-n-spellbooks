@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_axe",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "options": "#minecraft:on_random_loot",
+              "levels": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_log"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cherry_sapling"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:graybeard_staff",
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

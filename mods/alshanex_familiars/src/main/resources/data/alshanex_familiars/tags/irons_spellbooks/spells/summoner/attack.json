@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:devour",
+    "irons_spellbooks:sonic_boom",
+    "irons_spellbooks:sculk_tentacles",
+    "irons_spellbooks:eldritch_blast"
+  ]
+}

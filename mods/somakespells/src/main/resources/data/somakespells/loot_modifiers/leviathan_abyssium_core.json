@@ -1,0 +1,9 @@
+{
+  "type": "somakespells:entity_item",
+  "conditions": [],
+  "entity_id": "cataclysm:the_leviathan",
+  "count": 5,
+  "item": {
+    "id": "somakespells:abyssium_core"
+  }
+}

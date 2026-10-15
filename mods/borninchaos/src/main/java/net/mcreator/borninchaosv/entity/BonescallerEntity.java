@@ -115,7 +115,7 @@ public class BonescallerEntity extends Monster implements RangedAttackMob, GeoEn
       this.goalSelector.addGoal(4, new AvoidEntityGoal(this, DreadHoundEntity.class, 6.0F, 1.0, 1.0));
       this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(1, new BonescallerEntity.RangedAttackGoal(this, 1.25, 45, 10.0F) {
          @Override
          public boolean canContinueToUse() {

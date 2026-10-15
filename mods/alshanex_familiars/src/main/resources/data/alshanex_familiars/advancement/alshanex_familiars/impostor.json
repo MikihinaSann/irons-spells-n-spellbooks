@@ -1,0 +1,25 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/origin_island",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:truth_mirror"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.impostor"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.impostor.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "reveal_illusionist": {
+      "trigger": "familiarslib:illusionist_reveal"
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

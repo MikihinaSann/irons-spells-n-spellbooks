@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:spyglass"
+    },
+    "E": {
+      "item": "irons_spellbooks:arcane_essence"
+    }
+  },
+  "pattern": [
+    " E ",
+    "ESE",
+    " E "
+  ],
+  "result": {
+    "count": 1,
+    "id": "alshanex_familiars:monocle"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "born_in_chaos_v1"
+      }
+    }
+  ],
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:sanguine_testament_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:sanguine_testament_2_spell_book"
+  },
+  "school": "irons_spellbooks:blood",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:blood_vial"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:bloody_vellum"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:blood_upgrade_orb"
+      },
+      "count": 2
+    }
+  ]
+}

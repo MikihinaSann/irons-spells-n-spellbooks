@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.somake.somakespells.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "com.somake.somakespells.mixin.SomakeMixinPlugin",
+  "mixins": [
+    "AltarOfFireBlockMixin",
+    "AltarOfFireBlockEntityMixin",
+    "ChargeSpellMixin",
+    "FallingSoulBladeEntityMixin",
+    "PlayerFamiliarDataMixin",
+    "FamiliarManagerMixin",
+    "KrampusAttackProcedureMixin",
+    "KrampusHenchmanAttackProcedureMixin",
+    "LivingEntityDamageMixin",
+    "MissionerPriRanieniiSushchnostiProcedureMixin",
+    "MissionaryRaiderHitProcedureMixin",
+    "MobEffectInstanceAccessor",
+    "SoulPillarEntityMixin",
+    "SoulPillarExplosionEntityMixin",
+    "StonePersistenceProcedureMixin",
+    "TransformingEasterCakeProcedureMixin"
+  ],
+  "client": [
+    "RendererAltarOfFireMixin",
+    "TooltipsUtilsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

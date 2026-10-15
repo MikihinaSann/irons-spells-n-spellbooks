@@ -1,0 +1,31 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/pet_bed",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:familiar_storage"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.miniture_village"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.miniture_village.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alshanex_familiars:familiar_storage"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

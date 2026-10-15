@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:illusionist_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_illusionist"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_illusionist.desc"
+    }
+  },
+  "criteria": {
+    "tame_illusionist": {
+      "trigger": "familiarslib:illusionist_taming"
+    }
+  }
+}

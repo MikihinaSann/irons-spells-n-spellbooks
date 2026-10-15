@@ -1,0 +1,48 @@
+newmtl m_6347e713-bf3d-a5da-27fa-c6d0f6a36403
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl m_89daa94d-863c-6690-c605-8c03a68176f7
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl m_c1166769-8b60-53d1-eca6-766765ad2b77
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl m_4388fbe1-29ee-6d89-2ee4-328491e2aeca
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl m_e01be870-ef24-4408-9061-171671b553f7
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl m_b6c8bfe3-22cc-4e87-c159-dc433f24fbad
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd horror_element_mod:blocks/
+Ns 100.0
+d 1.0
+newmtl none
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ns 100.0
+d 1.0

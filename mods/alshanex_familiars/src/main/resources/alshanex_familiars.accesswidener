@@ -1,0 +1,8 @@
+accessWidener v1 named
+accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/level/Level;
+accessible method net/minecraft/world/entity/monster/ZombieVillager startConverting (Ljava/util/UUID;I)V
+accessible field net/minecraft/world/entity/Mob goalSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+accessible field net/minecraft/world/entity/Mob targetSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;

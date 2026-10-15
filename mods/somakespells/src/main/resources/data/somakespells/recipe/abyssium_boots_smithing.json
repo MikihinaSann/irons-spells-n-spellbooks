@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "somakespells:abyssium_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "irons_spellbooks:netherite_mage_boots"
+  },
+  "addition": {
+    "item": "somakespells:abyssium_ingot"
+  },
+  "result": {
+    "id": "somakespells:abyssium_boots"
+  }
+}

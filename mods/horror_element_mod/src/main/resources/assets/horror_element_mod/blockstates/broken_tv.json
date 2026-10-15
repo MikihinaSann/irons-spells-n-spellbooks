@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/broken_tv"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/broken_tv",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/broken_tv",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/broken_tv",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "somakespells:item/dark_metal_battlemage_boots"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/door_jungle_2",
+  "textures": {
+    "all": "horror_element_mod:block/door_jungle",
+    "particle": "minecraft:block/jungle_planks",
+    "0": "horror_element_mod:block/door_jungle_2"
+  },
+  "render_type": "cutout_mipped"
+}

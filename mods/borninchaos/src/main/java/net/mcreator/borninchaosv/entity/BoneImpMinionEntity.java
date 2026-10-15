@@ -86,16 +86,16 @@ public class BoneImpMinionEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, AbstractGolem.class, false, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, ControlledBabySkeletonEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, PumpkinSpiritEntity.class, false, false));
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, DireHoundLeaderEntity.class, false, false));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, DreadHoundEntity.class, false, false));
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, DreadHoundNotDespawnEntity.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, AbstractGolem.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, ControlledBabySkeletonEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, PumpkinSpiritEntity.class, false, false));
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, DireHoundLeaderEntity.class, false, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, DreadHoundEntity.class, false, false));
+      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, DreadHoundNotDespawnEntity.class, false, false));
    }
 
    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float f) {

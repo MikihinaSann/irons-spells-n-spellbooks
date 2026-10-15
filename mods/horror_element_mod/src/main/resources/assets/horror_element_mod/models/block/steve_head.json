@@ -1,0 +1,14 @@
+{
+  "parent": "horror_element_mod:custom/steeve_skull",
+  "textures": {
+    "all": "horror_element_mod:block/steeve_face_definitive",
+    "particle": "horror_element_mod:block/steeve_face_definitive",
+    "0": "horror_element_mod:block/bord_droit",
+    "1": "horror_element_mod:block/bord_gauche",
+    "2": "horror_element_mod:block/colonne_steve",
+    "3": "horror_element_mod:block/coup",
+    "4": "horror_element_mod:block/haut_des_cheveux",
+    "5": "horror_element_mod:block/steeve_face_definitive"
+  },
+  "render_type": "solid"
+}

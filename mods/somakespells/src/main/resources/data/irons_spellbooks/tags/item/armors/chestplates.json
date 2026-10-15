@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "somakespells:dark_metal_battlemage_chestplate",
+      "required": false
+    },
+    "somakespells:ceranium_chestplate",
+    "somakespells:aquamancer_chestplate",
+    "somakespells:abyssium_chestplate"
+  ]
+}

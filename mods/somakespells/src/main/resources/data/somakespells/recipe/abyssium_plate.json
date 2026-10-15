@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "somakespells:abyssium_ingot"
+    },
+    "B": {
+      "item": "somakespells:abyssium_core"
+    }
+  },
+  "result": {
+    "id": "somakespells:abyssium_plate",
+    "count": 1
+  }
+}

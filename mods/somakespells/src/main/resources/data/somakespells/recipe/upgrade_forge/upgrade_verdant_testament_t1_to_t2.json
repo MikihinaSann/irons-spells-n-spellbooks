@@ -1,0 +1,37 @@
+{
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:verdant_testament_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:verdant_testament_2_spell_book"
+  },
+  "school": "irons_spellbooks:nature",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:honey_bottle"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:glow_ink_sac"
+      },
+      "count": 12
+    },
+    {
+      "ingredient": {
+        "item": "cataclysm:amethyst_crab_meat"
+      },
+      "count": 5
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:nature_upgrade_orb"
+      },
+      "count": 2
+    }
+  ]
+}

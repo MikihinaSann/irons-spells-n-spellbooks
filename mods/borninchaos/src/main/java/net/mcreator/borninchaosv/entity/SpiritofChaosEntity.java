@@ -99,7 +99,7 @@ public class SpiritofChaosEntity extends Monster implements GeoEntity {
                }
             }
          );
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
       this.goalSelector.addGoal(3, new AvoidEntityGoal(this, Player.class, 15.0F, 1.0, 1.2));
       this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0));
       this.targetSelector.addGoal(5, new HurtByTargetGoal(this, new Class[0]));

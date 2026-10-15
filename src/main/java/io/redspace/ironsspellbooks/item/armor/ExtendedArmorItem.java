@@ -1,4 +1,5 @@
 package io.redspace.ironsspellbooks.item.armor;
+import io.redspace.ironsspellbooks.render.ArmorRenderProviders;
 
 import com.google.common.base.Suppliers;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;

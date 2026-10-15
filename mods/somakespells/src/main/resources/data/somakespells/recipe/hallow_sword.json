@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "irons_spellbooks:weapon_parts"
+    }
+  },
+  "pattern": [
+    "  M",
+    "GM ",
+    "SG "
+  ],
+  "result": {
+    "id": "somakespells:hallow_sword"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/dead_pig",
+  "textures": {
+    "all": "horror_element_mod:block/blood_9",
+    "particle": "horror_element_mod:block/blood_9",
+    "0": "horror_element_mod:block/dead_pig"
+  },
+  "render_type": "solid"
+}

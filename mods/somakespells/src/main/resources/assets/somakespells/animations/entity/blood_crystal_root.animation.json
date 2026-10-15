@@ -1,0 +1,63 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "form": {
+      "animation_length": 0.35,
+      "bones": {
+        "root": {
+          "scale": {
+            "0.0": {"vector": [0.05, 0.05, 0.05]},
+            "0.14": {"vector": [1.18, 1.18, 1.18]},
+            "0.35": {"vector": [1, 1, 1]}
+          }
+        },
+        "crown_shard": {
+          "position": {
+            "0.0": {"vector": [0, 6, 0]},
+            "0.2": {"vector": [0, -0.8, 0]},
+            "0.35": {"vector": [0, 0, 0]}
+          }
+        },
+        "left_shard": {
+          "position": {
+            "0.0": {"vector": [4, 0, 0]},
+            "0.35": {"vector": [0, 0, 0]}
+          }
+        },
+        "right_shard": {
+          "position": {
+            "0.0": {"vector": [-4, 0, 0]},
+            "0.35": {"vector": [0, 0, 0]}
+          }
+        }
+      }
+    },
+    "hold": {
+      "loop": true,
+      "animation_length": 1.0,
+      "bones": {
+        "root": {
+          "scale": {
+            "0.0": {"vector": [1, 1, 1]},
+            "0.5": {"vector": [1.025, 1.04, 1.025]},
+            "1.0": {"vector": [1, 1, 1]}
+          }
+        },
+        "crown_shard": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, -1.5]},
+            "0.5": {"vector": [0, 0, 1.5]},
+            "1.0": {"vector": [0, 0, -1.5]}
+          }
+        },
+        "lower_shard": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 1]},
+            "0.5": {"vector": [0, 0, -1]},
+            "1.0": {"vector": [0, 0, 1]}
+          }
+        }
+      }
+    }
+  }
+}

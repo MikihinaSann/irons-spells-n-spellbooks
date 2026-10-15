@@ -1,0 +1,13 @@
+{
+  "type": "somakespells:spell_scroll",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "legendary_monsters:entities/posessed_paladin"
+    }
+  ],
+  "entity_id": "legendary_monsters:posessed_paladin",
+  "spell_id": "somakespells:crimson_reflection",
+  "spell_level": 1,
+  "chance": 0.5
+}

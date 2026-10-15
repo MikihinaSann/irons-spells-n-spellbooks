@@ -1,0 +1,141 @@
+{
+  "type": "somakespells:pedestal_ritual",
+  "center_item": {
+    "item": "irons_spellbooks:fire_upgrade_orb"
+  },
+  "pedestal_groups": [
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:soul_fire_rune"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:soul_blaze_powder"
+          },
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "somakespells:soul_fire_upgrade_orb",
+    "count": 1
+  },
+  "required_ritual_mode": "soul_fire"
+}

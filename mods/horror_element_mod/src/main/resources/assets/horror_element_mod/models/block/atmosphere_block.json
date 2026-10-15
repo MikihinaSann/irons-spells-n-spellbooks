@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/atmosphere_changer",
+    "up": "horror_element_mod:block/atmosphere_changer",
+    "north": "horror_element_mod:block/atmosphere_changer",
+    "east": "horror_element_mod:block/atmosphere_changer",
+    "south": "horror_element_mod:block/atmosphere_changer",
+    "west": "horror_element_mod:block/atmosphere_changer",
+    "particle": "horror_element_mod:block/atmosphere_changer"
+  },
+  "render_type": "solid"
+}

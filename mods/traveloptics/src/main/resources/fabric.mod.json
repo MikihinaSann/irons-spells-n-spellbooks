@@ -26,9 +26,7 @@
     "fabric-api": "*",
     "neoforge_compat": ">=1.0.0",
     "irons_spellbooks": "*",
-    "cataclysm": "*",
-    "geckolib": "*",
-    "trinkets": ">=3.10.0"
+    "cataclysm": "*"
   },
   "custom": {
     "loom:injected_interfaces": {

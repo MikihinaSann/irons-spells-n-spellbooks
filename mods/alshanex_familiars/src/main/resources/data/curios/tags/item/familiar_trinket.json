@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "alshanex_familiars:archmage_trinket",
+    "alshanex_familiars:bard_trinket",
+    "alshanex_familiars:cleric_trinket",
+    "alshanex_familiars:forest_trinket",
+    "alshanex_familiars:hunter_trinket",
+    "alshanex_familiars:illusionist_trinket",
+    "alshanex_familiars:mage_trinket",
+    "alshanex_familiars:necromancer_trinket",
+    "alshanex_familiars:plague_trinket",
+    "alshanex_familiars:scorcher_trinket",
+    "alshanex_familiars:summoner_trinket",
+    "alshanex_familiars:frostling_trinket",
+    "alshanex_familiars:dragon_warrior_trinket",
+    "alshanex_familiars:pandora_box"
+  ]
+}

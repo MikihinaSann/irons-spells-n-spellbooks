@@ -84,7 +84,7 @@ public class SkeletonThrasherNotDespawnEntity extends Monster implements GeoEnti
          }
       });
       this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(4, new RestrictSunGoal(this) {
          public boolean canUse() {
             double x = SkeletonThrasherNotDespawnEntity.this.getX();

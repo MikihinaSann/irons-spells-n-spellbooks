@@ -1,0 +1,14 @@
+{
+  "parent": "horror_element_mod:custom/spider",
+  "textures": {
+    "all": "horror_element_mod:block/blood_7",
+    "particle": "horror_element_mod:block/blood_7",
+    "0": "horror_element_mod:block/araignee_spine",
+    "1": "horror_element_mod:block/araignee",
+    "2": "horror_element_mod:block/derriere_araignee",
+    "3": "horror_element_mod:block/dessus_araigne",
+    "4": "horror_element_mod:block/droite_araigne",
+    "5": "horror_element_mod:block/gauche_araigne"
+  },
+  "render_type": "solid"
+}

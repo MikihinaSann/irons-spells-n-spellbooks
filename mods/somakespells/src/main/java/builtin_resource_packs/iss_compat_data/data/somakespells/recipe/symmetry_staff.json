@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "iss_magicfromtheeast:refined_jade_ingot"
+    },
+    "O": {
+      "item": "iss_magicfromtheeast:symmetry_upgrade_orb"
+    },
+    "J": {
+      "item": "iss_magicfromtheeast:jade"
+    }
+  },
+  "pattern": [
+    " RO",
+    " RR",
+    "J  "
+  ],
+  "result": {
+    "id": "somakespells:symmetry_staff"
+  }
+}

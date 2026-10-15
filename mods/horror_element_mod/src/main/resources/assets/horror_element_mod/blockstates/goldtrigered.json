@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/goldtrigered"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/goldtrigered",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/goldtrigered",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/goldtrigered",
+      "y": 270
+    }
+  }
+}

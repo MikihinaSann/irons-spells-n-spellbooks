@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/phished_head",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "0": "horror_element_mod:block/phished_head"
+  },
+  "render_type": "solid"
+}

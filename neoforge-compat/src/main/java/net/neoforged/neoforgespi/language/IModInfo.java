@@ -64,9 +64,8 @@ public interface IModInfo {
         public IModFileInfo getOwningFile() {
             return new IModFileInfo() {
                 @Override
-                public java.nio.file.Path getFile() {
-                    return container.getRootPaths().isEmpty() ? java.nio.file.Paths.get(getModId() + ".jar")
-                            : container.getRootPaths().get(0).getFileName();
+                public net.neoforged.neoforgespi.locating.IModFile getFile() {
+                    return new net.neoforged.fml.ModFileInfo.ModFile(container.getRootPaths());
                 }
 
                 @Override

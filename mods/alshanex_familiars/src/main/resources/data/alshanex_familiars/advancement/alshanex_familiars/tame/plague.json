@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:plague_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_plague"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_plague.desc"
+    }
+  },
+  "criteria": {
+    "tame_plague": {
+      "trigger": "familiarslib:plague_taming"
+    }
+  }
+}

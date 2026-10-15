@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "horror_element_mod:blocks/barricade_birch_bloody",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "horror_element_mod:barricade_birch_bloody"
+        }
+      ]
+    }
+  ]
+}

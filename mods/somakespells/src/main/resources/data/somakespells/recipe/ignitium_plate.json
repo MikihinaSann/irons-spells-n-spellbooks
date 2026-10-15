@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:ignitium_ingot"
+    },
+    "B": {
+      "item": "somakespells:ignitium_core"
+    }
+  },
+  "result": {
+    "id": "somakespells:ignitium_plate",
+    "count": 1
+  }
+}

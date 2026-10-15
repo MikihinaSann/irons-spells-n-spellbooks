@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tunes_n_tomes:item/melodic_mastery_helmet"
+  }
+}

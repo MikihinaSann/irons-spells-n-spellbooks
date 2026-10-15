@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/dark_oak_planks",
+    "up": "horror_element_mod:block/dark_oak_planks",
+    "north": "horror_element_mod:block/dark_oak_planks",
+    "east": "horror_element_mod:block/dark_oak_planks",
+    "south": "horror_element_mod:block/dark_oak_planks",
+    "west": "horror_element_mod:block/dark_oak_planks",
+    "particle": "horror_element_mod:block/dark_oak_planks"
+  },
+  "render_type": "solid"
+}

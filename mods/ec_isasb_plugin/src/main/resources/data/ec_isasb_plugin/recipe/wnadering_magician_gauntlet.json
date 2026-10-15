@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "expanded_combat:leather_gauntlet"
+    },
+    {
+      "item": "irons_spellbooks:arcane_essence"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "ec_isasb_plugin:wnadering_magician_gauntlet"
+  }
+}

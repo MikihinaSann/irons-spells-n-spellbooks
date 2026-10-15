@@ -81,7 +81,7 @@ public class SearedSpiritNotDespawnEntity extends Monster implements GeoEntity {
          }
       });
       this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(6, new FloatGoal(this));

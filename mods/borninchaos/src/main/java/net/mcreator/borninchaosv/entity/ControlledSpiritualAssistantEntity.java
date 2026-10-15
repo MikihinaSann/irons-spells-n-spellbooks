@@ -149,7 +149,7 @@ public class ControlledSpiritualAssistantEntity extends TamableAnimal implements
       });
       this.goalSelector.addGoal(5, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

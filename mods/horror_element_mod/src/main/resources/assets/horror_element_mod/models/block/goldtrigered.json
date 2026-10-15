@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/gold_block",
+    "up": "horror_element_mod:block/gold_block",
+    "north": "horror_element_mod:block/gold_block",
+    "east": "horror_element_mod:block/gold_block",
+    "south": "horror_element_mod:block/gold_block",
+    "west": "horror_element_mod:block/gold_block",
+    "particle": "horror_element_mod:block/gold_block"
+  },
+  "render_type": "solid"
+}

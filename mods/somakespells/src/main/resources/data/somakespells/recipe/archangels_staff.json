@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "H": {
+      "item": "irons_spellbooks:holy_upgrade_orb"
+    },
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    }
+  },
+  "pattern": [
+    " GH",
+    " GG",
+    "M  "
+  ],
+  "result": {
+    "id": "somakespells:archangels_staff"
+  }
+}

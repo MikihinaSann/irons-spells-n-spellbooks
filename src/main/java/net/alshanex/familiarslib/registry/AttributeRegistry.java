@@ -13,4 +13,6 @@ public class AttributeRegistry {
 
     public static final DeferredHolder<Attribute, Attribute> FAMILIAR_DAMAGE = ATTRIBUTES.register("familiar_damage", () -> (new MagicPercentAttribute("attribute.familiarslib.familiar_damage", 1.0D, -100, 100.0D).setSyncable(true)));
     public static final DeferredHolder<Attribute, Attribute> FAMILIAR_RESIST = ATTRIBUTES.register("familiar_resist", () -> (new MagicPercentAttribute("attribute.familiarslib.familiar_resist", 1.0D, -100, 100.0D).setSyncable(true)));
+    public static final DeferredHolder<Attribute, Attribute> SOUND_MAGIC_RESIST = ATTRIBUTES.register("sound_magic_resist", () -> (new MagicPercentAttribute("attribute.familiarslib.sound_magic_resist", 1.0D, -100, 100.0D).setSyncable(true)));
+    public static final DeferredHolder<Attribute, Attribute> SOUND_SPELL_POWER = ATTRIBUTES.register("sound_spell_power", () -> (new MagicPercentAttribute("attribute.familiarslib.sound_spell_power", 1.0D, -100, 100.0D).setSyncable(true)));
 }

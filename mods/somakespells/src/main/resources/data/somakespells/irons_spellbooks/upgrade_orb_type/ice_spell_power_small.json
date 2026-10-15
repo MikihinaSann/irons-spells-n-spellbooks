@@ -1,0 +1,6 @@
+{
+  "attribute": "irons_spellbooks:ice_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:ice_upgrade_orb_small"
+}

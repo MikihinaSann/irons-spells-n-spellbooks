@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "rc",
+    "c "
+  ],
+  "result": {
+    "count": 1,
+    "id": "ec_isasb_plugin:netherite_battlemage_gauntlet"
+  }
+}

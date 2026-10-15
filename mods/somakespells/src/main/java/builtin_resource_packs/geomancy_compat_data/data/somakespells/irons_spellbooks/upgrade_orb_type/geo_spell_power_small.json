@@ -1,0 +1,6 @@
+{
+  "attribute": "gtbcs_geomancy_plus:geo_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:geo_upgrade_orb_small"
+}

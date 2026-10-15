@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "iss_magicfromtheeast:block/jadestone_bricks_pillar_top",
+    "side": "iss_magicfromtheeast:block/jadestone_bricks_pillar_side"
+  }
+}

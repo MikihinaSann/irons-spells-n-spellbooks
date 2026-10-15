@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:cursium_ingot"
+    },
+    "B": {
+      "item": "somakespells:cursium_core"
+    }
+  },
+  "result": {
+    "id": "somakespells:cursium_plate",
+    "count": 1
+  }
+}

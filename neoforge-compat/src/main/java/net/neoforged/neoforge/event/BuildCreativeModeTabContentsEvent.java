@@ -16,7 +16,7 @@ import java.util.function.Consumer;
  * Collects creative-tab additions; drained into FAPI {@code ItemGroupEvents} at init.
  */
 public class BuildCreativeModeTabContentsEvent extends Event {
-    public record Addition(ResourceKey<CreativeModeTab> tabKey, Consumer<CreativeModeTab.Output> action) {
+    public record Addition(ResourceKey<CreativeModeTab> tabKey, Consumer<TabOutput> action) {
     }
 
     private final List<Addition> additions = new ArrayList<>();
@@ -58,7 +58,7 @@ public class BuildCreativeModeTabContentsEvent extends Event {
 
     /** Registers an action to run when the given tab is populated. */
     public void forTab(ResourceKey<CreativeModeTab> tabKey, Consumer<CreativeModeTab.Output> action) {
-        additions.add(new Addition(tabKey, action));
+        additions.add(new Addition(tabKey, action::accept));
     }
 
     public List<Addition> getAdditions() {
@@ -85,11 +85,31 @@ public class BuildCreativeModeTabContentsEvent extends Event {
         accept(new ItemStack(item), visibility);
     }
 
+    /** NeoForge-style ordered insertion — delegates to {@link CreativeModeTab.Output#insertAfter}. */
+    public void insertAfter(ItemStack anchor, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+        if (tabKey != null) {
+            additions.add(new Addition(tabKey, out -> out.insertAfter(anchor, stack, visibility)));
+        }
+    }
+
+    public void insertBefore(ItemStack anchor, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+        if (tabKey != null) {
+            additions.add(new Addition(tabKey, out -> out.insertBefore(anchor, stack, visibility)));
+        }
+    }
+
+    public void insertFirst(ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+        if (tabKey != null) {
+            additions.add(new Addition(tabKey, out -> out.insertFirst(stack, visibility)));
+        }
+    }
+
+
     /** Convenience shim matching {@code event.accept(item)} call sites — used with explicit tab registration. */
     public static class TabOutput implements CreativeModeTab.Output {
-        private final CreativeModeTab.Output delegate;
+        private final net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries delegate;
 
-        public TabOutput(CreativeModeTab.Output delegate) {
+        public TabOutput(net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries delegate) {
             this.delegate = delegate;
         }
 
@@ -97,5 +117,18 @@ public class BuildCreativeModeTabContentsEvent extends Event {
         public void accept(ItemStack stack, CreativeModeTab.TabVisibility visibility) {
             delegate.accept(stack, visibility);
         }
+
+        public void insertAfter(ItemStack anchor, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+            delegate.addAfter(anchor, java.util.List.of(stack), visibility);
+        }
+
+        public void insertBefore(ItemStack anchor, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+            delegate.addBefore(anchor, java.util.List.of(stack), visibility);
+        }
+
+        public void insertFirst(ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+            delegate.prepend(stack, visibility);
+        }
+
     }
 }

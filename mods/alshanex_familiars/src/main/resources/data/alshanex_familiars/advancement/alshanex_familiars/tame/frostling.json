@@ -1,0 +1,19 @@
+{
+  "parent": "alshanex_familiars:alshanex_familiars/tame_list",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:frostling_trinket"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.tame_frostling"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.tame_frostling.desc"
+    }
+  },
+  "criteria": {
+    "tame_frostling": {
+      "trigger": "familiarslib:frostling_taming"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "replace":  false,
+    "values":  [
+                   "somakespells:soullit_testament_spell_book",
+                   "somakespells:soullit_testament_2_spell_book",
+                   "somakespells:soullit_testament_3_spell_book"
+               ]
+}

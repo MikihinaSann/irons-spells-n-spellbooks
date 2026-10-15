@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:ball_lightning",
+    "irons_spellbooks:chain_lightning",
+    "irons_spellbooks:electrocute"
+  ]
+}

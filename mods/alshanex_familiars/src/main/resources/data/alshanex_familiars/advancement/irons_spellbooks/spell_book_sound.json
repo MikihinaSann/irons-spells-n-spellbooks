@@ -1,0 +1,31 @@
+{
+  "parent": "irons_spellbooks:irons_spellbooks/spell_book_diamond",
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:sound_spell_book"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.spell_book_sound"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.spell_book_sound.desc"
+    },
+    "announce_to_chat": true,
+    "show_toast": true,
+    "frame": "challenge"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alshanex_familiars:sound_spell_book"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

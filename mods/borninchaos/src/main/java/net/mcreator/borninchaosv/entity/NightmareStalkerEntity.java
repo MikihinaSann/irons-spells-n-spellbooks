@@ -120,8 +120,8 @@ public class NightmareStalkerEntity extends Monster implements GeoEntity {
       });
       this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(9, new FloatGoal(this));
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Player.class, false, false));
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Sheep.class, true, false));
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Sheep.class, true, false));
    }
 
    public void playStepSound(BlockPos pos, BlockState blockIn) {

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "somakespells:block/upgrade_forge",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "somakespells:block/upgrade_forge"
+    },
+    "facing=south": {
+      "model": "somakespells:block/upgrade_forge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "somakespells:block/upgrade_forge",
+      "y": 270
+    }
+  }
+}

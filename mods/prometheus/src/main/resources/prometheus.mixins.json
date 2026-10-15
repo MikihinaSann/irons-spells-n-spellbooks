@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "it.crystalnest.prometheus.mixin",
+  "refmap": "prometheus.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractArrowMixin",
+    "AbstractHurtingProjectileMixin",
+    "BaseFireBlockMixin",
+    "CampfireBlockMixin",
+    "EntityMixin",
+    "FireChargeItemMixin",
+    "LanternBlockMixin",
+    "SmallFireballMixin",
+    "SynchedEntityDataBuilderMixin",
+    "TorchBlockMixin",
+    "ZombieMixin"
+  ],
+  "client": [
+    "client.EntityRenderDispatcherMixin",
+    "client.ScreenEffectRendererMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

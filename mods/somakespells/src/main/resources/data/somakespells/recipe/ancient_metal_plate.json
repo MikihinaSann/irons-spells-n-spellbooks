@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "cataclysm:ancient_metal_ingot"
+    },
+    "B": {
+      "item": "cataclysm:ancient_metal_nugget"
+    }
+  },
+  "result": {
+    "id": "somakespells:ancient_metal_plate",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/chestbursted_soldier",
+  "textures": {
+    "all": "horror_element_mod:block/blood_10",
+    "particle": "horror_element_mod:block/blood_10",
+    "3": "horror_element_mod:block/dead_soldier"
+  },
+  "render_type": "cutout"
+}

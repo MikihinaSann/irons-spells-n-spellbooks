@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "horror_element_mod:block/cracked_deepslate_bricks",
+    "up": "horror_element_mod:block/cracked_deepslate_bricks",
+    "north": "horror_element_mod:block/cracked_deepslate_bricks",
+    "east": "horror_element_mod:block/cracked_deepslate_bricks",
+    "south": "horror_element_mod:block/cracked_deepslate_bricks",
+    "west": "horror_element_mod:block/cracked_deepslate_bricks",
+    "particle": "horror_element_mod:block/cracked_deepslate_bricks"
+  },
+  "render_type": "solid"
+}

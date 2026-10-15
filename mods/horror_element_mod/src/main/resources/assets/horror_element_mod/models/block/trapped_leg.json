@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/trapped_leg",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "0": "horror_element_mod:block/trapped_leg"
+  },
+  "render_type": "solid"
+}

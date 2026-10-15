@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FRF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "R": {
+      "item": "irons_spellbooks:blank_rune"
+    }
+  },
+  "result": {
+    "id": "somakespells:aqua_rune",
+    "count": 1
+  }
+}

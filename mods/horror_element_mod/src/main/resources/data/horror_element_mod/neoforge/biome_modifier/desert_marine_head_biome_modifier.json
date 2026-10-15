@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#is_overworld",
+  "features": "horror_element_mod:desert_marine_head",
+  "step": "underground_ores"
+}

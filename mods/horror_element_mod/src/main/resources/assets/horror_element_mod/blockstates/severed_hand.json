@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "horror_element_mod:block/severed_hand"
+    },
+    "facing=east": {
+      "model": "horror_element_mod:block/severed_hand",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "horror_element_mod:block/severed_hand",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "horror_element_mod:block/severed_hand",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "horror_element_mod:block/severed_hand",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "horror_element_mod:block/severed_hand",
+      "x": 90
+    }
+  }
+}

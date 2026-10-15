@@ -147,9 +147,9 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
       this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(3, new RandomSwimmingGoal(this, 1.0, 40));
       this.goalSelector.addGoal(4, new TryFindWaterGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Drowned.class, false, false));
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Cod.class, false, true) {
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Drowned.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Cod.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();
@@ -168,7 +168,7 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GluttonFishfullProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Salmon.class, false, true) {
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Salmon.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();
@@ -187,7 +187,7 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GluttonFishfullProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Squid.class, false, true) {
+      this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Squid.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();
@@ -206,7 +206,7 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GluttonFishfullProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, TropicalFish.class, false, true) {
+      this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, TropicalFish.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();
@@ -225,7 +225,7 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GluttonFishfullProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, GlowSquid.class, false, true) {
+      this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, GlowSquid.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();
@@ -244,7 +244,7 @@ public class GluttonFishEntity extends Monster implements GeoEntity {
             return super.canContinueToUse() && GluttonFishfullProcedure.execute(entity);
          }
       });
-      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Pufferfish.class, false, true) {
+      this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Pufferfish.class, false, true) {
          public boolean canUse() {
             double x = GluttonFishEntity.this.getX();
             double y = GluttonFishEntity.this.getY();

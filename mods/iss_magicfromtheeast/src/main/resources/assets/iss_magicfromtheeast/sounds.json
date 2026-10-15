@@ -1,0 +1,178 @@
+{
+  "cast.generic.symmetry": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/symmetry_cast"
+    ]
+  },
+  "cast.generic.spirit": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/spirit_cast"
+    ]
+  },
+  "cast.generic.dune": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/dune_cast"
+    ]
+  },
+  "cast.generic.loong": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/loong_cast"
+    ]
+  },
+  "cast.generic.jade_sword_impact": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/sword_impact"
+    ]
+  },
+  "cast.generic.jade_dao_impact": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/jade_impact"
+    ]
+  },
+  "cast.generic.jade_deflect": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/jade_reflect"
+    ]
+  },
+  "cast.generic.jade_slash": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/jade_slash"
+    ]
+  },
+  "cast.generic.jade_emerge": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/ground_breaking"
+    ]
+  },
+  "cast.generic.soul_cast": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/soul_cast"
+    ]
+  },
+  "cast.generic.bone_hit": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/bone_hit"
+    ]
+  },
+  "cast.generic.bone_slam": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/bone_slam"
+    ]
+  },
+  "cast.generic.katana_wind_up": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/katana_wind_up"
+    ]
+  },
+  "cast.generic.sword_strike": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/sword_strike"
+    ]
+  },
+  "cast.generic.projectile_throw": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/projectile_throw"
+    ]
+  },
+  "cast.generic.soul_challenging": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/soul_challenging"
+    ]
+  },
+  "cast.generic.death_bell": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/deathbell"
+    ]
+  },
+  "cast.generic.spirit_arrow_shot": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/spirit_arrow_shot"
+    ]
+  },
+  "cast.generic.projectile_loading": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/projectile_loading"
+    ]
+  },
+  "cast.generic.soul_rise": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/soul_rise"
+    ]
+  },
+  "cast.generic.soul_crushed": {
+    "sounds": [
+      "iss_magicfromtheeast:generic/soul_crushed"
+    ]
+  },
+
+
+
+  "executioner.generic.axe_chop": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/axe_chop"
+    ]
+  },
+  "executioner.generic.axe_sweep": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/axe_miss"
+    ]
+  },
+  "executioner.generic.executioner_ambient": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/executioner_ambient"
+    ]
+  },
+  "executioner.generic.executioner_hurt": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/executioner_hurt"
+    ]
+  },
+  "executioner.generic.roar": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/roar"
+    ]
+  },
+  "executioner.generic.showdown": {
+    "sounds": [
+      "iss_magicfromtheeast:jade_executioner/showdown"
+    ]
+  },
+
+
+
+  "spiritmob.generic.ashigaru_spear": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/ashigaru_spear"
+    ]
+  },
+  "spiritmob.generic.ashigaru_voice": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/ashigaru_voice"
+    ]
+  },
+  "spiritmob.generic.ashigaru_gun": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/gunshot"
+    ]
+  },
+  "spiritmob.generic.samurai_ambient": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/samurai_ambient"
+    ]
+  },
+  "spiritmob.generic.samurai_slash": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/samurai_slash"
+    ]
+  },
+  "spiritmob.generic.spirit_dead": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/spirit_dead"
+    ]
+  },
+  "spiritmob.generic.spirit_hurt": {
+    "sounds": [
+      "iss_magicfromtheeast:spiritmob/spirit_hurt"
+    ]
+  }
+}

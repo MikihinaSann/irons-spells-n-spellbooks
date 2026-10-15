@@ -1,0 +1,117 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:greater_healing_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:fire_ale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:oakskin_elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:netherward_tincture"
+        }
+      ]
+    },
+    {
+      "rolls": 3,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "strong_healing"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "long_swiftness"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "leaping"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "set_potion",
+              "id": "minecraft:long_night_vision"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "glass_bottle",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

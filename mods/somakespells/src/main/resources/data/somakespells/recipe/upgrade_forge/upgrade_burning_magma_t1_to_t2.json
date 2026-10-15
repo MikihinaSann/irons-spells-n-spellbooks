@@ -1,0 +1,37 @@
+{
+  "type": "somakespells:upgrade_forge",
+  "base_book": {
+    "item": "somakespells:burning_magma_spell_book"
+  },
+  "result_book": {
+    "id": "somakespells:burning_magma_2_spell_book"
+  },
+  "school": "irons_spellbooks:fire",
+  "requires_max_progress": true,
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:cinder_essence"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:magma_cream"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:pyrium_ingot"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:fire_upgrade_orb"
+      },
+      "count": 2
+    }
+  ]
+}

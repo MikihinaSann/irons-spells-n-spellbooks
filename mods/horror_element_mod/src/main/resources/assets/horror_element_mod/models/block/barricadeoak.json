@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/barricade_oak",
+  "textures": {
+    "all": "horror_element_mod:block/window_barricade_oak",
+    "particle": "horror_element_mod:block/window_barricade_oak",
+    "2": "horror_element_mod:block/window_barricade_oak"
+  },
+  "render_type": "cutout"
+}

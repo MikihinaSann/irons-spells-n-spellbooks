@@ -1,0 +1,40 @@
+{
+  "type": "alshanex_familiars:ritual_recipe",
+  "central_item": {
+    "item": "alshanex_familiars:pet_soul"
+  },
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:legendary_ink"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:arcane_essence"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:arcane_rune"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:magic_cloth"
+      },
+      "count": 1,
+      "consume": true
+    }
+  ],
+  "result": {
+    "id": "alshanex_familiars:archmage_shard"
+  },
+  "particle_type": "minecraft:end_rod"
+}

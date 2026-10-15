@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/desert_elite_soldier_head",
+  "textures": {
+    "all": "horror_element_mod:block/desert_soldier_skull",
+    "particle": "horror_element_mod:block/desert_soldier_skull",
+    "2": "horror_element_mod:block/desert_soldier_skull"
+  },
+  "render_type": "translucent"
+}

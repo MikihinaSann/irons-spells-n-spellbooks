@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "T": {
+      "tag": "alshanex_familiars:familiar_trinkets"
+    },
+    "W": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "TWT",
+    "WMW",
+    "TWT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "alshanex_familiars:pandora_box"
+  }
+}

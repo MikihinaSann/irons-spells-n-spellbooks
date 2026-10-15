@@ -1,0 +1,95 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "alshanex_familiars:chests/origin_island/sub_tables/brush",
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "alshanex_familiars:chests/origin_island/sub_tables/brush",
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 3,
+        "max": 6
+      },
+      "entries": [
+        {
+          "weight": 1,
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_book",
+          "functions": [
+            {
+              "function": "enchant_randomly",
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:item",
+          "name": "minecraft:book"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 10
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:arcane_essence"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "irons_spellbooks:ancient_knowledge_fragment",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "irons_spellbooks:chests/additional_good_loot"
+        }
+      ]
+    }
+  ]
+}

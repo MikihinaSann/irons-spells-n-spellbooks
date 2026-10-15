@@ -24,9 +24,7 @@
     "java": ">=21",
     "fabric-api": "*",
     "neoforge_compat": ">=1.0.0",
-    "irons_spellbooks": "*",
-    "geckolib": "*",
-    "trinkets": ">=3.10.0"
+    "irons_spellbooks": "*"
   },
   "custom": {
     "loom:injected_interfaces": {

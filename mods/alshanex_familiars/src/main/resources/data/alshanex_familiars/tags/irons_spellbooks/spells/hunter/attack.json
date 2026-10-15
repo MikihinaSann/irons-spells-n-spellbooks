@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "irons_spellbooks:magic_arrow",
+    "irons_spellbooks:stomp",
+    "irons_spellbooks:firecracker",
+    "irons_spellbooks:fire_arrow",
+    "irons_spellbooks:poison_arrow"
+  ]
+}

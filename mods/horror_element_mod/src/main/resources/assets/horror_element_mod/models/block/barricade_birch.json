@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/barricade_birch",
+  "textures": {
+    "all": "horror_element_mod:block/window_barricade_birch",
+    "particle": "horror_element_mod:block/window_barricade_birch",
+    "2": "horror_element_mod:block/window_barricade_birch"
+  },
+  "render_type": "cutout"
+}

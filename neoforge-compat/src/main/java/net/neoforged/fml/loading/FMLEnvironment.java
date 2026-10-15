@@ -12,6 +12,8 @@ public final class FMLEnvironment {
             ? Dist.CLIENT
             : Dist.DEDICATED_SERVER;
 
+    public static final boolean production = !FabricLoader.getInstance().isDevelopmentEnvironment();
+
     private FMLEnvironment() {
     }
 }

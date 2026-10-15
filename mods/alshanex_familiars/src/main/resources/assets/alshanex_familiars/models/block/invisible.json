@@ -1,0 +1,7 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "alshanex_familiars:block/shrinking_station"
+  },
+  "elements": []
+}

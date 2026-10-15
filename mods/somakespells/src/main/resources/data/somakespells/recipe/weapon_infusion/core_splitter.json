@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "somakespells:witherite_glaive"
+    },
+    "addition": {
+        "item": "somakespells:witherite_glaive"
+    },
+    "result": {
+        "id": "somakespells:core_splitter"
+    }
+}

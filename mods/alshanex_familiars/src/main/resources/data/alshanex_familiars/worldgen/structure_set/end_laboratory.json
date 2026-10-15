@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "alshanex_familiars:end_laboratory",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 5439764,
+    "spacing": 25,
+    "separation": 10,
+    "type": "minecraft:random_spread",
+    "exclusion_zone": {
+      "chunk_count": 5,
+      "other_set": "minecraft:end_cities"
+    }
+  }
+}

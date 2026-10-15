@@ -1,0 +1,13 @@
+{
+  "type": "alshanex_familiars:conditional_add_modifier",
+  "chance": 1,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:shearing/bogged"
+    }
+  ],
+  "items": [
+    "alshanex_familiars:strange_mushroom"
+  ]
+}

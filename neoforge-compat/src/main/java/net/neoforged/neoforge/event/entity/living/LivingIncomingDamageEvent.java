@@ -21,6 +21,10 @@ public class LivingIncomingDamageEvent extends LivingEvent implements ICancellab
         this.container = new net.neoforged.neoforge.common.damagesource.DamageContainer(source, entity, amount);
     }
 
+    public void setInvulnerabilityTicks(int ticks) {
+        getContainer().setPostAttackInvulnerabilityTicks(ticks);
+    }
+
     public net.neoforged.neoforge.common.damagesource.DamageContainer getContainer() {
         return container;
     }

@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/severed_hand",
+  "textures": {
+    "all": "horror_element_mod:block/blood_8",
+    "particle": "horror_element_mod:block/blood_8",
+    "1": "horror_element_mod:block/severed_hand"
+  },
+  "render_type": "solid"
+}

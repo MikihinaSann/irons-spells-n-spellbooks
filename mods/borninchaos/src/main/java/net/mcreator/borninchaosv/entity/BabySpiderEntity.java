@@ -97,7 +97,7 @@ public class BabySpiderEntity extends Spider implements GeoEntity {
       this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(5, new FloatGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Player.class, false, false) {
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
          public boolean canUse() {
             double x = BabySpiderEntity.this.getX();
             double y = BabySpiderEntity.this.getY();
@@ -107,8 +107,8 @@ public class BabySpiderEntity extends Spider implements GeoEntity {
             return super.canUse() && SpidersMotherAtackCodisionProcedure.execute(world, x, y, z);
          }
       });
-      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, CorpseFlyEntity.class, false, false));
-      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, MaggotEntity.class, false, false));
+      this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, CorpseFlyEntity.class, false, false));
+      this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, MaggotEntity.class, false, false));
    }
 
    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float f) {

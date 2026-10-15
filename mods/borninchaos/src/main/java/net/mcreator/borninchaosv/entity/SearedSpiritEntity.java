@@ -84,7 +84,7 @@ public class SearedSpiritEntity extends Monster implements GeoEntity {
             return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < 2.25 && this.mob.getSensing().hasLineOfSight(entity);
          }
       });
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));

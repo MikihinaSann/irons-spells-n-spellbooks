@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "hazennstuff",
+  "version": "hazennstuff+fabric.1.21.1",
+  "name": "1.3.11",
+  "description": "1.3.11 (NeoForge->Fabric compat port)",
+  "authors": [
+    "Hazennstuff"
+  ],
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "neoforge": [
+      "net.hazen.hazennstuff.HazenNStuff"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "neoforge_compat": ">=1.0.0",
+    "irons_spellbooks": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/world/entity/Entity": [
+        "net/neoforged/neoforge/attachment/IAttachmentHolder",
+        "net/neoforged/neoforge/entity/IEntityExtension"
+      ],
+      "net/minecraft/world/level/block/entity/BlockEntity": [
+        "net/neoforged/neoforge/common/extensions/IBlockEntityExtension"
+      ],
+      "net/minecraft/world/level/Level": [
+        "net/neoforged/neoforge/attachment/IAttachmentHolder"
+      ],
+      "net/minecraft/world/level/chunk/ChunkAccess": [
+        "net/neoforged/neoforge/attachment/IAttachmentHolder"
+      ],
+      "net/minecraft/world/item/ItemStack": [
+        "net/neoforged/neoforge/common/extensions/IItemStackExtension"
+      ],
+      "net/minecraft/world/item/Item": [
+        "net/neoforged/neoforge/common/extensions/IItemExtension"
+      ],
+      "net/minecraft/core/Holder": [
+        "net/neoforged/neoforge/common/extensions/IHolderExtension"
+      ],
+      "net/minecraft/server/packs/resources/SimpleJsonResourceReloadListener": [
+        "net/neoforged/neoforge/common/conditions/IConditionalOpsProvider"
+      ],
+      "net/minecraft/world/level/block/state/BlockBehaviour": [
+        "net/neoforged/neoforge/common/extensions/IBlockExtension"
+      ],
+      "net/minecraft/world/level/block/state/BlockBehaviour$BlockStateBase": [
+        "net/neoforged/neoforge/common/extensions/IBlockStateExtension"
+      ],
+      "net/minecraft/world/level/material/Fluid": [
+        "net/neoforged/neoforge/common/extensions/IFluidExtension"
+      ],
+      "net/minecraft/world/entity/player/Player": [
+        "net/neoforged/neoforge/common/extensions/IPlayerExtension"
+      ],
+      "net/minecraft/client/renderer/blockentity/BlockEntityRenderer": [
+        "net/neoforged/neoforge/client/extensions/common/IBlockEntityRendererExtension"
+      ],
+      "net/minecraft/client/particle/Particle": [
+        "net/neoforged/neoforge/common/extensions/IParticleExtension"
+      ],
+      "net/minecraft/world/level/LevelAccessor": [
+        "net/neoforged/neoforge/common/extensions/ILevelAccessorExtension"
+      ],
+      "net/minecraft/client/resources/model/BakedModel": [
+        "net/neoforged/neoforge/client/extensions/IBakedModelExtension"
+      ],
+      "net/minecraft/client/KeyMapping": [
+        "net/neoforged/neoforge/client/extensions/IKeyMappingExtension"
+      ],
+      "net/minecraft/world/item/Item$Properties": [
+        "net/neoforged/neoforge/common/extensions/IItemPropertiesExtension"
+      ],
+      "net/minecraft/client/renderer/DimensionSpecialEffects": [
+        "net/neoforged/neoforge/client/extensions/IDimensionSpecialEffectsExtension"
+      ],
+      "net/minecraft/world/item/CreativeModeTab$Builder": [
+        "net/neoforged/neoforge/common/extensions/ICreativeModeTabBuilderExtension"
+      ],
+      "net/minecraft/world/entity/LightningBolt": [
+        "net/neoforged/neoforge/common/extensions/ILightningBoltExtension"
+      ],
+      "net/minecraft/core/particles/BlockParticleOption": [
+        "net/neoforged/neoforge/common/extensions/IBlockParticleOptionExtension"
+      ],
+      "net/minecraft/client/gui/screens/inventory/AbstractContainerScreen": [
+        "net/neoforged/neoforge/client/extensions/common/IScreenExtension"
+      ],
+      "net/minecraft/world/item/crafting/Ingredient": [
+        "net/neoforged/neoforge/common/extensions/IIngredientExtension"
+      ],
+      "net/minecraft/world/entity/ai/attributes/Attribute": [
+        "net/neoforged/neoforge/common/extensions/IAttributeExtension"
+      ],
+      "net/minecraft/network/protocol/PacketFlow": [
+        "net/neoforged/neoforge/common/extensions/IPacketFlowExtension"
+      ],
+      "net/minecraft/world/item/TooltipFlag": [
+        "net/neoforged/neoforge/common/extensions/ITooltipFlagExtension"
+      ],
+      "net/minecraft/world/level/biome/MobSpawnSettings": [
+        "net/neoforged/neoforge/common/extensions/IMobSpawnSettingsExtension"
+      ],
+      "net/minecraft/world/level/biome/BiomeGenerationSettings": [
+        "net/neoforged/neoforge/common/extensions/IBiomeGenerationSettingsExtension"
+      ],
+      "net/minecraft/world/level/ServerLevelAccessor": [
+        "net/neoforged/neoforge/common/extensions/ILevelAccessorExtension"
+      ],
+      "net/minecraft/world/entity/LivingEntity": [
+        "net/neoforged/neoforge/common/extensions/ILivingEntityExtension"
+      ],
+      "net/minecraft/world/effect/MobEffect": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectExtension"
+      ],
+      "net/minecraft/world/effect/MobEffectInstance": [
+        "net/neoforged/neoforge/common/extensions/IMobEffectInstanceExtension"
+      ],
+      "net/minecraft/client/gui/GuiGraphics": [
+        "net/neoforged/neoforge/client/extensions/IGuiGraphicsExtension"
+      ],
+      "net/minecraft/server/network/ServerGamePacketListenerImpl": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
+      ],
+      "net/minecraft/client/multiplayer/ClientPacketListener": [
+        "net/neoforged/neoforge/common/extensions/ICommonPacketListener"
+      ]
+    }
+  }
+}

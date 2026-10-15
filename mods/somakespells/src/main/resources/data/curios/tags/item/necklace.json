@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:soul_fire_necklace",
+    {
+      "id": "somakespells:infernal_fire_necklace",
+      "required": false
+    }
+  ]
+}

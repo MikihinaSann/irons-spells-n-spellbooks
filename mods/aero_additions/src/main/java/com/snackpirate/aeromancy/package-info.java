@@ -1,0 +1,6 @@
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+package com.snackpirate.aeromancy;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;

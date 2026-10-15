@@ -1,0 +1,40 @@
+{
+  "type": "alshanex_familiars:ritual_recipe",
+  "central_item": {
+    "item": "irons_spellbooks:energized_core"
+  },
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:mithril_ingot"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:netherite_ingot"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "alshanex_familiars:sound_rune"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:timeless_slurry"
+      },
+      "count": 1,
+      "consume": true
+    }
+  ],
+  "result": {
+    "id": "alshanex_familiars:mysterious_orb"
+  },
+  "particle_type": "minecraft:enchant"
+}

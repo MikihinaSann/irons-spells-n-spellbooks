@@ -1,0 +1,8 @@
+{
+    "replace":  false,
+    "values":  [
+                   "somakespells:axiomatic_codex_spell_book",
+                   "somakespells:axiomatic_codex_2_spell_book",
+                   "somakespells:axiomatic_codex_3_spell_book"
+               ]
+}

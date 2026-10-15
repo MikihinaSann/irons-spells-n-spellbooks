@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:aqua_rune",
+    "somakespells:eldritch_rune",
+    "somakespells:soul_fire_rune",
+    {
+      "id": "somakespells:infernal_fire_rune",
+      "required": false
+    }
+  ]
+}

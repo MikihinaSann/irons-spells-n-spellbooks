@@ -59,6 +59,24 @@ public class EventHooks {
         return event;
     }
 
+    public static net.neoforged.neoforge.event.entity.player.BonemealEvent fireBonemealEvent(
+            @org.jetbrains.annotations.Nullable net.minecraft.world.entity.player.Player player,
+            net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos,
+            net.minecraft.world.level.block.state.BlockState state, net.minecraft.world.item.ItemStack stack) {
+        net.neoforged.neoforge.event.entity.player.BonemealEvent event =
+                new net.neoforged.neoforge.event.entity.player.BonemealEvent(player, level, pos, state, stack);
+        NeoForge.EVENT_BUS.post(event);
+        return event;
+    }
+
+    public static net.neoforged.neoforge.event.entity.EntityTeleportEvent.ChorusFruit onChorusFruitTeleport(
+            net.minecraft.world.entity.LivingEntity entity, double targetX, double targetY, double targetZ) {
+        net.neoforged.neoforge.event.entity.EntityTeleportEvent.ChorusFruit event =
+                new net.neoforged.neoforge.event.entity.EntityTeleportEvent.ChorusFruit(entity, targetX, targetY, targetZ);
+        NeoForge.EVENT_BUS.post(event);
+        return event;
+    }
+
     public static net.minecraft.world.entity.SpawnGroupData finalizeMobSpawn(net.minecraft.world.entity.Mob mob,
             net.minecraft.world.level.ServerLevelAccessor level, net.minecraft.world.DifficultyInstance difficulty,
             net.minecraft.world.entity.MobSpawnType spawnType, net.minecraft.world.entity.SpawnGroupData spawnData) {

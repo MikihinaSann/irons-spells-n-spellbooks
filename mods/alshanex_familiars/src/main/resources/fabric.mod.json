@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "alshanex_familiars",
+  "version": "1.21.1_v3.8",
+  "name": "Alshanex's Familiars",
+  "environment": "*",
+  "accessWidener": "alshanex_familiars.accesswidener",
+  "mixins": [
+    "alshanex_familiars.mixins.json"
+  ],
+  "entrypoints": {
+    "neoforge": [
+      "net.alshanex.alshanex_familiars.AlshanexFamiliarsMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1",
+    "irons_spellbooks": "*",
+    "familiarslib": "*"
+  }
+}

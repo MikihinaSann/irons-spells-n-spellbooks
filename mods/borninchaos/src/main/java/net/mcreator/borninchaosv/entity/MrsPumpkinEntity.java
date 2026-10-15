@@ -86,7 +86,7 @@ public class MrsPumpkinEntity extends Monster implements RangedAttackMob, GeoEnt
       this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.8));
       this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(4, new FloatGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(1, new MrsPumpkinEntity.RangedAttackGoal(this, 1.25, 60, 15.0F) {
          @Override
          public boolean canContinueToUse() {

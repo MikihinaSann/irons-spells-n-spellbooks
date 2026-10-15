@@ -96,7 +96,7 @@ public class MissionerEntity extends Monster implements RangedAttackMob, GeoEnti
       this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.7));
       this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(4, new FloatGoal(this));
-      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, false, false));
+      this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
       this.goalSelector.addGoal(1, new MissionerEntity.RangedAttackGoal(this, 1.25, 60, 15.0F) {
          @Override
          public boolean canContinueToUse() {

@@ -1,0 +1,85 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "open": {
+      "animation_length": 0.4,
+      "bones": {
+        "portal_root": {
+          "scale": {
+            "0.0": {"vector": [0.01, 0.01, 0.01]},
+            "0.25": {"vector": [1.12, 1.12, 1.12], "easing": "easeOutBack"},
+            "0.4": {"vector": [1.0, 1.0, 1.0]}
+          }
+        },
+        "outer_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, -30]},
+            "0.4": {"vector": [0, 0, 0]}
+          }
+        },
+        "main_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 45]},
+            "0.4": {"vector": [0, 0, 0]}
+          }
+        }
+      }
+    },
+    "idle": {
+      "loop": true,
+      "animation_length": 2.0,
+      "bones": {
+        "outer_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 0]},
+            "2.0": {"vector": [0, 0, 360]}
+          }
+        },
+        "main_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 0]},
+            "2.0": {"vector": [0, 0, -240]}
+          }
+        },
+        "inner_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 0]},
+            "2.0": {"vector": [0, 0, 480]}
+          }
+        },
+        "portal_surface": {
+          "scale": {
+            "0.0": {"vector": [0.94, 0.94, 1.0]},
+            "1.0": {"vector": [1.06, 1.06, 1.0], "easing": "easeInOutSine"},
+            "2.0": {"vector": [0.94, 0.94, 1.0], "easing": "easeInOutSine"}
+          }
+        }
+      }
+    },
+    "close": {
+      "animation_length": 0.4,
+      "bones": {
+        "portal_root": {
+          "scale": {
+            "0.0": {"vector": [1.0, 1.0, 1.0]},
+            "0.12": {"vector": [1.12, 1.12, 1.12]},
+            "0.4": {"vector": [0.01, 0.01, 0.01], "easing": "easeInBack"}
+          }
+        },
+        "outer_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 0]},
+            "0.4": {"vector": [0, 0, 80]}
+          }
+        },
+        "main_ring": {
+          "rotation": {
+            "0.0": {"vector": [0, 0, 0]},
+            "0.4": {"vector": [0, 0, -110]}
+          }
+        }
+      }
+    }
+  },
+  "geckolib_format_version": 2
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": [],
+  "base": {
+    "item": "irons_spellbooks:wizard_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "alshanex_familiars:bard_boots"
+  },
+  "template": {
+    "item": "alshanex_familiars:sound_rune"
+  }
+}

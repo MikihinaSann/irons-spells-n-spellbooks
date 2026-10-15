@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:music_discs"
+    },
+    "H": {
+      "item": "minecraft:goat_horn"
+    },
+    "S": {
+      "item": "irons_spellbooks:diamond_spell_book"
+    }
+  },
+  "pattern": [
+    "DHD",
+    "HSH",
+    "DHD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "alshanex_familiars:sound_spell_book"
+  }
+}

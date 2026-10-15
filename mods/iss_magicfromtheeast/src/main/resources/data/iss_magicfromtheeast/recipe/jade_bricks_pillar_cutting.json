@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "iss_magicfromtheeast:jadestone_bricks"
+  },
+  "result": {
+    "id": "iss_magicfromtheeast:jadestone_bricks_pillar",
+    "count": 1
+  }
+}

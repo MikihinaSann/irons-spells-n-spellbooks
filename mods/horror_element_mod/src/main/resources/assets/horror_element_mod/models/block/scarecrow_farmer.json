@@ -1,0 +1,10 @@
+{
+  "parent": "horror_element_mod:custom/scarecrow_farmer",
+  "textures": {
+    "all": "horror_element_mod:block/blood_9",
+    "particle": "horror_element_mod:block/blood_9",
+    "0": "horror_element_mod:block/farmer",
+    "1": "horror_element_mod:block/impaled_farmer"
+  },
+  "render_type": "cutout"
+}

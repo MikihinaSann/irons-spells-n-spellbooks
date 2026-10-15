@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "somakespells:ceranium_plate",
+    "somakespells:cursium_plate",
+    "somakespells:ignitium_plate",
+    "somakespells:witherite_plate",
+    "somakespells:abyssium_plate",
+    "somakespells:ancient_metal_plate",
+    "somakespells:magmarium_plate"
+  ]
+}

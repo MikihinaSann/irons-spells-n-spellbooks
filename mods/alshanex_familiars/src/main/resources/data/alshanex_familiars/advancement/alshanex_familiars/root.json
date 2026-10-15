@@ -1,0 +1,66 @@
+{
+  "display": {
+    "icon": {
+      "id": "alshanex_familiars:familiar_tome"
+    },
+    "title": {
+      "translate": "advancement.alshanex_familiars.root"
+    },
+    "description": {
+      "translate": "advancement.alshanex_familiars.root.desc"
+    },
+    "background": "irons_spellbooks:textures/block/wisewood_chiseled_bookshelf_top.png",
+    "announce_to_chat": false,
+    "show_toast": false
+  },
+  "criteria": {
+    "tame_archmage": {
+      "trigger": "familiarslib:archmage_taming"
+    },
+    "tame_bard": {
+      "trigger": "familiarslib:bard_taming"
+    },
+    "tame_cleric": {
+      "trigger": "familiarslib:cleric_taming"
+    },
+    "tame_druid": {
+      "trigger": "familiarslib:druid_taming"
+    },
+    "tame_hunter": {
+      "trigger": "familiarslib:hunter_taming"
+    },
+    "tame_illusionist": {
+      "trigger": "familiarslib:illusionist_taming"
+    },
+    "tame_mage": {
+      "trigger": "familiarslib:mage_taming"
+    },
+    "tame_necromancer": {
+      "trigger": "familiarslib:necromancer_taming"
+    },
+    "tame_plague": {
+      "trigger": "familiarslib:plague_taming"
+    },
+    "tame_scorcher": {
+      "trigger": "familiarslib:scorcher_taming"
+    },
+    "tame_summoner": {
+      "trigger": "familiarslib:summoner_taming"
+    }
+  },
+  "requirements": [
+    [
+      "tame_archmage",
+      "tame_bard",
+      "tame_cleric",
+      "tame_druid",
+      "tame_hunter",
+      "tame_illusionist",
+      "tame_mage",
+      "tame_necromancer",
+      "tame_plague",
+      "tame_scorcher",
+      "tame_summoner"
+    ]
+  ]
+}

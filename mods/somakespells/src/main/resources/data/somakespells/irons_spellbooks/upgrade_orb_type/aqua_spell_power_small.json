@@ -1,0 +1,6 @@
+{
+  "attribute": "somakespells:aqua_spell_power",
+  "amount": 0.01,
+  "operation": "add_multiplied_base",
+  "containerItem": "somakespells:aqua_upgrade_orb_small"
+}

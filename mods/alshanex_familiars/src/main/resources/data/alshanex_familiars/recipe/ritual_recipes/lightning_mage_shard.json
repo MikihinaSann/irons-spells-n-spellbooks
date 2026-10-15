@@ -1,0 +1,40 @@
+{
+  "type": "alshanex_familiars:ritual_recipe",
+  "central_item": {
+    "item": "alshanex_familiars:pet_soul"
+  },
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:lightning_bottle"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:arcane_essence"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "irons_spellbooks:lightning_rune"
+      },
+      "count": 1,
+      "consume": true
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:lightning_rod"
+      },
+      "count": 1,
+      "consume": true
+    }
+  ],
+  "result": {
+    "id": "alshanex_familiars:lightning_mage_shard"
+  },
+  "particle_type": "irons_spellbooks:electricity"
+}

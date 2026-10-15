@@ -1,0 +1,115 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ],
+  "type": "somakespells:pedestal_ritual",
+  "center_item": {
+    "item": "somakespells:soul_fire_necklace"
+  },
+  "pedestal_groups": [
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_fire"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_fire"
+          },
+          "count": 1
+        },
+        {
+          "ingredient": {
+            "item": "somakespells:infernal_blaze_powder"
+          },
+          "count": 8
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "born_in_chaos_v1:infernal_evil_pumpkin"
+          },
+          "count": 8
+        },
+        {
+          "ingredient": {
+            "item": "born_in_chaos_v1:smoldering_infernal_ember"
+          },
+          "count": 4
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "born_in_chaos_v1:infernal_evil_pumpkin"
+          },
+          "count": 8
+        },
+        {
+          "ingredient": {
+            "item": "born_in_chaos_v1:smoldering_infernal_ember"
+          },
+          "count": 4
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "minecraft:chain"
+          },
+          "count": 4
+        },
+        {
+          "ingredient": {
+            "item": "irons_spellbooks:mithril_ingot"
+          },
+          "count": 1
+        }
+      ]
+    },
+    {
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "minecraft:chain"
+          },
+          "count": 4
+        },
+        {
+          "ingredient": {
+            "item": "irons_spellbooks:mithril_ingot"
+          },
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "somakespells:infernal_fire_necklace",
+    "count": 1
+  },
+  "required_ritual_mode": "infernal_fire"
+}

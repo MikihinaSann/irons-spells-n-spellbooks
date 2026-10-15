@@ -1,0 +1,9 @@
+{
+  "parent": "horror_element_mod:custom/villager_hanging",
+  "textures": {
+    "all": "horror_element_mod:block/hanging_villager",
+    "particle": "horror_element_mod:block/blood_3",
+    "0": "horror_element_mod:block/hanging_villager"
+  },
+  "render_type": "solid"
+}

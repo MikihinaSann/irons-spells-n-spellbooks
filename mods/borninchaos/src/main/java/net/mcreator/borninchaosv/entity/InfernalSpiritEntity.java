@@ -87,7 +87,7 @@ public class InfernalSpiritEntity extends Animal implements GeoEntity {
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
       this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
       this.goalSelector.addGoal(5, new FloatGoal(this));
-      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Monster.class, false, false));
+      this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Monster.class, false, false));
    }
 
    public boolean removeWhenFarAway(double distanceToClosestPlayer) {

@@ -1,0 +1,11 @@
+{
+  "parent": "somakespells:item/plague_light_saber_off",
+  "overrides": [
+    {
+      "predicate": {
+        "somakespells:active": 0.1
+      },
+      "model": "somakespells:item/plague_light_saber_active"
+    }
+  ]
+}
