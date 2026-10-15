@@ -66,6 +66,9 @@ public class Animation {
     @SubscribeEvent
     public static void registerAnimations(AnimationRegistryEvent event) {
         event.newBuilder(EpicFightIronCompat.MODID, Animation::build);
+        // Born in Chaos mob animations retargeted onto per-mob armatures
+        // (generated accessors; see BicMobAnimations / _retarget_anims.py).
+        event.newBuilder("born_in_chaos_v1", BicMobAnimations::register);
     }
 
     public static AnimationAccessor<? extends StaticAnimation> getAnimation(String name) {

@@ -10,6 +10,7 @@ import yesman.epicfight.client.renderer.patched.entity.PatchedLivingEntityRender
 
 public class EfiscompatClientEvents {
     public static void registerEpicFightClientEvents() {
+        EpicFightPatchProbe.register();
         EpicFightClientEventHooks.Registry.MODIFY_PATCHED_ENTITY.registerEvent(event -> {
             if (event.get(EntityType.PLAYER) instanceof PatchedLivingEntityRenderer<?, ?, ?, ?, ?> patchedRenderer) {
                 patchedRenderer.addPatchedLayerAlways(GlowingEyesLayer.Vanilla.class, new PatchedGlowingEyesLayer<>());

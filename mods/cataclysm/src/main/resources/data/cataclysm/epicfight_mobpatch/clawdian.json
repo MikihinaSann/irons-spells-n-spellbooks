@@ -1,0 +1,118 @@
+{
+  "isHumanoid": false,
+  "model": "epicfight:entity/biped_old_texture",
+  "armature": "epicfight:entity/biped",
+  "renderer": "",
+  "faction": "undead",
+  "attributes": {
+    "impact": 0.5,
+    "armor_negation": 0.0,
+    "max_strikes": 1,
+    "stun_armor": 16.0,
+    "chasing_speed": 1.2,
+    "attack_damage": 6.0
+  },
+  "default_livingmotions": {
+    "idle": "epicfight:biped/living/idle",
+    "walk": "epicfight:biped/living/walk",
+    "run": "epicfight:biped/living/run",
+    "chase": "epicfight:biped/living/run",
+    "swim": "epicfight:biped/living/swim",
+    "float": "epicfight:biped/living/float",
+    "jump": "epicfight:biped/living/jump",
+    "fall": "epicfight:biped/living/fall",
+    "death": "epicfight:biped/living/death",
+    "mount": "epicfight:biped/living/mount",
+    "kneel": "epicfight:biped/living/kneel",
+    "sneak": "epicfight:biped/living/sneak",
+    "sit": "epicfight:biped/living/sit",
+    "climb": "epicfight:biped/living/climb"
+  },
+  "stun_animations": {
+    "short": "epicfight:biped/combat/hit_short",
+    "long": "epicfight:biped/combat/hit_long",
+    "fall": "epicfight:biped/living/fall",
+    "knockdown": "epicfight:biped/combat/hit_long"
+  },
+  "combat_behavior": [
+    {
+      "weight": 100.0,
+      "canBeInterrupted": true,
+      "looping": true,
+      "behaviors": [
+        {
+          "animation": "epicfight:zombie/attack1",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        },
+        {
+          "animation": "epicfight:zombie/attack2",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        },
+        {
+          "animation": "epicfight:zombie/attack3",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "weight": 50.0,
+      "canBeInterrupted": true,
+      "looping": true,
+      "behaviors": [
+        {
+          "animation": "epicfight:biped/combat/mob_onehand1",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 2.0
+            }
+          ]
+        },
+        {
+          "animation": "epicfight:biped/combat/mob_onehand2",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 2.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

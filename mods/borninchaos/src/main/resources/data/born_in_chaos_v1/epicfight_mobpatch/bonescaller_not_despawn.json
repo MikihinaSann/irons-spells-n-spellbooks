@@ -1,0 +1,86 @@
+{
+  "isHumanoid": false,
+  "model": "born_in_chaos_v1:entity/bonescaller_not_despawn",
+  "armature": "born_in_chaos_v1:entity/bonescaller_not_despawn",
+  "renderer": "epicfight:custom",
+  "faction": "illager",
+  "attributes": {
+    "impact": 0.5,
+    "armor_negation": 0.0,
+    "max_strikes": 1,
+    "stun_armor": 10.0,
+    "chasing_speed": 1.2,
+    "attack_damage": 4.0
+  },
+  "default_livingmotions": {
+    "idle": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/idle",
+    "walk": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/walk",
+    "run": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/run",
+    "chase": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/run",
+    "swim": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/swim",
+    "float": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/float",
+    "jump": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/jump",
+    "fall": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/fall",
+    "death": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/death",
+    "mount": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/mount",
+    "kneel": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/kneel",
+    "sneak": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/sneak",
+    "sit": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/sit",
+    "climb": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/climb",
+    "spellcast": "born_in_chaos_v1:bonescaller_not_despawn/illager/spellcast"
+  },
+  "stun_animations": {
+    "short": "born_in_chaos_v1:bonescaller_not_despawn/biped/combat/hit_short",
+    "long": "born_in_chaos_v1:bonescaller_not_despawn/biped/combat/hit_long",
+    "fall": "born_in_chaos_v1:bonescaller_not_despawn/biped/living/fall",
+    "knockdown": "born_in_chaos_v1:bonescaller_not_despawn/biped/combat/hit_long"
+  },
+  "combat_behavior": [
+    {
+      "weight": 100.0,
+      "canBeInterrupted": true,
+      "looping": true,
+      "behaviors": [
+        {
+          "animation": "born_in_chaos_v1:bonescaller_not_despawn/illager/swing_axe1",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        },
+        {
+          "animation": "born_in_chaos_v1:bonescaller_not_despawn/illager/swing_axe2",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        },
+        {
+          "animation": "born_in_chaos_v1:bonescaller_not_despawn/illager/swing_axe3",
+          "conditions": [
+            {
+              "predicate": "within_eye_height"
+            },
+            {
+              "predicate": "within_distance",
+              "min": 0.0,
+              "max": 1.8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

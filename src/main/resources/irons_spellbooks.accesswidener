@@ -142,3 +142,7 @@ accessible method net/minecraft/world/inventory/AbstractContainerMenu updateData
 
 # familiarslib AT — ResourceLocation(namespace, path) ctor
 accessible method net/minecraft/resources/ResourceLocation <init> (Ljava/lang/String;Ljava/lang/String;)V
+
+# Epic Fight mobpatch — DefaultAttributes/AttributeSupplier
+accessible field net/minecraft/world/entity/ai/attributes/DefaultAttributes SUPPLIERS Ljava/util/Map;
+accessible field net/minecraft/world/entity/ai/attributes/AttributeSupplier instances Ljava/util/Map;
