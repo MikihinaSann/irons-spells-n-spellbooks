@@ -22,6 +22,7 @@ import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -347,6 +348,55 @@ public abstract class LivingEventDispatchMixin {
     @Inject(method = "jumpFromGround", at = @At("RETURN"))
     private void irons_spellbooks$livingJump(CallbackInfo ci) {
         CommonHooks.onLivingJump((LivingEntity) (Object) this);
+    }
+
+    // ---- MobEffectEvent.Applicable: NeoForge routes canBeAffected through
+    // EventHooks, so the check inside addEffect can be forced/denied. ----
+    @WrapOperation(
+            method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/LivingEntity;canBeAffected(Lnet/minecraft/world/effect/MobEffectInstance;)Z"))
+    private boolean irons_spellbooks$effectApplicable(LivingEntity self, net.minecraft.world.effect.MobEffectInstance instance,
+            Operation<Boolean> original, net.minecraft.world.effect.MobEffectInstance argInstance, Entity source) {
+        var event = new MobEffectEvent.Applicable(self, instance, source);
+        NeoForge.EVENT_BUS.post(event);
+        return switch (event.getResult()) {
+            case APPLY -> true;
+            case DO_NOT_APPLY -> false;
+            default -> original.call(self, instance);
+        };
+    }
+
+    // ---- MobEffectEvent.Added: fired for fresh applications (onEffectAdded)
+    // and for duration/amplifier refreshes (onEffectUpdated). ----
+    @Inject(method = "onEffectAdded", at = @At("HEAD"))
+    private void irons_spellbooks$effectAdded(net.minecraft.world.effect.MobEffectInstance instance, Entity source,
+            CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        NeoForge.EVENT_BUS.post(new MobEffectEvent.Added(self, null, instance, source));
+    }
+
+    @Inject(method = "onEffectUpdated", at = @At("HEAD"))
+    private void irons_spellbooks$effectUpdated(net.minecraft.world.effect.MobEffectInstance instance, boolean forced,
+            Entity source, CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        NeoForge.EVENT_BUS.post(new MobEffectEvent.Added(self, instance, instance, source));
+    }
+
+    // ---- MobEffectEvent.Expired: the expiry path in tickEffects runs the
+    // removeEffectNoUpdate runnable when the duration hits zero; cancelling
+    // the event keeps the instance alive one more decision cycle. ----
+    @WrapOperation(
+            method = "tickEffects",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/world/effect/MobEffectInstance;tick(Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z"))
+    private boolean irons_spellbooks$effectExpired(net.minecraft.world.effect.MobEffectInstance instance,
+            LivingEntity entity, Runnable onExpired, Operation<Boolean> original) {
+        return original.call(instance, entity, (Runnable) () -> {
+            if (!NeoForge.EVENT_BUS.post(new MobEffectEvent.Expired(entity, instance)).isCanceled()) {
+                onExpired.run();
+            }
+        });
     }
 
     // ---- MobEffectEvent.Remove: NeoForge filters effect removal through

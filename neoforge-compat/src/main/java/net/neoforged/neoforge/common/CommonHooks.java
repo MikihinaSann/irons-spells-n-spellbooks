@@ -109,4 +109,89 @@ public class CommonHooks {
         NeoForge.EVENT_BUS.post(event);
         return event.getBurnTime();
     }
+
+    /**
+     * NeoForge's armor-durability hook: builds the per-slot damage map, posts
+     * {@link net.neoforged.neoforge.event.entity.living.ArmorHurtEvent}, then
+     * applies the (possibly event-mutated) damage per slot unless canceled.
+     * Called by {@code LivingEntity#doHurtEquipment} via mixin.
+     */
+    public static void onArmorHurt(net.minecraft.world.damagesource.DamageSource source,
+            net.minecraft.world.entity.EquipmentSlot[] slots, float damage,
+            net.minecraft.world.entity.LivingEntity armoredEntity) {
+        java.util.EnumMap<net.minecraft.world.entity.EquipmentSlot,
+                net.neoforged.neoforge.event.entity.living.ArmorHurtEvent.ArmorEntry> armorMap =
+                new java.util.EnumMap<>(net.minecraft.world.entity.EquipmentSlot.class);
+        for (net.minecraft.world.entity.EquipmentSlot slot : slots) {
+            net.minecraft.world.item.ItemStack armorPiece = armoredEntity.getItemBySlot(slot);
+            if (!armorPiece.isEmpty()) {
+                float damageAfterFireResist = armorPiece.getItem() instanceof net.minecraft.world.item.ArmorItem
+                        && armorPiece.canBeHurtBy(source) ? damage : 0.0F;
+                armorMap.put(slot, new net.neoforged.neoforge.event.entity.living.ArmorHurtEvent.ArmorEntry(
+                        armorPiece, damageAfterFireResist));
+            }
+        }
+        var event = new net.neoforged.neoforge.event.entity.living.ArmorHurtEvent(armorMap, armoredEntity);
+        NeoForge.EVENT_BUS.post(event);
+        if (!event.isCanceled()) {
+            event.getArmorMap().forEach((slotx, entry) ->
+                    entry.armorItemStack.hurtAndBreak((int) entry.newDamage, armoredEntity, slotx));
+        }
+    }
+
+    /**
+     * NeoForge's air-supply handling extracted from {@code LivingEntity#baseTick}:
+     * computes breathe/drown state, posts {@code LivingBreatheEvent}, adjusts air,
+     * and applies drowning damage via {@code LivingDrownEvent} when air runs out.
+     */
+    public static void onLivingBreathe(net.minecraft.world.entity.LivingEntity entity,
+            int consumeAirAmount, int refillAirAmount) {
+        var entityExt = (net.neoforged.neoforge.entity.IEntityExtension) entity;
+        boolean isAir = entityExt.getEyeInFluidType() == net.neoforged.neoforge.common.NeoForgeMod.EMPTY_TYPE.value()
+                || entity.level().getBlockState(net.minecraft.core.BlockPos.containing(
+                        entity.getX(), entity.getEyeY(), entity.getZ()))
+                        .is(net.minecraft.world.level.block.Blocks.BUBBLE_COLUMN);
+        boolean canBreathe = isAir;
+        if (!isAir && (net.minecraft.world.effect.MobEffectUtil.hasWaterBreathing(entity)
+                || !entityExt.canDrownInFluidType(entityExt.getEyeInFluidType())
+                || entity instanceof net.minecraft.world.entity.player.Player player
+                        && player.getAbilities().invulnerable)) {
+            canBreathe = true;
+            refillAirAmount = 0;
+        }
+        var breatheEvent = new net.neoforged.neoforge.event.entity.living.LivingBreatheEvent(
+                entity, canBreathe, consumeAirAmount, refillAirAmount);
+        NeoForge.EVENT_BUS.post(breatheEvent);
+        if (breatheEvent.canBreathe()) {
+            entity.setAirSupply(Math.min(entity.getAirSupply() + breatheEvent.getRefillAirAmount(),
+                    entity.getMaxAirSupply()));
+        } else {
+            entity.setAirSupply(entity.getAirSupply() - breatheEvent.getConsumeAirAmount());
+        }
+        if (entity.getAirSupply() <= 0) {
+            var drownEvent = new net.neoforged.neoforge.event.entity.living.LivingDrownEvent(entity);
+            NeoForge.EVENT_BUS.post(drownEvent);
+            if (!drownEvent.isCanceled() && drownEvent.isDrowning()) {
+                entity.setAirSupply(0);
+                net.minecraft.world.phys.Vec3 vec3 = entity.getDeltaMovement();
+                for (int i = 0; i < drownEvent.getBubbleCount(); i++) {
+                    double d2 = entity.getRandom().nextDouble() - entity.getRandom().nextDouble();
+                    double d3 = entity.getRandom().nextDouble() - entity.getRandom().nextDouble();
+                    double d4 = entity.getRandom().nextDouble() - entity.getRandom().nextDouble();
+                    entity.level().addParticle(net.minecraft.core.particles.ParticleTypes.BUBBLE,
+                            entity.getX() + d2, entity.getY() + d3, entity.getZ() + d4,
+                            vec3.x, vec3.y, vec3.z);
+                }
+                if (drownEvent.getDamageAmount() > 0.0F) {
+                    entity.hurt(entity.damageSources().drown(), drownEvent.getDamageAmount());
+                }
+            }
+        }
+        if (!isAir && !entity.level().isClientSide && entity.isPassenger()
+                && entity.getVehicle() != null
+                && !((net.neoforged.neoforge.entity.IEntityExtension) entity.getVehicle())
+                        .canBeRiddenUnderFluidType(entityExt.getEyeInFluidType(), entity)) {
+            entity.stopRiding();
+        }
+    }
 }

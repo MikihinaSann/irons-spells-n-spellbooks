@@ -42,4 +42,12 @@ public interface IPlayerExtension {
             net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos) {
         return self().hasCorrectToolForDrops(state);
     }
+
+    /**
+     * NeoForge's {@code Player#isFakePlayer()} — true for
+     * {@link net.neoforged.neoforge.common.util.FakePlayer} instances.
+     */
+    default boolean isFakePlayer() {
+        return false;
+    }
 }

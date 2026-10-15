@@ -209,9 +209,13 @@ final class NeoForgeCompatLifecycle {
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) ->
                 NeoForge.EVENT_BUS.post(new ClientPlayerNetworkEvent.LoggingIn(
                         client.gameMode, client.player, handler)));
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) ->
-                NeoForge.EVENT_BUS.post(new ClientPlayerNetworkEvent.LoggingOut(
-                        client.gameMode, client.player, handler)));
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+            if (client.level != null) {
+                NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.level.LevelEvent.Unload(client.level));
+            }
+            NeoForge.EVENT_BUS.post(new ClientPlayerNetworkEvent.LoggingOut(
+                    client.gameMode, client.player, handler));
+        });
         ClientEntityEvents.ENTITY_LOAD.register((entity, world) -> {
             entity.onAddedToLevel();
             NeoForge.EVENT_BUS.post(new EntityJoinLevelEvent(entity, world));

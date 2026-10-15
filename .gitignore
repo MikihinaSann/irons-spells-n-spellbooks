@@ -43,3 +43,12 @@ runclient.out
 runserver.out
 vineflower.jar
 neoforge-compat/logs/
+_chrono_git/
+_chrono_src/
+_nf_classes*/
+_nf_dec*/
+_nf_out/
+_v_classes/
+_v_dec/
+_vanilla/
+mods/placebo/logs/

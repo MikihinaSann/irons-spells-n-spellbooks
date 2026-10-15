@@ -17,6 +17,22 @@ public class NeoForgeCompatClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // IEntityWithComplexSpawn: the server sends SpawnDataPayload right after
+        // the vanilla add-entity packet; apply readSpawnData on the game thread.
+        // (playS2C codec already registered by the common onInitialize)
+        net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.registerGlobalReceiver(
+                SpawnDataPayload.TYPE, (payload, context) -> context.client().execute(() -> {
+                    var level = net.minecraft.client.Minecraft.getInstance().level;
+                    if (level == null) return;
+                    var entity = level.getEntity(payload.entityId());
+                    if (entity instanceof net.neoforged.neoforge.entity.IEntityWithComplexSpawn complex) {
+                        net.minecraft.network.RegistryFriendlyByteBuf buf = new net.minecraft.network.RegistryFriendlyByteBuf(
+                                io.netty.buffer.Unpooled.wrappedBuffer(payload.data()), level.registryAccess());
+                        complex.readSpawnData(buf);
+                        buf.release();
+                    }
+                }));
+
         // The common onInitialize already scanned subscribers on this JVM
         // (deduped); a dedicated-server JVM skipped client-only ones correctly.
         net.neoforged.neoforge.common.util.LogicalSidedProvider.setClient(

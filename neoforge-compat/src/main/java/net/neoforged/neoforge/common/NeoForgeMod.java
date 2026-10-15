@@ -419,11 +419,32 @@ public class NeoForgeMod {
         net.minecraft.core.Registry.register(reg, DATA_COMPONENT_INGREDIENT_TYPE.getId(),
             new net.neoforged.neoforge.common.crafting.IngredientType<>(
                 net.neoforged.neoforge.common.crafting.DataComponentIngredient.CODEC));
+        // NeoForge registers DataComponentIngredient under "neoforge:components"
+        // (the recipe-JSON name); keep "data_component" as a compat alias.
+        net.minecraft.core.Registry.register(reg,
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "components"),
+            new net.neoforged.neoforge.common.crafting.IngredientType<>(
+                net.neoforged.neoforge.common.crafting.DataComponentIngredient.CODEC));
         net.minecraft.core.Registry.register(reg, DIFFERENCE_INGREDIENT_TYPE.getId(),
             new net.neoforged.neoforge.common.crafting.IngredientType<>(
                 net.neoforged.neoforge.common.crafting.DifferenceIngredient.CODEC));
         net.minecraft.core.Registry.register(reg, INTERSECTION_INGREDIENT_TYPE.getId(),
             new net.neoforged.neoforge.common.crafting.IngredientType<>(
                 net.neoforged.neoforge.common.crafting.IntersectionIngredient.CODEC));
+
+        // Expose every neoforge:* ingredient type through Fabric's custom
+        // ingredient dispatch — recipe JSONs then use
+        // {"fabric:type": "neoforge:<id>", ...fields}.
+        for (var entry : reg.entrySet()) {
+            registerFabricIngredientSerializer(entry.getKey().location(), entry.getValue());
+        }
+    }
+
+    private static <T extends net.neoforged.neoforge.common.crafting.ICustomIngredient> void registerFabricIngredientSerializer(
+        net.minecraft.resources.ResourceLocation id,
+        net.neoforged.neoforge.common.crafting.IngredientType<T> type
+    ) {
+        net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer.register(
+            new net.neoforged.neoforge.internal.fabric.NeoForgeIngredientSerializer<>(id, type));
     }
 }

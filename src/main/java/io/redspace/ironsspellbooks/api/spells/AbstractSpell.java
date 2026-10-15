@@ -262,7 +262,7 @@ public abstract class AbstractSpell {
      */
     public boolean attemptInitiateCast(ItemStack stack, int spellLevel, Level level, Player player, CastSource castSource, boolean triggerCooldown, String castingEquipmentSlot) {
         if (Log.SPELL_DEBUG) {
-            IronsSpellbooks.LOGGER.debug("AbstractSpell.attemptInitiateCast isClient:{}, spell{}({})", level.isClientSide, this.getSpellId(), spellLevel);
+            IronsSpellbooks.LOGGER.info("AbstractSpell.attemptInitiateCast isClient:{}, spell{}({})", level.isClientSide, this.getSpellId(), spellLevel);
         }
 
         if (level.isClientSide) {
@@ -304,7 +304,7 @@ public abstract class AbstractSpell {
 
     public void castSpell(Level world, int spellLevel, ServerPlayer serverPlayer, CastSource castSource, boolean triggerCooldown) {
         if (Log.SPELL_DEBUG) {
-            IronsSpellbooks.LOGGER.debug("AbstractSpell.castSpell isClient:{}, spell{}({})", world.isClientSide, getSpellId(), spellLevel);
+            IronsSpellbooks.LOGGER.info("AbstractSpell.castSpell isClient:{}, spell{}({})", world.isClientSide, getSpellId(), spellLevel);
         }
 
         MagicData magicData = MagicData.getPlayerMagicData(serverPlayer);

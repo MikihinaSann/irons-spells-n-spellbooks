@@ -93,7 +93,10 @@
     "PoiTypesAccessor",
     "SpawnEggItemAccessor",
     "RegistrySafeCastMixin",
-    "FurnaceFuelBurnTimeDispatchMixin"
+    "FurnaceFuelBurnTimeDispatchMixin",
+    "EntityStruckByLightningDispatchMixin",
+    "ArmorHurtDispatchMixin",
+    "LivingBreatheDispatchMixin"
   ],
   "client": [
     "BlockEntityDataPacketMixin",
@@ -135,7 +138,10 @@
     "MobEffectGuiVisibilityMixin",
     "MobEffectInventoryVisibilityMixin",
     "api.ArmPoseApiMixin",
-    "HumanoidModelArmPoseMixin"
+    "HumanoidModelArmPoseMixin",
+    "SelectMusicDispatchMixin",
+    "MusicManagerAccessor",
+    "ParticleEngineRenderOrderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

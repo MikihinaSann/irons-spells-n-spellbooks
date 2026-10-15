@@ -46,6 +46,9 @@ loom {
         borninchaos {
             sourceSet project(':mods:borninchaos').sourceSets.main
         }
+        chronomancy {
+            sourceSet project(':mods:chronomancy').sourceSets.main
+        }
     }
 
     runs {
@@ -59,6 +62,7 @@ loom {
         server {
             server()
             vmArgs "-Diss.devAutoOp=true"
+            vmArgs "-Diss.spellDebug=true"
         }
     }
 }
@@ -109,6 +113,9 @@ dependencies {
     // (task cycle). Its named dev jar goes straight on the classpath; fabric
     // discovers it as a mod at runtime.
     implementation files("mods/traveloptics/build/devlibs/traveloptics-4.4.0.1+fabric.1.21.1-dev.jar")
+    // chronomancy also depends on root ISS — same dev-jar classpath trick as
+    // traveloptics to avoid the project-dependency cycle.
+    implementation files("mods/chronomancy/build/devlibs/chronomancy-1.0.4+fabric.1.21.1-dev.jar")
     // borninchaos is a standalone content mod (no dep on root ISS) — safe as a
     // normal project dependency like alexscaves/cataclysm.
     implementation(project(path: ":mods:borninchaos", configuration: "namedElements")) {

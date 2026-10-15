@@ -1,0 +1,11 @@
+accessWidener v2 named
+
+# FogRenderer effect-fog hook (NeoForge patch equivalent)
+accessible field net/minecraft/client/renderer/FogRenderer MOB_EFFECT_FOG Ljava/util/List;
+accessible class net/minecraft/client/renderer/FogRenderer$MobEffectFogFunction
+extendable class net/minecraft/client/renderer/FogRenderer$MobEffectFogFunction
+accessible class net/minecraft/client/renderer/FogRenderer$FogData
+accessible field net/minecraft/client/renderer/FogRenderer$FogData start F
+accessible field net/minecraft/client/renderer/FogRenderer$FogData end F
+accessible field net/minecraft/client/renderer/FogRenderer$FogData mode Lnet/minecraft/client/renderer/FogRenderer$FogMode;
+accessible field net/minecraft/client/renderer/LevelRenderer ticks I

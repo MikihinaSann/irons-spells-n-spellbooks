@@ -652,8 +652,13 @@ public class NeoForgeCompat implements ModInitializer {
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.server.ServerAboutToStartEvent(server)));
         ServerLifecycleEvents.SERVER_STARTED.register(server ->
                 NeoForge.EVENT_BUS.post(new ServerStartedEvent(server)));
-        ServerLifecycleEvents.SERVER_STOPPING.register(server ->
-                NeoForge.EVENT_BUS.post(new ServerStoppingEvent(server)));
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            // NeoForge fires LevelEvent.Unload for every level as the world
+            // goes away — cleanup listeners depend on it.
+            server.getAllLevels().forEach(level ->
+                    NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.level.LevelEvent.Unload(level)));
+            NeoForge.EVENT_BUS.post(new ServerStoppingEvent(server));
+        });
         ServerLifecycleEvents.SERVER_STOPPED.register(server ->
                 NeoForge.EVENT_BUS.post(new ServerStoppedEvent(server)));
 
@@ -719,6 +724,10 @@ public class NeoForgeCompat implements ModInitializer {
         // server through this C2S payload so listeners also run server-side.
         net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playC2S()
                 .register(EmptyClickPayload.TYPE, EmptyClickPayload.STREAM_CODEC);
+        // S2C codec registration — the client adds the receiver in
+        // NeoForgeCompatClient; the server only needs the type for encoding.
+        net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playS2C()
+                .register(SpawnDataPayload.TYPE, SpawnDataPayload.STREAM_CODEC);
         net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.registerGlobalReceiver(
                 EmptyClickPayload.TYPE, (payload, context) ->
                         context.server().execute(() -> NeoForge.EVENT_BUS.post(
