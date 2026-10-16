@@ -22,9 +22,21 @@ Port Iron's Spells 'n Spellbooks + the user's whole modpack ecosystem to **Fabri
 
 ### Ported modules (all compile, all load on dedicated server)
 
-`aces_spell_utils, aero_additions, alexscaves, alshanex_familiars, apothic_attributes, borninchaos, cataclysm, cataclysm_spellbooks, chronomancy, citadel, cobweb, dash, discerning_the_eldritch, expandability, hazennstuff, horror_element_mod, iss_magicfromtheeast, lionfishapi, placebo, prometheus, somakespells, soul_fire_d, spellelemental, traveloptics, tunes_n_tomes` (+ familiarslib merged into root ISS tree — the standalone `mods:familiarslib` project was removed from `settings.gradle` and all wiring; root fmj `provides: familiarslib`).
+`aces_spell_utils, aero_additions, alexscaves, alshanex_familiars, apothic_attributes, better_spellcasting, borninchaos, cataclysm, cataclysm_spellbooks, chronomancy, citadel, cobweb, dash, discerning_the_eldritch, ec_isasb_plugin, expanded_combat, expandability, hazennstuff, horror_element_mod, iss_magicfromtheeast, lionfishapi, placebo, prometheus, somakespells, soul_fire_d, spellelemental, traveloptics, tunes_n_tomes` (+ familiarslib merged into root ISS tree — the standalone `mods:familiarslib` project was removed from `settings.gradle` and all wiring; root fmj `provides: familiarslib`).
 
-**Excluded** (missing hard deps, intentional): `better_spellcasting` (needs Better Combat), `ec_isasb_plugin` (needs Expanded Combat), `irons_spells_js` (KubeJS bridge).
+External lib jars in `libs/` wired via `modImplementation`: Better Combat (`bettercombat-fabric-2.1.0+1.21.1.jar`), TACZ, trinkets, geckolib, azurelib, playeranimator, Forge Config API Port (via maven), cloth-config.
+
+**Excluded**: `irons_spells_js` (KubeJS bridge — not requested).
+
+### Expanded Combat notes (commit `60b010ecc`)
+
+- `expanded_combat` 182→0 compile errors; dev jar at `mods/expanded_combat/build/devlibs/`.
+- **Plugin discovery**: NeoForge `ModFileScanData` doesn't exist on Fabric — `ECPluginFinder` uses Fabric entrypoints under key `"expanded_combat:plugin"`. `@ECPlugin` has RUNTIME retention; plugins filtered by `required()` modids, sorted by `loadOrder()`. `ec_isasb_plugin` registers `IronsSpellsAndSpellbooksPlugin` this way → 11 ISS gauntlets load.
+- **Data maps**: `neoforge-compat/.../internal/fabric/DataMapManager.java` — storage, JSON load, tag-aware lookup (`holder.is(tag)`), `DataMapsSyncPayload` client sync on join/reload. Confirmed: `Loaded 9 data map values across 4 types` on server.
+- **Trinkets**: `data/trinkets/slots/hand/hands.json` (gauntlets), `data/trinkets/slots/chest/quiver_ec.json`, entity defs, item tags. `TrinketCurioAdapter` auto-registers `ICurioItem`s.
+- **Sprite sources**: `RegisterSpriteSourceTypesEvent` writes into `SpriteSources.TYPES` BiMap directly (accesswidener) — `SpriteSources.register(String)` mangles namespaces (`minecraft:expanded_combat:...` crash).
+- Client-only code split into `ECClientGameEvents`; common classes must not import `net.minecraft.client.*`.
+- Verified: server `Done`, client join OK (`Player468 joined the game`), no missing models.
 
 ## How to run
 
@@ -39,9 +51,9 @@ Run dirs: **server uses `run_server/`** (own world + config, world migrated from
 
 ## Current state (verified)
 
-- `BUILD SUCCESSFUL` — all 25 modules compile together.
+- `BUILD SUCCESSFUL` — all modules compile together.
 - Dedicated server reaches `Done (~1.7s)!` with all addons loaded, zero `@Mod` construction failures.
-- Client loads 103 mods in ONE clean resolution pass and **joins the server** (`Player158 joined the game`).
+- Client loads 104 mods in ONE clean resolution pass and **joins the server** (`Player468 joined the game` — incl. expanded_combat + ec_isasb_plugin).
 - Previously user-verified in game: Leviathan beam VFX, Cataclysm natural mob spawns, BIC Epic Fight patches (door_knight/pumpkinhead/bonescaller/fisherman weapon attachment + knee/elbow joints), `/cast`, mana HUD, spellbook Trinkets equip.
 - `EpicFightPatchProbe` removed (was log spam).
 
