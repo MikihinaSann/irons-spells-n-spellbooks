@@ -33,10 +33,14 @@ public final class FabricMenuHelper {
         if (extraDataWriter != null) {
             extraDataWriter.accept(buf);
         }
-        return player.openMenu(new ExtendedScreenHandlerFactory<RegistryFriendlyByteBuf>() {
+        // IMenuTypeExtension encodes opening data as ByteBufCodecs.BYTE_ARRAY —
+        // the opening-data object must be a raw byte[], not a ByteBuf.
+        byte[] data = new byte[buf.readableBytes()];
+        buf.readBytes(data);
+        return player.openMenu(new ExtendedScreenHandlerFactory<byte[]>() {
             @Override
-            public RegistryFriendlyByteBuf getScreenOpeningData(ServerPlayer serverPlayer) {
-                return buf;
+            public byte[] getScreenOpeningData(ServerPlayer serverPlayer) {
+                return data;
             }
 
             @Override
