@@ -8,4 +8,4 @@ accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTem
 mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
 accessible field net/minecraft/world/entity/ExperienceOrb value I
 mutable field net/minecraft/world/entity/ExperienceOrb value I
-accessible method net/minecraft/world/item/ItemStack addToTooltip (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V
+accessible method net/minecraft/world/item/ItemStack addToTooltip (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V

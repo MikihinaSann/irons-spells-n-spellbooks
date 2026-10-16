@@ -234,6 +234,7 @@ dependencies {
     include implementation("com.electronwill.night-config:core:3.8.0")
     include implementation("com.electronwill.night-config:toml:3.8.0")
 
+
     // JEI (fabric) — compile-time only for the plugin package
     compileOnly "mezz.jei:jei-1.21.1-fabric-api:19.21.0.247"
     compileOnly "mezz.jei:jei-1.21.1-common-api:19.21.0.247"
