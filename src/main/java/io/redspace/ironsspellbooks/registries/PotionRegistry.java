@@ -25,6 +25,11 @@ public class PotionRegistry {
     public static final DeferredHolder<Potion, Potion> INSTANT_MANA_TWO = POTIONS.register("instant_mana_two", () -> new Potion("mana", new MobEffectInstance(MobEffectRegistry.INSTANT_MANA, 0, 1)));
     public static final DeferredHolder<Potion, Potion> INSTANT_MANA_THREE = POTIONS.register("instant_mana_three", () -> new Potion("mana", new MobEffectInstance(MobEffectRegistry.INSTANT_MANA, 0, 2)));
     public static final DeferredHolder<Potion, Potion> INSTANT_MANA_FOUR = POTIONS.register("instant_mana_four", () -> new Potion("mana", new MobEffectInstance(MobEffectRegistry.INSTANT_MANA, 0, 3)));
+    // Spell-effect potions referenced by addon loot tables (e.g. discerning_the_eldritch
+    // ominous spawner drops). No brewing recipes by design.
+    public static final DeferredHolder<Potion, Potion> HASTENED = POTIONS.register("hastened", () -> new Potion("hastened", new MobEffectInstance(MobEffectRegistry.HASTENED, 3600)));
+    public static final DeferredHolder<Potion, Potion> REND = POTIONS.register("rend", () -> new Potion("rend", new MobEffectInstance(MobEffectRegistry.REND, 3600)));
+    public static final DeferredHolder<Potion, Potion> BLIGHT = POTIONS.register("blight", () -> new Potion("blight", new MobEffectInstance(MobEffectRegistry.BLIGHT, 3600)));
 
     @SubscribeEvent
     public static void addRecipes(RegisterBrewingRecipesEvent event) {

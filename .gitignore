@@ -64,3 +64,4 @@ _*.png
 _*.ps1
 _*.txt
 architectury_inject_*/
+run_server

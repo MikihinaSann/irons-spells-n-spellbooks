@@ -35,7 +35,7 @@ Port Iron's Spells 'n Spellbooks + the user's whole modpack ecosystem to **Fabri
 ./gradlew :runClient            #   also runs every subproject's run task and fails
 ```
 
-Run dir: `run/` (shared by dev client + server; both JVMs share `run/config/`). World: `run/world`. Logs get redirected to `_server.log` / `_client.log` at repo root by convention.
+Run dirs: **server uses `run_server/`** (own world + config, world migrated from `run/world`), **client uses `run/`**. Splitting stopped the two JVMs from racing corrections on shared `run/config/` files. Logs get redirected to `_server.log` / `_client.log` at repo root by convention.
 
 ## Current state (verified)
 
@@ -65,11 +65,11 @@ Run dir: `run/` (shared by dev client + server; both JVMs share `run/config/`). 
 
 ## Remaining issues / TODO
 
-- [ ] **Config `.bak` churn**: `discerning_the_eldritch-common.toml` corrected repeatedly — two JVMs share `run/config/` and keep rewriting; cosmetic in dev. If it persists, check FCAP `correct()` determinism or split run dirs.
+- [x] ~~Config `.bak` churn~~ — FIXED by giving the server its own `run_server/` dir (two JVMs no longer race the same `run/config/` files).
 - [ ] **Watchdog/save deadlock on Gradle stop** — `EntityStorage.flush` blocked during save when stopping server via Gradle stdin EOF; world already loaded fine. Use `:runServer` and kill via task, or investigate if it recurs.
 - [ ] **Full playthrough polish pass** — in-game verify all addons: spells, mobs, armor renders, particles, GUIs; hazennstuff weapon spell-level bonuses now actually fire server-side (newly enabled — test).
-- [ ] `mods:familiarslib` dir still exists on disk though unwired — safe to delete after confirming nothing references it.
-- [ ] ~230 uncommitted files (alexscaves entity edits etc.) — large uncommitted delta; consider a checkpoint commit.
+- [x] ~~`mods:familiarslib` dir still exists~~ — deleted (commit `078413cc5`); merged into root ISS.
+- [x] ~~uncommitted files~~ — checkpoint commits `613ec51ec` (runtime fixes + all modules) and `078413cc5` (familiarslib removal).
 - [ ] Re-check `neoforge_compat.mixins.json` entries after any package moves (audit script pattern from history).
 - [ ] Optional-dep stubs exist: `ess_requiem` (ESSRCompat guarded by `LoadedOnly`), mowzies/legendary_monsters gated in somakespells via `SomakeMixinPlugin`/`ModCompatEntityTypes` (jars are in `libs/` if full integration is wanted later).
 

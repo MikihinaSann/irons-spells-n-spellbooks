@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#minecraft:carpets",
+    "#minecraft:wool_carpets",
     "minecraft:torch",
     "minecraft:wall_torch",
     "minecraft:soul_torch",
@@ -14,7 +14,7 @@
     "#minecraft:flowers",
     "#minecraft:small_flowers",
     "#minecraft:tall_flowers",
-    "minecraft:grass",
+    "minecraft:short_grass",
     "minecraft:fern",
     "minecraft:dead_bush",
     "minecraft:seagrass",

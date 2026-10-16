@@ -109,6 +109,7 @@ loom {
         }
         server {
             server()
+            runDir "run_server"
             vmArgs "-Diss.devAutoOp=true"
             vmArgs "-Diss.spellDebug=true"
         }
