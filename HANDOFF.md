@@ -97,3 +97,15 @@ Run dirs: **server uses `run_server/`** (own world + config, world migrated from
 
 - Commits use `Co-Authored-By: Rina` trailer (see `rina-commit-identity` skill / recent log).
 - Recent: `8321858f7` EF mob patches, `4076ba779` cataclysm bow fix, `ab47b90e8` chronomancy, `6ea25e320` BIC+traveloptics, `099f86c21` cataclysm.
+
+## Production (real server) — verified
+
+`./gradlew build` produces remapped (intermediary) jars in each module's `build/libs/` — collected deployable set in `dist/mods/` (41 jars, gitignored). Verified on a real `fabric-server-launch.jar` instance: `Done (7.0s)`, 95 mods, no mixin/enum/construction failures (commit `d1bb03078`).
+
+Prod-only pitfalls hit (commit `d1bb03078`):
+- **Unqualified `@At(target="name")` is NOT remapped** by tiny-remapper — must be `L<owner>;name(desc)ret` AND owner must be the *call-site class* (bytecode uses the self class for inherited-method invokes).
+- **`enumextensions.json` names are mojmap**; prod class names are intermediary → `EnumExtensionLoader.INTERMEDIARY_ENUM_NAMES` static map.
+- **`$VALUES` is `field_XXXX` in prod** — `EnumExtender` matches by `static Enum[]` type.
+- **Reflection on vanilla fields by name fails in prod** (`MobEffect.attributeModifiers` → `field_XXXX`) — resolve by type (see `SomakeSpells.attributeModifiersOf`).
+- `dist/mods/tacz-*.jar` is patched upstream jar with `META-INF/jars/mae-1.1.1.jar` added (tacz's nested simplebedrockmodel `depends` on it but upstream ships it missing).
+- Server jar: `fabric-server-mc.1.21.1-loader.0.19.5` + Java 21 + all dist jars; client needs the same set.
