@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "item": "minecraft:gold_ingot"
+    },
+    "s": {
+      "item": "expanded_combat:gold_stick"
+    }
+  },
+  "pattern": [
+    "i",
+    "i",
+    "s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:golden_cutlass"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "expanded_combat:crafting_ec_tipped_fletching",
+  "arrow": {
+    "item": "minecraft:arrow"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:tipped_arrow"
+  }
+}

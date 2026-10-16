@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/claymore",
+  "gui_light": "front",
+  "textures": {
+    "layer0": "expanded_combat:item_large/claymore/void_touched"
+  }
+}

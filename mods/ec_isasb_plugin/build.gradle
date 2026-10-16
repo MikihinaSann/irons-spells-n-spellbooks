@@ -34,6 +34,11 @@ dependencies {
     implementation(project(path: ':', configuration: 'namedElements')) {
         transitive = false
     }
+    implementation(project(path: ':mods:expanded_combat', configuration: 'namedElements')) {
+        transitive = false
+    }
+    modImplementation files("${rootDir}/libs/cloth-config-${cloth_config_version}-fabric.jar")
+    implementation files("${rootDir}/libs/cloth-nested/basic-math-0.6.1.jar")
 
     modCompileOnly files("${rootDir}/libs/trinkets-${trinkets_version}.jar")
     modCompileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.4"

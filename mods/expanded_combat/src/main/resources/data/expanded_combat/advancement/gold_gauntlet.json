@@ -1,0 +1,34 @@
+{
+  "parent": "expanded_combat:punch_gauntlet",
+  "criteria": {
+    "gold_gauntlet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "expanded_combat:golden_gauntlet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.expanded_combat.gold_gauntlet.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "expanded_combat:golden_gauntlet"
+    },
+    "title": {
+      "translate": "advancements.expanded_combat.gold_gauntlet.title"
+    }
+  },
+  "requirements": [
+    [
+      "gold_gauntlet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

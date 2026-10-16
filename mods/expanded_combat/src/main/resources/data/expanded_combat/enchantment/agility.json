@@ -1,0 +1,23 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.expanded_combat.agility"
+  },
+  "exclusive_set": "minecraft:knockback",
+  "max_cost": {
+    "base": 45,
+    "per_level_above_first": 15
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 15
+  },
+  "slots": [
+    "chest",
+    "legs",
+    "feet"
+  ],
+  "supported_items": "#expanded_combat:enchantable/agility",
+  "weight": 3
+}

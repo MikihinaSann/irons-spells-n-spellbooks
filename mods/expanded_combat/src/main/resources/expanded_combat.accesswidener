@@ -1,0 +1,11 @@
+accessWidener v2 named
+accessible method net/minecraft/world/item/component/BundleContents getWeight (Lnet/minecraft/world/item/ItemStack;)Lorg/apache/commons/lang3/math/Fraction;
+accessible method net/minecraft/world/item/BundleItem playRemoveOneSound (Lnet/minecraft/world/entity/Entity;)V
+accessible method net/minecraft/world/item/BundleItem playInsertSound (Lnet/minecraft/world/entity/Entity;)V
+accessible field net/minecraft/world/inventory/ItemCombinerMenu access Lnet/minecraft/world/inventory/ContainerLevelAccess;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool templates Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+mutable field net/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool rawTemplates Ljava/util/List;
+accessible field net/minecraft/world/entity/ExperienceOrb value I
+mutable field net/minecraft/world/entity/ExperienceOrb value I
+accessible method net/minecraft/world/item/ItemStack addToTooltip (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/world/item/Item;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V

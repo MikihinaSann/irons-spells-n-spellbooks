@@ -65,3 +65,6 @@ _*.ps1
 _*.txt
 architectury_inject_*/
 run_server
+_bs_dec/
+_ec_classes/
+_ec_src/

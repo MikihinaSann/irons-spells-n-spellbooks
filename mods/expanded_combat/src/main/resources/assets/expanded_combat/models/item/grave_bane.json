@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/glaive",
+  "gui_light": "front",
+  "textures": {
+    "layer0": "expanded_combat:item_large/glaive/heat"
+  }
+}

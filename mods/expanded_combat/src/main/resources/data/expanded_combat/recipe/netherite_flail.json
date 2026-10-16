@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "expanded_combat:diamond_flail"
+  },
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:netherite_flail"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

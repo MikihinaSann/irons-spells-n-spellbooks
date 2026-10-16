@@ -1,0 +1,60 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chain": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:chain"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_diamond_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diamond_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expanded_combat:diamond_flail"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_diamond_block",
+      "has_chain",
+      "has_stick"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expanded_combat:diamond_flail"
+    ]
+  }
+}

@@ -22,9 +22,10 @@ include 'mods:traveloptics'
 include 'mods:borninchaos'
 include 'mods:chronomancy'
 include 'mods:tunes_n_tomes'
-// include 'mods:ec_isasb_plugin' — needs Expanded Combat (not ported)
+include 'mods:ec_isasb_plugin'
 include 'mods:dash'
-// include 'mods:better_spellcasting' — needs Better Combat (not ported)
+include 'mods:better_spellcasting'
+include 'mods:expanded_combat'
 include 'mods:somakespells'
 include 'mods:horror_element_mod'
 include 'mods:alshanex_familiars'

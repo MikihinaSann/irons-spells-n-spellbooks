@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "ec_isasb_plugin:wnadering_magician_gauntlet",
+    "ec_isasb_plugin:scarecrow_gauntlet",
+    "ec_isasb_plugin:pyromancer_gauntlet",
+    "ec_isasb_plugin:electromancer_gauntlet",
+    "ec_isasb_plugin:archevoker_gauntlet",
+    "ec_isasb_plugin:cultist_gauntlet",
+    "ec_isasb_plugin:cryomancer_gauntlet",
+    "ec_isasb_plugin:shadow_walker_gauntlet",
+    "ec_isasb_plugin:priest_gauntlet",
+    "ec_isasb_plugin:plagued_gauntlet",
+    "ec_isasb_plugin:netherite_battlemage_gauntlet"
+  ]
+}

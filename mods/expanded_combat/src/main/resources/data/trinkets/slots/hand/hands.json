@@ -1,0 +1,7 @@
+{
+  "icon": "trinkets:gui/slots/glove",
+  "order": 140,
+  "quick_move_predicates": ["trinkets:tag"],
+  "validator_predicates": ["trinkets:tag"],
+  "tooltip_predicates": ["trinkets:tag"]
+}

@@ -64,4 +64,5 @@ public class NeoForgeRegistries {
     public static final Registry<net.neoforged.neoforge.registries.holdersets.HolderSetType> HOLDER_SET_TYPES = makeRegistry(Keys.HOLDER_SET_TYPES);
     public static final Registry<MapCodec<? extends net.neoforged.neoforge.common.conditions.ICondition>> CONDITION_CODECS = makeRegistry(Keys.CONDITION_CODECS);
     public static final Registry<net.neoforged.neoforge.registries.datamaps.DataMapType<?, ?>> DATA_MAP_TYPES = makeRegistry(Keys.DATA_MAP_TYPES);
+    public static final Registry<net.minecraft.network.syncher.EntityDataSerializer<?>> ENTITY_DATA_SERIALIZERS = makeRegistry(Keys.ENTITY_DATA_SERIALIZERS);
 }

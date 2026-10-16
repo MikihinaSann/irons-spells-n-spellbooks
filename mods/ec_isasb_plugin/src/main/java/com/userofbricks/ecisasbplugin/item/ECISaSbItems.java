@@ -25,8 +25,7 @@ import net.neoforged.neoforge.registries.DeferredRegister.Items;
 
 @EventBusSubscriber(
    modid = "ec_isasb_plugin",
-   bus = Bus.MOD,
-   value = {Dist.CLIENT}
+   bus = Bus.MOD
 )
 public class ECISaSbItems {
    public static final Items ITEMS = DeferredRegister.createItems("ec_isasb_plugin");
@@ -94,7 +93,6 @@ public class ECISaSbItems {
    );
 
    @SubscribeEvent
-   @OnlyIn(Dist.CLIENT)
    public static void ModifyVanillaCreativeTabs(BuildCreativeModeTabContentsEvent event) {
       ResourceKey<CreativeModeTab> tab = event.getTabKey();
       if (ExpandedCombat.CONFIG.enableGauntlets) {

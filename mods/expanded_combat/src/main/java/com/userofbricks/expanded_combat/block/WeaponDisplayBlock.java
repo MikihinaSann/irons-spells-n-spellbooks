@@ -1,0 +1,231 @@
+package com.userofbricks.expanded_combat.block;
+
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.userofbricks.expanded_combat.init.ECItems;
+import com.userofbricks.expanded_combat.world.ECWorldSaveData;
+import java.util.Collections;
+import java.util.List;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class WeaponDisplayBlock extends HorizontalDirectionalBlock {
+   public static final MapCodec<WeaponDisplayBlock> CODEC = RecordCodecBuilder.mapCodec(
+      p_308801_ -> p_308801_.group(propertiesCodec()).apply(p_308801_, WeaponDisplayBlock::new)
+   );
+   public static final EnumProperty<WeaponDisplayPart> PART = EnumProperty.create("part", WeaponDisplayPart.class);
+
+   public WeaponDisplayBlock(Properties p_54120_) {
+      super(p_54120_);
+      this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(PART, WeaponDisplayPart.RIGHT));
+   }
+
+   protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+      return CODEC;
+   }
+
+   public BlockState updateShape(
+      BlockState thisState, Direction directionOfUpdate, BlockState updatedBlock, LevelAccessor levelAccessor, BlockPos thisPos, BlockPos updatedPos
+   ) {
+      if (directionOfUpdate != getNeighbourDirection((WeaponDisplayPart)thisState.getValue(PART), (Direction)thisState.getValue(FACING))) {
+         return super.updateShape(thisState, directionOfUpdate, updatedBlock, levelAccessor, thisPos, updatedPos);
+      } else {
+         return updatedBlock.is(this) && updatedBlock.getValue(PART) != thisState.getValue(PART) ? thisState : Blocks.AIR.defaultBlockState();
+      }
+   }
+
+   private static Direction getNeighbourDirection(WeaponDisplayPart p_49534_, Direction p_49535_) {
+      return p_49534_ == WeaponDisplayPart.RIGHT ? p_49535_.getClockWise() : p_49535_.getCounterClockWise();
+   }
+
+   public BlockState playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
+      if (!p_49505_.isClientSide && p_49508_.isCreative()) {
+         WeaponDisplayPart bedpart = (WeaponDisplayPart)p_49507_.getValue(PART);
+         if (bedpart == WeaponDisplayPart.RIGHT) {
+            BlockPos blockpos = p_49506_.relative(getNeighbourDirection(bedpart, ((Direction)p_49507_.getValue(FACING)).getClockWise()));
+            BlockState blockstate = p_49505_.getBlockState(blockpos);
+            if (blockstate.is(this) && blockstate.getValue(PART) == WeaponDisplayPart.LEFT) {
+               p_49505_.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+               p_49505_.levelEvent(p_49508_, 2001, blockpos, Block.getId(blockstate));
+            }
+         }
+      }
+
+      return super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
+   }
+
+   @Nullable
+   public BlockState getStateForPlacement(BlockPlaceContext p_49479_) {
+      Direction direction = p_49479_.getHorizontalDirection();
+      BlockPos blockpos = p_49479_.getClickedPos();
+      BlockPos blockpos1 = blockpos.relative(direction.getClockWise());
+      Level level = p_49479_.getLevel();
+      return level.getBlockState(blockpos1).canBeReplaced(p_49479_) && level.getWorldBorder().isWithinBounds(blockpos1)
+         ? (BlockState)this.defaultBlockState().setValue(FACING, direction)
+         : null;
+   }
+
+   public VoxelShape getShape(BlockState p_49547_, BlockGetter p_49548_, BlockPos p_49549_, CollisionContext p_49550_) {
+      return switch ((WeaponDisplayPart)p_49547_.getValue(PART)) {
+         case LEFT -> {
+            switch ((Direction)p_49547_.getValue(FACING)) {
+               case NORTH:
+                  yield this.northLeft();
+               case SOUTH:
+                  yield this.southLeft();
+               case WEST:
+                  yield this.westLeft();
+               default:
+                  yield this.eastLeft();
+            }
+         }
+         default -> {
+            switch ((Direction)p_49547_.getValue(FACING)) {
+               case NORTH:
+                  yield this.northRight();
+               case SOUTH:
+                  yield this.southRight();
+               case WEST:
+                  yield this.westRight();
+               default:
+                  yield this.eastRight();
+            }
+         }
+      };
+   }
+
+   protected void createBlockStateDefinition(Builder<Block, BlockState> p_49532_) {
+      p_49532_.add(new Property[]{FACING, PART});
+   }
+
+   public void setPlacedBy(Level p_49499_, BlockPos p_49500_, BlockState p_49501_, @Nullable LivingEntity p_49502_, ItemStack p_49503_) {
+      super.setPlacedBy(p_49499_, p_49500_, p_49501_, p_49502_, p_49503_);
+      if (!p_49499_.isClientSide) {
+         BlockPos blockpos = p_49500_.relative(((Direction)p_49501_.getValue(FACING)).getClockWise());
+         p_49499_.setBlock(blockpos, (BlockState)p_49501_.setValue(PART, WeaponDisplayPart.LEFT), 3);
+         p_49499_.blockUpdated(p_49500_, Blocks.AIR);
+         p_49501_.updateNeighbourShapes(p_49499_, p_49500_, 3);
+      }
+   }
+
+   public long getSeed(BlockState p_49522_, BlockPos p_49523_) {
+      BlockPos blockpos = p_49523_.relative(
+         ((Direction)p_49522_.getValue(FACING)).getCounterClockWise(), p_49522_.getValue(PART) == WeaponDisplayPart.LEFT ? 0 : 1
+      );
+      return Mth.getSeed(blockpos.getX(), p_49523_.getY(), blockpos.getZ());
+   }
+
+   public boolean isPathfindable(BlockState p_49510_, PathComputationType pPathComputationType) {
+      return false;
+   }
+
+   public List<ItemStack> getDrops(BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
+      ResourceKey<LootTable> resourcelocation = this.getLootTable();
+      if (resourcelocation == BuiltInLootTables.EMPTY) {
+         return Collections.emptyList();
+      } else {
+         LootParams lootparams = builder.withParameter(LootContextParams.BLOCK_STATE, state).create(LootContextParamSets.BLOCK);
+         ServerLevel serverlevel = lootparams.getLevel();
+         LootTable loottable = serverlevel.getServer().reloadableRegistries().getLootTable(resourcelocation);
+         if (ECWorldSaveData.getHeartStealerCount(builder.getLevel()) != 0.0 && serverlevel.random.nextInt(10) != 0) {
+            return loottable.getRandomItems(lootparams);
+         } else {
+            ECWorldSaveData.increaseHeartStealerCount(builder.getLevel());
+            return List.of(new ItemStack((ItemLike)ECItems.HEART_STEALER.get()));
+         }
+      }
+   }
+
+   public VoxelShape westRight() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.25, 0.0, 0.5625, 0.4375, 0.9375));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.25, 0.5625, 0.5, 0.375));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.0, 0.5625, 0.125, 0.25));
+      return Shapes.or(shape, Shapes.box(0.4375, 0.0625, 0.375, 0.5625, 0.625, 0.5));
+   }
+
+   public VoxelShape westLeft() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.375, 0.5625, 0.5, 0.5));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.5, 0.5625, 0.125, 1.0));
+      return Shapes.or(shape, Shapes.box(0.4375, 0.25, 0.125, 0.5625, 0.4375, 1.0));
+   }
+
+   public VoxelShape southRight() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.0, 0.25, 0.4375, 0.9375, 0.4375, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.25, 0.0, 0.4375, 0.375, 0.5, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.0, 0.0, 0.4375, 0.25, 0.125, 0.5625));
+      return Shapes.or(shape, Shapes.box(0.375, 0.0625, 0.4375, 0.5, 0.625, 0.5625));
+   }
+
+   public VoxelShape southLeft() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.375, 0.0, 0.4375, 0.5, 0.5, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.5, 0.0, 0.4375, 1.0, 0.125, 0.5625));
+      return Shapes.or(shape, Shapes.box(0.125, 0.25, 0.4375, 1.0, 0.4375, 0.5625));
+   }
+
+   public VoxelShape northRight() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.0625, 0.25, 0.4375, 1.0, 0.4375, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.625, 0.0, 0.4375, 0.75, 0.5, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.75, 0.0, 0.4375, 1.0, 0.125, 0.5625));
+      return Shapes.or(shape, Shapes.box(0.5, 0.0625, 0.4375, 0.625, 0.625, 0.5625));
+   }
+
+   public VoxelShape northLeft() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.5, 0.0, 0.4375, 0.625, 0.5, 0.5625));
+      shape = Shapes.or(shape, Shapes.box(0.0, 0.0, 0.4375, 0.5, 0.125, 0.5625));
+      return Shapes.or(shape, Shapes.box(0.0, 0.25, 0.4375, 0.875, 0.4375, 0.5625));
+   }
+
+   public VoxelShape eastRight() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.25, 0.0625, 0.5625, 0.4375, 1.0));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.625, 0.5625, 0.5, 0.75));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.75, 0.5625, 0.125, 1.0));
+      return Shapes.or(shape, Shapes.box(0.4375, 0.0625, 0.5, 0.5625, 0.625, 0.625));
+   }
+
+   public VoxelShape eastLeft() {
+      VoxelShape shape = Shapes.empty();
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.5, 0.5625, 0.5, 0.625));
+      shape = Shapes.or(shape, Shapes.box(0.4375, 0.0, 0.0, 0.5625, 0.125, 0.5));
+      return Shapes.or(shape, Shapes.box(0.4375, 0.25, 0.0, 0.5625, 0.4375, 0.875));
+   }
+}

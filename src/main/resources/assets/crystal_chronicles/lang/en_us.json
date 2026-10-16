@@ -7,7 +7,6 @@
   "item.crystal_chronicles.floralite_shard": "Floralite Shard",
   "item.crystal_chronicles.ice_shard": "Cryolite Shard",
   "item.crystal_chronicles.reactive_water_bucket": "Sulphuric Water Bucket",
-
   "block.crystal_chronicles.blood_bases": "Blood Bases",
   "block.crystal_chronicles.tall_blood_bases": "Tall Blood Bases",
   "block.crystal_chronicles.flesh_block": "Flesh Block",
@@ -208,12 +207,10 @@
   "block.crystal_chronicles.rainbow_chiseled_bismuth": "Rainbow Bismuth Block",
   "block.crystal_chronicles.violet_chiseled_bismuth": "Violet Bismuth Block",
   "block.crystal_chronicles.yellow_chiseled_bismuth": "Yellow Bismuth Block",
-
   "block.crystal_chronicles.bismuth_crystal": "Bismuth Crystal",
   "block.crystal_chronicles.purple_bismuth_crystal": "Purple Bismuth Crystal",
   "block.crystal_chronicles.violet_bismuth_crystal": "Violet Bismuth Crystal",
   "block.crystal_chronicles.yellow_bismuth_crystal": "Yellow Bismuth Crystal",
-
   "item.crystal_chronicles.paladin_helmet": "Paladin Helmet",
   "item.crystal_chronicles.paladin_chestplate": "Paladin Chestplate",
   "item.crystal_chronicles.paladin_leggings": "Paladin Leggings",
@@ -260,17 +257,17 @@
   "item.crystal_chronicles.evoker_boots": "Archevoker Boots",
   "item.crystal_chronicles.evocation_twinblade": "Evoker's Twinblade",
   "item.crystal_chronicles.cloud_bucket": "Cloud Bucket",
-
-  "fluid_type.crystal_chronicles.blood_fluid": "Blood",
-  "fluid_type.crystal_chronicles.reactive_water": "Sulphuric Water",
-
   "advancements.crystal_chronicles.root.title": "Prismatic Arts",
   "advancements.crystal_chronicles.root.description": "Begin your journey into the Crystal Chronicles dimensions.",
   "advancements.crystal_chronicles.prismatic_mastery.title": "Prismatic Mastery",
   "advancements.crystal_chronicles.prismatic_mastery.description": "Find the rare Rainbow Bismuth Crystal to unlock dimensional travel.",
   "block.crystal_chronicles.rainbow_bismuth_crystal": "Rainbow Bismuth Crystal",
-
   "itemGroup.items.crystal_chronicles": "CrystalChronicles Items",
   "itemGroup.blocks.crystal_chronicles": "CrystalChronicles Blocks",
-  "itemGroup.armory.crystal_chronicles": "CrystalChronicles Armory"
+  "itemGroup.armory.crystal_chronicles": "CrystalChronicles Armory",
+  "spell.crystal_chronicles.prismatic_portal": "Prismatic Portal",
+  "school.crystal_chronicles.prismatic": "Prismatic",
+  "effect.crystal_chronicles.bleeding": "Bleeding",
+  "fluid_type.crystal_chronicles.blood_fluid": "Blood",
+  "fluid_type.crystal_chronicles.reactive_water": "Reactive Water"
 }

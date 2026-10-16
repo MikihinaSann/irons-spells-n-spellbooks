@@ -101,6 +101,30 @@ public final class CuriosApi {
         return CuriosHelper.INSTANCE;
     }
 
+    /**
+     * Curios' {@code getEntitySlots}: every slot identifier this entity exposes,
+     * mapped to a light {@link ISlotType} descriptor (Trinkets group/slot
+     * inventory layout flattened to Curios identifiers).
+     */
+    public static java.util.Map<String, top.theillusivec4.curios.api.type.ISlotType> getEntitySlots(LivingEntity entity) {
+        java.util.Map<String, top.theillusivec4.curios.api.type.ISlotType> slots = new java.util.HashMap<>();
+        getTrinketComponent(entity).ifPresent(component ->
+                component.getInventory().forEach((group, groupSlots) ->
+                        groupSlots.forEach((slot, inv) -> {
+                            String id = group + "/" + slot;
+                            slots.put(id, new top.theillusivec4.curios.api.type.ISlotType() {
+                                @Override public String getIdentifier() { return id; }
+                                @Override public int getSize() { return inv.getContainerSize(); }
+                                @Override public net.minecraft.resources.ResourceLocation getIcon() {
+                                    return net.minecraft.resources.ResourceLocation.withDefaultNamespace("item/empty_armor_slot");
+                                }
+                            });
+                            // Curios flattens "group/slot" to just "slot" when unique
+                            slots.putIfAbsent(slot, slots.get(id));
+                        })));
+        return slots;
+    }
+
     public static class CuriosHelper {
         static final CuriosHelper INSTANCE = new CuriosHelper();
 

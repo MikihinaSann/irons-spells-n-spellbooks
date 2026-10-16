@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 2.0,
+  "ingredient": {
+    "item": "expanded_combat:gas_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:purified_gas_bottle"
+  }
+}

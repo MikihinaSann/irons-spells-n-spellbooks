@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "p": {
+      "item": "minecraft:stone_sword"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "  p",
+    " s ",
+    "s  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:stone_glaive"
+  }
+}

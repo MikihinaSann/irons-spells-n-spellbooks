@@ -1,0 +1,7 @@
+{
+  "icon": "expanded_combat:slot/empty_quiver_ec_slot",
+  "order": 85,
+  "quick_move_predicates": ["trinkets:tag"],
+  "validator_predicates": ["trinkets:tag"],
+  "tooltip_predicates": ["trinkets:tag"]
+}

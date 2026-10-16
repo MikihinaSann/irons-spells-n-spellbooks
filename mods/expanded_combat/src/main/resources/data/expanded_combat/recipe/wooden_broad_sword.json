@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "item": "minecraft:wooden_sword"
+    }
+  },
+  "pattern": [
+    " i ",
+    "isi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:wooden_broad_sword"
+  }
+}

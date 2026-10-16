@@ -1,0 +1,32 @@
+{
+  "values": [
+    "expanded_combat:leather_gauntlet",
+    "expanded_combat:rabbit_hide_gauntlet",
+    "expanded_combat:iron_gauntlet",
+    "expanded_combat:golden_gauntlet",
+    "expanded_combat:diamond_gauntlet",
+    "expanded_combat:netherite_gauntlet",
+    "expanded_combat:soul_fist",
+    "expanded_combat:fighter_s_gauntlet",
+    "expanded_combat:berserk_gauntlet",
+    "expanded_combat:brawler_s_gauntlet",
+    "minecraft:leather_chestplate",
+    "minecraft:leather_leggings",
+    "minecraft:leather_boots",
+    "minecraft:chainmail_chestplate",
+    "minecraft:chainmail_leggings",
+    "minecraft:chainmail_boots",
+    "minecraft:iron_chestplate",
+    "minecraft:iron_leggings",
+    "minecraft:iron_boots",
+    "minecraft:diamond_chestplate",
+    "minecraft:diamond_leggings",
+    "minecraft:diamond_boots",
+    "minecraft:golden_chestplate",
+    "minecraft:golden_leggings",
+    "minecraft:golden_boots",
+    "minecraft:netherite_chestplate",
+    "minecraft:netherite_leggings",
+    "minecraft:netherite_boots"
+  ]
+}

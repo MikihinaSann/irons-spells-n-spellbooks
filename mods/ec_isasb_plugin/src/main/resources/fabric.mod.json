@@ -12,6 +12,9 @@
   "entrypoints": {
     "neoforge": [
       "com.userofbricks.ecisasbplugin.ECISaSbPlugin"
+    ],
+    "expanded_combat:plugin": [
+      "com.userofbricks.ecisasbplugin.plugins.IronsSpellsAndSpellbooksPlugin"
     ]
   },
   "depends": {

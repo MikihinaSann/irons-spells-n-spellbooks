@@ -33,6 +33,19 @@ public class NeoForgeCompatClient implements ClientModInitializer {
                     }
                 }));
 
+        net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.registerGlobalReceiver(
+                DataMapsSyncPayload.TYPE, (payload, context) -> context.client().execute(() -> {
+                    net.neoforged.neoforge.internal.fabric.DataMapManager.applySyncJson(
+                            new String(payload.json(), java.nio.charset.StandardCharsets.UTF_8));
+                    var level = net.minecraft.client.Minecraft.getInstance().level;
+                    if (level != null) {
+                        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(
+                                new net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent(
+                                        level.registryAccess(), net.minecraft.core.registries.BuiltInRegistries.ITEM,
+                                        net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent.UpdateCause.CLIENT_SYNC));
+                    }
+                }));
+
         // The common onInitialize already scanned subscribers on this JVM
         // (deduped); a dedicated-server JVM skipped client-only ones correctly.
         net.neoforged.neoforge.common.util.LogicalSidedProvider.setClient(

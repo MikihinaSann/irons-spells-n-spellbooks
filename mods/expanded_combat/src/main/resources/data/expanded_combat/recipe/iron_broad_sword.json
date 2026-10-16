@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "s": {
+      "item": "minecraft:iron_sword"
+    }
+  },
+  "pattern": [
+    " i ",
+    "isi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:iron_broad_sword"
+  }
+}

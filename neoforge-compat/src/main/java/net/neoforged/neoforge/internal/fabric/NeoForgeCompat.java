@@ -518,6 +518,7 @@ public class NeoForgeCompat implements ModInitializer {
         dataMapAttachments.values().forEach(map -> map.forEach((id, type) ->
                 net.minecraft.core.Registry.register(
                         net.neoforged.neoforge.registries.NeoForgeRegistries.DATA_MAP_TYPES, id, type)));
+        net.neoforged.neoforge.internal.fabric.DataMapManager.registerTypes(dataMapAttachments);
         DeferredRegister.drainAll();
         net.neoforged.neoforge.common.DeferredSpawnEggItem.registerAllToByIdMap();
         net.minecraft.core.registries.BuiltInRegistries.REGISTRY.forEach(reg ->
@@ -604,6 +605,30 @@ public class NeoForgeCompat implements ModInitializer {
                             }
                         }));
 
+        // NeoForge data maps: load data/<ns>/data_maps/**.json on every server
+        // datapack reload into DataMapManager for Holder#getData lookups.
+        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
+                new net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener() {
+                    private final net.minecraft.resources.ResourceLocation id =
+                            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "data_maps");
+
+                    @Override
+                    public net.minecraft.resources.ResourceLocation getFabricId() {
+                        return id;
+                    }
+
+                    @Override
+                    public java.util.concurrent.CompletableFuture<Void> reload(
+                            PreparationBarrier barrier, net.minecraft.server.packs.resources.ResourceManager manager,
+                            net.minecraft.util.profiling.ProfilerFiller prepProfiler,
+                            net.minecraft.util.profiling.ProfilerFiller reloadProfiler,
+                            java.util.concurrent.Executor backgroundExecutor, java.util.concurrent.Executor gameExecutor) {
+                        return barrier.wait(net.minecraft.util.Unit.INSTANCE).thenRunAsync(() ->
+                                net.neoforged.neoforge.internal.fabric.DataMapManager.loadFromResources(manager),
+                                gameExecutor);
+                    }
+                });
+
         // ---- game-bus bridges ----
         net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents.TAGS_LOADED.register(
                 (registries, client) ->
@@ -674,6 +699,8 @@ public class NeoForgeCompat implements ModInitializer {
         net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent(handler.getPlayer()));
             NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(server.getPlayerList(), handler.getPlayer()));
+            net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.send(handler.getPlayer(),
+                    new DataMapsSyncPayload(net.neoforged.neoforge.internal.fabric.DataMapManager.encodeSyncJson()));
             if (Boolean.getBoolean("iss.devAutoOp")) {
                 com.mojang.authlib.GameProfile profile = handler.getPlayer().getGameProfile();
                 if (!server.getPlayerList().isOp(profile)) {
@@ -689,8 +716,13 @@ public class NeoForgeCompat implements ModInitializer {
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerEvent.Clone(clone, original, !keepEverything)));
         net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((player, origin, destination) ->
                 NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent(player, origin.dimension(), destination.dimension())));
-        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, serverResourceManager, success) ->
-                NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(server.getPlayerList(), null)));
+        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, serverResourceManager, success) -> {
+            NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(server.getPlayerList(), null));
+            DataMapsSyncPayload sync = new DataMapsSyncPayload(
+                    net.neoforged.neoforge.internal.fabric.DataMapManager.encodeSyncJson());
+            server.getPlayerList().getPlayers().forEach(p ->
+                    net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.send(p, sync));
+        });
 
         // --- interaction events ---
         net.fabricmc.fabric.api.event.player.UseItemCallback.EVENT.register((player, world, hand) -> {
@@ -737,6 +769,8 @@ public class NeoForgeCompat implements ModInitializer {
         // NeoForgeCompatClient; the server only needs the type for encoding.
         net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playS2C()
                 .register(SpawnDataPayload.TYPE, SpawnDataPayload.STREAM_CODEC);
+        net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playS2C()
+                .register(DataMapsSyncPayload.TYPE, DataMapsSyncPayload.STREAM_CODEC);
         net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.registerGlobalReceiver(
                 EmptyClickPayload.TYPE, (payload, context) ->
                         context.server().execute(() -> NeoForge.EVENT_BUS.post(

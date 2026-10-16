@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "quiver"
+    }
+  ],
+  "entities": [
+    "minecraft:player",
+    "minecraft:zombie",
+    "minecraft:zombie_villager",
+    "minecraft:piglin",
+    "minecraft:zombified_piglin",
+    "minecraft:pillager",
+    "minecraft:vindicator",
+    "minecraft:stray",
+    "minecraft:skeleton",
+    "minecraft:bogged"
+  ],
+  "slots": [
+    "quiver_ec"
+  ]
+}

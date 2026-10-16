@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "weapon"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "item": "minecraft:diamond"
+    },
+    "p": {
+      "item": "minecraft:diamond_sword"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "ip ",
+    "  s",
+    "  s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:diamond_scythe"
+  }
+}

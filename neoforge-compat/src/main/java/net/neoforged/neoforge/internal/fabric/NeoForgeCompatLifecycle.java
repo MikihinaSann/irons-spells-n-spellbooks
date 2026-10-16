@@ -175,7 +175,13 @@ final class NeoForgeCompatLifecycle {
         RegisterGuiLayersEvent guiLayers = new RegisterGuiLayersEvent();
         MOD_BUS.post(guiLayers);
         guiLayers.getRegistrations().forEach(GuiLayerSlots::classify);
+        MOD_BUS.post(new net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent());
+        MOD_BUS.post(new net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent(
+                net.neoforged.neoforge.internal.fabric.ItemDecoratorRegistry.map()));
+
         HudRenderCallback.EVENT.register((guiGraphics, deltaTracker) -> {
+            NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderGuiEvent.Pre(
+                    guiGraphics, deltaTracker));
             GuiLayerSlots.render(GuiLayerSlots.Slot.FALLBACK, guiGraphics, deltaTracker);
             NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderGuiEvent.Post(
                     guiGraphics, deltaTracker));

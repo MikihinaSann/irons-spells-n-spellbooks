@@ -171,3 +171,5 @@ accessible	field	net/minecraft/client/renderer/texture/TextureAtlas	texturesByNa
 # Gui HeartType for PlayerHeartTypeEvent
 accessible class net/minecraft/client/gui/Gui$HeartType
 accessible class net/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection
+accessible method net/minecraft/client/renderer/texture/atlas/SpriteSources register (Ljava/lang/String;Lcom/mojang/serialization/MapCodec;)Lnet/minecraft/client/renderer/texture/atlas/SpriteSourceType;
+accessible field net/minecraft/client/renderer/texture/atlas/SpriteSources TYPES Lcom/google/common/collect/BiMap;

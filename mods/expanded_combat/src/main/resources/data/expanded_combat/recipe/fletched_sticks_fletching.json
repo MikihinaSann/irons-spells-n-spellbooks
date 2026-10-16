@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "arrow"
+    },
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "arrow"
+    }
+  ],
+  "type": "expanded_combat:ec_fletching",
+  "addition": {
+    "item": "minecraft:feather"
+  },
+  "base": {
+    "item": "minecraft:stick"
+  },
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:fletched_sticks"
+  }
+}

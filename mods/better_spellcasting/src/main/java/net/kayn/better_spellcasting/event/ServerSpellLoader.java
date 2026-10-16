@@ -1,0 +1,118 @@
+package net.kayn.better_spellcasting.event;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
+import io.redspace.ironsspellbooks.api.spells.CastType;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Map.Entry;
+import net.bettercombat.api.WeaponAttributes;
+import net.bettercombat.logic.WeaponRegistry;
+import net.kayn.better_spellcasting.BetterSpellcasting;
+import net.kayn.better_spellcasting.combat.SpellAttackData;
+import net.kayn.better_spellcasting.compat.SpellDataHolder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+
+@EventBusSubscriber(
+   modid = "better_spellcasting"
+)
+public class ServerSpellLoader {
+   private static final Gson GSON = new Gson();
+
+   @SubscribeEvent(
+      priority = EventPriority.LOWEST
+   )
+   public static void onServerStarted(ServerStartedEvent event) {
+      loadAllWeaponSpells(event.getServer().getResourceManager());
+   }
+
+   private static void loadAllWeaponSpells(ResourceManager resourceManager) {
+      try {
+         Field registrationsField = WeaponRegistry.class.getDeclaredField("registrations");
+         registrationsField.setAccessible(true);
+         Map<ResourceLocation, WeaponAttributes> weaponMap = (Map<ResourceLocation, WeaponAttributes>)registrationsField.get(null);
+         if (weaponMap == null || weaponMap.isEmpty()) {
+            return;
+         }
+
+         for (Entry<ResourceLocation, WeaponAttributes> entry : weaponMap.entrySet()) {
+            ResourceLocation weaponId = entry.getKey();
+            WeaponAttributes attributes = entry.getValue();
+            if (attributes != null && attributes.attacks() != null) {
+               loadSpellDataForWeapon(resourceManager, weaponId, attributes);
+            }
+         }
+      } catch (Exception var7) {
+      }
+   }
+
+   private static void loadSpellDataForWeapon(ResourceManager resourceManager, ResourceLocation weaponId, WeaponAttributes attributes) {
+      ResourceLocation jsonLoc = ResourceLocation.fromNamespaceAndPath(weaponId.getNamespace(), "weapon_attributes/" + weaponId.getPath() + ".json");
+
+      try {
+         Optional<Resource> resource = resourceManager.getResource(jsonLoc);
+         if (!resource.isEmpty()) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.get().open()))) {
+               JsonObject root = (JsonObject)GSON.fromJson(reader, JsonObject.class);
+               if (root == null || !root.has("attributes")) {
+                  return;
+               }
+
+               JsonObject attrs = root.getAsJsonObject("attributes");
+               if (!attrs.has("attacks")) {
+                  return;
+               }
+
+               JsonArray attacks = attrs.getAsJsonArray("attacks");
+               if (!attacks.isEmpty()) {
+                  int registeredAttacks = attributes.attacks().length;
+
+                  for (int i = 0; i < attacks.size(); i++) {
+                     JsonElement attackElement = attacks.get(i);
+                     if (attackElement.isJsonObject()) {
+                        JsonObject attack = attackElement.getAsJsonObject();
+                        if (attack.has("spell") && i < registeredAttacks) {
+                           String spellId = attack.get("spell").getAsString();
+                           int level = attack.has("level") ? attack.get("level").getAsInt() : 1;
+                           String target = attack.has("target") ? attack.get("target").getAsString() : "TARGET";
+                           AbstractSpell spell = SpellRegistry.getSpell(ResourceLocation.parse(spellId));
+                           if (spell == SpellRegistry.none()) {
+                              BetterSpellcasting.LOGGER.warn("Unknown spell '{}' in {}", spellId, weaponId);
+                           } else if (spell.getCastType() == CastType.CONTINUOUS) {
+                              BetterSpellcasting.LOGGER
+                                 .error(
+                                    "CONTINUOUS cast spell '{}' is not supported for weapon attacks in {} attack {}. Skipping.",
+                                    new Object[]{spellId, weaponId, i}
+                                 );
+                              BetterSpellcasting.LOGGER.error("Continuous spells cannot be bound to weapons. Please use INSTANT or CHARGED spells only.");
+                           } else {
+                              String triggerStr = attack.has("trigger") ? attack.get("trigger").getAsString() : "on_hit";
+                              SpellAttackData.Trigger trigger = SpellAttackData.Trigger.fromString(triggerStr);
+                              SpellAttackData pad = new SpellAttackData(spell, level, target, trigger);
+                              SpellDataHolder.register(weaponId, i, pad);
+                           }
+                        }
+                     }
+                  }
+
+                  return;
+               }
+            }
+         }
+      } catch (Exception var22) {
+      }
+   }
+}

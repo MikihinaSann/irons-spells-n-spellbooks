@@ -1,0 +1,12 @@
+{
+  "values": {
+    "#minecraft:planks": "expanded_combat:wood_plank",
+    "#minecraft:stone_crafting_materials": "expanded_combat:stone",
+    "minecraft:diamond": "expanded_combat:diamond",
+    "minecraft:gold_ingot": "expanded_combat:gold",
+    "minecraft:iron_ingot": "expanded_combat:iron",
+    "minecraft:leather": "expanded_combat:leather",
+    "minecraft:netherite_ingot": "expanded_combat:netherite",
+    "minecraft:rabbit_hide": "expanded_combat:rabbit_hide"
+  }
+}

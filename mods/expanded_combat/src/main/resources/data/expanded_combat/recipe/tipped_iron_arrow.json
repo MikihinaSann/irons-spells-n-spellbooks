@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "arrow"
+    }
+  ],
+  "type": "expanded_combat:crafting_ec_tipped_arrow",
+  "arrow": {
+    "item": "expanded_combat:iron_arrow"
+  },
+  "category": "equipment",
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:tipped_iron_arrow"
+  }
+}

@@ -1,0 +1,118 @@
+package com.userofbricks.expanded_combat.client.renderer.item;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.userofbricks.expanded_combat.ExpandedCombat;
+import com.userofbricks.expanded_combat.data_components.ShieldMaterials;
+import com.userofbricks.expanded_combat.init.ItemDataComponents;
+import java.util.Objects;
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ShieldModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BannerRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.armortrim.ArmorTrim;
+import net.minecraft.world.item.armortrim.TrimPattern;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
+
+@ParametersAreNonnullByDefault
+public class ECShieldBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
+   private static ECShieldBlockEntityWithoutLevelRenderer INSTANCE = null;
+   private final ShieldModel shieldModel;
+
+   public ECShieldBlockEntityWithoutLevelRenderer() {
+      this(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+   }
+
+   public ECShieldBlockEntityWithoutLevelRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelSet entityModelSet) {
+      super(blockEntityRenderDispatcher, entityModelSet);
+      this.shieldModel = new ShieldModel(entityModelSet.bakeLayer(ModelLayers.SHIELD));
+   }
+
+   public static ECShieldBlockEntityWithoutLevelRenderer getInstance() {
+      if (INSTANCE == null) {
+         INSTANCE = new ECShieldBlockEntityWithoutLevelRenderer();
+      }
+
+      return INSTANCE;
+   }
+
+   public void renderByItem(
+      ItemStack stack, ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay
+   ) {
+      if (!stack.isEmpty()) {
+         BannerPatternLayers bannerpatternlayers = (BannerPatternLayers)stack.getOrDefault(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY);
+         DyeColor dyecolor = (DyeColor)stack.get(DataComponents.BASE_COLOR);
+         boolean hasBanner = !bannerpatternlayers.layers().isEmpty() || dyecolor != null;
+         poseStack.pushPose();
+         poseStack.scale(1.0F, -1.0F, -1.0F);
+         ShieldMaterials shieldMaterials = (ShieldMaterials)stack.getOrDefault(ItemDataComponents.SHIELD_MATERIALS, ShieldMaterials.DEFAULT);
+         String trimName = "empty";
+         ArmorTrim trim = (ArmorTrim)stack.get(DataComponents.TRIM);
+         if (trim != null) {
+            ResourceLocation trimResourceLocation = ((TrimPattern)trim.pattern().value()).assetId();
+            trimName = trimResourceLocation.getNamespace() + "__" + trimResourceLocation.getPath();
+         }
+
+         ResourceLocation rlUL = this.getShieldTexture(shieldMaterials.ULMaterial(), trimName, "ul");
+         ResourceLocation rlUR = this.getShieldTexture(shieldMaterials.URMaterial(), trimName, "ur");
+         ResourceLocation rlDL = this.getShieldTexture(shieldMaterials.DLMaterial(), trimName, "dl");
+         ResourceLocation rlDR = this.getShieldTexture(shieldMaterials.DRMaterial(), trimName, "dr");
+         ResourceLocation rlM = this.getShieldTexture(shieldMaterials.MMaterial(), trimName, "m");
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.handle(), rlM);
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlUL);
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlUR);
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlDL);
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlDR);
+         this.renderModel(poseStack, multiBufferSource, combinedLight, stack.hasFoil(), this.shieldModel.plate(), rlM);
+         if (hasBanner) {
+            Material material = new Material(Sheets.SHIELD_SHEET, ExpandedCombat.modLoc("model/shields/shield_base"));
+            BannerRenderer.renderPatterns(
+               poseStack,
+               multiBufferSource,
+               combinedLight,
+               combinedOverlay,
+               this.shieldModel.plate(),
+               material,
+               false,
+               Objects.requireNonNullElse(dyecolor, DyeColor.WHITE),
+               bannerpatternlayers,
+               stack.hasFoil()
+            );
+         }
+
+         poseStack.popPose();
+      }
+   }
+
+   private ResourceLocation getShieldTexture(com.userofbricks.expanded_combat.api.material.Material materialHolder, String trimName, String p) {
+      ResourceLocation material = materialHolder.id();
+      return p.equals("m") ? material.withPrefix("model/shields/m/") : material.withPrefix("model/shields/" + trimName + "/" + p + "/");
+   }
+
+   private void renderModel(
+      PoseStack poseStack, MultiBufferSource multibuffersource, int light, boolean foil, ModelPart model, ResourceLocation... shieldResources
+   ) {
+      for (ResourceLocation shieldResource : shieldResources) {
+         Material material = new Material(Sheets.SHIELD_SHEET, shieldResource);
+         VertexConsumer vertexconsumer = material.sprite()
+            .wrap(ItemRenderer.getFoilBufferDirect(multibuffersource, RenderType.armorCutoutNoCull(material.atlasLocation()), true, foil));
+         model.render(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+      }
+   }
+}

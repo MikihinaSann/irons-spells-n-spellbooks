@@ -1,0 +1,12 @@
+{
+  "values": {
+    "minecraft:shield": {
+      "dl_material": "expanded_combat:wood_plank",
+      "dr_material": "expanded_combat:wood_plank",
+      "last_repair_number": 0,
+      "m_material": "expanded_combat:iron",
+      "ul_material": "expanded_combat:wood_plank",
+      "ur_material": "expanded_combat:wood_plank"
+    }
+  }
+}

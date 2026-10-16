@@ -43,6 +43,20 @@ public interface ICurioRenderer {
         }
     }
 
+    /** Curios' {@code translateIfSneaking} — shifts the model down while sneaking. */
+    static void translateIfSneaking(final PoseStack poseStack, final LivingEntity livingEntity) {
+        if (livingEntity.isCrouching()) {
+            poseStack.translate(0.0F, 0.2F, 0.0F);
+        }
+    }
+
+    /** Curios' {@code rotateIfSneaking} — tilts the model forward while sneaking. */
+    static void rotateIfSneaking(final PoseStack poseStack, final LivingEntity livingEntity) {
+        if (livingEntity.isCrouching()) {
+            poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(90.0F / (float) Math.PI));
+        }
+    }
+
     <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack itemStack,
                                                                    SlotContext slotContext,
                                                                    PoseStack poseStack,

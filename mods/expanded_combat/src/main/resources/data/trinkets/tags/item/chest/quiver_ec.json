@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "expanded_combat:leather_quiver",
+    "expanded_combat:rabbit_hide_quiver",
+    "expanded_combat:iron_quiver",
+    "expanded_combat:golden_quiver",
+    "expanded_combat:diamond_quiver",
+    "expanded_combat:netherite_quiver"
+  ]
+}

@@ -41,6 +41,7 @@ dependencies {
     compileOnly files("${rootDir}/libs/fcap-nested/toml-3.8.0.jar")
     modCompileOnly files("${rootDir}/libs/geckolib-fabric-1.21.1-${geckolib_version}.jar")
     modCompileOnly files("${rootDir}/libs/azurelib-fabric-1.21.1-${azurelib_version}.jar")
+    modCompileOnly files("${rootDir}/libs/bettercombat-fabric-2.1.0+1.21.1.jar")
 
     compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.21.0.247"
     compileOnly "mezz.jei:jei-1.21.1-neoforge:19.21.0.247"

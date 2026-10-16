@@ -1,0 +1,7 @@
+{
+  "parent": "expanded_combat:item/bases/dagger",
+  "gui_light": "front",
+  "textures": {
+    "layer0": "expanded_combat:item/dagger/frost"
+  }
+}

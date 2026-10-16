@@ -81,7 +81,9 @@ public interface IAttachmentHolder {
     }
 
     default <T> T setData(AttachmentType<T> type, T data) {
-        return self().setAttached(fabric(type), data);
+        T previous = self().setAttached(fabric(type), data);
+        AttachmentHooks.fireSet(this, type, data);
+        return previous;
     }
 
     default <T> T setData(Supplier<? extends AttachmentType<T>> type, T data) {

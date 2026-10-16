@@ -97,6 +97,15 @@ loom {
         aces_spell_utils {
             sourceSet project(':mods:aces_spell_utils').sourceSets.main
         }
+        better_spellcasting {
+            sourceSet project(':mods:better_spellcasting').sourceSets.main
+        }
+        expanded_combat {
+            sourceSet project(':mods:expanded_combat').sourceSets.main
+        }
+        ec_isasb_plugin {
+            sourceSet project(':mods:ec_isasb_plugin').sourceSets.main
+        }
     }
 
     runs {
@@ -181,6 +190,9 @@ dependencies {
     implementation files("mods/iss_magicfromtheeast/build/devlibs/iss_magicfromtheeast-1.1.5+fabric.1.21.1-dev.jar")
     implementation files("mods/cataclysm_spellbooks/build/devlibs/cataclysm_spellbooks-1.1.11+fabric.1.21.1-dev.jar")
     implementation files("mods/aces_spell_utils/build/devlibs/aces_spell_utils-1.2.1+fabric.1.21.1-dev.jar")
+    implementation files("mods/better_spellcasting/build/devlibs/better_spellcasting-1.0.0+fabric.1.21.1-dev.jar")
+    implementation files("mods/expanded_combat/build/devlibs/expanded_combat-3.3.12+fabric.1.21.1-dev.jar")
+    implementation files("mods/ec_isasb_plugin/build/devlibs/ec_isasb_plugin-1.0.1+fabric.1.21.1-dev.jar")
     // borninchaos is a standalone content mod (no dep on root ISS) — safe as a
     // normal project dependency like alexscaves/cataclysm.
     implementation(project(path: ":mods:borninchaos", configuration: "namedElements")) {
@@ -197,6 +209,7 @@ dependencies {
     modImplementation files("libs/cloth-config-${cloth_config_version}-fabric.jar")
     // cloth-config JIJ dep (not extracted by loom for files() deps)
     implementation files("libs/cloth-nested/basic-math-0.6.1.jar")
+    modImplementation files("libs/bettercombat-fabric-2.1.0+1.21.1.jar")
 
     // Optional compat bases — merged addons gate themselves on these being loaded
     modImplementation files("libs/epicfight-fabric-21.17.3.jar")
@@ -293,10 +306,11 @@ tasks.sourcesJar.dependsOn(tasks.copyAnimations)
 // Vendored addon modules expose dev jars via files() inputs — declare explicit
 // task deps so Gradle's implicit-dependency validation accepts them.
 def addonModules = ['aces_spell_utils', 'aero_additions', 'alexscaves', 'alshanex_familiars',
-    'apothic_attributes', 'borninchaos', 'cataclysm', 'cataclysm_spellbooks', 'chronomancy',
-    'citadel', 'cobweb', 'dash', 'discerning_the_eldritch', 'expandability',
-    'hazennstuff', 'horror_element_mod', 'iss_magicfromtheeast', 'lionfishapi', 'placebo',
-    'prometheus', 'somakespells', 'soul_fire_d', 'spellelemental', 'traveloptics', 'tunes_n_tomes']
+    'apothic_attributes', 'better_spellcasting', 'borninchaos', 'cataclysm', 'cataclysm_spellbooks',
+    'chronomancy', 'citadel', 'cobweb', 'dash', 'discerning_the_eldritch', 'ec_isasb_plugin',
+    'expandability', 'expanded_combat', 'hazennstuff', 'horror_element_mod',
+    'iss_magicfromtheeast', 'lionfishapi', 'placebo', 'prometheus', 'somakespells',
+    'soul_fire_d', 'spellelemental', 'traveloptics', 'tunes_n_tomes']
 ['remapJar', 'remapSourcesJar'].each { taskName ->
     tasks.named(taskName) {
         mustRunAfter addonModules.collect { ":mods:$it:remapJar" }

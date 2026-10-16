@@ -1,0 +1,72 @@
+{
+  "base": {
+    "parent": "expanded_combat:item/bases/katana",
+    "gui_light": "front",
+    "textures": {
+      "layer0": "expanded_combat:item_large/katana_handle",
+      "layer1": "expanded_combat:item_large/katana/wood_plank"
+    }
+  },
+  "gui_light": "front",
+  "loader": "neoforge:separate_transforms",
+  "overrides": [
+    {
+      "model": "expanded_combat:item/wooden_katana_block_1",
+      "predicate": {
+        "minecraft:block_pos": 0.1,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/wooden_katana_block_2",
+      "predicate": {
+        "minecraft:block_pos": 0.2,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/wooden_katana_block_3",
+      "predicate": {
+        "minecraft:block_pos": 0.3,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    },
+    {
+      "model": "expanded_combat:item/wooden_katana_none",
+      "predicate": {
+        "minecraft:block_pos": 0.4,
+        "minecraft:blocked_recently": 1.0,
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
+  "perspectives": {
+    "fixed": {
+      "parent": "minecraft:item/generated",
+      "gui_light": "front",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana/wood_plank"
+      }
+    },
+    "ground": {
+      "parent": "minecraft:item/generated",
+      "gui_light": "front",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana/wood_plank"
+      }
+    },
+    "gui": {
+      "parent": "minecraft:item/generated",
+      "gui_light": "front",
+      "textures": {
+        "layer0": "expanded_combat:item/katana_handle",
+        "layer1": "expanded_combat:item/katana/wood_plank"
+      }
+    }
+  }
+}

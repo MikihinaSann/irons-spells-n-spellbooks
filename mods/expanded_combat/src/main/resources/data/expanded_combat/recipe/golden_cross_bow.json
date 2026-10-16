@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "expanded_combat:config_boolean",
+      "config_entry": "crossbow"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "m": {
+      "item": "minecraft:gold_ingot"
+    },
+    "p": {
+      "item": "minecraft:crossbow"
+    }
+  },
+  "pattern": [
+    " m ",
+    "mpm"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expanded_combat:golden_cross_bow"
+  }
+}

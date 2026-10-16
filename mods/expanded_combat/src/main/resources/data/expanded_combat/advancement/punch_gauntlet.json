@@ -1,0 +1,43 @@
+{
+  "parent": "expanded_combat:root",
+  "criteria": {
+    "gauntlet_with_punch_2": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#curios:hands",
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantments": "minecraft:punch",
+                  "levels": {
+                    "min": 2
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.expanded_combat.punch_gauntlet.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "expanded_combat:netherite_gauntlet"
+    },
+    "title": {
+      "translate": "advancements.expanded_combat.punch_gauntlet.title"
+    }
+  },
+  "requirements": [
+    [
+      "gauntlet_with_punch_2"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
