@@ -31,6 +31,14 @@ public final class EnumExtensionLoader {
     private static final Logger LOGGER = LoggerFactory.getLogger("neoforge_compat");
     private static final String PATH = "META-INF/enumextensions.json";
 
+    /** Mojmap → 1.21.1 intermediary for vanilla enums extended by bundled mods. */
+    private static final java.util.Map<String, String> INTERMEDIARY_ENUM_NAMES = java.util.Map.of(
+            "net.minecraft.world.item.Rarity", "net.minecraft.class_1814",
+            "net.minecraft.world.entity.MobCategory", "net.minecraft.class_1311",
+            "net.minecraft.world.entity.raid.Raid$RaiderType", "net.minecraft.class_3765$class_3766",
+            "net.minecraft.client.model.HumanoidModel$ArmPose", "net.minecraft.class_572$class_573",
+            "net.minecraft.client.gui.Gui$HeartType", "net.minecraft.class_329$class_6411");
+
     private EnumExtensionLoader() {
     }
 
@@ -108,11 +116,20 @@ public final class EnumExtensionLoader {
         try {
             enumClass = (Class<? extends Enum>) Class.forName(enumName);
         } catch (Throwable t) {
-            // Client-only enums (e.g. HumanoidModel$ArmPose) can't load on a
-            // dedicated server — the constant isn't reachable there anyway.
-            LOGGER.warn("enumextensions: skipping {} on {} — enum class unavailable ({})",
-                    constantName, enumName, t);
-            return;
+            // Production jars are remapped to intermediary — enumextensions.json
+            // still names the Mojmap class. The prod mapping resolver has no
+            // mojmap table, so translate known vanilla enums via a static map.
+            String runtime = INTERMEDIARY_ENUM_NAMES.getOrDefault(enumName,
+                    FabricLoader.getInstance().getMappingResolver().mapClassName("named", enumName));
+            try {
+                enumClass = (Class<? extends Enum>) Class.forName(runtime);
+            } catch (Throwable t2) {
+                // Client-only enums (e.g. HumanoidModel$ArmPose) can't load on a
+                // dedicated server — the constant isn't reachable there anyway.
+                LOGGER.warn("enumextensions: skipping {} on {} — enum class unavailable ({})",
+                        constantName, enumName, t2);
+                return;
+            }
         }
         int paramCount = descriptorParamCount(ctorDesc);
         Class<?>[] ctorParamTypes = enumClass.getDeclaredConstructors()[0].getParameterTypes();

@@ -203,6 +203,24 @@ public class SomakeSpells {
       });
    }
 
+
+   private static Map<?, ?> attributeModifiersOf(MobEffect effect) throws ReflectiveOperationException {
+      // "attributeModifiers" is remapped to field_XXXX in production jars —
+      // resolve by type instead: MobEffect's only Map-typed field.
+      Field f = null;
+      for (Field candidate : MobEffect.class.getDeclaredFields()) {
+         if (Map.class.isAssignableFrom(candidate.getType())) {
+            f = candidate;
+            break;
+         }
+      }
+      if (f == null) {
+         f = MobEffect.class.getDeclaredField("attributeModifiers");
+      }
+      f.setAccessible(true);
+      return (Map<?, ?>)f.get(effect);
+   }
+
    private void patchBornInChaosRabbitAgility() {
       try {
          ResourceLocation effectId = ResourceLocation.parse("born_in_chaos_v1:rabbit_agility");
@@ -212,9 +230,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.MOVEMENT_SPEED);
          modifiers.remove(Attributes.ATTACK_DAMAGE);
          effect.addAttributeModifier(
@@ -242,9 +258,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.ARMOR);
          effect.addAttributeModifier(
             Attributes.ARMOR, ResourceLocation.fromNamespaceAndPath("somakespells", "effect.stone_persistence.armor"), 5.0, Operation.ADD_VALUE
@@ -264,9 +278,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.MOVEMENT_SPEED);
          modifiers.remove(Attributes.ATTACK_SPEED);
          if (!(Boolean)EffectBalanceConfig.REMOVE_BORN_IN_CHAOS_STIMULATION_SPEED.get()) {
@@ -296,9 +308,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.ARMOR);
          modifiers.remove(Attributes.ARMOR_TOUGHNESS);
          modifiers.remove(Attributes.ATTACK_DAMAGE);
@@ -364,9 +374,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(charge);
+         Map<?, ?> modifiers = attributeModifiersOf(charge);
          modifiers.remove(Attributes.MOVEMENT_SPEED);
          LOGGER.info("Successfully removed Movement Speed from Charge effect.");
       } catch (Exception var5) {
@@ -383,9 +391,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(speed);
+         Map<?, ?> modifiers = attributeModifiersOf(speed);
          modifiers.remove(Attributes.MOVEMENT_SPEED);
          speed.addAttributeModifier(
             Attributes.MOVEMENT_SPEED,
@@ -444,9 +450,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.ATTACK_DAMAGE);
          effect.addAttributeModifier(Attributes.ATTACK_DAMAGE, modifierId, attackDamage, Operation.ADD_VALUE);
          LOGGER.info("Patched {} attack damage to {}.", effectId, attackDamage);
@@ -463,9 +467,7 @@ public class SomakeSpells {
             return;
          }
 
-         Field attributeModifiersField = MobEffect.class.getDeclaredField("attributeModifiers");
-         attributeModifiersField.setAccessible(true);
-         Map<?, ?> modifiers = (Map<?, ?>)attributeModifiersField.get(effect);
+         Map<?, ?> modifiers = attributeModifiersOf(effect);
          modifiers.remove(Attributes.MOVEMENT_SPEED);
          LOGGER.info("Removed MOVEMENT_SPEED from effect {}", effectId);
       } catch (Exception var5) {

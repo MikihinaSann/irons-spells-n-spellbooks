@@ -149,8 +149,13 @@ public final class EnumExtender {
             }
 
             Field valuesField = null;
+            // In production the synthetic $VALUES array is remapped to
+            // field_XXXX — match by "static EnumClass[]" type instead of name.
             for (Field f : enumClass.getDeclaredFields()) {
-                if (f.getName().equals("$VALUES") || f.getName().equals("ENUM$VALUES")) {
+                if (f.getName().equals("$VALUES") || f.getName().equals("ENUM$VALUES")
+                        || (java.lang.reflect.Modifier.isStatic(f.getModifiers())
+                                && f.getType().isArray()
+                                && f.getType().getComponentType() == enumClass)) {
                     valuesField = f;
                     break;
                 }

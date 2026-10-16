@@ -29,7 +29,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(AbstractArrow.class)
     public abstract static class AbstractArrowDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/AbstractArrow;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(AbstractArrow self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {
@@ -41,7 +41,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(AbstractHurtingProjectile.class)
     public abstract static class HurtingProjectileDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/AbstractHurtingProjectile;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(AbstractHurtingProjectile self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {
@@ -53,7 +53,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(ThrowableProjectile.class)
     public abstract static class ThrowableProjectileDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/ThrowableProjectile;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(ThrowableProjectile self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {
@@ -65,7 +65,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(ShulkerBullet.class)
     public abstract static class ShulkerBulletDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/ShulkerBullet;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(ShulkerBullet self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {
@@ -77,7 +77,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(LlamaSpit.class)
     public abstract static class LlamaSpitDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/LlamaSpit;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(LlamaSpit self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {
@@ -89,7 +89,7 @@ public final class ProjectileImpactDispatchMixin {
 
     @Mixin(FireworkRocketEntity.class)
     public abstract static class FireworkRocketDispatch {
-        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "hitTargetOrDeflectSelf"))
+        @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/FireworkRocketEntity;hitTargetOrDeflectSelf(Lnet/minecraft/world/phys/HitResult;)Lnet/minecraft/world/entity/projectile/ProjectileDeflection;"))
         private ProjectileDeflection irons_spellbooks$impactGuard(FireworkRocketEntity self, HitResult hitResult,
                                                                   Operation<ProjectileDeflection> original) {
             if (hitResult.getType() == HitResult.Type.MISS || EventHooks.onProjectileImpact(self, hitResult)) {

@@ -68,3 +68,6 @@ run_server
 _bs_dec/
 _ec_classes/
 _ec_src/
+dist/
+_prodtest/
+_tmpjar/
